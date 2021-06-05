@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    if (localStorage.getItem("accessToken")===null)
+        window.location.href="../mainPage/index.html";
+</script>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>پنل کاربری - استادیوهای من </title>
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico"/>
+    <link href="../../assets/scss/loader.css" rel="stylesheet" type="text/css"/>
+    <script src="../../assets/js/loader.js"></script>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!--<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">-->
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/scss/plugins.css" rel="stylesheet" type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <!--<link rel="stylesheet" type="text/css" href="../../plugins/anime/animate.min.css">-->
+    <link rel="stylesheet" type="text/css" href="../../assets/scss/elements/tooltip.min.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/table/datatable/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/table/datatable/custom_dt_html5.min.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/table/datatable/dt_global_style.min.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/table/datatable/custom_dt_custom.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/scss/forms/switches.min.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/scss/components/custom-modal.min.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/snackbar/snackbar.min.css">
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+</head>
+<body>
+<!-- BEGIN LOADER -->
+<div id="load_screen">
+    <div class="loader">
+        <div class="loader-content">
+            <div class="spinner-grow align-self-center"></div>
+        </div>
+    </div>
+</div>
+<!--  END LOADER -->
+
+<!--  BEGIN NAVBAR  -->
+<header></header>
+<!--  END NAVBAR  -->
+
+<!--  BEGIN MAIN CONTAINER  -->
+<div class="main-container" id="container">
+
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN SIDEBAR  -->
+    <aside></aside>
+    <!--  END SIDEBAR  -->
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div id="content" class="main-content">
+        <div class="layout-px-spacing">
+            <div class="row layout-top-spacing">
+
+                <div id="modal-delete-studio" class="modal animated fade rotateInDownLeft custo-rotateInDownLeft" role="dialog"
+                     style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header border-bottom border-dark">
+                                <h5 class="modal-title">حذف استادیو</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="modal-text">از حذف این استادیو مطمئنی ؟</p>
+                            </div>
+                            <div class="modal-footer md-button border-bottom border-dark">
+                                <button class="btn btn-dark" data-dismiss="modal"
+                                onclick="$('tr.deletable').removeClass('deletable')">
+                                    <i class="flaticon-cancel-12"></i>خیر
+                                </button>
+                                <button type="button" class="btn btn-primary btn-delete-studio">
+                                    مطمئنم
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
+                    <div class="widget-content widget-content-area br-6">
+                        <div class="d-flex flex-row justify-content-between align-items-center mx-4">
+                            <h2>استادیوهای من</h2>
+                            <a type="button" href="new-studio.html"
+                               class="btn btn-outline-success">
+                                <!--style="background:none;background-image: linear-gradient(to left, #5c1ac3 0%, transparent 100%);margin-left: 7px">-->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="feather feather-plus">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span>افزودن</span>
+                            </a>
+                        </div>
+
+                        <div class="table-responsive mb-4 mt-4">
+                            <table id="user-studios-table" class="table table-hover non-hover style-3">
+                                <thead>
+                                <tr>
+                                    <th class="text-left" style="width: 5%">فعال</th>
+                                    <th>نام</th>
+                                    <th style="width: 20%">آدرس</th>
+                                    <th>هزینه اجاره</th>
+                                    <th>توضیحات</th>
+                                    <th style="width: 5%">وضعیت</th>
+                                    <th style="width: 15%">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                             viewBox="0 0 24 24" fill="none"
+                                             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                             stroke-linejoin="round"
+                                             class="feather feather-settings">
+                                            <circle cx="12" cy="12" r="3"></circle>
+                                            <path
+                                                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                        </svg>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer></footer>
+        <!--  END CONTENT AREA  -->
+
+    </div>
+</div>
+<!-- END MAIN CONTAINER -->
+
+<!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+<script src="../../assets/js/libs/jquery-3.1.1.min.js"></script>
+<script src="../../bootstrap/js/popper.min.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/custom.js"></script>
+<!-- END GLOBAL MANDATORY SCRIPTS -->
+
+<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+<!--<script src="../../assets/js/elements/tooltip.js"></script>-->
+<script src="../../plugins/table/datatable/datatables.js"></script>
+<script src="../../plugins/table/datatable/button-ext/datatables.buttons.min.js"></script>
+<script src="../../plugins/table/datatable/button-ext/jszip.min.js"></script>
+<script src="../../plugins/table/datatable/button-ext/buttons.html5.min.js"></script>
+<script src="../../plugins/table/datatable/button-ext/buttons.print.min.js"></script>
+<script src="../../assets/js/elements/custom-snackbar.js"></script>
+
+<script>
+
+    $(window).on("load", function () {
+
+        let myStudiosTable=$('#user-studios-table').DataTable({
+            drawCallback: function () {
+                $('.t-dot').tooltip({ template: '<div class="tooltip status" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>' })
+                $('.dataTables_wrapper table').removeClass('table-striped');
+            },
+            dom: '<"row"<"col-md-12"<"row"<"col-md-6 text-md-left text-center px-0 px-sm-2 px-md-3 px-lg-4"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
+            buttons: {
+                buttons: [
+                    {extend: 'copy', className: 'btn'},
+                    {extend: 'excel', className: 'btn'},
+                    {extend: 'print', className: 'btn'}
+                ]
+            },
+            "oLanguage": {
+                "oPaginate": {
+                    "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+                    "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>'
+                },
+                "sInfo": "نمایش صفحه _PAGE_ از _PAGES_",
+                "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                "sSearchPlaceholder": "جست‌وجو...",
+                "sLengthMenu": "نتایج :  _MENU_",
+                "sEmptyTable" : "داده ای در جدول وجود ندارد."
+            },
+            "stripeClasses": ['']
+        });
+
+
+        $.ajax({
+            async : false,
+            method : "GET",
+            url : "http://127.0.0.1:8000/api/studio/my",
+            headers : {
+                authorization : "Bearer "+localStorage.getItem("accessToken")
+            },
+            success : function (response) {
+                const studios = response.studios;
+                for(let i=0;i<studios.length;i++){
+                    let viewable_html="";
+                    if(studios[i].status==="PENDING"){
+                        viewable_html = "<div class=\"t-dot bg-warning\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"در انتظار تایید\"></div>"
+                    }else if(studios[i].status=== "APPROVAL"){
+                        viewable_html = "<div class=\"t-dot bg-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"تایید شده\"></div>"
+                    }else {
+                        viewable_html = "<div class=\"t-dot bg-danger\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"\" data-original-title=\"عدم تایید\"></div>"
+                    }
+                    const tr = myStudiosTable.row.add([
+                        '<label class="switch s-success mr-2"><input type="checkbox" '+(studios[i].is_active===1 ? 'checked' : '')+'><span class="slider round"></span></label>',
+                        studios[i].name,
+                        studios[i].address,
+                        studios[i].price+" تومان",
+                        studios[i].description===null ?  '----' : studios[i].description,
+                        viewable_html,
+                        '<ul class="table-controls">\n' +
+                    '                                            <li><a href="single-studio.html" class="table-link-single">\n' +
+                    '                                                <svg xmlns="http:www.w3.org/2000/svg"\n' +
+                    '                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"\n' +
+                    '                                                     stroke-width="1.75"\n' +
+                    '                                                     stroke-linecap="round" stroke-linejoin="round"\n' +
+                    '                                                     class="feather feather-eye px-1 text-primary">\n' +
+                    '                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>\n' +
+                    '                                                    <circle cx="12" cy="12" r="3"></circle>\n' +
+                    '                                                </svg>\n' +
+                    '                                            </a></li>\n' +
+                    '                                            <li>\n' +
+                    '                                                <a href="edit-studio.html" class="table-link-edit">\n' +
+                    '                                                    <svg xmlns="http:www.w3.org/2000/svg"\n' +
+                    '                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"\n' +
+                    '                                                         stroke-width="2"\n' +
+                    '                                                         stroke-linecap="round" stroke-linejoin="round"\n' +
+                    '                                                         class="feather feather-edit-2 px-1 text-warning">\n' +
+                    '                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>\n' +
+                    '                                                    </svg>\n' +
+                    '                                                </a>\n' +
+                    '                                            </li>\n' +
+                    '                                            <li>\n' +
+                    '                                                <a href="javascript:void(0);" class="table-link-copy">\n' +
+                    '                                                    <svg xmlns="http:www.w3.org/2000/svg" viewBox="0 0 24 24"\n' +
+                    '                                                         fill="none" stroke="currentColor" stroke-width="2"\n' +
+                    '                                                         stroke-linecap="round"\n' +
+                    '                                                         stroke-linejoin="round" class="feather feather-file-plus px-1">\n' +
+                    '                                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>\n' +
+                    '                                                        <polyline points="14 2 14 8 20 8"></polyline>\n' +
+                    '                                                        <line x1="12" y1="18" x2="12" y2="12"></line>\n' +
+                    '                                                        <line x1="9" y1="15" x2="15" y2="15"></line>\n' +
+                    '                                                    </svg>\n' +
+                    '                                                </a>\n' +
+                    '                                            </li>\n' +
+                    '                                            <li>\n' +
+                    '                                                <a href="#modal-delete-studio" data-toggle="modal"\n' +
+                    '                                                   onclick="$(this).closest(\'tr\').addClass(\'deletable\');">\n' +
+                    '                                                    <svg xmlns="http:www.w3.org/2000/svg" viewBox="0 0 24 24"\n' +
+                    '                                                         fill="none"\n' +
+                    '                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"\n' +
+                    '                                                         stroke-linejoin="round"\n' +
+                    '                                                         class="feather feather-trash text-dark p-1 br-6 mb-1">\n' +
+                    '                                                        <polyline points="3 6 5 6 21 6"></polyline>\n' +
+                    '                                                        <path\n' +
+                    '                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>\n' +
+                    '                                                    </svg>\n' +
+                    '                                                </a>\n' +
+                    '                                            </li>\n' +
+                    '                                        </ul>'
+                    ]).draw(false);
+                    myStudiosTable.rows(tr).nodes().to$().attr("data-id", studios[i].id);
+                }
+            },
+            error : function (error) {
+                console.log("error : "+JSON.stringify(error));
+            }
+        });
+    });
+
+    $("#user-studios-table").on("change","input[type='checkbox']",function () {
+        const rowId=$(this).closest("tr").attr("data-id");
+        const isChecked = $(this).is(":checked");
+        $.ajax({
+            async : false,
+            method : "PATCH",
+            url : "http://127.0.0.1:8000/api/studio/"+rowId+"/activation",
+            headers : {
+                authorization : "Bearer "+localStorage.getItem("accessToken")
+            },
+            data : {
+                is_active : (isChecked ? 1 : 0)
+            },
+            success : function (response) {
+//                console.log("successs "+JSON.stringify(response));
+            },
+            error : function (error) {
+                console.log("error : "+JSON.stringify(error));
+            }
+        });
+    });
+
+    $("table tbody").on("click",".table-link-single , .table-link-edit",function (e) {
+        e.preventDefault();
+        const dataId = $(this).closest("tr").attr("data-id");
+        localStorage.setItem("data-id",dataId);
+        $(location).attr("href",$(this).attr("href"))
+    });
+
+    $("table tbody").on("click", ".table-link-copy", function () {
+        let parent = $(this).closest("tr");
+        parent.after($("<tr role='row'></tr>").html(parent.html()));
+    });
+
+    $(".modal .btn-delete-studio").on("click",function (e) {
+        e.preventDefault();
+        const dataId = $("tr.deletable").attr("data-id");
+        console.log("dataId : "+dataId);
+        $.ajax({
+            async : false,
+            method : "DELETE",
+            url : "http://127.0.0.1:8000/api/studio/"+dataId,
+            headers : {
+                authorization : "Bearer "+localStorage.getItem("accessToken")
+            },
+            success : function (response) {
+                if (typeof response === 'object' && response !== null){
+                    let backColor="";
+                    if(!response.error){
+                        backColor = "#1f8a02";
+                        $("tr.deletable").remove();
+                    }else{
+                        backColor = "#cb1213";
+                        $("tr.deletable").removeClass("deletable");
+                    }
+                    $("#modal-delete-studio").modal("hide");
+                    Snackbar.show({
+                        text: response.messages[0],
+                        actionText: '',
+                        backgroundColor: backColor,
+                        pos: 'bottom-right'
+                    });
+                }
+            }
+        })
+    })
+
+//    $("table tbody").on("click", ".table-link-edit", function () {
+//        let parent = $(this).closest("tr");
+//        let modal = $("#addedit-studio-modal");
+//        modal.modal("show");
+//        modal.find("[name='name']").val(parent.find(".studio-name").text());
+//        modal.find("[name='price']").val(parent.find(".studio-price").text());
+//        modal.find("[name='address']").val(parent.find(".studio-address").text());
+//        modal.find("[name='description']").val(parent.find(".studio-description").text());
+//    });
+
+        //    $("input[name^='expense_id']").on("change", function (e) {
+    //        var total = 0;
+    //        var change = $(this).closest(".n-chk").next().find(".price").text();
+    ////            change = change.replace(",","");
+    ////            change = parseInt(toEnDigits(change));
+    //        if ($(this).prop("checked")) {
+    //            total = change;
+    //        }else{
+    //            total = 0;
+    //        }
+    //        if($(this).is($("#program-total"))) {
+    //            $(".days.collapse").collapse("show");
+    //        }else{
+    //            $(".days.collapse").collapse("hide");
+    //        }
+    //        $("#expense_total").text((total));
+    //    });
+
+
+</script>
+</body>
+</html>

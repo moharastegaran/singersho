@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>پنل کاربری - ویرایش استودیو </title>
+    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico"/>
+    <link href="../../assets/scss/loader.css" rel="stylesheet" type="text/css"/>
+    <script src="../../assets/js/loader.js"></script>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!--<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">-->
+    <link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../assets/scss/plugins.css" rel="stylesheet" type="text/css"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="../../assets/scss/forms/switches.min.css">
+    <link rel="stylesheet" type="text/css" href="../../plugins/file-upload/file-upload-with-preview.min.css">
+    <style>
+        .form-group {
+            position: relative;
+        }
+
+        .form-group svg, .form-group svg {
+            position: absolute;
+            width: 20px;
+            top: 11px;
+            right: 9px;
+            color: #8dbf42;
+            fill: rgba(43, 226, 47, 0.24);
+        }
+
+        .form-group input, .form-group textarea {
+            padding-right: 35px;
+            border: none;
+            border-bottom: 1px solid #191e3a;
+            border-radius: 0;
+        }
+
+        .form-group input.form-control:focus, .form-group input.form-control:focus {
+            box-shadow: none;
+        }
+
+        .form-group .input-error {
+            position: absolute;
+            top: 100%;
+            z-index: 5;
+            max-width: 100%;
+            padding: .25rem .5rem;
+            margin-top: .1rem;
+            font-size: .875rem;
+            line-height: 1.5;
+            color: #fff;
+            background-color: rgba(220, 53, 69, 0.9);
+            border-radius: .25rem;
+        }
+    </style>
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+
+</head>
+<body>
+<!-- BEGIN LOADER -->
+<div id="load_screen">
+    <div class="loader">
+        <div class="loader-content">
+            <div class="spinner-grow align-self-center"></div>
+        </div>
+    </div>
+</div>
+<!--  END LOADER -->
+
+<!--  BEGIN NAVBAR  -->
+<header></header>
+<!--  END NAVBAR  -->
+
+<!--  BEGIN MAIN CONTAINER  -->
+<div class="main-container" id="container">
+
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN SIDEBAR  -->
+    <aside></aside>
+    <!--  END SIDEBAR  -->
+
+    <!--  BEGIN CONTENT AREA  -->
+    <div id="content" class="main-content">
+        <div class="layout-px-spacing">
+            <div class="row layout-top-spacing">
+                <div class="col-xl-10 col-lg-11 col-sm-12 mx-auto layout-spacing">
+                    <div class="widget-content widget-content-area br-6">
+                        <form id="editStudioForm" class="row mt-0">
+                            <div class="col-md-8 col-sm-10 mx-auto mb-5">
+                                <div class="custom-file-container" data-upload-id="studioImagesFileContainer">
+                                    <label>آپلود عکس(ها) <a href="javascript:void(0)"
+                                                            class="custom-file-container__image-clear"
+                                                            title="حذف عکس">x</a></label>
+                                    <label class="custom-file-container__custom-file">
+                                        <input type="file" class="custom-file-container__custom-file__custom-file-input"
+                                               multiple>
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="10485760"/>
+                                        <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                    </label>
+                                    <div class="custom-file-container__image-preview"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                         stroke-linejoin="round" class="feather feather-terminal">
+                                        <polyline points="4 17 10 11 4 5"></polyline>
+                                        <line x1="12" y1="19" x2="20" y2="19"></line>
+                                    </svg>
+                                    <input type="text" class="form-control mb-2" id="studioNameInput" name="name"
+                                           placeholder="نام استادیو">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                         stroke-linecap="round" stroke-linejoin="round"
+                                         class="feather feather-at-sign">
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                        <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                                    </svg>
+                                    <input type="text" class="form-control mb-2" id="studioRentCostInput"
+                                           autocomplete="off" placeholder="هزینه اجاره(ساعتی)" name="price">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="feather feather-map-pin">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <textarea class="form-control" id="studioGeoLocationTextArea" rows="3"
+                                              style="resize: none;" name="address" autocomplete="off"
+                                              placeholder="آدرس دقیق استادیو را وارد کنید"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" viewBox="0 0 24 24" fill="none"
+                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="feather feather-map-pin">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <textarea class="form-control mb-4" id="studioExtraDescriptionTextArea" rows="3"
+                                              style="resize: none;" name="description" autocomplete="off"
+                                              placeholder="توضیحات تکمیلی استادیو(اختیاری)"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <button type="submit" class="btn btn-outline-primary mt-2 mb-2 btn-block">ویرایش استادیو
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer></footer>
+        <!--  END CONTENT AREA  -->
+
+    </div>
+</div>
+<!-- END MAIN CONTAINER -->
+
+<!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+<script src="../../assets/js/libs/jquery-3.1.1.min.js"></script>
+<script src="../../bootstrap/js/popper.min.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="../../assets/js/app.js"></script>
+<script src="../../assets/js/custom.js"></script>
+<!-- END GLOBAL MANDATORY SCRIPTS -->
+
+<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+<script src="../../plugins/file-upload/file-upload-with-preview.min.js"></script>
+<script>
+    let studioMultiFileUploadContainer = new FileUploadWithPreview('studioImagesFileContainer');
+    $(window).on("load", function () {
+        dataId = parseInt(localStorage.getItem("data-id"));
+        $.ajaxSetup({
+            headers: {
+                authorization: "Bearer " + localStorage.getItem("accessToken")
+            },
+        })
+        $.get("http://127.0.0.1:8000/api/studio/" + dataId + "/detail", function (response, status) {
+            if (!response.error) {
+                $("input[name='name']").val(response.studio.name);
+                $("input[name='price']").val(response.studio.price);
+                $("textarea[name='address']").val(response.studio.address);
+                const studioImages= response.studio.images;
+                let studioImagePath;
+                if(studioImages.length > 0){
+                    let studioImagesArray=[];
+
+//                    $(".custom-file-container__image-preview").addClass(".custom-file-container__image-preview--active");
+//                    $(".custom-file-container__image-preview").css({ backgroundImage : "none" });
+                    for(let i=0; i<studioImages.length;i++) {
+                        const studioImage = studioImages[i].path;
+                        studioImagePath = studioImage.substr(0, studioImage.indexOf("localhost") + 9) + ":8000" + studioImage.substr(studioImage.indexOf("localhost") + 9);
+                        studioImagesArray.push(studioImagePath);
+//                        $(".custom-file-container__image-preview")
+//                            .append("<div class=\"custom-file-container__image-multi-preview\" data-upload-token=\""+studioImages[i].id+"\" style=\"background-image: url("+studioImagePath+")\"> <span class=\"custom-file-container__image-multi-preview__single-image-clear\"> <span class=\"custom-file-container__image-multi-preview__single-image-clear__icon\" data-upload-token=\""+studioImages[i].id+"\">×</span> </span> </div>")
+                    }
+                    studioMultiFileUploadContainer.addImagesFromPath(studioImagesArray);
+                }
+            }
+        });
+    });
+
+    $(document).ready(() => {
+
+        $("input[name='price']").on("blur", function () {
+            const $this = $(this);
+            $.ajax({
+                method: "PATCH",
+                url: "http://127.0.0.1:8000/api/studio/" + dataId + "/price",
+                data: {
+                    price: $this.val() + ""
+                },
+                success: function (response) {
+                    if (typeof response === 'object' && response !== null) {
+                        if (response.error) {
+                            $this.after(
+                                $("<div></div>")
+                                    .addClass("input-error")
+                                    .text(response.messages[0]));
+                        } else {
+                            $this.parent().find(".input-error").remove();
+                        }
+                    } else {
+                        $this.next(".input-error").remove();
+                    }
+                },
+                error: function (error) {
+                    console.log("error : " + JSON.stringify(error));
+                }
+            });
+        });
+
+        $("input[name='name']").on("blur", function () {
+            const $this = $(this);
+            $.ajax({
+                method: "PATCH",
+                url: "http://127.0.0.1:8000/api/studio/" + dataId + "/name",
+                data: {
+                    name: $this.val() + ""
+                },
+                success: function (response) {
+                    if (typeof response === 'object' && response !== null) {
+                        if (response.error) {
+                            $this.after(
+                                $("<div></div>")
+                                    .addClass("input-error")
+                                    .text(response.messages[0]));
+                        } else {
+                            $this.parent().find(".input-error").remove();
+                        }
+                    } else {
+                        $this.next(".input-error").remove();
+                    }
+                },
+                error: function (error) {
+                    console.log("error : " + JSON.stringify(error));
+                }
+            })
+        });
+
+        $("textarea[name='address']").on("blur", function () {
+            const $this = $(this);
+            $.ajax({
+                method: "PATCH",
+                url: "http://127.0.0.1:8000/api/studio/" + dataId + "/address",
+                data: {
+                    address: $this.val() + ""
+                },
+                success: function (response) {
+                    if (typeof response === 'object' && response !== null) {
+                        if (response.error) {
+                            $this.after(
+                                $("<div></div>")
+                                    .addClass("input-error")
+                                    .text(response.messages[0]));
+                        } else {
+                            $this.parent().find(".input-error").remove();
+                        }
+                    } else {
+                        $this.next(".input-error").remove();
+                    }
+                },
+                error: function (error) {
+                    console.log("error : " + JSON.stringify(error));
+                }
+            })
+        });
+    });
+</script>
+<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+
+</body>
+</html>

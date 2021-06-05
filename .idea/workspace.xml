@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="editProfile.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/dashboard/editProfile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4179">
+              <caret line="209" column="82" lean-forward="false" selection-start-line="209" selection-start-column="73" selection-end-line="209" selection-end-column="82" />
+              <folding>
+                <marker date="1622810783260" expanded="false" signature="9399:10321" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/auth/login.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1113">
+              <caret line="53" column="42" lean-forward="false" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+              <folding>
+                <marker date="1622798041149" expanded="false" signature="4359:7081" ph="..." />
+                <marker date="1622798041149" expanded="false" signature="4508:4542" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="studios.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/dashboard/studios.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1953">
+              <caret line="93" column="22" lean-forward="false" selection-start-line="63" selection-start-column="15" selection-end-line="93" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile-edit.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/dashboard/profile-edit.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="9870">
+              <caret line="625" column="50" lean-forward="false" selection-start-line="625" selection-start-column="50" selection-end-line="625" selection-end-column="50" />
+              <folding>
+                <element signature="n#!!block;n#deleteTitleRow#0" expanded="false" />
+                <element signature="n#!!block;n#editPortfolioRow#0" expanded="false" />
+                <element signature="e#23806#29807#0" expanded="false" />
+                <element signature="e#34890#35256#0" expanded="false" />
+                <marker date="1622832924150" expanded="false" signature="35263:41328" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/mainPage/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="2825" column="60" lean-forward="true" selection-start-line="2825" selection-start-column="60" selection-end-line="2825" selection-end-column="60" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="SCSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>clearPreviewPanel</find>
+      <find>focusedTitleRow</find>
+      <find>userExperienceThumbnail</find>
+      <find>userAdd</find>
+      <find>userAddTitleForm</find>
+      <find>collapse</find>
+      <find>const</find>
+      <find>order_price</find>
+      <find>description</find>
+      <find>focus</find>
+      <find>accept_order</find>
+      <find>hide.bs</find>
+      <find>taget</find>
+      <find>modal-delete-profile</find>
+      <find>-delete</find>
+      <find>deleteTitleRow</find>
+      <find>removeTitleRow</find>
+      <find>response.</find>
+      <find>response.portfolio</find>
+      <find>addExperienceRow</find>
+      <find>editExperienceRow</find>
+      <find>editport</find>
+      <find>val</find>
+      <find>removeExperienceRow</find>
+      <find>deletePortfolioRow</find>
+      <find>deleteP</find>
+      <find>experience-list-item</find>
+      <find>experience-list</find>
+      <find>deleteportf</find>
+      <find>منتشرشدد</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>src=&quot;../</replace>
+      <replace>addSkillRow</replace>
+      <replace>removeSkillRow</replace>
+      <replace>experience-list-item</replace>
+      <replace>../../assets/img/mainPage</replace>
+      <replace>mr-</replace>
+      <replace>../../assets</replace>
+      <replace>addedit-studio-modal</replace>
+      <replace>mb-3</replace>
+      <replace>#registeration-form</replace>
+      <replace>&quot;</replace>
+      <replace>modal-delete-studio</replace>
+      <replace>sound</replace>
+      <replace>deleteTitleRow</replace>
+      <replace>addPortfolioRow</replace>
+      <replace>editPortfolioRow</replace>
+      <replace>portfolio[i]</replace>
+      <replace>text</replace>
+      <replace>portfolio-list-item</replace>
+      <replace>portfolio-list</replace>
+      <replace>deletePortfolioRow</replace>
+    </replaceStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/assets/scss/base/_base.scss" />
+        <option value="$PROJECT_DIR$/plugins/table/datatable/custom_dt_custom.css" />
+        <option value="$PROJECT_DIR$/plugins/table/datatable/button-ext/buttons.print.min.js" />
+        <option value="$PROJECT_DIR$/plugins/table/datatable/button-ext/buttons.html5.min.js" />
+        <option value="$PROJECT_DIR$/plugins/anime/animate.css.scss" />
+        <option value="$PROJECT_DIR$/plugins/anime/animate.css" />
+        <option value="$PROJECT_DIR$/assets/scss/components/custom-modal.scss" />
+        <option value="$PROJECT_DIR$/assets/scss/main.scss" />
+        <option value="$PROJECT_DIR$/plugins/table/datatable/dt_global_style.css" />
+        <option value="$PROJECT_DIR$/views/parts/footer.html" />
+        <option value="$PROJECT_DIR$/assets/scss/elements/tooltip.scss" />
+        <option value="$PROJECT_DIR$/plugins/flexslider/flexslider.css" />
+        <option value="$PROJECT_DIR$/plugins/flexslider/jquery.flexslider.js" />
+        <option value="$PROJECT_DIR$/assets/js/custom.js" />
+        <option value="$PROJECT_DIR$/assets/scss/dashboard/dash_1.css" />
+        <option value="$PROJECT_DIR$/bootstrap/css/bootstrap.min.css" />
+        <option value="$PROJECT_DIR$/bootstrap/css/bootstrap.scss" />
+        <option value="$PROJECT_DIR$/views/dashboard/dashboard.html" />
+        <option value="$PROJECT_DIR$/assets/scss/forms/checkbox-radio.scss" />
+        <option value="$PROJECT_DIR$/plugins/table/datatable/custom_dt_multibage.css" />
+        <option value="$PROJECT_DIR$/plugins/snackbar/snackbar.min.js" />
+        <option value="$PROJECT_DIR$/plugins/snackbar/snackbar.min.css" />
+        <option value="$PROJECT_DIR$/assets/scss/structure.scss" />
+        <option value="$PROJECT_DIR$/assets/scss/authentication/form-1.scss" />
+        <option value="$PROJECT_DIR$/assets/scss/authentication/form-2.scss" />
+        <option value="$PROJECT_DIR$/views/dashboard/team-building.html" />
+        <option value="$PROJECT_DIR$/views/auth/register.html" />
+        <option value="$PROJECT_DIR$/views/parts/header.html" />
+        <option value="$PROJECT_DIR$/views/parts/sidebar.html" />
+        <option value="$PROJECT_DIR$/assets/js/authentication/form-2.js" />
+        <option value="$PROJECT_DIR$/assets/js/dashboard/dash_1.js" />
+        <option value="$PROJECT_DIR$/views/mainPage/index.html" />
+        <option value="$PROJECT_DIR$/assets/js/mainPage/app.js" />
+        <option value="$PROJECT_DIR$/assets/js/forms/bootstrap_validaton.js" />
+        <option value="$PROJECT_DIR$/assets/js/forms/bootstrap_validation.js" />
+        <option value="$PROJECT_DIR$/plugins/bootstrap-maxlength/custom-bs-maxlength.js" />
+        <option value="$PROJECT_DIR$/plugins/bootstrap-maxlength/bootstrap-maxlength.js" />
+        <option value="$PROJECT_DIR$/views/auth/password_recovery.html" />
+        <option value="$PROJECT_DIR$/assets/js/authentication/form-1.js" />
+        <option value="$PROJECT_DIR$/plugins/file-upload/file-upload-with-preview.min.js" />
+        <option value="$PROJECT_DIR$/views/dashboard/edit-studio.html" />
+        <option value="$PROJECT_DIR$/views/dashboard/single-studio.html" />
+        <option value="$PROJECT_DIR$/views/dashboard/new-studio.html" />
+        <option value="$PROJECT_DIR$/views/dashboard/studios.html" />
+        <option value="$PROJECT_DIR$/assets/scss/components/custom-tabs.scss" />
+        <option value="$PROJECT_DIR$/assets/img/upload.svg" />
+        <option value="$PROJECT_DIR$/assets/img/external-link.svg" />
+        <option value="$PROJECT_DIR$/assets/img/image.svg" />
+        <option value="$PROJECT_DIR$/views/auth/login.html" />
+        <option value="$PROJECT_DIR$/views/dashboard/editProfile.html" />
+        <option value="$PROJECT_DIR$/assets/js/dashboard/profile-edit.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="718" />
+    <option name="y" value="48" />
+    <option name="width" value="874" />
+    <option name="height" value="1008" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="img" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="scss" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="scss" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="scss" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="components" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="custom-modal.scss" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="plugins" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="plugins" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="file-upload" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="auth" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="dashboard" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="mainPage" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="saaz&amp;seda" type="b2602c69:ProjectViewProjectNode" />
+              <item name="saaz&amp;seda" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="parts" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="C:/xampp/htdocs/saaz-va-seda" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="nodejs_interpreter_path" value="C:/Program Files (x86)/nodejs/node" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\auth" />
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\plugins\flexslider" />
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\plugins\table\datatable" />
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\dashboard" />
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\editProfile.html" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\assets\img" />
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\auth" />
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\assets\js\authentication" />
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\assets\js\elements" />
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\plugins" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="" />
+      <created>1620993450074</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1620993450074</updated>
+      <workItem from="1620993451449" duration="1837000" />
+      <workItem from="1621002126500" duration="12377000" />
+      <workItem from="1621065290388" duration="15480000" />
+      <workItem from="1621087249937" duration="9155000" />
+      <workItem from="1621146897946" duration="850000" />
+      <workItem from="1621150505679" duration="6795000" />
+      <workItem from="1621315771173" duration="2298000" />
+      <workItem from="1621404503176" duration="6123000" />
+      <workItem from="1621495582405" duration="16419000" />
+      <workItem from="1621517886159" duration="2772000" />
+      <workItem from="1621521085336" duration="4100000" />
+      <workItem from="1621540495744" duration="5600000" />
+      <workItem from="1621617806929" duration="1204000" />
+      <workItem from="1621678060496" duration="6751000" />
+      <workItem from="1621672080035" duration="4214000" />
+      <workItem from="1621750749255" duration="18749000" />
+      <workItem from="1622038555758" duration="2407000" />
+      <workItem from="1622057217989" duration="8571000" />
+      <workItem from="1622098506070" duration="16890000" />
+      <workItem from="1622188436716" duration="2743000" />
+      <workItem from="1622310593134" duration="7845000" />
+      <workItem from="1622369291684" duration="14269000" />
+      <workItem from="1622449343954" duration="15756000" />
+      <workItem from="1622529062661" duration="3069000" />
+      <workItem from="1622529359942" duration="4179000" />
+      <workItem from="1622620544549" duration="7843000" />
+      <workItem from="1622633261732" duration="9432000" />
+      <workItem from="1622714235483" duration="5095000" />
+      <workItem from="1622787037850" duration="11531000" />
+      <workItem from="1622802938055" duration="10788000" />
+      <workItem from="1622879804265" duration="92000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="235234000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20885417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.47130242" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289183" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/assets/js/elements/tooltip.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/elements/tooltip.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/components/custom-modal.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="1471" lean-forward="false" selection-start-line="0" selection-start-column="1464" selection-end-line="0" selection-end-column="1471" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/components/custom-modal.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4872">
+          <caret line="232" column="15" lean-forward="true" selection-start-line="232" selection-start-column="15" selection-end-line="232" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/base/_color_variables.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="17" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/flexslider/jquery.flexslider.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25767">
+          <caret line="1231" column="40" lean-forward="true" selection-start-line="1231" selection-start-column="40" selection-end-line="1231" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/flexslider/flexslider.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap/css/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="88489" lean-forward="false" selection-start-line="5" selection-start-column="88489" selection-end-line="5" selection-end-column="88489" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap/css/bootstrap.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110229">
+          <caret line="5249" column="27" lean-forward="false" selection-start-line="5249" selection-start-column="27" selection-end-line="5249" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/dashboard/dash_1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9177">
+          <caret line="437" column="23" lean-forward="false" selection-start-line="437" selection-start-column="23" selection-end-line="437" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/forms/checkbox-radio.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-420">
+          <caret line="25" column="27" lean-forward="true" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/table/datatable/custom_dt_html5.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="102" column="32" lean-forward="true" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/table/datatable/datatables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21945">
+          <caret line="1055" column="85" lean-forward="false" selection-start-line="1055" selection-start-column="71" selection-end-line="1055" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/table/datatable/custom_dt_multibage.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/elements/custom-snackbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/snackbar/snackbar.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/snackbar/snackbar.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="26" lean-forward="false" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/structure.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16779">
+          <caret line="799" column="1" lean-forward="false" selection-start-line="799" selection-start-column="1" selection-end-line="799" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/authentication/form-1.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="204" column="0" lean-forward="true" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/authentication/form-2.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="830">
+          <caret line="230" column="0" lean-forward="true" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/parts/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1512">
+          <caret line="72" column="75" lean-forward="false" selection-start-line="72" selection-start-column="65" selection-end-line="72" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/sweetalerts/sweetalert.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="711">
+          <caret line="1627" column="44" lean-forward="false" selection-start-line="1627" selection-start-column="44" selection-end-line="1627" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/dashboard/dash_1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="571" column="42" lean-forward="false" selection-start-line="571" selection-start-column="42" selection-end-line="571" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dashboard/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17283">
+          <caret line="1246" column="39" lean-forward="false" selection-start-line="1246" selection-start-column="39" selection-end-line="1246" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4137">
+          <caret line="197" column="2" lean-forward="false" selection-start-line="197" selection-start-column="2" selection-end-line="197" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/mainPage/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="34" column="29" lean-forward="false" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/parts/sidebar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="56" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="2216" column="0" lean-forward="false" selection-start-line="2216" selection-start-column="0" selection-end-line="2216" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/forms/bootstrap_validation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1659">
+          <caret line="79" column="5" lean-forward="false" selection-start-line="79" selection-start-column="5" selection-end-line="79" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/authentication/form-2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="28" column="31" lean-forward="true" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/bootstrap-maxlength/bootstrap-maxlength.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="198" column="40" lean-forward="true" selection-start-line="198" selection-start-column="40" selection-end-line="198" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/bootstrap-maxlength/custom-bs-maxlength.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="45" column="27" lean-forward="false" selection-start-line="45" selection-start-column="27" selection-end-line="45" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dashboard/single-studio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1145">
+          <caret line="208" column="57" lean-forward="false" selection-start-line="208" selection-start-column="57" selection-end-line="208" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dashboard/team-building.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="93" column="25" lean-forward="false" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugins/file-upload/file-upload-with-preview.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="0" column="49027" lean-forward="false" selection-start-line="0" selection-start-column="49027" selection-end-line="0" selection-end-column="49027" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/auth/register.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="154" column="45" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/auth/password_recovery.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="41" column="34" lean-forward="false" selection-start-line="41" selection-start-column="34" selection-end-line="41" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/authentication/form-1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="63" column="40" lean-forward="false" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dashboard/edit-studio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="128" column="64" lean-forward="true" selection-start-line="128" selection-start-column="64" selection-end-line="128" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/img/globe.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/img/external-link.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="124" lean-forward="false" selection-start-line="0" selection-start-column="124" selection-end-line="0" selection-end-column="124" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/img/upload.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="124" lean-forward="false" selection-start-line="0" selection-start-column="124" selection-end-line="0" selection-end-column="124" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/img/image.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dashboard/new-studio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3759">
+          <caret line="179" column="31" lean-forward="false" selection-start-line="179" selection-start-column="31" selection-end-line="179" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/scss/components/custom-tabs.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10227">
+          <caret line="487" column="34" lean-forward="false" selection-start-line="487" selection-start-column="34" selection-end-line="487" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dashboard/studios.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1953">
+          <caret line="93" column="22" lean-forward="false" selection-start-line="63" selection-start-column="15" selection-end-line="93" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/auth/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1113">
+          <caret line="53" column="42" lean-forward="false" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+          <folding>
+            <marker date="1622798041149" expanded="false" signature="4359:7081" ph="..." />
+            <marker date="1622798041149" expanded="false" signature="4508:4542" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/dashboard/editProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4179">
+          <caret line="209" column="82" lean-forward="false" selection-start-line="209" selection-start-column="73" selection-end-line="209" selection-end-column="82" />
+          <folding>
+            <marker date="1622810783260" expanded="false" signature="9399:10321" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/dashboard/profile-edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9870">
+          <caret line="625" column="50" lean-forward="false" selection-start-line="625" selection-start-column="50" selection-end-line="625" selection-end-column="50" />
+          <folding>
+            <element signature="n#!!block;n#deleteTitleRow#0" expanded="false" />
+            <element signature="n#!!block;n#editPortfolioRow#0" expanded="false" />
+            <element signature="e#23806#29807#0" expanded="false" />
+            <element signature="e#34890#35256#0" expanded="false" />
+            <marker date="1622832924150" expanded="false" signature="35263:41328" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/mainPage/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="2825" column="60" lean-forward="true" selection-start-line="2825" selection-start-column="60" selection-end-line="2825" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
