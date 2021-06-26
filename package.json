@@ -1,0 +1,16 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "jalali-date": {
+      "version": "1.1.4",
+      "resolved": "https://registry.npmjs.org/jalali-date/-/jalali-date-1.1.4.tgz",
+      "integrity": "sha512-uahw/VGFvy5LntCrbeTkCrxtH9J2pxkjvb4TQtsM7PjkMBR1otpaYJkX7PCF5GfVkMP1hTI3CdQw0TAtEs3g1A=="
+    },
+    "yuicompressor": {
+      "version": "2.4.8",
+      "resolved": "https://registry.npmjs.org/yuicompressor/-/yuicompressor-2.4.8.tgz",
+      "integrity": "sha1-mNJnUfFm49uRmy/j6nz2Qt6ZjYs="
+    }
+  }
+}

@@ -1,86 +1,209 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
+    <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/article.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artist.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/artists.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/audio/Mehrad_Khamiri_-_01_Pashimun_Mishi.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/audio/Mehrad_Khamiri_-_02_Tanham_Nazar.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/audio/Mehrad_Khamiri_-_03_Eshghe_Mani.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/audio/Mehrad_Khamiri_-_04_Faramoosham_Nakon.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/audio/Mehrad_Khamiri_-_05_Ehsas.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/audio/Mehrad_Khamiri_-_06_Taghas.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/audio/Mehrad_Khamiri_-_07_Raaz.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/audio/Mehrad_Khamiri_-_08_Safar.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/css/magnific-popup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/css/main.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/css/owl.carousel.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/css/pagination.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/css/paymentfont.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/css/plyr.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/css/select2.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/css/slider-radio.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/eot/IRANSansWeb(FaNum).eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/eot/IRANSansWeb(FaNum)_Black.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/eot/IRANSansWeb(FaNum)_Bold.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/eot/IRANSansWeb(FaNum)_Light.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/eot/IRANSansWeb(FaNum)_Medium.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/eot/IRANSansWeb(FaNum)_UltraLight.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/paymentfont-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/paymentfont-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/paymentfont-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/paymentfont-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/paymentfont-webfontd41d.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/ttf/IRANSansWeb(FaNum).ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/ttf/IRANSansWeb(FaNum)_Black.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/ttf/IRANSansWeb(FaNum)_Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/ttf/IRANSansWeb(FaNum)_Light.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/ttf/IRANSansWeb(FaNum)_Medium.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/ttf/IRANSansWeb(FaNum)_UltraLight.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff/IRANSansWeb(FaNum).woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff/IRANSansWeb(FaNum)_Black.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff/IRANSansWeb(FaNum)_Bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff/IRANSansWeb(FaNum)_Light.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff/IRANSansWeb(FaNum)_Medium.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff/IRANSansWeb(FaNum)_UltraLight.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff2/IRANSansWeb(FaNum).woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff2/IRANSansWeb(FaNum)_Black.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff2/IRANSansWeb(FaNum)_Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff2/IRANSansWeb(FaNum)_Light.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff2/IRANSansWeb(FaNum)_Medium.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/woff2/IRANSansWeb(FaNum)_UltraLight.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/icon/favicon-32x32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/arrow.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/arrow2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/artists/artist1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/artists/artist2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/artists/artist3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/artists/artist4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/artists/artist5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/artists/artist6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/artists/artist7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/artists/artist8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/avatar.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/breadcrumb.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/checkmark.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/close.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/TANHAM NAZAR.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/cover9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/covers/podcast.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/events/event1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/events/event2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/events/event3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/events/event4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/events/event5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/events/event6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/home/slide1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/home/slide2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/home/slide3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/live/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/live/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/live/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/live/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/live/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/live/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/live/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/live/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/live/9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/partners/3docean-light-background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/partners/activeden-light-background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/partners/audiojungle-light-background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/partners/codecanyon-light-background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/partners/photodune-light-background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/partners/themeforest-light-background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/posts/article.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/store/item1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/store/item2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/store/item3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/store/item4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/store/item5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/store/item6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/store/item7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/store/item8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/artist.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/bootstrap.bundle.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/isotope.pkgd.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/jquery-3.5.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/jquery-paginate.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/jquery.inputmask.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/jquery.magnific-popup.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/owl.carousel.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/pagination.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/plyr.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/select2.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/slider-radio.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/smooth-scrollbar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/tilt.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cart.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contacts.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/event.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/events.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/forgot.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/podcasts.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricing.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/privacy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/product.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/release.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/releases.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/signin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/signup.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/custom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/yuicompressor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/yuicompressor.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.bin/yuicompressor.ps1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/.babelrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/.eslintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/.github/workflows/codeql-analysis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/.github/workflows/node.js.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/lib/jdate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/lib/jdate.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/src/constants.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/src/converter.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/src/helpers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/src/jdate.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/tests/converter.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/tests/jdate.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/webpack.common.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/webpack.dev.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/jalali-date/webpack.pro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yuicompressor/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yuicompressor/build/yuicompressor-2.4.8.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yuicompressor/nodejs/cli.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yuicompressor/nodejs/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yuicompressor/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="editProfile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/dashboard/editProfile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4179">
-              <caret line="209" column="82" lean-forward="false" selection-start-line="209" selection-start-column="73" selection-end-line="209" selection-end-column="82" />
-              <folding>
-                <marker date="1622810783260" expanded="false" signature="9399:10321" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/auth/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1113">
-              <caret line="53" column="42" lean-forward="false" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
-              <folding>
-                <marker date="1622798041149" expanded="false" signature="4359:7081" ph="..." />
-                <marker date="1622798041149" expanded="false" signature="4508:4542" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="studios.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/dashboard/studios.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1953">
-              <caret line="93" column="22" lean-forward="false" selection-start-line="63" selection-start-column="15" selection-end-line="93" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profile-edit.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/dashboard/profile-edit.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9870">
-              <caret line="625" column="50" lean-forward="false" selection-start-line="625" selection-start-column="50" selection-end-line="625" selection-end-column="50" />
-              <folding>
-                <element signature="n#!!block;n#deleteTitleRow#0" expanded="false" />
-                <element signature="n#!!block;n#editPortfolioRow#0" expanded="false" />
-                <element signature="e#23806#29807#0" expanded="false" />
-                <element signature="e#34890#35256#0" expanded="false" />
-                <marker date="1622832924150" expanded="false" signature="35263:41328" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/mainPage/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="2825" column="60" lean-forward="true" selection-start-line="2825" selection-start-column="60" selection-end-line="2825" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="HTML File" />
-        <option value="JavaScript File" />
         <option value="SCSS File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -140,6 +263,17 @@
       <replace>portfolio-list</replace>
       <replace>deletePortfolioRow</replace>
     </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -207,13 +341,13 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="718" />
     <option name="y" value="48" />
     <option name="width" value="874" />
     <option name="height" value="1008" />
   </component>
+  <component name="ProjectId" id="1uL97x4KPz71sJAJSGWVI0WY70E" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -316,15 +450,29 @@
       </pane>
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/xampp/htdocs/saaz-va-seda" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/website/js" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="watcher.settings" />
-    <property name="list.type.of.created.stylesheet" value="SCSS" />
-    <property name="nodejs_interpreter_path" value="C:/Program Files (x86)/nodejs/node" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\js" />
+      <recent name="C:\Users\Mammad\Desktop\New folder" />
+      <recent name="C:\Users\Mammad\Desktop\New folder\assets\js" />
+      <recent name="C:\Users\Mammad\Desktop\New folder\assets\website" />
+      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\assets\img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\auth" />
       <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\plugins\flexslider" />
@@ -332,29 +480,8 @@
       <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\dashboard" />
       <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\editProfile.html" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\assets\img" />
-      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\auth" />
-      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\assets\js\authentication" />
-      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\assets\js\elements" />
-      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\plugins" />
-    </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -396,6 +523,12 @@
       <workItem from="1622787037850" duration="11531000" />
       <workItem from="1622802938055" duration="10788000" />
       <workItem from="1622879804265" duration="92000" />
+      <workItem from="1624433841742" duration="14934000" />
+      <workItem from="1624476853344" duration="5425000" />
+      <workItem from="1624530267832" duration="4213000" />
+      <workItem from="1624546887294" duration="9586000" />
+      <workItem from="1624601474693" duration="10560000" />
+      <workItem from="1624692580309" duration="16296000" />
     </task>
     <servers />
   </component>
@@ -425,16 +558,19 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="1" />
-    </breakpoint-manager>
-    <watches-manager />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/assets/js/elements/tooltip.js">

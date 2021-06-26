@@ -1,3 +1,5 @@
+import JDate from "../../plugins/jalali-date/jdate";
+
 $(document).ready(function () {
     $("header").load("../parts/header.html",function () {
         let title = $("head > title").text().split("-").pop();
