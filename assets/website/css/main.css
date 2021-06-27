@@ -148,6 +148,18 @@ a {
   transition: 0.5s ease;
   transition-property: color, background-color, border-color, box-shadow;
 }
+
+::-webkit-scrollbar{
+  width: 10px;
+  border-radius: 8px;
+  background: rgba(14, 23, 38, 0.32);
+}
+
+::-webkit-scrollbar-thumb{
+  background: #688468;
+  border-radius: 8px;
+}
+
 a:hover,
 a:active,
 a:focus {
@@ -883,7 +895,7 @@ input{
   position: relative;
   padding: 30px 0 0;
   width: 100%;
-  max-height: calc(100vh - 150px);
+  /*max-height: calc(100vh - 150px);*/
   overflow-y: auto;
 }
 .sidebar__nav-link {
@@ -1027,7 +1039,7 @@ input{
     transform: translateX(0);
   }
   .sidebar__nav {
-    max-height: calc(100vh - 332px);
+    /*max-height: calc(100vh - 332px);*/
   }
 }
 /*==============================
@@ -4323,7 +4335,7 @@ input{
   padding: 0;
   border: 2px solid #222227;
   border-radius: 12px;
-  min-height: 400px;
+  /*min-height: 400px;*/
   margin-top: 20px;
 }
 .cart__table {
@@ -6038,7 +6050,7 @@ input{
     margin-top: 30px;
   }
   .modal--info {
-    padding: 40px 40px 20px;
+    /*padding: 40px 40px 20px;*/
   }
   .modal--info .modal__close {
     top: 37px;
@@ -6303,5 +6315,51 @@ input{
   background: #25a56a !important;
   height: 4px !important;
   border-radius: 4px !important;
+}
+
+
+/*==============================
+	Loader - Jumping circles
+==============================*/
+#loadingDiv{
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(36, 34, 34, 0.87);
+  z-index: 999;
+}
+#loadingDiv .loader {
+  width: 200px;
+  height: 80px;
+  padding-top: 40vh;
+  margin: auto;
+  display: flex;
+}
+#loadingDiv .circle {
+  width: 30px;
+  height: 30px;
+  background: white;
+  border-radius: 50%;
+  animation: jump .8s linear infinite;
+  margin: 0 15px;
+}
+#loadingDiv #b {
+  animation-delay: 0.2s;
+}
+#loadingDiv #c {
+  animation-delay: 0.4s;
+}
+@keyframes jump {
+  0% {
+    margin-top: 0;
+  }
+  35% {
+    margin-top: -75px;
+  }
+  70% {
+    margin-top: 0px;
+  }
 }
 

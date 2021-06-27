@@ -3,6 +3,7 @@ $(window).on('load', function () {
     const url_string = $(location).attr('href');
     const url = new URL(url_string);
     const id = url.searchParams.get('id');
+
     $.get('http://127.0.0.1:8000/api/artist/' + id + '/detail', function (response) {
         if (!response.error) {
 

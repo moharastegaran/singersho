@@ -1,25 +1,67 @@
 $(document).ready(function () {
     "use strict"; // start of use strict
 
-    console.log("Res");
-
     $(window).on('load', function () {
-        $.get('http://localhost:8000/api/artists', function (response) {
+        $.ajax({
+            method: 'GET',
+            url: 'http://127.0.0.1:8000/api/cart',
+            headers: {
+                authorization: "Bearer " + localStorage.getItem("accessToken")
+            },
+            success: function (response) {
+                if (response !== null) {
+                    let details = JSON.parse(response.cart.details);
+                    let _details=[];
+                    if(!Array.isArray(details)){
+                        for(const id in details){
+                            _details.push([details[id]]);
+                        }
+                        details = _details;
+                    }
+
+                    console.log("det : " + response.cart.details);
+                    $(".header__action--cart .header__drop").empty();
+                    for (let i = 0; i < details.length; i++) {
+                        $(".header__action--cart .header__drop").append("" +
+                            "<div class=\"header__product\">\n" +
+                            // "    <img src=\"" + image + "\" alt=\"" + name + "\">\n" +
+                            "    <p><a href=\"product.html?id=" + details[i].id + "\">" + details[i].full_name + "</a></p>\n" +
+                            "    <span>" + details[i].price + " تومان</span>\n" +
+                            "    <button type=\"button\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M13.41,12l6.3-6.29a1,1,0,1,0-1.42-1.42L12,10.59,5.71,4.29A1,1,0,0,0,4.29,5.71L10.59,12l-6.3,6.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l6.29,6.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z\"/></svg></button>\n" +
+                            "</div>");
+
+                    }
+                    $(".header__action--cart .header__cart--count").text(details.length)
+                }
+            },
+            error : function (error){
+                const mfp = $("#modal-cart-error");
+                mfp.find("._cart.message").text("ابتدا در حساب کاربری خود وارد شوید.");
+                $.magnificPopup.open({
+                    items: {
+                        src: '#modal-cart-error'
+                    },
+                    type: 'inline'
+                });
+            }
+        });
+
+        $.get('http://127.0.0.1:8000/api/artists', function (response) {
             console.log("res" + response);
             if (!response.error) {
                 const data = response.data;
                 for (const user_id in data) {
-                    const name = `${data[user_id]['user']['first_name']}`+' '+`${data[user_id]['user']['last_name']}`;
+                    const name = `${data[user_id]['user']['first_name']}` + ' ' + `${data[user_id]['user']['last_name']}`;
                     let avatar = `${data[user_id]['artist'][0]['avatar']}`;
-                    if (avatar!==null){
-                        avatar=avatar.replace('http://127.0.0.1:8000/storage/','');
+                    if (avatar !== null) {
+                        avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
                     }
                     $(".main__carousel--artists").append("" +
-                        "<a href=\"artist.html?id="+user_id+"\" class=\"artist\">\n" +
+                        "<a href=\"artist.html?id=" + user_id + "\" class=\"artist\">\n" +
                         "<div class=\"artist__cover\">\n" +
-                        "<img src=\""+avatar+"\" alt=\"\">\n" +
+                        "<img src=\"" + avatar + "\" alt=\"\">\n" +
                         "</div>\n" +
-                        "<h3 class=\"artist__title\">"+name+"</h3>\n" +
+                        "<h3 class=\"artist__title\">" + name + "</h3>\n" +
                         "</a>")
                 }
             }
@@ -53,25 +95,25 @@ $(document).ready(function () {
                     },
                 }
             });
-    });
+        });
 
-        $.get('http://localhost:8000/api/packages/8', function (response) {
+        $.get('http://127.0.0.1:8000/api/packages/8', function (response) {
             console.log("res" + response);
             if (!response.error) {
                 const data = response.packages.data;
                 let package_avatar;
-                for (let i=0;i<data.length;i++) {
-                    if(data[i].image)
-                        package_avatar = data[i].image.replace('http://127.0.0.1:8000/storage/','');
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].image)
+                        package_avatar = data[i].image.replace('http://127.0.0.1:8000/storage/', '');
                     else
                         package_avatar = "assets/website/img/store/item1.jpg";
                     $(".main__carousel--store").append("" +
                         "<div class=\"product\">\n" +
                         "<a href=\"#\" class=\"product__img\">\n" +
-                        "<img src=\""+package_avatar+"\" alt=\"\">\n" +
+                        "<img src=\"" + package_avatar + "\" alt=\"\">\n" +
                         "</a>\n" +
-                        "<h3 class=\"product__title\"><a href=\"product.html?id="+data[i].id+"\">"+data[i].name+"</a></h3>\n" +
-                        "<span class=\"product__price\">"+data[i].price+" تومان</span>\n" +
+                        "<h3 class=\"product__title\"><a href=\"product.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
+                        "<span class=\"product__price\">" + data[i].price + " تومان</span>\n" +
                         "</div>");
                 }
                 $('.main__carousel--store').owlCarousel({
@@ -107,21 +149,21 @@ $(document).ready(function () {
             }
         });
 
-        $.get('http://localhost:8000/api/studios/6', function (response) {
+        $.get('http://127.0.0.1:8000/api/studios/6', function (response) {
             if (!response.error) {
                 const data = response.studios.data;
-                for (let i=0;i<data.length;i++) {
+                for (let i = 0; i < data.length; i++) {
                     $(".main__carousel--events").append("" +
-                        "<div class=\"event\""+
-                        "data-bg=\""+(data[i].images.length>0 ? data[i].images[0] : 'assets/website/img/no-image.jpg')+"\">\n" +
+                        "<div class=\"event\"" +
+                        "data-bg=\"" + (data[i].images.length > 0 ? data[i].images[0] : 'assets/website/img/no-image.jpg') + "\">\n" +
                         "<a href=\"#modal-ticket\" class=\"event__ticket open-modal\">" +
-                        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M9,10a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V11A1,1,0,0,0,9,10Zm12,1a1,1,0,0,0,1-1V6a1,1,0,0,0-1-1H3A1,1,0,0,0,2,6v4a1,1,0,0,0,1,1,1,1,0,0,1,0,2,1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V14a1,1,0,0,0-1-1,1,1,0,0,1,0-2ZM20,9.18a3,3,0,0,0,0,5.64V17H10a1,1,0,0,0-2,0H4V14.82A3,3,0,0,0,4,9.18V7H8a1,1,0,0,0,2,0H20Z\"/></svg>"+
+                        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M9,10a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V11A1,1,0,0,0,9,10Zm12,1a1,1,0,0,0,1-1V6a1,1,0,0,0-1-1H3A1,1,0,0,0,2,6v4a1,1,0,0,0,1,1,1,1,0,0,1,0,2,1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V14a1,1,0,0,0-1-1,1,1,0,0,1,0-2ZM20,9.18a3,3,0,0,0,0,5.64V17H10a1,1,0,0,0-2,0H4V14.82A3,3,0,0,0,4,9.18V7H8a1,1,0,0,0,2,0H20Z\"/></svg>" +
                         "رزرو استادیو" +
                         "</a>\n" +
-                        "<span class=\"event__date\">"+data[i].price +"تومان"+"</span>\n" +
+                        "<span class=\"event__date\">" + data[i].price + " تومان " + "</span>\n" +
                         // "<span class=\"event__time\">9:30 بعد از ظهر</span>\n" +
-                        "<h3 class=\"event__title\"><a href=\"event.html\">"+data[i].name+"</a></h3>\n" +
-                        "<p class=\"event__address\">"+data[i].address+"</p>\n" +
+                        "<h3 class=\"event__title\"><a href=\"event.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
+                        "<p class=\"event__address\">" + data[i].address + "</p>\n" +
                         "</div>");
                 }
                 $('.main__carousel--events').owlCarousel({
@@ -174,235 +216,235 @@ $(document).ready(function () {
     });
 
 
-/*==============================
-Menu
-==============================*/
-$('.header__btn').on('click', function () {
-    $(this).toggleClass('header__btn--active');
-    $('.sidebar').toggleClass('sidebar--active');
-});
+    /*==============================
+    Menu
+    ==============================*/
+    $('.header__btn').on('click', function () {
+        $(this).toggleClass('header__btn--active');
+        $('.sidebar').toggleClass('sidebar--active');
+    });
 
-$('.header__search .close, .header__action--search button').on('click', function () {
-    $('.header__search').toggleClass('header__search--active');
-});
+    $('.header__search .close, .header__action--search button').on('click', function () {
+        $('.header__search').toggleClass('header__search--active');
+    });
 
-/*==============================
-Home slider
-==============================*/
-$('.hero').owlCarousel({
-    mouseDrag: true,
-    touchDrag: true,
-    dots: true,
-    loop: true,
-    autoplay: false,
-    smartSpeed: 600,
-    autoHeight: true,
-    items: 1,
-    responsive: {
-        0: {
-            margin: 20,
-        },
-        576: {
-            margin: 20,
-        },
-        768: {
-            margin: 30,
-        },
-        1200: {
-            margin: 30,
-        },
-    }
-});
+    /*==============================
+    Home slider
+    ==============================*/
+    $('.hero').owlCarousel({
+        mouseDrag: true,
+        touchDrag: true,
+        dots: true,
+        loop: true,
+        autoplay: false,
+        smartSpeed: 600,
+        autoHeight: true,
+        items: 1,
+        responsive: {
+            0: {
+                margin: 20,
+            },
+            576: {
+                margin: 20,
+            },
+            768: {
+                margin: 30,
+            },
+            1200: {
+                margin: 30,
+            },
+        }
+    });
 
-/*==============================
-Carousel
-==============================*/
+    /*==============================
+    Carousel
+    ==============================*/
 
-/*==============================
-Navigation
-==============================*/
-$('.main__nav--prev').on('click', function () {
-    var carouselId = $(this).attr('data-nav');
-    $(carouselId).trigger('prev.owl.carousel');
-});
-$('.main__nav--next').on('click', function () {
-    var carouselId = $(this).attr('data-nav');
-    $(carouselId).trigger('next.owl.carousel');
-});
+    /*==============================
+    Navigation
+    ==============================*/
+    $('.main__nav--prev').on('click', function () {
+        var carouselId = $(this).attr('data-nav');
+        $(carouselId).trigger('prev.owl.carousel');
+    });
+    $('.main__nav--next').on('click', function () {
+        var carouselId = $(this).attr('data-nav');
+        $(carouselId).trigger('next.owl.carousel');
+    });
 
-/*==============================
-Partners
-==============================*/
-$('.partners').owlCarousel({
-    mouseDrag: false,
-    touchDrag: false,
-    dots: false,
-    loop: true,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    autoplayHoverPause: true,
-    smartSpeed: 600,
-    margin: 20,
-    responsive: {
-        0: {
-            items: 2,
-        },
-        576: {
-            items: 3,
-            margin: 20,
-        },
-        768: {
-            items: 4,
-            margin: 30,
-        },
-        992: {
-            items: 4,
-            margin: 30,
-        },
-        1200: {
-            items: 6,
-            margin: 30,
-        },
-        1900: {
-            items: 8,
-            margin: 30,
-        },
-    }
-});
+    /*==============================
+    Partners
+    ==============================*/
+    $('.partners').owlCarousel({
+        mouseDrag: false,
+        touchDrag: false,
+        dots: false,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        smartSpeed: 600,
+        margin: 20,
+        responsive: {
+            0: {
+                items: 2,
+            },
+            576: {
+                items: 3,
+                margin: 20,
+            },
+            768: {
+                items: 4,
+                margin: 30,
+            },
+            992: {
+                items: 4,
+                margin: 30,
+            },
+            1200: {
+                items: 6,
+                margin: 30,
+            },
+            1900: {
+                items: 8,
+                margin: 30,
+            },
+        }
+    });
 
-/*==============================
-Product
-==============================*/
-$('.store-item__carousel').owlCarousel({
-    mouseDrag: true,
-    touchDrag: true,
-    dots: true,
-    loop: true,
-    autoplay: false,
-    smartSpeed: 600,
-    autoHeight: true,
-    items: 1,
-    margin: 20,
-});
+    /*==============================
+    Product
+    ==============================*/
+    $('.store-item__carousel').owlCarousel({
+        mouseDrag: true,
+        touchDrag: true,
+        dots: true,
+        loop: true,
+        autoplay: false,
+        smartSpeed: 600,
+        autoHeight: true,
+        items: 1,
+        margin: 20,
+    });
 
-/*==============================
-Filter
-==============================*/
-$('.filter__item-menu li').each(function () {
-    $(this).attr('data-value', $(this).text().toLowerCase());
-});
+    /*==============================
+    Filter
+    ==============================*/
+    $('.filter__item-menu li').each(function () {
+        $(this).attr('data-value', $(this).text().toLowerCase());
+    });
 
-$('.filter__item-menu li').on('click', function () {
-    var text = $(this).text();
-    var item = $(this);
-    var id = item.closest('.filter').attr('id');
-    $('#' + id).find('.filter__item-btn input').val(text);
-});
+    $('.filter__item-menu li').on('click', function () {
+        var text = $(this).text();
+        var item = $(this);
+        var id = item.closest('.filter').attr('id');
+        $('#' + id).find('.filter__item-btn input').val(text);
+    });
 
-/*==============================
-Modal
-==============================*/
-$('.open-video, .open-map').magnificPopup({
-    disableOn: 0,
-    fixedContentPos: true,
-    type: 'iframe',
-    preloader: false,
-    removalDelay: 300,
-    mainClass: 'mfp-fade',
-});
+    /*==============================
+    Modal
+    ==============================*/
+    $('.open-video, .open-map').magnificPopup({
+        disableOn: 0,
+        fixedContentPos: true,
+        type: 'iframe',
+        preloader: false,
+        removalDelay: 300,
+        mainClass: 'mfp-fade',
+    });
 
-$('.modal__close').on('click', function (e) {
-    e.preventDefault();
-    $.magnificPopup.close();
-});
+    $('.modal__close').on('click', function (e) {
+        e.preventDefault();
+        $.magnificPopup.close();
+    });
 
-/*==============================
-Select
-==============================*/
-$('.main__select').select2({
-    minimumResultsForSearch: Infinity
-});
+    /*==============================
+    Select
+    ==============================*/
+    $('.main__select').select2({
+        minimumResultsForSearch: Infinity
+    });
 
-/*==============================
-Scrollbar
-==============================*/
-var Scrollbar = window.Scrollbar;
+    /*==============================
+    Scrollbar
+    ==============================*/
+    var Scrollbar = window.Scrollbar;
 
-$('.sidebar__nav-link[data-toggle="collapse"]').on('click', function () {
-    if ($('.sidebar__menu--scroll').length) {
-        Scrollbar.init(document.querySelector('.sidebar__menu--scroll'), {
+    $('.sidebar__nav-link[data-toggle="collapse"]').on('click', function () {
+        if ($('.sidebar__menu--scroll').length) {
+            Scrollbar.init(document.querySelector('.sidebar__menu--scroll'), {
+                damping: 0.1,
+                renderByPixels: true,
+                alwaysShowTracks: true,
+                continuousScrolling: false,
+            });
+        }
+    });
+
+    if ($('.dashbox__table-scroll').length) {
+        Scrollbar.init(document.querySelector('.dashbox__table-scroll'), {
             damping: 0.1,
             renderByPixels: true,
             alwaysShowTracks: true,
-            continuousScrolling: false,
+            continuousScrolling: true
         });
     }
-});
 
-if ($('.dashbox__table-scroll').length) {
-    Scrollbar.init(document.querySelector('.dashbox__table-scroll'), {
-        damping: 0.1,
-        renderByPixels: true,
-        alwaysShowTracks: true,
-        continuousScrolling: true
-    });
-}
-
-if ($('.cart__table-scroll').length) {
-    Scrollbar.init(document.querySelector('.cart__table-scroll'), {
-        damping: 0.1,
-        renderByPixels: true,
-        alwaysShowTracks: true,
-        continuousScrolling: true
-    });
-}
-
-if ($('.dashbox__scroll').length) {
-    Scrollbar.init(document.querySelector('.dashbox__scroll'), {
-        damping: 0.1,
-        renderByPixels: true,
-        alwaysShowTracks: true,
-        continuousScrolling: true
-    });
-}
-
-if ($('.release__list').length) {
-    Scrollbar.init(document.querySelector('.release__list'), {
-        damping: 0.1,
-        renderByPixels: true,
-        alwaysShowTracks: true,
-        continuousScrolling: true
-    });
-}
-
-/*==============================
-Bg
-==============================*/
-$('.hero__slide, .event').each(function () {
-    if ($(this).attr("data-bg")) {
-        $(this).css({
-            'background': 'url(' + $(this).data('bg') + ')',
-            'background-position': 'center center',
-            'background-repeat': 'no-repeat',
-            'background-size': 'cover'
+    if ($('.cart__table-scroll').length) {
+        Scrollbar.init(document.querySelector('.cart__table-scroll'), {
+            damping: 0.1,
+            renderByPixels: true,
+            alwaysShowTracks: true,
+            continuousScrolling: true
         });
     }
-});
 
-/*==============================
-Inputmask
-==============================*/
-$('.stats__form input').inputmask('99-99-99-99');
+    if ($('.dashbox__scroll').length) {
+        Scrollbar.init(document.querySelector('.dashbox__scroll'), {
+            damping: 0.1,
+            renderByPixels: true,
+            alwaysShowTracks: true,
+            continuousScrolling: true
+        });
+    }
 
-/*==============================
-Player
-==============================*/
-$('.player__btn').on('click', function () {
-    $(this).toggleClass('player__btn--active');
-    $('.player').toggleClass('player--active');
-});
+    if ($('.release__list').length) {
+        Scrollbar.init(document.querySelector('.release__list'), {
+            damping: 0.1,
+            renderByPixels: true,
+            alwaysShowTracks: true,
+            continuousScrolling: true
+        });
+    }
 
-const controls = `
+    /*==============================
+    Bg
+    ==============================*/
+    $('.hero__slide, .event').each(function () {
+        if ($(this).attr("data-bg")) {
+            $(this).css({
+                'background': 'url(' + $(this).data('bg') + ')',
+                'background-position': 'center center',
+                'background-repeat': 'no-repeat',
+                'background-size': 'cover'
+            });
+        }
+    });
+
+    /*==============================
+    Inputmask
+    ==============================*/
+    $('.stats__form input').inputmask('99-99-99-99');
+
+    /*==============================
+    Player
+    ==============================*/
+    $('.player__btn').on('click', function () {
+        $(this).toggleClass('player__btn--active');
+        $('.player').toggleClass('player--active');
+    });
+
+    const controls = `
 	<div class="plyr__controls">
 		<div class="plyr__actions">
 			<button type="button" class="plyr__control plyr__control--prev">
@@ -448,109 +490,31 @@ const controls = `
 		</div>
 	</div>
 	`;
-var player = new Plyr('#audio', {
-    controls,
-    volume: 0.5,
-});
+    var player = new Plyr('#audio', {
+        controls,
+        volume: 0.5,
+    });
 
-var audio = $('#audio');
+    var audio = $('#audio');
 
-player.on('play', event => {
-    $('a[data-link].active, a[data-playlist].active').addClass('play');
-    $('a[data-link].active, a[data-playlist].active').removeClass('pause');
-});
+    player.on('play', event => {
+        $('a[data-link].active, a[data-playlist].active').addClass('play');
+        $('a[data-link].active, a[data-playlist].active').removeClass('pause');
+    });
 
-player.on('pause', event => {
-    $('a[data-link].active, a[data-playlist].active').removeClass('play');
-    $('a[data-link].active, a[data-playlist].active').addClass('pause');
-});
+    player.on('pause', event => {
+        $('a[data-link].active, a[data-playlist].active').removeClass('play');
+        $('a[data-link].active, a[data-playlist].active').addClass('pause');
+    });
 
-/* single */
-$('a[data-link]').on('click', function (e) {
-    e.preventDefault();
-    let link = $(this);
-    run(link, audio[0]);
-});
-
-function run(link, player) {
-    if ($(link).hasClass('play')) {
-        $(link).removeClass('play');
-        audio[0].pause();
-        $(link).addClass('pause');
-    } else if ($(link).hasClass('pause')) {
-        $(link).removeClass('pause');
-        audio[0].play();
-        $(link).addClass('play');
-    } else {
-        $('a[data-link]').removeClass('active');
-        $('a[data-link]').removeClass('pause');
-        $('a[data-link]').removeClass('play');
-        $(link).addClass('active');
-        $(link).addClass('play');
-        player.src = $(link).attr('href');
-
-        let title = $(link).data('title');
-        let artist = $(link).data('artist');
-        let img = $(link).data('img');
-        $('.player__title').text(title);
-        $('.player__artist').text(artist);
-        $('.player__cover img').attr('src', img);
-        audio[0].load();
-        audio[0].play();
-    }
-}
-
-/* playlist */
-if ($('.main__list--playlist').length) {
-    var current = 0;
-    var playlist = $('.main__list--playlist');
-    var tracks = playlist.find('li a[data-playlist]');
-    var len = tracks.length;
-
-    playlist.find('a[data-playlist]').on('click', function (e) {
+    /* single */
+    $('a[data-link]').on('click', function (e) {
         e.preventDefault();
         let link = $(this);
-        current = link.parent().index();
-        run2(link, audio[0]);
+        run(link, audio[0]);
     });
 
-    player.on('ended', event => {
-        let link = $('.single-item__cover.play');
-        current++;
-        if (current == len) {
-            current = 0;
-            link = playlist.find('a[data-playlist]')[0];
-        } else {
-            link = playlist.find('a[data-playlist]')[current];
-        }
-        run2($(link), audio[0]);
-    });
-
-    $('.plyr__control--prev').on('click', function (e) {
-        let link = $('.single-item__cover.play');
-        current--;
-        if (current == -1) {
-            current = len - 1;
-            link = playlist.find('a[data-playlist]')[current];
-        } else {
-            link = playlist.find('a[data-playlist]')[current];
-        }
-        run2($(link), audio[0]);
-    });
-
-    $('.plyr__control--next').on('click', function (e) {
-        let link = $('.single-item__cover.play');
-        current++;
-        if (current == len) {
-            current = 0;
-            link = playlist.find('a[data-playlist]')[0];
-        } else {
-            link = playlist.find('a[data-playlist]')[current];
-        }
-        run2($(link), audio[0]);
-    });
-
-    function run2(link, player) {
+    function run(link, player) {
         if ($(link).hasClass('play')) {
             $(link).removeClass('play');
             audio[0].pause();
@@ -560,9 +524,9 @@ if ($('.main__list--playlist').length) {
             audio[0].play();
             $(link).addClass('play');
         } else {
-            $('a[data-playlist]').removeClass('active');
-            $('a[data-playlist]').removeClass('pause');
-            $('a[data-playlist]').removeClass('play');
+            $('a[data-link]').removeClass('active');
+            $('a[data-link]').removeClass('pause');
+            $('a[data-link]').removeClass('play');
             $(link).addClass('active');
             $(link).addClass('play');
             player.src = $(link).attr('href');
@@ -577,6 +541,83 @@ if ($('.main__list--playlist').length) {
             audio[0].play();
         }
     }
-}
-})
-;
+
+    /* playlist */
+    if ($('.main__list--playlist').length) {
+        var current = 0;
+        var playlist = $('.main__list--playlist');
+        var tracks = playlist.find('li a[data-playlist]');
+        var len = tracks.length;
+
+        playlist.find('a[data-playlist]').on('click', function (e) {
+            e.preventDefault();
+            let link = $(this);
+            current = link.parent().index();
+            run2(link, audio[0]);
+        });
+
+        player.on('ended', event => {
+            let link = $('.single-item__cover.play');
+            current++;
+            if (current == len) {
+                current = 0;
+                link = playlist.find('a[data-playlist]')[0];
+            } else {
+                link = playlist.find('a[data-playlist]')[current];
+            }
+            run2($(link), audio[0]);
+        });
+
+        $('.plyr__control--prev').on('click', function (e) {
+            let link = $('.single-item__cover.play');
+            current--;
+            if (current == -1) {
+                current = len - 1;
+                link = playlist.find('a[data-playlist]')[current];
+            } else {
+                link = playlist.find('a[data-playlist]')[current];
+            }
+            run2($(link), audio[0]);
+        });
+
+        $('.plyr__control--next').on('click', function (e) {
+            let link = $('.single-item__cover.play');
+            current++;
+            if (current == len) {
+                current = 0;
+                link = playlist.find('a[data-playlist]')[0];
+            } else {
+                link = playlist.find('a[data-playlist]')[current];
+            }
+            run2($(link), audio[0]);
+        });
+
+        function run2(link, player) {
+            if ($(link).hasClass('play')) {
+                $(link).removeClass('play');
+                audio[0].pause();
+                $(link).addClass('pause');
+            } else if ($(link).hasClass('pause')) {
+                $(link).removeClass('pause');
+                audio[0].play();
+                $(link).addClass('play');
+            } else {
+                $('a[data-playlist]').removeClass('active');
+                $('a[data-playlist]').removeClass('pause');
+                $('a[data-playlist]').removeClass('play');
+                $(link).addClass('active');
+                $(link).addClass('play');
+                player.src = $(link).attr('href');
+
+                let title = $(link).data('title');
+                let artist = $(link).data('artist');
+                let img = $(link).data('img');
+                $('.player__title').text(title);
+                $('.player__artist').text(artist);
+                $('.player__cover img').attr('src', img);
+                audio[0].load();
+                audio[0].play();
+            }
+        }
+    }
+});
