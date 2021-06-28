@@ -556,10 +556,18 @@
                         mfp.find("._cart.name").text(name);
                         mfp.find("._cart.final_cost").text(response.cart.final_cost);
                         $.magnificPopup.open({
+                            fixedContentPos: true,
+                            fixedBgPos: true,
+                            overflowY: 'auto',
+                            type: 'inline',
+                            preloader: false,
+                            focus: '#username',
+                            modal: false,
+                            removalDelay: 300,
+                            mainClass: 'my-mfp-zoom-in',
                             items: {
                                 src: '#modal-added-to-cart'
                             },
-                            type: 'inline'
                         });
                     } else {
                         const mfp = $("#modal-cart-error");

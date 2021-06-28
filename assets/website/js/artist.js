@@ -1,3 +1,8 @@
+let _artist_titles = [];
+let _is_advisor = false;
+let _advise_price = 0;
+let _artist_id = null;
+
 $(window).on('load', function () {
 
     const url_string = $(location).attr('href');
@@ -6,29 +11,29 @@ $(window).on('load', function () {
 
     $.get('http://127.0.0.1:8000/api/artist/' + id + '/detail', function (response) {
         if (!response.error) {
-
-            console.log("Res : "+JSON.stringify(response));
-
             const data = response.data;
-            let avatar = `${data['artist'][0]['avatar']}`;
-            if (avatar!==null) {
+            let avatar = data['artist'][0]['avatar'];
+            _artist_id = data['artist'][0]['id'];
+            _is_advisor = data['artist'][0]['is_advisor'];
+            _advise_price = data['artist'][0]['advise_price'];
+            if (avatar !== null) {
                 avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
             }
 
             $(".artist.name").text(`${data['user']['first_name']}` + ' ' + `${data['user']['last_name']}`);
-            $(".artist.avatar").attr('src',avatar);
+            $(".artist.avatar").attr('src', avatar);
             $(".artist.experience").text(`${data['artist'][0]['experience']}`);
             $(".artist.order_description").text(`${data['artist'][0]['order_description']}`);
 
-            console.log("data.portfolio.length  = "+data.portfolio.length);
+            console.log("data.portfolio.length  = " + data.portfolio.length);
 
             if (data.hasOwnProperty('portfolio') && data.portfolio.length > 0) {
-                for (let i=0;i<data.portfolio.length;i++) {
+                for (let i = 0; i < data.portfolio.length; i++) {
                     const p = data.portfolio[i];
-                    console.log("pate : "+p.date);
+                    console.log("pate : " + p.date);
                     const p_date = p.date.split('-');
                     $(".main__portfolio-artist").append("" +
-                        "<div class=\"col-md-4 col-12\">\n"+
+                        "<div class=\"col-md-4 col-12\">\n" +
                         "<div class=\"live\">\n" +
                         "<a href=\"" + (p.sound !== null ? p.sound : (p.url !== null ? p.url : '#')) + "\" class=\"live__cover open-video\">\n" +
                         "<img src=\"" + p.image.replace('http://127.0.0.1:8000/storage/', '') + "\" alt=\"\">\n" +
@@ -73,8 +78,9 @@ $(window).on('load', function () {
                 // });
             }
 
-            if(data.hasOwnProperty('title') && data.title.length > 0){
-                for (let i=0;i<data.title.length;i++) {
+            if (data.hasOwnProperty('title') && data.title.length > 0) {
+                _artist_titles = data.title;
+                for (let i = 0; i < data.title.length; i++) {
                     const t = data.title[i];
                     $(".main__titles-artist").append("" +
                         "<div class=\"col-12 col-md-6 col-lg-4\">\n" +
@@ -82,12 +88,68 @@ $(window).on('load', function () {
                         "<span class=\"feature__icon\">\n" +
                         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.65,2.24a1,1,0,0,0-.8-.23l-13,2A1,1,0,0,0,7,5V15.35A3.45,3.45,0,0,0,5.5,15,3.5,3.5,0,1,0,9,18.5V10.86L20,9.17v4.18A3.45,3.45,0,0,0,18.5,13,3.5,3.5,0,1,0,22,16.5V3A1,1,0,0,0,21.65,2.24ZM5.5,20A1.5,1.5,0,1,1,7,18.5,1.5,1.5,0,0,1,5.5,20Zm13-2A1.5,1.5,0,1,1,20,16.5,1.5,1.5,0,0,1,18.5,18ZM20,7.14,9,8.83v-3L20,4.17Z\"></path></svg>\n" +
                         "</span>\n" +
-                        "<h3 class=\"step__title\">"+t.name+"</h3>\n" +
-                        "<p class=\"step__text\">"+t.description+"</p>\n" +
+                        "<h3 class=\"step__title\">" + t.name + "</h3>\n" +
+                        "<p class=\"step__text\">" + (t.pivot.description != null ? t.pivot.description : '') + "</p>\n" +
                         "</div>\n" +
                         "</div>")
                 }
             }
         }
-    })
+    });
+});
+
+$(document).ready(function () {
+
+    const $form = $('#modal-add-user-teamate');
+    const $select_title_names = $form.find(".sign__select.sign__title--names");
+    const $select_type_prices = $form.find(".sign__select.sign__type--names");
+    const $final_cost = $form.find("._cart.final_cost");
+    $select_type_prices.hide();
+
+    $(".btn-add-to-basket").on('click', function () {
+        $select_title_names.empty();
+        $select_title_names.append("<option value='' disabled selected>-- انتخاب کنید --</option>");
+        $.each(_artist_titles, function (i, artist_title) {
+            if (artist_title.pivot.accept_order === 1)
+                $select_title_names.append("<option value='" + artist_title.pivot.id + "'>" + artist_title.name + "</option>")
+        });
+    });
+
+    $select_title_names.on("change", function () {
+        let artist_title = _artist_titles.filter(function (obj) {
+            return obj.pivot.id === parseInt($select_title_names.val());
+        });
+        artist_title = artist_title[0];
+        $select_type_prices.show();
+        $select_type_prices.empty();
+        $select_type_prices.append("<option value='" + artist_title.pivot.id + "_teammate'> هزینه کار - " + artist_title.pivot.order_price + " تومان</option>");
+        $final_cost.text(artist_title.pivot.order_price + " تومان");
+        if (_is_advisor) {
+            $select_type_prices.append("<option value='" + artist_title.pivot.artist_id + "_advisor'> هزینه مشاوره - " + _advise_price + " تومان</option>");
+            $select_type_prices.append("<option value='" + artist_title.pivot.id + "_teammate_"+artist_title.pivot.artist_id + "_advisor'> هزینه کار و مشاوره - " + (artist_title.pivot.order_price + _advise_price) + "</option>");
+        }
+    });
+
+    $select_type_prices.on("change", function () {
+        $final_cost.text($select_type_prices.val() + " تومان");
+    });
+
+    $form.find(".sign__btn").on("click",function (e){
+       e.preventDefault();
+       $send_data = $select_type_prices.val().split("_");
+        alert("s : "+$send_data);
+        for (let i = 0; i < $send_data.length; i+=2) {
+            $.ajax({
+                method : "PUT",
+                url : "http://127.0.0.1:8000/api/cart/"+$send_data[i+1],
+                data : {
+                    _method : 'PUT',
+                    itemId : $send_data[i]
+                },
+                success : function (response){
+
+                }
+            })
+        }
+    });
 });

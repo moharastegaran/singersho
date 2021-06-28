@@ -2,29 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/website/js/store.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/website/js/studios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/artist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/artists.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/css/pagination.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/artist.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/artist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/jquery-paginate.min.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/pagination.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bootstrap/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/bootstrap/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/cart.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/event.html" beforeDir="false" afterPath="$PROJECT_DIR$/event.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events.html" beforeDir="false" afterPath="$PROJECT_DIR$/events.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/privacy.html" beforeDir="false" afterPath="$PROJECT_DIR$/privacy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/signin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/signup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/store.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -366,7 +349,8 @@
       <workItem from="1624546887294" duration="9586000" />
       <workItem from="1624601474693" duration="10560000" />
       <workItem from="1624692580309" duration="16881000" />
-      <workItem from="1624775346155" duration="29792000" />
+      <workItem from="1624775346155" duration="29860000" />
+      <workItem from="1624866221317" duration="13565000" />
     </task>
     <servers />
   </component>

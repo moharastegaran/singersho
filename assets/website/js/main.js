@@ -35,14 +35,14 @@ $(document).ready(function () {
                 }
             },
             error : function (error){
-                const mfp = $("#modal-cart-error");
-                mfp.find("._cart.message").text("ابتدا در حساب کاربری خود وارد شوید.");
-                $.magnificPopup.open({
-                    items: {
-                        src: '#modal-cart-error'
-                    },
-                    type: 'inline'
-                });
+                // const mfp = $("#modal-cart-error");
+                // mfp.find("._cart.message").text("ابتدا در حساب کاربری خود وارد شوید.");
+                // $.magnificPopup.open({
+                //     items: {
+                //         src: '#modal-cart-error'
+                //     },
+                //     type: 'inline'
+                // });
             }
         });
 

@@ -5544,9 +5544,9 @@ input{
   border-color: #25a56a;
 }
 .sign__select {
-  /*background: url("../img/arrow2.svg") no-repeat center left 20px #222227;*/
-  /*background-size: 18px auto;*/
-  /*border: none;*/
+  background: url("../img/arrow2.svg") no-repeat center left 20px #222227;
+  background-size: 18px auto;
+  border: none;
   border-radius: 12px;
   height: 46px;
   position: relative;
