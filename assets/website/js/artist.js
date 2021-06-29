@@ -67,7 +67,7 @@ $(window).on('load', function () {
 
 $(document).ready(function () {
 
-    const $form = $('#modal-add-user-teamate');
+    const $form = $('#modal-add-user-teammate');
     const $select_title_names = $form.find(".sign__select.sign__title--names");
     const $select_type_prices = $form.find(".sign__select.sign__type--names");
     const $final_cost = $form.find("._cart.final_cost");

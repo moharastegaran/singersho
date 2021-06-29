@@ -19,7 +19,7 @@ function updateStudiosToPage(pageNum) {
                     "رزرو استادیو" +
                     "               </a>\n" +
                     "               <span class=\"event__date\">" + _studio.price + " تومان " + "</span>\n" +
-                    "               <h3 class=\"event__title\"><a href=\"event.html?id=" + _studio.id + "\">" + _studio.name + "</a></h3>\n" +
+                    "               <h3 class=\"event__title\"><a href=\"studio.html?id=" + _studio.id + "\">" + _studio.name + "</a></h3>\n" +
                     "               <p class=\"event__address\">" + _studio.address + "</p>\n" +
                     "       </div></div>");
             }

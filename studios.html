@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="assets/website/css/main.css">
 
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
-    <title>سایت ساز و صدا - فروشگاه</title>
+    <title>سایت ساز و صدا - استادیوها</title>
 
 </head>
 <body>
@@ -183,14 +183,13 @@
 
 <!-- main content -->
 <main class="main">
-
     <div class="container-fluid">
         <div class="row row--grid">
             <!-- breadcrumb -->
             <div class="col-12">
                 <ul class="breadcrumb">
                     <li class="breadcrumb__item"><a href="index.html">صفحه اصلی</a></li>
-                    <li class="breadcrumb__item breadcrumb__item--active">فروشگاه</li>
+                    <li class="breadcrumb__item breadcrumb__item--active">استادیو ها</li>
                 </ul>
             </div>
             <!-- end breadcrumb -->
@@ -198,7 +197,7 @@
             <!-- title -->
             <div class="col-12">
                 <div class="main__title main__title--page">
-                    <h1>فروشگاه</h1>
+                    <h1>استادیو ها</h1>
                 </div>
             </div>
             <!-- end title -->
@@ -208,7 +207,7 @@
             <div class="col-12">
                 <div class="main__filter">
                     <form action="#" class="main__filter-search">
-                        <input type="text" placeholder="جست و جو ...">
+                        <input type="text" placeholder="تاریخ ، مکان و ...">
                         <button type="button">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>
@@ -216,36 +215,16 @@
                         </button>
                     </form>
 
-<!--                    <div class="main__filter-wrap">-->
-<!--                        <select class="main__select" name="genres">-->
-<!--                            <option value="all">همه هنرمندان</option>-->
-<!--                            <option value="legacy">آثار هنرمندان</option>-->
-<!--                            <option value="active">هنرمندان فعال</option>-->
-<!--                        </select>-->
-
-<!--                        <select class="main__select" name="years">-->
-<!--                            <option value="All genres">همه سبک ها</option>-->
-<!--                            <option value="1">الترناتیو</option>-->
-<!--                            <option value="2">بلوز</option>-->
-<!--                            <option value="3">کلاسیکال</option>-->
-<!--                            <option value="4">کشوری</option>-->
-<!--                            <option value="5">الکترونیک</option>-->
-<!--                            <option value="6">هیپ هاپ</option>-->
-<!--                            <option value="7">هندی</option>-->
-<!--                            <option value="8">جاز</option>-->
-<!--                            <option value="8">لاتینو</option>-->
-<!--                            <option value="8">سول</option>-->
-<!--                            <option value="8">راک</option>-->
-<!--                        </select>-->
-<!--                    </div>-->
-
+                    <div class="slider-radio justify-content-md-center">
+                        <input type="radio" name="grade" id="upcoming" checked="checked"><label
+                            for="upcoming">تهران</label>
+                        <input type="radio" name="grade" id="past"><label for="past">سایر شهرستانها</label>
+                    </div>
                 </div>
 
-                <div class="row row--grid products-grid"></div>
+                <div class="row row--grid studios-grid"></div>
 
                 <ul class="pagination justify-content-center my-4"></ul>
-
-<!--                <button class="main__load" type="button">بیشتر ببین</button>-->
             </div>
         </div>
     </div>
@@ -344,6 +323,7 @@
     </div>
 </footer>
 <!-- end footer -->
+
 <!-- JS -->
 
 <script src="assets/website/js/owl.carousel.min.js"></script>
@@ -354,7 +334,7 @@
 <script src="assets/website/js/jquery.inputmask.min.js"></script>
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
-<script src="assets/website/js/store.js"></script>
+<script src="assets/website/js/studios.js"></script>
 </body>
 
 </html>
