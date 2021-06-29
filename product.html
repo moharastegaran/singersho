@@ -469,6 +469,7 @@
         </svg>
     </button>
     <span class="sign__title _cart message"></span>
+<!--    <a class="sign__btn mb-0" type="button" href="signin.html">ورود</a>-->
 </div>
 <!-- end modal cart error -->
 
@@ -483,10 +484,10 @@
 
     <h4 class="sign__title">محصول <span class="_cart name"></span> به سبد خرید اضافه شد.</h4>
 
-    <div class="sign__group sign__group--row">
+    <div class="sign__group sign__group--row mb-0">
         <label class="sign__label">مبلغ قابل پرداخت :</label>
         <span class="sign__value"><span class="_cart final_cost"> تومان</span></span>
-        <a class="sign__btn" type="button" href="cart.html">تسویه حساب</a>
+        <a class="sign__btn mb-0" type="button" href="cart.html">تسویه حساب</a>
     </div>
 </div>
 <!-- end modal added to cart -->
@@ -501,98 +502,7 @@
 <script src="assets/website/js/jquery.inputmask.min.js"></script>
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
-<script>
-
-    let id, name, price, image;
-
-    $(window).on('load', function (response) {
-        if (!response.error) {
-            const url_string = $(location).attr('href');
-            const url = new URL(url_string);
-            id = url.searchParams.get('id');
-            console.log('id : ' + id);
-            $.get('http://127.0.0.1:8000/api/package/' + id + '/detail', function (response) {
-                console.log("res : " + response);
-                $(".package.name").text(name = response.package.name);
-                $(".package.price").text(price = response.package.price);
-                $(".package.image").attr('src', image = response.package.image);
-                $(".package.image").attr('alt', name);
-                $(".share__link--tw").attr("href", "http://twitter.com/share?text=" + name + "&url=" + url_string)
-                $(".share__link--fb").attr("href", "https://facebook.com/sharer/sharer.php?u=" + url_string);
-                $(".share__link--ig").attr("href", "https://www.instagram.com/?url=" + url_string);
-            });
-        }
-    });
-
-    $(document).ready(function () {
-        $('.btn-add-to-basket').on('click', function (e) {
-            e.preventDefault();
-            $.ajax({
-                async: false,
-                method: 'PUT',
-                url: 'http://127.0.0.1:8000/api/cart/package',
-                headers: {
-                    authorization: "Bearer " + localStorage.getItem("accessToken")
-                },
-                data: {
-                    _method: 'PUT',
-                    itemId: id
-                },
-                success: function (response) {
-                    console.log("res : " + JSON.stringify(response));
-                    if (!response.error) {
-                        $(".header__action--cart .header__drop").append("" +
-                            "<div class=\"header__product\">\n" +
-                            "    <img src=\"" + image + "\" alt=\"" + name + "\">\n" +
-                            "    <p><a href=\"product.html?id=" + id + "\">" + name + "</a></p>\n" +
-                            "    <span>" + price + " تومان</span>\n" +
-                            "    <button type=\"button\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M13.41,12l6.3-6.29a1,1,0,1,0-1.42-1.42L12,10.59,5.71,4.29A1,1,0,0,0,4.29,5.71L10.59,12l-6.3,6.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l6.29,6.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z\"/></svg></button>\n" +
-                            "</div>");
-
-                        const $numberCounter = $(".header__action--cart .header__cart--count");
-                        $numberCounter.text(parseInt($numberCounter.text()) + 1);
-
-                        const mfp = $("#modal-added-to-cart");
-                        mfp.find("._cart.name").text(name);
-                        mfp.find("._cart.final_cost").text(response.cart.final_cost);
-                        $.magnificPopup.open({
-                            fixedContentPos: true,
-                            fixedBgPos: true,
-                            overflowY: 'auto',
-                            type: 'inline',
-                            preloader: false,
-                            focus: '#username',
-                            modal: false,
-                            removalDelay: 300,
-                            mainClass: 'my-mfp-zoom-in',
-                            items: {
-                                src: '#modal-added-to-cart'
-                            },
-                        });
-                    } else {
-                        const mfp = $("#modal-cart-error");
-                        mfp.find("._cart.message").text("محصول " + name + " در سبد خرید موجود است.");
-                        $.magnificPopup.open({
-                            items: {
-                                src: '#modal-cart-error'
-                            },
-                            type: 'inline'
-                        });
-                    }
-                }, error: function (error) {
-                    const mfp = $("#modal-cart-error");
-                    mfp.find("._cart.message").text("ابتدا در حساب کاربری خود وارد شوید.");
-                    $.magnificPopup.open({
-                        items: {
-                            src: '#modal-cart-error'
-                        },
-                        type: 'inline'
-                    });
-                }
-            });
-        });
-    })
-</script>
+<script src="assets/website/js/package.js"></script>
 </body>
 
 </html>

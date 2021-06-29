@@ -1,71 +1,227 @@
-$(document).ready(function () {
-    "use strict"; // start of use strict
+function updateCart($type, $id, $success_message = null, $error_message = null) {
+    console.log("http://127.0.0.1:8000/api/cart/" + $type);
+    console.log("itemId" + $id);
+    $.ajax({
+        method: "PUT",
+        url: "http://127.0.0.1:8000/api/cart/" + $type,
+        headers: {
+            authorization: "Bearer " + localStorage.getItem("accessToken")
+        },
+        data: {
+            _method: 'PUT',
+            itemId: $id
+        },
+        success: function (response) {
+            if (response.hasOwnProperty('error') && response.error) {
+                popupCartError($error_message);
+            } else {
+                
+                updateCartDropdown(response);
 
-    $(window).on('load', function () {
-        $.ajax({
-            method: 'GET',
-            url: 'http://127.0.0.1:8000/api/cart',
-            headers: {
-                authorization: "Bearer " + localStorage.getItem("accessToken")
-            },
-            success: function (response) {
-                if (response !== null) {
-                    let details = JSON.parse(response.cart.details);
-                    let _details=[];
-                    if(!Array.isArray(details)){
-                        for(const id in details){
-                            _details.push([details[id]]);
-                        }
-                        details = _details;
-                    }
+                popupCartAdded(response.cart.final_cost,$success_message);
+            }
+        }, error: function (error) {
+            popupCartError('لطفا در حساب کاربری خود وارد شوید.');
+        }
+    });
+}
 
-                    console.log("det : " + response.cart.details);
-                    $(".header__action--cart .header__drop").empty();
-                    for (let i = 0; i < details.length; i++) {
-                        $(".header__action--cart .header__drop").append("" +
-                            "<div class=\"header__product\">\n" +
-                            // "    <img src=\"" + image + "\" alt=\"" + name + "\">\n" +
-                            "    <p><a href=\"product.html?id=" + details[i].id + "\">" + details[i].full_name + "</a></p>\n" +
-                            "    <span>" + details[i].price + " تومان</span>\n" +
-                            "    <button type=\"button\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M13.41,12l6.3-6.29a1,1,0,1,0-1.42-1.42L12,10.59,5.71,4.29A1,1,0,0,0,4.29,5.71L10.59,12l-6.3,6.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l6.29,6.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z\"/></svg></button>\n" +
-                            "</div>");
+function updateCartDropdown(response){
+    let details = JSON.parse(response.cart.details);
+    if (details!==null && !Array.isArray(details)) {
+        let _details = [];
+        for (const id in details) {
+            _details.push(details[id]);
+        }
+        details = _details;
+    }
+    const $cartDropDown = $(".header__action--cart .header__drop");
+    const $cartNumber = $(".header__action--cart .header__cart--count");
+    $cartDropDown.empty();
+    if(details.length > 0) {
+        for (let i = 0; i < details.length; i++) {
+            let html = "<div class='header__product' data-type='" + details[i].type + "' data-id='" + details[i].id + "'>";
+            switch (details[i].type) {
+                case 'package' :
+                    html += "<div class='badge badge-danger'>پکیج</div>\n";
+                    html += "<p><a href='product.html?id=" + details[i].id + "'>" + details[i].full_name + "</a></p>\n"
+                    break;
+                case 'advisor' :
+                    html += "<div class='badge badge-primary'>مشاوره</div>\n";
+                    html += "<p><a href='artist.html?id=" + details[i].id + "'>" + details[i].full_name + "</a></p>\n";
+                    break;
+                case 'teammate' :
+                    html += "<div class='badge badge-warning'>هنرمند</div>\n";
+                    html += "<p>" + details[i].full_name + "</p>\n";
+                    break;
+                case 'studio' :
+                    html += "<div class='badge badge-success'>استودیو</div>\n";
+                    html += "<p><a href='studios.html?id=" + details[i].id + "'>" + details[i].full_name + "</a></p>\n";
+                    break;
+            }
+            html += "<button type='button' class='cart__delete'><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M13.41,12l6.3-6.29a1,1,0,1,0-1.42-1.42L12,10.59,5.71,4.29A1,1,0,0,0,4.29,5.71L10.59,12l-6.3,6.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l6.29,6.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z'/></svg></button>\n";
+            html += "</div>";
 
-                    }
-                    $(".header__action--cart .header__cart--count").text(details.length)
+            $cartDropDown.append(html);
+        }
+        $cartNumber.show();
+        $cartNumber.text(details.length);
+    }else{
+        $cartDropDown.append("<div class='text-white'>سبد خرید خالی است.</div>");
+        $cartNumber.hide();
+    }
+}
+
+function popupCartAdded($final_cost, $name = null) {
+    const mfp = $("#modal-added-to-cart");
+    mfp.find("._cart.name").text($name);
+    mfp.find("._cart.final_cost").text($final_cost);
+    $.magnificPopup.open({
+        fixedContentPos: true,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        type: 'inline',
+        preloader: false,
+        focus: '#username',
+        modal: false,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in',
+        items: {
+            src: '#modal-added-to-cart'
+        },
+    });
+}
+
+function popupCartError($message) {
+    const mfp = $("#modal-cart-error");
+    mfp.find("._cart.message").text($message);
+    $.magnificPopup.open({
+        fixedContentPos: true,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        type: 'inline',
+        preloader: false,
+        focus: '#username',
+        modal: false,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in',
+        items: {
+            src: '#modal-cart-error'
+        },
+    });
+}
+
+$(window).on('load', function () {
+
+    if(localStorage.getItem("accessToken") !== null){
+        $(".header__action .header__action-btn").attr("href","profile.html");
+        $(".header__action .header__action-btn span").text("پروفایل");
+        $(".sidebar__nav").append("<li class='sidebar__nav-item'>\n" +
+            "            <a href='javascript:void(0)' class='sidebar__nav-link sidebar__nav-logout'>\n" +
+            "               <svg viewBox='0 0 512.016 512' xmlns='http://www.w3.org/2000/svg'><path d='m496 240.007812h-202.667969c-8.832031 0-16-7.167968-16-16 0-8.832031 7.167969-16 16-16h202.667969c8.832031 0 16 7.167969 16 16 0 8.832032-7.167969 16-16 16zm0 0'/><path d='m416 320.007812c-4.097656 0-8.191406-1.558593-11.308594-4.691406-6.25-6.253906-6.25-16.386718 0-22.636718l68.695313-68.691407-68.695313-68.695312c-6.25-6.25-6.25-16.382813 0-22.632813 6.253906-6.253906 16.386719-6.253906 22.636719 0l80 80c6.25 6.25 6.25 16.382813 0 22.632813l-80 80c-3.136719 3.15625-7.230469 4.714843-11.328125 4.714843zm0 0'/><path d='m170.667969 512.007812c-4.566407 0-8.898438-.640624-13.226563-1.984374l-128.386718-42.773438c-17.46875-6.101562-29.054688-22.378906-29.054688-40.574219v-384c0-23.53125 19.136719-42.6679685 42.667969-42.6679685 4.5625 0 8.894531.6406255 13.226562 1.9843755l128.382813 42.773437c17.472656 6.101563 29.054687 22.378906 29.054687 40.574219v384c0 23.53125-19.132812 42.667968-42.664062 42.667968zm-128-480c-5.867188 0-10.667969 4.800782-10.667969 10.667969v384c0 4.542969 3.050781 8.765625 7.402344 10.28125l127.785156 42.582031c.917969.296876 2.113281.46875 3.480469.46875 5.867187 0 10.664062-4.800781 10.664062-10.667968v-384c0-4.542969-3.050781-8.765625-7.402343-10.28125l-127.785157-42.582032c-.917969-.296874-2.113281-.46875-3.476562-.46875zm0 0'/><path d='m325.332031 170.675781c-8.832031 0-16-7.167969-16-16v-96c0-14.699219-11.964843-26.667969-26.664062-26.667969h-240c-8.832031 0-16-7.167968-16-16 0-8.832031 7.167969-15.9999995 16-15.9999995h240c32.363281 0 58.664062 26.3046875 58.664062 58.6679685v96c0 8.832031-7.167969 16-16 16zm0 0'/><path d='m282.667969 448.007812h-85.335938c-8.832031 0-16-7.167968-16-16 0-8.832031 7.167969-16 16-16h85.335938c14.699219 0 26.664062-11.96875 26.664062-26.667968v-96c0-8.832032 7.167969-16 16-16s16 7.167968 16 16v96c0 32.363281-26.300781 58.667968-58.664062 58.667968zm0 0'/></svg>\n" +
+            "                <span>خروج</span>\n" +
+            "            </a>\n" +
+            "        </li>");
+    }else{
+        $(".header__action .header__action-btn").attr("href","signin.html");
+        $(".header__action .header__action-btn span").text("وارد شوید");
+    }
+
+    const $navLinks = $(".sidebar__nav-link");
+    const pageUrl = $(location).attr('href').split('/').slice(-1)[0];
+    console.log("pageUrl : "+pageUrl);
+    $.each($navLinks, function (index,dom){
+        if($(dom).attr('href')===pageUrl)
+            $(dom).addClass('sidebar__nav-link--active');
+        else
+            $(dom).removeClass('sidebar__nav-link--active');
+    });
+
+    $.ajax({
+        method: 'GET',
+        url: 'http://127.0.0.1:8000/api/cart',
+        headers: {
+            authorization: "Bearer " + localStorage.getItem("accessToken")
+        },
+        success: function (response) {
+            updateCartDropdown(response);
+        },
+        error: function (error) {
+            $(".header__action.header__action--cart").remove();
+        }
+    });
+
+    $.get('http://127.0.0.1:8000/api/artists', function (response) {
+        console.log("res" + response);
+        if (!response.error) {
+            const data = response.data;
+            for (const user_id in data) {
+                const name = `${data[user_id]['user']['first_name']}` + ' ' + `${data[user_id]['user']['last_name']}`;
+                let avatar = `${data[user_id]['artist'][0]['avatar']}`;
+                if (avatar !== null) {
+                    avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
                 }
-            },
-            error : function (error){
-                // const mfp = $("#modal-cart-error");
-                // mfp.find("._cart.message").text("ابتدا در حساب کاربری خود وارد شوید.");
-                // $.magnificPopup.open({
-                //     items: {
-                //         src: '#modal-cart-error'
-                //     },
-                //     type: 'inline'
-                // });
+                $(".main__carousel--artists").append("" +
+                    "<a href=\"artist.html?id=" + user_id + "\" class=\"artist\">\n" +
+                    "<div class=\"artist__cover\">\n" +
+                    "<img src=\"" + avatar + "\" alt=\"\">\n" +
+                    "</div>\n" +
+                    "<h3 class=\"artist__title\">" + name + "</h3>\n" +
+                    "</a>")
+            }
+        }
+        $('.main__carousel--artists').owlCarousel({
+            mouseDrag: true,
+            touchDrag: true,
+            dots: true,
+            loop: true,
+            autoplay: false,
+            smartSpeed: 600,
+            margin: 20,
+            autoHeight: true,
+            responsive: {
+                0: {
+                    items: 2,
+                },
+                576: {
+                    items: 3,
+                },
+                768: {
+                    items: 4,
+                    margin: 30,
+                },
+                992: {
+                    items: 6,
+                    margin: 30,
+                },
+                1200: {
+                    items: 6,
+                    margin: 30,
+                },
             }
         });
+    });
 
-        $.get('http://127.0.0.1:8000/api/artists', function (response) {
-            console.log("res" + response);
-            if (!response.error) {
-                const data = response.data;
-                for (const user_id in data) {
-                    const name = `${data[user_id]['user']['first_name']}` + ' ' + `${data[user_id]['user']['last_name']}`;
-                    let avatar = `${data[user_id]['artist'][0]['avatar']}`;
-                    if (avatar !== null) {
-                        avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
-                    }
-                    $(".main__carousel--artists").append("" +
-                        "<a href=\"artist.html?id=" + user_id + "\" class=\"artist\">\n" +
-                        "<div class=\"artist__cover\">\n" +
-                        "<img src=\"" + avatar + "\" alt=\"\">\n" +
-                        "</div>\n" +
-                        "<h3 class=\"artist__title\">" + name + "</h3>\n" +
-                        "</a>")
-                }
+    $.get('http://127.0.0.1:8000/api/packages/8', function (response) {
+        console.log("res" + response);
+        if (!response.error) {
+            const data = response.packages.data;
+            let package_avatar;
+            for (let i = 0; i < data.length; i++) {
+                if (data[i].image)
+                    package_avatar = data[i].image.replace('http://127.0.0.1:8000/storage/', '');
+                else
+                    package_avatar = "assets/website/img/store/item1.jpg";
+                $(".main__carousel--store").append("" +
+                    "<div class=\"product\">\n" +
+                    "<a href=\"#\" class=\"product__img\">\n" +
+                    "<img src=\"" + package_avatar + "\" alt=\"\">\n" +
+                    "</a>\n" +
+                    "<h3 class=\"product__title\"><a href=\"product.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
+                    "<span class=\"product__price\">" + data[i].price + " تومان</span>\n" +
+                    "</div>");
             }
-            $('.main__carousel--artists').owlCarousel({
+            $('.main__carousel--store').owlCarousel({
                 mouseDrag: true,
                 touchDrag: true,
                 dots: true,
@@ -82,139 +238,138 @@ $(document).ready(function () {
                         items: 3,
                     },
                     768: {
-                        items: 4,
+                        items: 3,
                         margin: 30,
                     },
                     992: {
-                        items: 6,
+                        items: 4,
                         margin: 30,
                     },
                     1200: {
-                        items: 6,
+                        items: 5,
                         margin: 30,
                     },
                 }
             });
-        });
-
-        $.get('http://127.0.0.1:8000/api/packages/8', function (response) {
-            console.log("res" + response);
-            if (!response.error) {
-                const data = response.packages.data;
-                let package_avatar;
-                for (let i = 0; i < data.length; i++) {
-                    if (data[i].image)
-                        package_avatar = data[i].image.replace('http://127.0.0.1:8000/storage/', '');
-                    else
-                        package_avatar = "assets/website/img/store/item1.jpg";
-                    $(".main__carousel--store").append("" +
-                        "<div class=\"product\">\n" +
-                        "<a href=\"#\" class=\"product__img\">\n" +
-                        "<img src=\"" + package_avatar + "\" alt=\"\">\n" +
-                        "</a>\n" +
-                        "<h3 class=\"product__title\"><a href=\"product.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
-                        "<span class=\"product__price\">" + data[i].price + " تومان</span>\n" +
-                        "</div>");
-                }
-                $('.main__carousel--store').owlCarousel({
-                    mouseDrag: true,
-                    touchDrag: true,
-                    dots: true,
-                    loop: true,
-                    autoplay: false,
-                    smartSpeed: 600,
-                    margin: 20,
-                    autoHeight: true,
-                    responsive: {
-                        0: {
-                            items: 2,
-                        },
-                        576: {
-                            items: 3,
-                        },
-                        768: {
-                            items: 3,
-                            margin: 30,
-                        },
-                        992: {
-                            items: 4,
-                            margin: 30,
-                        },
-                        1200: {
-                            items: 5,
-                            margin: 30,
-                        },
-                    }
-                });
-            }
-        });
-
-        $.get('http://127.0.0.1:8000/api/studios/6', function (response) {
-            if (!response.error) {
-                const data = response.studios.data;
-                for (let i = 0; i < data.length; i++) {
-                    $(".main__carousel--events").append("" +
-                        "<div class=\"event\"" +
-                        "data-bg=\"" + (data[i].images.length > 0 ? data[i].images[0] : 'assets/website/img/no-image.jpg') + "\">\n" +
-                        "<a href=\"#modal-ticket\" class=\"event__ticket open-modal\">" +
-                        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M9,10a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V11A1,1,0,0,0,9,10Zm12,1a1,1,0,0,0,1-1V6a1,1,0,0,0-1-1H3A1,1,0,0,0,2,6v4a1,1,0,0,0,1,1,1,1,0,0,1,0,2,1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V14a1,1,0,0,0-1-1,1,1,0,0,1,0-2ZM20,9.18a3,3,0,0,0,0,5.64V17H10a1,1,0,0,0-2,0H4V14.82A3,3,0,0,0,4,9.18V7H8a1,1,0,0,0,2,0H20Z\"/></svg>" +
-                        "رزرو استادیو" +
-                        "</a>\n" +
-                        "<span class=\"event__date\">" + data[i].price + " تومان " + "</span>\n" +
-                        // "<span class=\"event__time\">9:30 بعد از ظهر</span>\n" +
-                        "<h3 class=\"event__title\"><a href=\"event.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
-                        "<p class=\"event__address\">" + data[i].address + "</p>\n" +
-                        "</div>");
-                }
-                $('.main__carousel--events').owlCarousel({
-                    mouseDrag: true,
-                    touchDrag: true,
-                    dots: true,
-                    loop: true,
-                    autoplay: false,
-                    smartSpeed: 600,
-                    margin: 20,
-                    autoHeight: true,
-                    responsive: {
-                        0: {
-                            items: 1,
-                        },
-                        576: {
-                            items: 2,
-                        },
-                        768: {
-                            items: 2,
-                            margin: 30,
-                        },
-                        992: {
-                            items: 3,
-                            margin: 30,
-                        },
-                        1200: {
-                            items: 3,
-                            margin: 30,
-                            mouseDrag: false,
-                        },
-                    }
-                });
-
-                $('.open-modal').magnificPopup({
-                    fixedContentPos: true,
-                    fixedBgPos: true,
-                    overflowY: 'auto',
-                    type: 'inline',
-                    preloader: false,
-                    focus: '#username',
-                    modal: false,
-                    removalDelay: 300,
-                    mainClass: 'my-mfp-zoom-in',
-                });
-
-            }
-        });
-
+        }
     });
 
+    $.get('http://127.0.0.1:8000/api/studios/6', function (response) {
+        if (!response.error) {
+            const data = response.studios.data;
+            for (let i = 0; i < data.length; i++) {
+                $(".main__carousel--events").append("" +
+                    "<div class=\"event\"" +
+                    "data-bg=\"" + (data[i].images.length > 0 ? data[i].images[0] : 'assets/website/img/no-image.jpg') + "\">\n" +
+                    "<a href=\"#modal-ticket\" class=\"event__ticket open-modal\">" +
+                    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M9,10a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V11A1,1,0,0,0,9,10Zm12,1a1,1,0,0,0,1-1V6a1,1,0,0,0-1-1H3A1,1,0,0,0,2,6v4a1,1,0,0,0,1,1,1,1,0,0,1,0,2,1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V14a1,1,0,0,0-1-1,1,1,0,0,1,0-2ZM20,9.18a3,3,0,0,0,0,5.64V17H10a1,1,0,0,0-2,0H4V14.82A3,3,0,0,0,4,9.18V7H8a1,1,0,0,0,2,0H20Z\"/></svg>" +
+                    "رزرو استادیو" +
+                    "</a>\n" +
+                    "<span class=\"event__date\">" + data[i].price + " تومان " + "</span>\n" +
+                    // "<span class=\"event__time\">9:30 بعد از ظهر</span>\n" +
+                    "<h3 class=\"event__title\"><a href=\"event.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
+                    "<p class=\"event__address\">" + data[i].address + "</p>\n" +
+                    "</div>");
+            }
+            $('.main__carousel--events').owlCarousel({
+                mouseDrag: true,
+                touchDrag: true,
+                dots: true,
+                loop: true,
+                autoplay: false,
+                smartSpeed: 600,
+                margin: 20,
+                autoHeight: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                    576: {
+                        items: 2,
+                    },
+                    768: {
+                        items: 2,
+                        margin: 30,
+                    },
+                    992: {
+                        items: 3,
+                        margin: 30,
+                    },
+                    1200: {
+                        items: 3,
+                        margin: 30,
+                        mouseDrag: false,
+                    },
+                }
+            });
+
+            $('.open-modal').magnificPopup({
+                fixedContentPos: true,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                type: 'inline',
+                preloader: false,
+                focus: '#username',
+                modal: false,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in',
+            });
+
+        }
+    });
+
+});
+
+$(document).ready(function () {
+    "use strict"; // start of use strict
+
+    const $loadingDiv = $('#loadingDiv').show()
+    $(document).ajaxStop(function() {
+        $loadingDiv.fadeOut();
+    });
+
+    $(document).on('click','.cart__delete',function (e){
+        e.preventDefault();
+        console.log("click");
+        const $this = $(this);
+        console.log($this.closest('.header__product').data('type'));
+        console.log($this.closest('.header__product').data('id'));
+        $.ajax({
+            method : 'DELETE',
+            url : 'http://127.0.0.1:8000/api/cart/'+$this.closest('.header__product').data('type'),
+            headers: {
+                authorization: "Bearer " + localStorage.getItem("accessToken")
+            },
+            data : {
+                _method : 'DELETE',
+                itemId : $this.closest('.header__product').data('id')
+            },
+            success : function (response){
+                if(!response.error){
+                    updateCartDropdown(response);
+                }
+            },
+            error : function (error){
+                popupCartError();
+            }
+        });
+    });
+
+
+    $(document).on('click','.sidebar__nav-link.sidebar__nav-logout', function (e){
+        e.preventDefault();
+        $.ajax({
+            method : "POST",
+            url : "http://127.0.0.1:8000/api/logout",
+            headers :{
+                Authorization : "Bearer " + localStorage.getItem("accessToken")
+            },
+            success : function (response) {
+                localStorage.removeItem("accessToken");
+                $(location).attr("href","index.html");
+            }
+        });
+    })
 
     /*==============================
     Menu
@@ -439,73 +594,6 @@ $(document).ready(function () {
     /*==============================
     Player
     ==============================*/
-    $('.player__btn').on('click', function () {
-        $(this).toggleClass('player__btn--active');
-        $('.player').toggleClass('player--active');
-    });
-
-    const controls = `
-	<div class="plyr__controls">
-		<div class="plyr__actions">
-			<button type="button" class="plyr__control plyr__control--prev">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.28,3.43a3.23,3.23,0,0,0-3.29,0L8,8.84V6A3,3,0,0,0,2,6V18a3,3,0,0,0,6,0V15.16l9,5.37a3.28,3.28,0,0,0,1.68.47,3.24,3.24,0,0,0,1.61-.43,3.38,3.38,0,0,0,1.72-3V6.42A3.38,3.38,0,0,0,20.28,3.43ZM6,18a1,1,0,0,1-2,0V6A1,1,0,0,1,6,6Zm14-.42a1.4,1.4,0,0,1-.71,1.25,1.23,1.23,0,0,1-1.28,0L8.68,13.23a1.45,1.45,0,0,1,0-2.46L18,5.19A1.23,1.23,0,0,1,18.67,5a1.29,1.29,0,0,1,.62.17A1.4,1.4,0,0,1,20,6.42Z"/></svg>
-			</button>
-
-			<button type="button" class="plyr__control" data-plyr="play">
-				<svg class="icon--pressed" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M16,2a3,3,0,0,0-3,3V19a3,3,0,0,0,6,0V5A3,3,0,0,0,16,2Zm1,17a1,1,0,0,1-2,0V5a1,1,0,0,1,2,0ZM8,2A3,3,0,0,0,5,5V19a3,3,0,0,0,6,0V5A3,3,0,0,0,8,2ZM9,19a1,1,0,0,1-2,0V5A1,1,0,0,1,9,5Z"></path></svg>
-				<svg class="icon--not-pressed" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.54,9,8.88,3.46a3.42,3.42,0,0,0-5.13,3V17.58A3.42,3.42,0,0,0,7.17,21a3.43,3.43,0,0,0,1.71-.46L18.54,15a3.42,3.42,0,0,0,0-5.92Zm-1,4.19L7.88,18.81a1.44,1.44,0,0,1-1.42,0,1.42,1.42,0,0,1-.71-1.23V6.42a1.42,1.42,0,0,1,.71-1.23A1.51,1.51,0,0,1,7.17,5a1.54,1.54,0,0,1,.71.19l9.66,5.58a1.42,1.42,0,0,1,0,2.46Z"></path></svg>
-			</button>
-
-			<button type="button" class="plyr__control plyr__control--next">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,3a3,3,0,0,0-3,3V8.84L7,3.47a3.21,3.21,0,0,0-3.29,0A3.38,3.38,0,0,0,2,6.42V17.58a3.38,3.38,0,0,0,1.72,3A3.24,3.24,0,0,0,5.33,21,3.28,3.28,0,0,0,7,20.53l9-5.37V18a3,3,0,0,0,6,0V6A3,3,0,0,0,19,3ZM15.32,13.23,6,18.81a1.23,1.23,0,0,1-1.28,0A1.4,1.4,0,0,1,4,17.58V6.42a1.4,1.4,0,0,1,.71-1.25A1.29,1.29,0,0,1,5.33,5,1.23,1.23,0,0,1,6,5.19l9.33,5.58a1.45,1.45,0,0,1,0,2.46ZM20,18a1,1,0,0,1-2,0V6a1,1,0,0,1,2,0Z"/></svg>
-			</button>
-		</div>
-
-		<div class="plyr__wrap">
-			<div class="plyr__progress">
-				<input data-plyr="seek" type="range" min="0" max="100" step="0.01" value="0" aria-label="Seek">
-				<progress class="plyr__progress__buffer" min="0" max="100" value="0">% buffered</progress>
-				<span role="tooltip" class="plyr__tooltip">00:00</span>
-			</div>
-
-			<div class="plyr__time plyr__time--current" aria-label="Current time">00:00</div>
-		</div>
-
-		<div class="plyr__wrap">
-			<button type="button" class="plyr__control" aria-label="Mute" data-plyr="mute">
-				<svg class="icon--pressed" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.43,4.1a1,1,0,0,0-1,.12L6.65,8H3A1,1,0,0,0,2,9v6a1,1,0,0,0,1,1H6.65l4.73,3.78A1,1,0,0,0,12,20a.91.91,0,0,0,.43-.1A1,1,0,0,0,13,19V5A1,1,0,0,0,12.43,4.1ZM11,16.92l-3.38-2.7A1,1,0,0,0,7,14H4V10H7a1,1,0,0,0,.62-.22L11,7.08ZM19.91,12l1.8-1.79a1,1,0,0,0-1.42-1.42l-1.79,1.8-1.79-1.8a1,1,0,0,0-1.42,1.42L17.09,12l-1.8,1.79a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l1.79-1.8,1.79,1.8a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/></svg>
-				<svg class="icon--not-pressed" role="presentation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.43,4.1a1,1,0,0,0-1,.12L6.65,8H3A1,1,0,0,0,2,9v6a1,1,0,0,0,1,1H6.65l4.73,3.78A1,1,0,0,0,12,20a.91.91,0,0,0,.43-.1A1,1,0,0,0,13,19V5A1,1,0,0,0,12.43,4.1ZM11,16.92l-3.38-2.7A1,1,0,0,0,7,14H4V10H7a1,1,0,0,0,.62-.22L11,7.08ZM19.66,6.34a1,1,0,0,0-1.42,1.42,6,6,0,0,1-.38,8.84,1,1,0,0,0,.64,1.76,1,1,0,0,0,.64-.23,8,8,0,0,0,.52-11.79ZM16.83,9.17a1,1,0,1,0-1.42,1.42A2,2,0,0,1,16,12a2,2,0,0,1-.71,1.53,1,1,0,0,0-.13,1.41,1,1,0,0,0,1.41.12A4,4,0,0,0,18,12,4.06,4.06,0,0,0,16.83,9.17Z"/></svg>
-				<span class="label--pressed plyr__tooltip" role="tooltip">Unmute</span>
-				<span class="label--not-pressed plyr__tooltip" role="tooltip">Mute</span>
-			</button>
-
-			<div class="plyr__volume">
-				<input data-plyr="volume" type="range" min="0" max="1" step="0.05" value="1" autocomplete="off" aria-label="Volume">
-			</div>
-
-			<a href="release.html" class="plyr__control" aria-label="لیست پخش">
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15,13H9a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Zm0-4H9a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"/></svg>
-				<span class="plyr__tooltip" role="tooltip">لیست پخش</span>
-			</a>
-		</div>
-	</div>
-	`;
-    var player = new Plyr('#audio', {
-        controls,
-        volume: 0.5,
-    });
-
-    var audio = $('#audio');
-
-    player.on('play', event => {
-        $('a[data-link].active, a[data-playlist].active').addClass('play');
-        $('a[data-link].active, a[data-playlist].active').removeClass('pause');
-    });
-
-    player.on('pause', event => {
-        $('a[data-link].active, a[data-playlist].active').removeClass('play');
-        $('a[data-link].active, a[data-playlist].active').addClass('pause');
-    });
 
     /* single */
     $('a[data-link]').on('click', function (e) {
@@ -513,111 +601,4 @@ $(document).ready(function () {
         let link = $(this);
         run(link, audio[0]);
     });
-
-    function run(link, player) {
-        if ($(link).hasClass('play')) {
-            $(link).removeClass('play');
-            audio[0].pause();
-            $(link).addClass('pause');
-        } else if ($(link).hasClass('pause')) {
-            $(link).removeClass('pause');
-            audio[0].play();
-            $(link).addClass('play');
-        } else {
-            $('a[data-link]').removeClass('active');
-            $('a[data-link]').removeClass('pause');
-            $('a[data-link]').removeClass('play');
-            $(link).addClass('active');
-            $(link).addClass('play');
-            player.src = $(link).attr('href');
-
-            let title = $(link).data('title');
-            let artist = $(link).data('artist');
-            let img = $(link).data('img');
-            $('.player__title').text(title);
-            $('.player__artist').text(artist);
-            $('.player__cover img').attr('src', img);
-            audio[0].load();
-            audio[0].play();
-        }
-    }
-
-    /* playlist */
-    if ($('.main__list--playlist').length) {
-        var current = 0;
-        var playlist = $('.main__list--playlist');
-        var tracks = playlist.find('li a[data-playlist]');
-        var len = tracks.length;
-
-        playlist.find('a[data-playlist]').on('click', function (e) {
-            e.preventDefault();
-            let link = $(this);
-            current = link.parent().index();
-            run2(link, audio[0]);
-        });
-
-        player.on('ended', event => {
-            let link = $('.single-item__cover.play');
-            current++;
-            if (current == len) {
-                current = 0;
-                link = playlist.find('a[data-playlist]')[0];
-            } else {
-                link = playlist.find('a[data-playlist]')[current];
-            }
-            run2($(link), audio[0]);
-        });
-
-        $('.plyr__control--prev').on('click', function (e) {
-            let link = $('.single-item__cover.play');
-            current--;
-            if (current == -1) {
-                current = len - 1;
-                link = playlist.find('a[data-playlist]')[current];
-            } else {
-                link = playlist.find('a[data-playlist]')[current];
-            }
-            run2($(link), audio[0]);
-        });
-
-        $('.plyr__control--next').on('click', function (e) {
-            let link = $('.single-item__cover.play');
-            current++;
-            if (current == len) {
-                current = 0;
-                link = playlist.find('a[data-playlist]')[0];
-            } else {
-                link = playlist.find('a[data-playlist]')[current];
-            }
-            run2($(link), audio[0]);
-        });
-
-        function run2(link, player) {
-            if ($(link).hasClass('play')) {
-                $(link).removeClass('play');
-                audio[0].pause();
-                $(link).addClass('pause');
-            } else if ($(link).hasClass('pause')) {
-                $(link).removeClass('pause');
-                audio[0].play();
-                $(link).addClass('play');
-            } else {
-                $('a[data-playlist]').removeClass('active');
-                $('a[data-playlist]').removeClass('pause');
-                $('a[data-playlist]').removeClass('play');
-                $(link).addClass('active');
-                $(link).addClass('play');
-                player.src = $(link).attr('href');
-
-                let title = $(link).data('title');
-                let artist = $(link).data('artist');
-                let img = $(link).data('img');
-                $('.player__title').text(title);
-                $('.player__artist').text(artist);
-                $('.player__cover img').attr('src', img);
-                audio[0].load();
-                audio[0].play();
-            }
-        }
-    }
 });

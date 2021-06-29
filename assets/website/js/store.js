@@ -82,14 +82,6 @@ $(window).on('load',function (){
 
 $(document).ready(function (){
 
-    const $loadingDiv = $('#loadingDiv').hide()
-    $(document).ajaxStart(function() {
-        $loadingDiv.show();
-        console.log("test")
-    }).ajaxStop(function() {
-        $loadingDiv.hide();
-    });
-
     $(document).on('click','.pagination .page-link',function (e){
         e.preventDefault();
         const $this = $(this);

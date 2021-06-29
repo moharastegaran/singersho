@@ -25,8 +25,6 @@ $(window).on('load', function () {
             $(".artist.experience").text(`${data['artist'][0]['experience']}`);
             $(".artist.order_description").text(`${data['artist'][0]['order_description']}`);
 
-            console.log("data.portfolio.length  = " + data.portfolio.length);
-
             if (data.hasOwnProperty('portfolio') && data.portfolio.length > 0) {
                 for (let i = 0; i < data.portfolio.length; i++) {
                     const p = data.portfolio[i];
@@ -45,37 +43,6 @@ $(window).on('load', function () {
                         "<h3 class=\"live__title\"><a href=\"https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4\" class=\"open-video\">" + p.name + "</a></h3>\n" +
                         "</div></div>");
                 }
-                // $('.main__carousel--podcasts').owlCarousel({
-                //     mouseDrag: true,
-                //     touchDrag: true,
-                //     dots: true,
-                //     loop: true,
-                //     autoplay: false,
-                //     smartSpeed: 600,
-                //     margin: 20,
-                //     autoHeight: true,
-                //     responsive: {
-                //         0: {
-                //             items: 1,
-                //         },
-                //         576: {
-                //             items: 2,
-                //         },
-                //         768: {
-                //             items: 2,
-                //             margin: 30,
-                //         },
-                //         992: {
-                //             items: 3,
-                //             margin: 30,
-                //         },
-                //         1200: {
-                //             items: 3,
-                //             margin: 30,
-                //             mouseDrag: false,
-                //         },
-                //     }
-                // });
             }
 
             if (data.hasOwnProperty('title') && data.title.length > 0) {
@@ -126,30 +93,22 @@ $(document).ready(function () {
         $final_cost.text(artist_title.pivot.order_price + " تومان");
         if (_is_advisor) {
             $select_type_prices.append("<option value='" + artist_title.pivot.artist_id + "_advisor'> هزینه مشاوره - " + _advise_price + " تومان</option>");
-            $select_type_prices.append("<option value='" + artist_title.pivot.id + "_teammate_"+artist_title.pivot.artist_id + "_advisor'> هزینه کار و مشاوره - " + (artist_title.pivot.order_price + _advise_price) + "</option>");
+            $select_type_prices.append("<option value='" + artist_title.pivot.id + "_teammate_" + artist_title.pivot.artist_id + "_advisor'> هزینه کار و مشاوره - " + (artist_title.pivot.order_price + _advise_price) + " تومان</option>");
         }
     });
 
     $select_type_prices.on("change", function () {
-        $final_cost.text($select_type_prices.val() + " تومان");
+        $final_cost.text($select_type_prices.find("option:selected").text().split("-")[1]);
     });
 
-    $form.find(".sign__btn").on("click",function (e){
-       e.preventDefault();
-       $send_data = $select_type_prices.val().split("_");
-        alert("s : "+$send_data);
-        for (let i = 0; i < $send_data.length; i+=2) {
-            $.ajax({
-                method : "PUT",
-                url : "http://127.0.0.1:8000/api/cart/"+$send_data[i+1],
-                data : {
-                    _method : 'PUT',
-                    itemId : $send_data[i]
-                },
-                success : function (response){
-
-                }
-            })
+    $form.find(".sign__btn").on("click", function (e) {
+        e.preventDefault();
+        $send_data = $select_type_prices.val().split("_");
+        $.magnificPopup.close();
+        for (let i = 0; i < $send_data.length; i += 2) {
+            console.log("url : " + "http://127.0.0.1:8000/api/cart/" + $send_data[i + 1]);
+            console.log("itemId : " + $send_data[i]);
+            updateCart($send_data[i+1],$send_data[i]);
         }
     });
 });
