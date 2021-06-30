@@ -114,7 +114,7 @@ function popupCartError($message) {
 $(window).on('load', function () {
 
     if(localStorage.getItem("accessToken") !== null){
-        $(".header__action--signin .header__action-btn").attr("href","views/dashboard/editProfile.html");
+        $(".header__action--signin .header__action-btn").attr("href","profile.html");
         $(".header__action--signin .header__action-btn span").text("پروفایل");
         $(".sidebar__nav").append("<li class='sidebar__nav-item'>\n" +
             "            <a href='javascript:void(0)' class='sidebar__nav-link sidebar__nav-logout'>\n" +
@@ -129,7 +129,6 @@ $(window).on('load', function () {
 
     const $navLinks = $(".sidebar__nav-link");
     const pageUrl = $(location).attr('href').split('/').slice(-1)[0];
-    console.log("pageUrl : "+pageUrl);
     $.each($navLinks, function (index,dom){
         if($(dom).attr('href')===pageUrl)
             $(dom).addClass('sidebar__nav-link--active');
@@ -356,7 +355,7 @@ $(document).ready(function () {
     });
 
 
-    $(document).on('click','.sidebar__nav-link.sidebar__nav-logout', function (e){
+    $(document).on('click','.sidebar__nav-link.sidebar__nav-logout , .profile__logout', function (e){
         e.preventDefault();
         $.ajax({
             method : "POST",

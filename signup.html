@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
+    <link rel="stylesheet" type="text/css" href="assets/scss/elements/alert.min.css">
 
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
     <title>سایت ساز و صدا - ثبت نام کاربر</title>
@@ -43,7 +44,7 @@
     <div class="header__content">
         <div class="header__logo">
             <a href="index.html">
-                <img src="assets/website/img/logo.svg" alt="">
+                <img src="assets/website/img/logo.png" alt="">
             </a>
         </div>
 
@@ -202,30 +203,63 @@
             <div class="col-12">
                 <div class="sign">
                     <div class="sign__content">
-                        <form action="#" class="sign__form">
+                        <form id="registeration-form" class="sign__form" style="max-width: 600px">
                             <a href="index.html" class="sign__logo">
-                                <img src="assets/website/img/logo.svg" alt="">
+                                <img src="assets/website/img/logo.png" alt="">
                             </a>
 
-                            <div class="sign__group">
-                                <input type="text" class="sign__input" placeholder="نام">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="sign__group">
+                                        <input type="text" name="first_name" autocomplete="off"
+                                               class="sign__input" placeholder="نام">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="sign__group">
+                                        <input type="text" name="last_name" autocomplete="off"
+                                               class="sign__input" placeholder="نام خانوادگی">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="sign__group">
+                                        <input type="text" name="mobile" autocomplete="off"
+                                               class="sign__input" placeholder="شماره تماس">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="sign__group">
+                                        <input type="email" name="email" autocomplete="off"
+                                               class="sign__input" placeholder="ایمیل">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="sign__group">
+                                        <input type="password" name="password" autocomplete="off"
+                                               class="sign__input" placeholder="رمز عبور">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="sign__group">
+                                        <input type="password" name="password_confirmation" autocomplete="off"
+                                               class="sign__input" placeholder="تکرار رمز عبور">
+                                    </div>
+                                </div>
+
+                                <div class="sign__group sign__group--checkbox">
+                                    <input id="remember" name="remember" type="checkbox" checked="checked">
+                                    <label for="remember">من موافقم با <a href="privacy.html">سیاست حفظ حریم
+                                        خصوصی</a></label>
+                                </div>
+
                             </div>
 
-                            <div class="sign__group">
-                                <input type="text" class="sign__input" placeholder="ایمیل">
-                            </div>
-
-                            <div class="sign__group">
-                                <input type="password" class="sign__input" placeholder="رمز عبور">
-                            </div>
-
-                            <div class="sign__group sign__group--checkbox">
-                                <input id="remember" name="remember" type="checkbox" checked="checked">
-                                <label for="remember">من موافقم با <a href="privacy.html">سیاست حفظ حریم
-                                    خصوصی</a></label>
-                            </div>
-
-                            <button class="sign__btn" type="button">ثبت نام</button>
+                            <button class="sign__btn" type="submit">ثبت نام</button>
 
                             <span class="sign__text">حساب دارید ؟ <a href="signin.html">وارد شوید!</a></span>
                         </form>
@@ -244,7 +278,7 @@
         <div class="row">
             <div class="col-12 col-md-7 order-4 order-md-1 order-lg-4 order-xl-1">
                 <div class="footer__logo">
-                    <img src="assets/website/img/logo.svg" alt="">
+                    <img src="assets/website/img/logo.png" alt="">
                 </div>
                 <p class="footer__tagline">مرجع تیم سازی موسیقی و خرید و فروش پکیج ها با مشاهده دمو<br> سایت ساز و صدا.
                 </p>
@@ -342,6 +376,50 @@
 <script src="assets/website/js/jquery.inputmask.min.js"></script>
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#registeration-form").on("submit",function (e) {
+            console.log("s");
+            e.preventDefault();
+            $.ajax({
+                async : false,
+                method : "POST",
+                url : "http://127.0.0.1:8000/api/register",
+                data :  {
+                    first_name : $("input[name='first_name']").val(),
+                    last_name : $("input[name='last_name']").val(),
+                    email : $("input[name='email']").val(),
+                    mobile : $("input[name='mobile']").val(),
+                    password : $("input[name='password']").val(),
+                    password_confirmation : $("input[name='password_confirmation']").val()
+                },
+                success : function (response) {
+                    console.log(response);
+                    if(response.error){
+                        let errors = response.messages;
+                        $("#registeration-form .form-errors").remove();
+                        $("#registeration-form").prepend($("<div></div>").addClass("form-errors"));
+                        for(let i=0;i<errors.length;i++){
+                            $(".form-errors").append(
+                                $("<div></div>")
+                                    .addClass("alert alert-outline-danger fade show text-light")
+                                    .text(errors[i]))
+                        }
+                        $(".form-errors .alert").append("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
+                            "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x close\" data-dismiss=\"alert\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"></line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"></line></svg>" +
+                            "</button>");
+                    }else{
+                        localStorage.setItem("accessToken",response.access_token);
+                        $(location).attr("href","profile.html");
+
+                    }
+                },error : function (error) {
+                    console.log("error : "+JSON.stringify(error));
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>

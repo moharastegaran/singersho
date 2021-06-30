@@ -227,55 +227,55 @@
                         studios[i].description===null ?  '----' : studios[i].description,
                         viewable_html,
                         '<ul class="table-controls">\n' +
-                    '                                            <li><a href="single-studio.html" class="table-link-single">\n' +
-                    '                                                <svg xmlns="http:www.w3.org/2000/svg"\n' +
-                    '                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"\n' +
-                    '                                                     stroke-width="1.75"\n' +
-                    '                                                     stroke-linecap="round" stroke-linejoin="round"\n' +
-                    '                                                     class="feather feather-eye px-1 text-primary">\n' +
-                    '                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>\n' +
-                    '                                                    <circle cx="12" cy="12" r="3"></circle>\n' +
-                    '                                                </svg>\n' +
-                    '                                            </a></li>\n' +
-                    '                                            <li>\n' +
-                    '                                                <a href="edit-studio.html" class="table-link-edit">\n' +
-                    '                                                    <svg xmlns="http:www.w3.org/2000/svg"\n' +
-                    '                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"\n' +
-                    '                                                         stroke-width="2"\n' +
-                    '                                                         stroke-linecap="round" stroke-linejoin="round"\n' +
-                    '                                                         class="feather feather-edit-2 px-1 text-warning">\n' +
-                    '                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>\n' +
-                    '                                                    </svg>\n' +
-                    '                                                </a>\n' +
-                    '                                            </li>\n' +
-                    '                                            <li>\n' +
-                    '                                                <a href="javascript:void(0);" class="table-link-copy">\n' +
-                    '                                                    <svg xmlns="http:www.w3.org/2000/svg" viewBox="0 0 24 24"\n' +
-                    '                                                         fill="none" stroke="currentColor" stroke-width="2"\n' +
-                    '                                                         stroke-linecap="round"\n' +
-                    '                                                         stroke-linejoin="round" class="feather feather-file-plus px-1">\n' +
-                    '                                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>\n' +
-                    '                                                        <polyline points="14 2 14 8 20 8"></polyline>\n' +
-                    '                                                        <line x1="12" y1="18" x2="12" y2="12"></line>\n' +
-                    '                                                        <line x1="9" y1="15" x2="15" y2="15"></line>\n' +
-                    '                                                    </svg>\n' +
-                    '                                                </a>\n' +
-                    '                                            </li>\n' +
-                    '                                            <li>\n' +
-                    '                                                <a href="#modal-delete-studio" data-toggle="modal"\n' +
-                    '                                                   onclick="$(this).closest(\'tr\').addClass(\'deletable\');">\n' +
-                    '                                                    <svg xmlns="http:www.w3.org/2000/svg" viewBox="0 0 24 24"\n' +
-                    '                                                         fill="none"\n' +
-                    '                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"\n' +
-                    '                                                         stroke-linejoin="round"\n' +
-                    '                                                         class="feather feather-trash text-dark p-1 br-6 mb-1">\n' +
-                    '                                                        <polyline points="3 6 5 6 21 6"></polyline>\n' +
-                    '                                                        <path\n' +
-                    '                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>\n' +
-                    '                                                    </svg>\n' +
-                    '                                                </a>\n' +
-                    '                                            </li>\n' +
-                    '                                        </ul>'
+                        '                                            <li><a href="single-studio.html" class="table-link-single">\n' +
+                        '                                                <svg xmlns="http:www.w3.org/2000/svg"\n' +
+                        '                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"\n' +
+                        '                                                     stroke-width="1.75"\n' +
+                        '                                                     stroke-linecap="round" stroke-linejoin="round"\n' +
+                        '                                                     class="feather feather-eye px-1 text-primary">\n' +
+                        '                                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>\n' +
+                        '                                                    <circle cx="12" cy="12" r="3"></circle>\n' +
+                        '                                                </svg>\n' +
+                        '                                            </a></li>\n' +
+                        '                                            <li>\n' +
+                        '                                                <a href="edit-studio.html" class="table-link-edit">\n' +
+                        '                                                    <svg xmlns="http:www.w3.org/2000/svg"\n' +
+                        '                                                         viewBox="0 0 24 24" fill="none" stroke="currentColor"\n' +
+                        '                                                         stroke-width="2"\n' +
+                        '                                                         stroke-linecap="round" stroke-linejoin="round"\n' +
+                        '                                                         class="feather feather-edit-2 px-1 text-warning">\n' +
+                        '                                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>\n' +
+                        '                                                    </svg>\n' +
+                        '                                                </a>\n' +
+                        '                                            </li>\n' +
+                        '                                            <li>\n' +
+                        '                                                <a href="javascript:void(0);" class="table-link-copy">\n' +
+                        '                                                    <svg xmlns="http:www.w3.org/2000/svg" viewBox="0 0 24 24"\n' +
+                        '                                                         fill="none" stroke="currentColor" stroke-width="2"\n' +
+                        '                                                         stroke-linecap="round"\n' +
+                        '                                                         stroke-linejoin="round" class="feather feather-file-plus px-1">\n' +
+                        '                                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>\n' +
+                        '                                                        <polyline points="14 2 14 8 20 8"></polyline>\n' +
+                        '                                                        <line x1="12" y1="18" x2="12" y2="12"></line>\n' +
+                        '                                                        <line x1="9" y1="15" x2="15" y2="15"></line>\n' +
+                        '                                                    </svg>\n' +
+                        '                                                </a>\n' +
+                        '                                            </li>\n' +
+                        '                                            <li>\n' +
+                        '                                                <a href="#modal-delete-studio" data-toggle="modal"\n' +
+                        '                                                   onclick="$(this).closest(\'tr\').addClass(\'deletable\');">\n' +
+                        '                                                    <svg xmlns="http:www.w3.org/2000/svg" viewBox="0 0 24 24"\n' +
+                        '                                                         fill="none"\n' +
+                        '                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round"\n' +
+                        '                                                         stroke-linejoin="round"\n' +
+                        '                                                         class="feather feather-trash text-dark p-1 br-6 mb-1">\n' +
+                        '                                                        <polyline points="3 6 5 6 21 6"></polyline>\n' +
+                        '                                                        <path\n' +
+                        '                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>\n' +
+                        '                                                    </svg>\n' +
+                        '                                                </a>\n' +
+                        '                                            </li>\n' +
+                        '                                        </ul>'
                     ]).draw(false);
                     myStudiosTable.rows(tr).nodes().to$().attr("data-id", studios[i].id);
                 }

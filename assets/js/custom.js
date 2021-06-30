@@ -1,11 +1,13 @@
-import JDate from "../../plugins/jalali-date/jdate";
+// import JDate from "../../plugins/jalali-date/jdate";
 
 $(document).ready(function () {
-    $("header").load("views/parts/header.html",function () {
+    console.log("sss");
+    $("header").load("../parts/header.html",function () {
+        console.log("ehey");
         let title = $("head > title").text().split("-").pop();
         $(".breadcrumb-item.active").find("span").text(title);
     });
-    $("aside").load("views/parts/sidebar.html",function () {
+    $("aside").load("../parts/sidebar.html",function () {
         $("aside li.menu > a").each(function (i, dom) {
             let name = $(dom).attr("data-key");
             let href = $(location).attr("href").split("/").pop();
@@ -15,13 +17,13 @@ $(document).ready(function () {
                 $(this).attr("data-active",true);
                 $(this).next("ul.submenu").addClass("show");
             }
-            if(name.includes("index.html")){
-                const jdate = new JDate; // => default to today
-                $("#section-transactions .meta-date").text(jdate.format('dddd DD MMMM YYYY'));
-            }
+            // if(name.includes("index.html")){
+            //     const jdate = new JDate; // => default to today
+            //     $("#section-transactions .meta-date").text(jdate.format('dddd DD MMMM YYYY'));
+            // }
         });
     });
-    $("footer").load("views/parts/footer.html");
+    $("footer").load("../parts/footer.html");
 
     App.init();
 });

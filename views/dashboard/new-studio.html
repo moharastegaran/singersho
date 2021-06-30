@@ -210,7 +210,7 @@
                                 formData.append("image", studioImages[i]);
                                 $.ajax({
                                     method: "POST",
-                                    url: "http://localhost:8000/api/studio/" + response.studio.id + "/image",
+                                    url: "http://127.0.0.1:8000/api/studio/" + response.studio.id + "/image",
                                     headers: {
                                         authorization: "Bearer " + localStorage.getItem("accessToken"),
                                     },

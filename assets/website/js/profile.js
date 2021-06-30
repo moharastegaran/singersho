@@ -1,6 +1,7 @@
-const userProfileAvatarUpload = new FileUploadWithPreview('userProfileAvatar');
+// const userProfileAvatarUpload = new FileUploadWithPreview('userProfileAvatar');
 const userExperienceThumbnailUpload = new FileUploadWithPreview('userExperienceThumbnail');
 let portfolioType = "URL";
+let is_artist = false,user_first_name,user_last_name,user_email,user_melli_code,artist_advise_price;
 $("#userExperienceDate").persianDatepicker({
     months: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
     dowTitle: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
@@ -34,7 +35,7 @@ function addEditTitleRow(e) {
     const order_price = form.find("[name='order_price']").val();
 
     let hasError = false;
-    if (true){
+    if (true) {
         if (focusedTitleIndex === -1) {
             $.ajax({
                 async: false,
@@ -66,10 +67,10 @@ function addEditTitleRow(e) {
                                 "                                        <div class=\"col-3\">\n" +
                                 "                                            <h4 class='name'>" + title_text + "</h4>\n" +
                                 "                                        </div>\n" +
-                                "                                        <div class=\"col-3 fa-number d-flex align-items-center\">\n"+
+                                "                                        <div class=\"col-3 fa-number d-flex align-items-center\">\n" +
                                 "                                           <label class=\"switch s-success mr-2 mb-0\">\n" +
-                                "                                                <input type=\"checkbox\" class='accept_order' "+(accept_order===1 ? 'checked' : '')+" disabled><span class=\"slider round\"></span>\n" +
-                                "                                           </label><span class='order_price mx-1'>" + order_price + "</span>" + " تومان "+
+                                "                                                <input type=\"checkbox\" class='accept_order' " + (accept_order === 1 ? 'checked' : '') + " disabled><span class=\"slider round\"></span>\n" +
+                                "                                           </label><span class='order_price mx-1'>" + order_price + "</span>" + " تومان " +
                                 "                                        </div>\n" +
                                 "                                        <div class=\"col-5\">\n" +
                                 "                                            <p class=\"mb-0 description\">" + description + "</p>\n" +
@@ -109,24 +110,25 @@ function addEditTitleRow(e) {
         } else {
             // update current row;
             $.ajax({
-                async : false,
-                method : "PATCH",
-                url : "http://127.0.0.1:8000/api/title/artist/"+focusedTitleIndex,
-                data :{
+                async: false,
+                method: "PATCH",
+                url: "http://127.0.0.1:8000/api/title/artist/" + focusedTitleIndex,
+                data: {
+                    _method : 'PATCH',
                     description: description,
                     accept_order: accept_order,
                     order_price: order_price
-                },success : function (response) {
-                    console.log("response "+ JSON.stringify(response));
-                    if (typeof response === 'object' && response!==null){
-                        if(!response.error){
-                            hasError=false;
+                }, success: function (response) {
+                    console.log("response " + JSON.stringify(response));
+                    if (typeof response === 'object' && response !== null) {
+                        if (!response.error) {
+                            hasError = false;
                             $("#userAddTitleForm").removeClass("no-collapse");
                             $(focusedTitleRow).find(".name").text(response.title.title_name);
                             $(focusedTitleRow).find(".description").text(response.title.description);
-                            $(focusedTitleRow).find(".accept_order").prop("checked",response.title.accept_order==="1");
+                            $(focusedTitleRow).find(".accept_order").prop("checked", response.title.accept_order === "1");
                             $(focusedTitleRow).find(".order_price").text(response.title.order_price);
-                        }else{
+                        } else {
                             hasError = true;
                             $("#userAddTitleForm").addClass("no-collapse");
                             Snackbar.show({
@@ -157,15 +159,15 @@ function editTitleRow(current) {
     $("li.title-list-item").removeClass("focus");
     $(focusedTitleRow).addClass("focus");
     form.collapse("show");
-    console.log("focused title index : "+focusedTitleIndex);
+    console.log("focused title index : " + focusedTitleIndex);
 
     const accept_order = $(focusedTitleRow).find(".accept_order").is(":checked");
     const order_price = $(focusedTitleRow).find(".order_price").text();
     const description = $(focusedTitleRow).find(".description").text();
 
-    form.find("[name='name']").val(focusedTitleIndex).prop("disabled","disabled");
+    form.find("[name='name']").val(focusedTitleIndex).prop("disabled", "disabled");
     form.find("[name='description']").val(description);
-    form.find("[name='accept_order']").prop("checked",accept_order);
+    form.find("[name='accept_order']").prop("checked", accept_order);
     form.find("[name='order_price']").val(order_price);
 }
 
@@ -214,9 +216,9 @@ function addPortfolioRow(e) {
 
     let hasError = false;
 
-    if(true){
+    if (true) {
 
-        if(focusedPortfolioIndex === -1){
+        if (focusedPortfolioIndex === -1) {
             $.ajax({
                 async: false,
                 method: "POST",
@@ -241,7 +243,7 @@ function addPortfolioRow(e) {
                             hasError = false;
                             form.removeClass("no-collapse");
                             $(".portfolio-list").append("" +
-                                "<li class=\"portfolio-list-item\" data-id=\""+response.portfolio.id +"\">\n" +
+                                "<li class=\"portfolio-list-item\" data-id=\"" + response.portfolio.id + "\">\n" +
                                 "                                        <div class=\"col-2\">\n" +
                                 "                                            <img src='" + (('image' in response.portfolio) ? response.portfolio.image : '../../assets/img/90x90.jpg') + "' class=\"rounded-circle image\" width=\"50\" height=\"50\">\n" +
                                 "                                        </div>\n" +
@@ -277,20 +279,20 @@ function addPortfolioRow(e) {
                     console.log("error : " + JSON.stringify(error));
                 }
             });
-        }else{
+        } else {
             console.log("to update");
             $.ajax({
-                async : false,
-                method : "POST",
-                url : "http://127.0.0.1:8000/api/portfolio/artist/edit/"+focusedPortfolioIndex,
+                async: false,
+                method: "POST",
+                url: "http://127.0.0.1:8000/api/portfolio/artist/edit/" + focusedPortfolioIndex,
                 data: formData,
                 contentType: false,
                 cache: false,
                 processData: false,
-                success : function (response) {
-                    console.log("res : "+JSON.stringify(response));
-                    if(typeof response === 'object' && response !== null){
-                        if (response.error){
+                success: function (response) {
+                    console.log("res : " + JSON.stringify(response));
+                    if (typeof response === 'object' && response !== null) {
+                        if (response.error) {
                             hasError = true;
                             form.addClass("no-collapse");
                             Snackbar.show({
@@ -299,7 +301,7 @@ function addPortfolioRow(e) {
                                 backgroundColor: "#cb1213",
                                 pos: 'bottom-right'
                             });
-                        }else{
+                        } else {
                             hasError = false;
                             form.removeClass("no-collapse");
                             $(focusedPortfolioRow).find(".name").text(response.portfolio.name);
@@ -307,11 +309,11 @@ function addPortfolioRow(e) {
                             $(focusedPortfolioRow).find(".description").text(response.portfolio.description);
                             $(focusedPortfolioRow).find(".url").text(response.portfolio.url);
                             $(focusedPortfolioRow).find(".type").text(response.portfolio.type);
-                            $(focusedPortfolioRow).find(".image").attr("src",response.portfolio.image);
+                            $(focusedPortfolioRow).find(".image").attr("src", response.portfolio.image);
                         }
                     }
-                },error : function (error) {
-                    console.log("error : "+JSON.stringify(error));
+                }, error: function (error) {
+                    console.log("error : " + JSON.stringify(error));
                 }
             });
         }
@@ -346,7 +348,7 @@ function editPortfolioRow(current) {
     form.find("[name='description']").val(description);
     form.find("[name='url']").val(url);
     // form.find("[name='description']").val(description);
-    if (type==='Sound')
+    if (type === 'Sound')
         form.find(".nav-pills a:last-child").tab("show");
     userExperienceThumbnailUpload.addImagesFromPath([focusedPortfolioRow.find(".image").attr("src")]);
 }
@@ -399,46 +401,40 @@ $(window).on("load", function () {
         method: "GET",
         url: "http://127.0.0.1:8000/api/me",
         success: function (response) {
-            console.log("response : "+JSON.stringify(response));
             if (typeof response === 'object' && response !== null) {
                 if (!response.error) {
+                    $(".user.full_name").text(response.data.user.first_name + ' ' + response.data.user.last_name);
+                    $("#tab-user-profile-section input[name='first_name']").val(user_first_name=response.data.user.first_name);
+                    $("#tab-user-profile-section input[name='last_name']").val(user_last_name=response.data.user.last_name);
+                    $("#tab-user-profile-section input[name='email']").val(user_email=response.data.user.email);
+                    $("#tab-user-profile-section input[name='melli_code']").val(user_melli_code=response.data.user.melli_code);
 
-                    $("#userInfoSection input[name='first_name']").val(response.data.user.first_name);
-                    $("#userInfoSection input[name='last_name']").val(response.data.user.last_name);
-                    $("#userInfoSection input[name='email']").val(response.data.user.email);
-                    $("#userInfoSection input[name='melli_code']").val(response.data.user.melli_code);
+                    is_artist = response.data.is_artist;
 
                     if (response.data.is_artist) {
 
-                        const artist = response.data.other_info.artist;
-                        $("[name='is_artist']").prop("checked",true);
+                        const artist = response.data.other_info.artist[0];
+                        $("[name='is_artist']").prop("checked", true);
                         $(".is-artist-pending").removeClass("d-none");
-                        $("#userInfoSection input[name='is_advisor']").prop("checked",artist.is_advisor === 1);
-                        $("#userInfoSection input[name='advise_price']").val(artist.advise_price);
-                        if(artist.is_advisor===1)
+                        $("#tab-user-profile-section input[name='is_advisor']").prop("checked", artist.is_advisor === 1);
+                        $("#tab-user-profile-section input[name='advise_price']").val(artist_advise_price=artist.advise_price);
+                        if (artist.is_advisor === 1) {
                             $("#AdvisorPriceContainer").collapse("show");
+                        }
 
                         const titles = response.data.other_info.titles;
                         if (titles.length > 0) {
                             $(".title-list-empty").addClass("d-none");
                             for (let i = 0; i < titles.length; i++) {
-                                // let html = "";
-                                // if (titles[i].pivot.accept_order === 1) {
-                                //     html += "<label class=\"switch s-success mr-2 mb-0\"><input type=\"checkbox\" class='accept_order' value='1' checked disabled><span class=\"slider round\"></span></label>\n";
-                                //     html += "<span class='order_price mx-1'>" + titles[i].pivot.order_price + "</span>" + " تومان ";
-                                // } else {
-                                //     html += "<label class=\"switch s-danger mr-2 mb-0\"><input type=\"checkbox\" class='accept_order' value='0' checked disabled><span class=\"slider round\"></span></label>\n"
-                                //     html += "<span class='sr-only'><span class='order_price mx-1'>" + titles[i].pivot.order_price + "</span>" + " تومان " + "</span>";
-                                // }
                                 $(".title-list").append("" +
                                     "<li class=\"title-list-item\" data-id=\"" + titles[i].pivot.title_id + "\">\n" +
                                     "                                        <div class=\"col-3\">\n" +
                                     "                                            <h4 class='name'>" + titles[i].name + "</h4>\n" +
                                     "                                        </div>\n" +
-                                    "                                         <div class=\"col-3 fa-number d-flex align-items-center\">\n"+
+                                    "                                         <div class=\"col-3 fa-number d-flex align-items-center\">\n" +
                                     "                                           <label class=\"switch s-success mr-2 mb-0\">\n" +
-                                    "                                                <input type=\"checkbox\" class='accept_order' "+(titles[i].pivot.accept_order===1 ? 'checked' : '')+" disabled><span class=\"slider round\"></span>\n" +
-                                    "                                           </label><span class='order_price mx-1'>" + titles[i].pivot.order_price + "</span>" + " تومان "+
+                                    "                                                <input type=\"checkbox\" class='accept_order' " + (titles[i].pivot.accept_order === 1 ? 'checked' : '') + " disabled><span class=\"slider round\"></span>\n" +
+                                    "                                           </label><span class='order_price mx-1'>" + titles[i].pivot.order_price + "</span>" + " تومان " +
                                     "                                        </div>\n" +
                                     "                                        <div class=\"col-5\">\n" +
                                     "                                            <p class=\"mb-0 description\">" + titles[i].pivot.description + "</p>\n" +
@@ -473,11 +469,11 @@ $(window).on("load", function () {
                         }
 
                         const portfolio = response.data.other_info.portfolio;
-                        if(portfolio.length > 0){
+                        if (portfolio.length > 0) {
                             $(".portfolio-list-empty").addClass("d-none");
-                            for(let i=0; i<portfolio.length; i++){
+                            for (let i = 0; i < portfolio.length; i++) {
                                 $(".portfolio-list").append("" +
-                                    "<li class=\"portfolio-list-item\" data-id=\""+portfolio[i].id+"\">\n" +
+                                    "<li class=\"portfolio-list-item\" data-id=\"" + portfolio[i].id + "\">\n" +
                                     "                                        <div class=\"col-2\">\n" +
                                     "                                            <img src='" + (('image' in portfolio[i]) ? portfolio[i].image : '../../assets/img/90x90.jpg') + "' class=\"rounded-circle image\" width=\"50\" height=\"50\">\n" +
                                     "                                        </div>\n" +
@@ -510,7 +506,7 @@ $(window).on("load", function () {
                             }
                         }
                     } else {
-                        console.log(response);
+                        $("#tab-user-profile-section").find(".col-lg-7").remove();
                     }
                 }
             }
@@ -520,8 +516,8 @@ $(window).on("load", function () {
         }
     });
 
-    $.get("http://127.0.0.1:8000/api/titles", function (response, status) {
-        if (typeof  response === 'object' && response !== null) {
+    $.get("http://127.0.0.1:8000/api/titles", function (response) {
+        if (typeof response === 'object' && response !== null) {
             const titles = response.titles;
             if (titles !== null) {
                 for (let i = 0; i < titles.length; i++)
@@ -531,65 +527,6 @@ $(window).on("load", function () {
         }
     });
 
-    // $.get("http://127.0.0.1:8000/api/title/my", function (response, status) {
-    //     console.log("hello");
-    //     if (typeof response === 'object' && response !== null) {
-    //         if (!response.error && response.titles.length > 0) {
-    //             const titles = response.titles;
-    //             // let html = "";
-    //             $(".title-list-empty").addClass("d-none");
-    //             for (let i = 0; i < titles.length; i++) {
-    //                 // let html = "";
-    //                 // if (titles[i].pivot.accept_order === 1) {
-    //                 //     html += "<label class=\"switch s-success mr-2 mb-0\"><input type=\"checkbox\" class='accept_order' value='1' checked disabled><span class=\"slider round\"></span></label>\n";
-    //                 //     html += "<span class='order_price mx-1'>" + titles[i].pivot.order_price + "</span>" + " تومان ";
-    //                 // } else {
-    //                 //     html += "<label class=\"switch s-danger mr-2 mb-0\"><input type=\"checkbox\" class='accept_order' value='0' checked disabled><span class=\"slider round\"></span></label>\n"
-    //                 //     html += "<span class='sr-only'><span class='order_price mx-1'>" + titles[i].pivot.order_price + "</span>" + " تومان " + "</span>";
-    //                 // }
-    //                 $(".title-list").append("" +
-    //                     "<li class=\"title-list-item\" data-id=\"" + titles[i].pivot.title_id + "\">\n" +
-    //                     "                                        <div class=\"col-3\">\n" +
-    //                     "                                            <h4 class='name'>" + titles[i].name + "</h4>\n" +
-    //                     "                                        </div>\n" +
-    //                     "                                         <div class=\"col-3 fa-number d-flex align-items-center\">\n"+
-    //                     "                                           <label class=\"switch s-success mr-2 mb-0\">\n" +
-    //                     "                                                <input type=\"checkbox\" class='accept_order' "+(titles[i].pivot.accept_order===1 ? 'checked' : '')+" disabled><span class=\"slider round\"></span>\n" +
-    //                     "                                           </label><span class='order_price mx-1'>" + titles[i].pivot.order_price + "</span>" + " تومان "+
-    //                     "                                        </div>\n" +
-    //                     "                                        <div class=\"col-5\">\n" +
-    //                     "                                            <p class=\"mb-0 description\">" + titles[i].pivot.description + "</p>\n" +
-    //                     "                                        </div>\n" +
-    //                     "                                        <div class=\"col-1\">\n" +
-    //                     "                                            <div class=\"row\">\n" +
-    //                     "                                                <a class=\"col px-0 text-center\" href=\"javascript:void(0);\"\n" +
-    //                     "                                                   onclick='editTitleRow(this)'>\n" +
-    //                     "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
-    //                     "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
-    //                     "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
-    //                     "                                                         class=\"feather feather-edit-2 px-1 text-warning\">\n" +
-    //                     "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
-    //                     "                                                    </svg>\n" +
-    //                     "                                                </a>\n" +
-    //                     "                                                <a class=\"col text-center title-item-delete px-0\" href=\"javascript:void(0);\"\n" +
-    //                     "                                                   onclick=\"showDeleteModal(this)\"\n" +
-    //                     // "                                                   data-toggle=\"modal\" data-target=\"#modal-delete-profile\"" +
-    //                     ">\n" +
-    //                     "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
-    //                     "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
-    //                     "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
-    //                     "                                                         class=\"feather feather-trash text-dark px-1\">\n" +
-    //                     "                                                        <polyline points=\"3 6 5 6 21 6\"></polyline>\n" +
-    //                     "                                                        <path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>\n" +
-    //                     "                                                    </svg>\n" +
-    //                     "                                                </a>\n" +
-    //                     "                                            </div>\n" +
-    //                     "                                        </div>\n" +
-    //                     "                                    </li>");
-    //             }
-    //         }
-    //     }
-    // })
 });
 
 $("#userAddTitleForm , #userAddExperienceForm").on("hide.bs.collapse", function (e) {
@@ -606,23 +543,23 @@ $("#userAddExperienceForm").on("show.bs.collapse hide.bs.collapse", function () 
     $(".btn-portfolio-toggle").toggleClass("d-none");
 });
 
-$("#modal-delete-profile").on("show.bs.modal",function () {
-    if($("li.deletable").hasClass("title-list-item")){
+$("#modal-delete-profile").on("show.bs.modal", function () {
+    if ($("li.deletable").hasClass("title-list-item")) {
         console.log("list-item");
         $(this).find(".modal-title").text("حذف مهارت");
         $(this).find(".modal-body .modal-text").text("آیا از حذف این مهارت مطمئن هستید؟");
-    }else if($("li.deletable").hasClass("portfolio-list-item")){
+    } else if ($("li.deletable").hasClass("portfolio-list-item")) {
         console.log("experience-item");
         $(this).find(".modal-title").text("حذف نمونه کار");
         $(this).find(".modal-body .modal-text").text("آیا از حذف این نمونه کار مطمئن هستید؟");
     }
 });
 
-$("#modal-delete-profile .modal-btn-delete").on("click",function () {
-    if($("li.deletable").hasClass("title-list-item")){
+$("#modal-delete-profile .modal-btn-delete").on("click", function () {
+    if ($("li.deletable").hasClass("title-list-item")) {
         console.log("delete title item");
         deleteTitleRow($("li.deletable"));
-    }else if($("li.deletable").hasClass("portfolio-list-item")){
+    } else if ($("li.deletable").hasClass("portfolio-list-item")) {
         console.log("delete portfolio item");
         deletePortfolioRow($("li.deletable"));
     }
@@ -633,6 +570,7 @@ function showDeleteModal($this) {
     $($this.closest("li")).addClass("deletable");
     $("#modal-delete-profile").modal('show');
 }
+
 // )
 
 let prev = null;
@@ -643,7 +581,77 @@ $(".nav-pills a").on("click", function () {
     prev = $(this);
 });
 
-$("input[name='is_artist']").on("click",function () {
+$("input[name='is_artist']").on("click", function () {
     const isChecked = $(this).is(":checked");
-    // if (!isChecked)
+    if (isChecked && !is_artist) {
+        $.ajax({
+            method: 'PUT',
+            url: 'http://127.0.0.1:8000/api/artist/register',
+            data: {
+                _method: 'PUT'
+            },
+            success: function (response) {
+                if (typeof response === 'object' && response !== null) {
+                    if (!response.error) {
+                        $(location).attr('href', 'profile.html');
+                    }
+                }
+            }
+        });
+    }
 });
+
+
+$("input[name='is_advisor']").on("click", function () {
+    const isChecked = $(this).is(":checked");
+    $.ajax({
+        method: 'PATCH',
+        url: 'http://127.0.0.1:8000/api/accept_advisor',
+        data: {
+            _method: 'PATCH'
+        },
+        success: function (response) {
+            if (typeof response === 'object' && response !== null) {
+                if (!response.error) {
+                    console.log(JSON.stringify(response));
+                }
+            }
+        }
+    });
+});
+
+$("input[name='first_name']").on("blur",function (){
+    updateUserData($(this),user_first_name);
+});
+$("input[name='last_name']").on("blur",function (){
+    updateUserData($(this),user_last_name);
+});
+$("input[name='email']").on("blur",function (){
+    updateUserData($(this),user_email);
+});
+$("input[name='melli_code']").on("blur",function (){
+    updateUserData($(this),user_melli_code);
+});
+$("input[name='advise_price']").on("blur",function (){
+    updateUserData($(this),artist_advise_price);
+});
+
+function updateUserData($input,$expected_value){
+    if($input.val()!==$expected_value){
+        let formData = {};
+        formData[$input.attr('name')] = $input.val();
+        $.ajax({
+            method : 'PATCH',
+            url : 'http://127.0.0.1:8000/api/'+$input.attr('name'),
+            data : formData,
+            success : function (response){
+                if (typeof response === 'object' && response !== null){
+                    $input.siblings(".input-error").remove();
+                    if (response.error){
+                        $input.after("<span class='input-error text-danger'>"+response.messages[0]+"</span>")
+                    }
+                }
+            }
+        })
+    }
+}
