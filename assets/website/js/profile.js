@@ -2,26 +2,10 @@
 const userExperienceThumbnailUpload = new FileUploadWithPreview('userExperienceThumbnail');
 let portfolioType = "URL";
 let is_artist = false,user_first_name,user_last_name,user_email,user_melli_code,artist_advise_price;
-$("#userExperienceDate").persianDatepicker({
-    months: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
-    dowTitle: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
-    shortDowTitle: ["ش", "ی", "د", "س", "چ", "پ", "ج"],
-    showGregorianDate: !0,
-    persianNumbers: !1,
-    formatDate: "YYYY/MM/DD",
-    prevArrow: '\u25c4',
-    nextArrow: '\u25ba',
-});
-$("#userExperienceType").select2({
-    placeholder: '-انتخاب کنید-',
-    dir: "rtl",
-    language: "fa",
-    width: '100%',
-    theme: "bootstrap"
-});
 
 let focusedPortfolioRow = null, focusedPortfolioIndex = -1;
 let focusedTitleRow = null, focusedTitleIndex = -1;
+let prev = null;
 
 function addEditTitleRow(e) {
     e.preventDefault();
@@ -86,9 +70,9 @@ function addEditTitleRow(e) {
                                 "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                 "                                                    </svg>\n" +
                                 "                                                </a>\n" +
-                                "                                                <a class=\"col px-0 text-center\" href=\"javascript:void(0);\"\n" +
-                                "                                                   onclick=\"$(this).closest('li').addClass('deletable')\"\n" +
-                                "                                                    data-toggle=\"modal\" data-target=\"#modal-delete-profile\">\n" +
+                                "                                                <a class=\"col px-0 text-center open-modal\" " +
+                                "                                                   href=\"#modal-delete-title-portfolio\"\n" +
+                                "                                                   onclick=\"$(this.closest('li')).addClass('deletable')\">\n" +
                                 "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
                                 "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
                                 "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
@@ -112,7 +96,7 @@ function addEditTitleRow(e) {
             $.ajax({
                 async: false,
                 method: "PATCH",
-                url: "http://127.0.0.1:8000/api/title/artist/" + focusedTitleIndex,
+                url: "http://127.0.0.1:8000/api/title/artist/edit/" + focusedTitleIndex,
                 data: {
                     _method : 'PATCH',
                     description: description,
@@ -182,7 +166,6 @@ function deleteTitleRow(current) {
             if ($(".title-list-item").length < 1) {
                 $(".title-list-empty").removeClass("d-none");
             }
-            $("#modal-delete-profile").modal("hide");
         },
         error: function (error) {
             console.log("error : " + JSON.stringify(error));
@@ -243,17 +226,17 @@ function addPortfolioRow(e) {
                             hasError = false;
                             form.removeClass("no-collapse");
                             $(".portfolio-list").append("" +
-                                "<li class=\"portfolio-list-item\" data-id=\"" + response.portfolio.id + "\">\n" +
+                                "<li class=\"portfolio-list-item\" data-id=\"" + response.portfolio[0].id + "\">\n" +
                                 "                                        <div class=\"col-2\">\n" +
-                                "                                            <img src='" + (('image' in response.portfolio) ? response.portfolio.image : '../../assets/img/90x90.jpg') + "' class=\"rounded-circle image\" width=\"50\" height=\"50\">\n" +
+                                "                                            <img src='" + (('image' in response.portfolio[0]) ? response.portfolio[0].image : '../../assets/img/90x90.jpg') + "' class=\"rounded-circle image\" width=\"50\" height=\"50\">\n" +
                                 "                                        </div>\n" +
                                 "                                        <div class=\"col-9\">\n" +
-                                "                                            <h4 class='name'>" + response.portfolio.name + "</h4>\n" +
-                                "                                            <p>تاریخ انتشار: <span class=\"fa-number date\">" + response.portfolio.date + "</span></p>\n" +
+                                "                                            <h4 class='name'>" + response.portfolio[0].name + "</h4>\n" +
+                                "                                            <p>تاریخ انتشار: <span class=\"fa-number date\">" + response.portfolio[0].date + "</span></p>\n" +
                                 // "                                            <div class=\"d-flex flex-row justify-content-start align-items-center badges\">\n" + typesHtml + "</div>\n" +
-                                "                                            <p class=\"description\">" + response.portfolio.description + "</p>\n" +
-                                "                                            <p class=\"sr-only url\">" + response.portfolio.url + "</p>\n" +
-                                "                                            <p class=\"sr-only type\">" + response.portfolio.type + "</p>\n" +
+                                "                                            <p class=\"description\">" + response.portfolio[0].description + "</p>\n" +
+                                "                                            <p class=\"sr-only url\">" + response.portfolio[0].url + "</p>\n" +
+                                "                                            <p class=\"sr-only type\">" + response.portfolio[0].type + "</p>\n" +
                                 "                                        </div>\n" +
                                 "                                        <div class=\"col-1\">\n" +
                                 "                                            <div class=\"row\">\n" +
@@ -262,9 +245,9 @@ function addPortfolioRow(e) {
                                 "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                 "                                                    </svg>\n" +
                                 "                                                </a>\n" +
-                                "                                                <a class=\"col px-0 text-center\" href=\"javascript:void(0);\"" +
-                                "                                                       onclick=\"$(this).closest('li').addClass('deletable')\" " +
-                                "                                                       data-toggle=\"modal\" data-target=\"#modal-delete-profile\">\n" +
+                                "                                                <a class=\"col px-0 text-center open-modal\"" +
+                                "                                                       onclick=\"$(this.closest('li')).addClass('deletable')\" " +
+                                "                                                       href=\"#modal-delete-title-portfolio\">\n" +
                                 "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-trash text-dark p-1\">\n" +
                                 "                                                        <polyline points=\"3 6 5 6 21 6\"></polyline>\n" +
                                 "                                                        <path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>\n" +
@@ -280,7 +263,6 @@ function addPortfolioRow(e) {
                 }
             });
         } else {
-            console.log("to update");
             $.ajax({
                 async: false,
                 method: "POST",
@@ -304,12 +286,12 @@ function addPortfolioRow(e) {
                         } else {
                             hasError = false;
                             form.removeClass("no-collapse");
-                            $(focusedPortfolioRow).find(".name").text(response.portfolio.name);
-                            $(focusedPortfolioRow).find(".date").text(response.portfolio.date);
-                            $(focusedPortfolioRow).find(".description").text(response.portfolio.description);
-                            $(focusedPortfolioRow).find(".url").text(response.portfolio.url);
-                            $(focusedPortfolioRow).find(".type").text(response.portfolio.type);
-                            $(focusedPortfolioRow).find(".image").attr("src", response.portfolio.image);
+                            $(focusedPortfolioRow).find(".name").text(response.portfolio[0].name);
+                            $(focusedPortfolioRow).find(".date").text(response.portfolio[0].date);
+                            $(focusedPortfolioRow).find(".description").text(response.portfolio[0].description);
+                            $(focusedPortfolioRow).find(".url").text(response.portfolio[0].url);
+                            $(focusedPortfolioRow).find(".type").text(response.portfolio[0].type);
+                            $(focusedPortfolioRow).find(".image").attr("src", response.portfolio[0].image);
                         }
                     }
                 }, error: function (error) {
@@ -318,7 +300,6 @@ function addPortfolioRow(e) {
             });
         }
     }
-
 
     if (!hasError) {
         $(".portfolio-list-empty").addClass("d-none");
@@ -350,7 +331,7 @@ function editPortfolioRow(current) {
     // form.find("[name='description']").val(description);
     if (type === 'Sound')
         form.find(".nav-pills a:last-child").tab("show");
-    userExperienceThumbnailUpload.addImagesFromPath([focusedPortfolioRow.find(".image").attr("src")]);
+    userExperienceThumbnailUpload.addImagesFromPath([$(focusedPortfolioRow).find(".image").attr("src")]);
 }
 
 function deletePortfolioRow(current) {
@@ -364,7 +345,6 @@ function deletePortfolioRow(current) {
             if ($(".portfolio-list-item").length < 1) {
                 $(".portfolio-list-empty").removeClass("d-none");
             }
-            $("#modal-delete-profile").modal("hide");
         },
         error: function (error) {
             console.log("error : " + JSON.stringify(error));
@@ -380,6 +360,31 @@ function getFocusedIndexOf(selector) {
         }
     });
     return i;
+}
+
+function showDeleteModal($this) {
+    $($this.closest("li")).addClass("deletable");
+    $("#modal-delete-profile").modal('show');
+}
+
+function updateUserData($input,$expected_value){
+    if($input.val()!==$expected_value){
+        let formData = {};
+        formData[$input.attr('name')] = $input.val();
+        $.ajax({
+            method : 'PATCH',
+            url : 'http://127.0.0.1:8000/api/'+$input.attr('name'),
+            data : formData,
+            success : function (response){
+                if (typeof response === 'object' && response !== null){
+                    $input.siblings(".input-error").remove();
+                    if (response.error){
+                        $input.after("<span class='input-error text-danger'>"+response.messages[0]+"</span>")
+                    }
+                }
+            }
+        })
+    }
 }
 
 $(window).on("load", function () {
@@ -414,6 +419,8 @@ $(window).on("load", function () {
                     if (response.data.is_artist) {
 
                         const artist = response.data.other_info.artist[0];
+
+                        $("._artist.id").text("شناسه کاربری : "+artist.id);
                         $("[name='is_artist']").prop("checked", true);
                         $(".is-artist-pending").removeClass("d-none");
                         $("#tab-user-profile-section input[name='is_advisor']").prop("checked", artist.is_advisor === 1);
@@ -450,10 +457,9 @@ $(window).on("load", function () {
                                     "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                     "                                                    </svg>\n" +
                                     "                                                </a>\n" +
-                                    "                                                <a class=\"col text-center title-item-delete px-0\" href=\"javascript:void(0);\"\n" +
-                                    "                                                   onclick=\"showDeleteModal(this)\"\n" +
-                                    // "                                                   data-toggle=\"modal\" data-target=\"#modal-delete-profile\"" +
-                                    ">\n" +
+                                    "                                                <a class=\"col text-center px-0 open-modal\" " +
+                                    "                                                   href=\"#modal-delete-title-portfolio\"\n" +
+                                    "                                                   onclick=\"$(this.closest('li')).addClass('deletable');\" >\n" +
                                     "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
                                     "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
                                     "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
@@ -492,9 +498,9 @@ $(window).on("load", function () {
                                     "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                     "                                                    </svg>\n" +
                                     "                                                </a>\n" +
-                                    "                                                 <a class=\"col px-0 text-center\" href=\"javascript:void(0);\"" +
-                                    "                                                       onclick=\"$(this).closest('li').addClass('deletable')\" " +
-                                    "                                                       data-toggle=\"modal\" data-target=\"#modal-delete-profile\">\n" +
+                                    "                                                 <a class=\"col px-0 text-center open-modal\" " +
+                                    "                                                       href=\"#modal-delete-title-portfolio\"" +
+                                    "                                                       onclick=\"$(this.closest('li')).addClass('deletable')\">\n" +
                                     "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-trash text-dark p-1\">\n" +
                                     "                                                        <polyline points=\"3 6 5 6 21 6\"></polyline>\n" +
                                     "                                                        <path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>\n" +
@@ -529,129 +535,112 @@ $(window).on("load", function () {
 
 });
 
-$("#userAddTitleForm , #userAddExperienceForm").on("hide.bs.collapse", function (e) {
-    if ($(this).hasClass("no-collapse")) {
-        e.preventDefault();
-    }
-});
+$(document).ready(function (){
+    // $("#userExperienceDate").persianDatepicker({
+    //     months: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
+    //     dowTitle: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
+    //     shortDowTitle: ["ش", "ی", "د", "س", "چ", "پ", "ج"],
+    //     showGregorianDate: !0,
+    //     persianNumbers: !1,
+    //     formatDate: "YYYY/MM/DD",
+    //     prevArrow: '\u25c4',
+    //     nextArrow: '\u25ba',
+    // });
 
-$("#userAddTitleForm").on("show.bs.collapse hide.bs.collapse", function () {
-    $(".btn-title-toggle").toggleClass("d-none");
-});
+    $("#userAddTitleForm , #userAddExperienceForm").on("hide.bs.collapse", function (e) {
+        if ($(this).hasClass("no-collapse")) {
+            e.preventDefault();
+        }
+    });
 
-$("#userAddExperienceForm").on("show.bs.collapse hide.bs.collapse", function () {
-    $(".btn-portfolio-toggle").toggleClass("d-none");
-});
+    $("#userAddTitleForm").on("show.bs.collapse hide.bs.collapse", function () {
+        $(".btn-title-toggle").toggleClass("d-none");
+    });
 
-$("#modal-delete-profile").on("show.bs.modal", function () {
-    if ($("li.deletable").hasClass("title-list-item")) {
-        console.log("list-item");
-        $(this).find(".modal-title").text("حذف مهارت");
-        $(this).find(".modal-body .modal-text").text("آیا از حذف این مهارت مطمئن هستید؟");
-    } else if ($("li.deletable").hasClass("portfolio-list-item")) {
-        console.log("experience-item");
-        $(this).find(".modal-title").text("حذف نمونه کار");
-        $(this).find(".modal-body .modal-text").text("آیا از حذف این نمونه کار مطمئن هستید؟");
-    }
-});
+    $("#userAddExperienceForm").on("show.bs.collapse hide.bs.collapse", function () {
+        $(".btn-portfolio-toggle").toggleClass("d-none");
+    });
 
-$("#modal-delete-profile .modal-btn-delete").on("click", function () {
-    if ($("li.deletable").hasClass("title-list-item")) {
-        console.log("delete title item");
-        deleteTitleRow($("li.deletable"));
-    } else if ($("li.deletable").hasClass("portfolio-list-item")) {
-        console.log("delete portfolio item");
-        deletePortfolioRow($("li.deletable"));
-    }
-});
+    $("#modal-delete-profile").on("show.bs.modal", function () {
+        if ($("li.deletable").hasClass("title-list-item")) {
+            console.log("list-item");
+            $(this).find(".modal-title").text("حذف مهارت");
+            $(this).find(".modal-body .modal-text").text("آیا از حذف این مهارت مطمئن هستید؟");
+        } else if ($("li.deletable").hasClass("portfolio-list-item")) {
+            console.log("experience-item");
+            $(this).find(".modal-title").text("حذف نمونه کار");
+            $(this).find(".modal-body .modal-text").text("آیا از حذف این نمونه کار مطمئن هستید؟");
+        }
+    });
 
-// $("a.title-item-delete").on("click",
-function showDeleteModal($this) {
-    $($this.closest("li")).addClass("deletable");
-    $("#modal-delete-profile").modal('show');
-}
+    $("#modal-delete-title-portfolio .btn-delete-title-portfolio").on("click", function () {
+        if ($("li.deletable").hasClass("title-list-item")) {
+            deleteTitleRow($("li.deletable"));
+        } else if ($("li.deletable").hasClass("portfolio-list-item")) {
+            deletePortfolioRow($("li.deletable"));
+        }
+        $.magnificPopup.close();
+    });
 
-// )
+    $(".nav-pills a").on("click", function () {
+        if (prev !== null && $(this).find("img").attr("src") === prev.find("img").attr("src"))
+            return;
+        portfolioType = (portfolioType === "URL") ? "Sound" : "URL";
+        prev = $(this);
+    });
 
-let prev = null;
-$(".nav-pills a").on("click", function () {
-    if (prev !== null && $(this).find("img").attr("src") === prev.find("img").attr("src"))
-        return;
-    portfolioType = (portfolioType === "URL") ? "Sound" : "URL";
-    prev = $(this);
-});
+    $("input[name='is_artist']").on("click", function () {
+        const isChecked = $(this).is(":checked");
+        if (isChecked && !is_artist) {
+            $.ajax({
+                method: 'PUT',
+                url: 'http://127.0.0.1:8000/api/artist/register',
+                data: {
+                    _method: 'PUT'
+                },
+                success: function (response) {
+                    if (typeof response === 'object' && response !== null) {
+                        if (!response.error) {
+                            $(location).attr('href', 'profile.html');
+                        }
+                    }
+                }
+            });
+        }
+    });
 
-$("input[name='is_artist']").on("click", function () {
-    const isChecked = $(this).is(":checked");
-    if (isChecked && !is_artist) {
+    $("input[name='is_advisor']").on("click", function () {
+        const isChecked = $(this).is(":checked");
         $.ajax({
-            method: 'PUT',
-            url: 'http://127.0.0.1:8000/api/artist/register',
+            method: 'PATCH',
+            url: 'http://127.0.0.1:8000/api/accept_advisor',
             data: {
-                _method: 'PUT'
+                _method: 'PATCH'
             },
             success: function (response) {
                 if (typeof response === 'object' && response !== null) {
                     if (!response.error) {
-                        $(location).attr('href', 'profile.html');
+                        console.log(JSON.stringify(response));
                     }
                 }
             }
         });
-    }
-});
-
-
-$("input[name='is_advisor']").on("click", function () {
-    const isChecked = $(this).is(":checked");
-    $.ajax({
-        method: 'PATCH',
-        url: 'http://127.0.0.1:8000/api/accept_advisor',
-        data: {
-            _method: 'PATCH'
-        },
-        success: function (response) {
-            if (typeof response === 'object' && response !== null) {
-                if (!response.error) {
-                    console.log(JSON.stringify(response));
-                }
-            }
-        }
     });
-});
 
-$("input[name='first_name']").on("blur",function (){
-    updateUserData($(this),user_first_name);
-});
-$("input[name='last_name']").on("blur",function (){
-    updateUserData($(this),user_last_name);
-});
-$("input[name='email']").on("blur",function (){
-    updateUserData($(this),user_email);
-});
-$("input[name='melli_code']").on("blur",function (){
-    updateUserData($(this),user_melli_code);
-});
-$("input[name='advise_price']").on("blur",function (){
-    updateUserData($(this),artist_advise_price);
-});
+    $("input[name='first_name']").on("blur",function (){
+        updateUserData($(this),user_first_name);
+    });
+    $("input[name='last_name']").on("blur",function (){
+        updateUserData($(this),user_last_name);
+    });
+    $("input[name='email']").on("blur",function (){
+        updateUserData($(this),user_email);
+    });
+    $("input[name='melli_code']").on("blur",function (){
+        updateUserData($(this),user_melli_code);
+    });
+    $("input[name='advise_price']").on("blur",function (){
+        updateUserData($(this),artist_advise_price);
+    });
 
-function updateUserData($input,$expected_value){
-    if($input.val()!==$expected_value){
-        let formData = {};
-        formData[$input.attr('name')] = $input.val();
-        $.ajax({
-            method : 'PATCH',
-            url : 'http://127.0.0.1:8000/api/'+$input.attr('name'),
-            data : formData,
-            success : function (response){
-                if (typeof response === 'object' && response !== null){
-                    $input.siblings(".input-error").remove();
-                    if (response.error){
-                        $input.after("<span class='input-error text-danger'>"+response.messages[0]+"</span>")
-                    }
-                }
-            }
-        })
-    }
-}
+})
