@@ -348,7 +348,7 @@
 <script src="assets/website/js/isotope.pkgd.min.js"></script>
 <script>
     $(window).on('load', function () {
-        $.get('http://127.0.0.1:8000/api/titles', function (response) {
+        $.get('https://8b71e6d6216f.ngrok.io/api/titles', function (response) {
             if (!response.error) {
                 const titles = response.titles;
                 $(".slider-radio").append('<input type="radio" name="alltitles" checked="checked"><label data-filter="*">همه</label>')
@@ -359,7 +359,7 @@
                 }
             }
         });
-        $.get('http://127.0.0.1:8000/api/artists', function (response) {
+        $.get('https://8b71e6d6216f.ngrok.io/api/artists', function (response) {
             if (!response.error) {
                 const data = response.data;
                 let parent = $('.artists-grid'), _data = [];
@@ -369,7 +369,7 @@
                     name = _artist.user.first_name + ' ' + _artist.user.last_name;
                     avatar = _artist.artist[0].avatar;
                     if (avatar !== null) {
-                        avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
+                        avatar = avatar.replace('https://8b71e6d6216f.ngrok.io/storage/', '');
                     }
 
                     titles = _artist.titles;
@@ -396,7 +396,7 @@
                     isOriginLeft: false
                 });
 
-                $filters.on('click', function () {
+                $(document).on('click','.slider-radio label', function () {
                     $filters.removeClass('active');
                     $(this).addClass('active');
                     let selector = $(this).data('filter');

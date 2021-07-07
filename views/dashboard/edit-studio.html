@@ -196,7 +196,7 @@
                 authorization: "Bearer " + localStorage.getItem("accessToken")
             },
         })
-        $.get("http://127.0.0.1:8000/api/studio/" + dataId + "/detail", function (response, status) {
+        $.get(__url__+"/studio/" + dataId + "/detail", function (response, status) {
             if (!response.error) {
                 $("input[name='name']").val(response.studio.name);
                 $("input[name='price']").val(response.studio.price);
@@ -227,7 +227,7 @@
             const $this = $(this);
             $.ajax({
                 method: "PATCH",
-                url: "http://127.0.0.1:8000/api/studio/" + dataId + "/price",
+                url: __url__+"/studio/" + dataId + "/price",
                 data: {
                     price: $this.val() + ""
                 },
@@ -255,7 +255,7 @@
             const $this = $(this);
             $.ajax({
                 method: "PATCH",
-                url: "http://127.0.0.1:8000/api/studio/" + dataId + "/name",
+                url: __url__+"/studio/" + dataId + "/name",
                 data: {
                     name: $this.val() + ""
                 },
@@ -283,7 +283,7 @@
             const $this = $(this);
             $.ajax({
                 method: "PATCH",
-                url: "http://127.0.0.1:8000/api/studio/" + dataId + "/address",
+                url: __url__+"/studio/" + dataId + "/address",
                 data: {
                     address: $this.val() + ""
                 },

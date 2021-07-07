@@ -200,7 +200,7 @@
                 },
             });
 
-            $.get("http://127.0.0.1:8000/api/studio/" + dataId + "/detail", function (response, status) {
+            $.get(__url__+"/studio/" + dataId + "/detail", function (response, status) {
                 if (typeof response === 'object' && response !== null) {
                     $(".studio.name").text(response.studio.name);
                     $(".studio.address").text(response.studio.address);

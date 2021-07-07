@@ -23,8 +23,6 @@
     <link rel="stylesheet" href="assets/website/css/main.css">
 
     <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css">
-<!--    <link href="plugins/select2/select2-custom.min.css" rel="stylesheet" type="text/css">-->
-<!--    <link href="plugins/select2/select2-bs-custom.min.css" rel="stylesheet" type="text/css">-->
     <link href="assets/scss/elements/alert.css" rel="stylesheet" type="text/css">
     <link href="plugins/persian-datepicker/persian-datepicker.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="assets/scss/forms/switches.min.css">
@@ -311,14 +309,16 @@
                                     </div>
                                     <div class="dashbox__list-wrap">
                                         <div class="row">
-<!--                                            <div class="col-12 mb-4">-->
+<!--                                            <div class="col-md-8 col-12 mx-auto mb-4">-->
 <!--                                                <div class="custom-file-container"-->
 <!--                                                     data-upload-id=userProfileAvatar>-->
-<!--                                                    <label><a href="javascript:void(0)"-->
+<!--                                                    <label>-->
+<!--                                                        انتخاب عکس پروفایل<a href="javascript:void(0)"-->
 <!--                                                              class="custom-file-container__image-clear"-->
-<!--                                                              title="Clear Image">x</a></label>-->
+<!--                                                              title="Clear Image">x</a>-->
+<!--                                                    </label>-->
 <!--                                                    <label class="custom-file-container__custom-file">-->
-<!--                                                        <input type="file"-->
+<!--                                                        <input type="file" name="avatar"-->
 <!--                                                               class="custom-file-container__custom-file__custom-file-input"-->
 <!--                                                               accept="image/*">-->
 <!--                                                        <input type="hidden" name="MAX_FILE_SIZE"-->
@@ -367,10 +367,6 @@
                                                            placeholder="مثال : 1233214400">
                                                 </div>
                                             </div>
-
-                                            <!--                                            <div class="col-12">-->
-                                            <!--                                                <button class="sign__btn" type="button">ذخیره</button>-->
-                                            <!--                                            </div>-->
                                         </div>
                                         <div class="row is-artist-container my-3">
                                             <div class="col-8 is-artist-description text-light">
@@ -415,7 +411,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-7">
+                            <div class="col-lg-7 d-none">
 
                                 <div class="dashbox">
 
@@ -588,7 +584,7 @@
                                                                href="#rounded-circle-pills-icon-portfolio-external-url"
                                                                aria-controls="rounded-circle-pills-icon-home">
                                                                 <img src="assets/img/external-link.svg"
-                                                                     alt="external link">
+                                                                     alt="external link" class="p-2">
                                                             </a>
                                                         </li>
                                                         <li class="nav-item ml-2 mr-2">
@@ -597,7 +593,7 @@
                                                                data-toggle="pill"
                                                                href="#rounded-circle-pills-icon-portfolio-upload"
                                                                aria-controls="rounded-circle-pills-icon-profile">
-                                                                <img src="assets/img/upload.svg" alt="upload">
+                                                                <img src="assets/img/upload.svg" alt="upload" class="p-2">
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -631,23 +627,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!--<div class="col-md-6 mb-3">-->
-                                            <!--<div class="form-group">-->
-                                            <!--<label for="userExperienceType">مهارت استفاده شده *</label>-->
-                                            <!--<select id="userExperienceType" name="types[]"-->
-                                            <!--class="form-control form-control-sm tagging" multiple>-->
-                                            <!--&lt;!&ndash;<option selected disabled>-- انتخاب کنید --</option>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<option value="آهنگساز">آهنگساز</option>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<option value="نوازنده">نوازنده</option>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<option value="تنظیم‌کننده">تنظیم‌کننده</option>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<option value="شاعر">شاعر</option>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<option value="خواننده">خواننده</option>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<option value="صدابردار">صدابردار</option>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<option value="استودیو">استودیو</option>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<option value="میکس و مستر کار">میکس و مستر کار</option>&ndash;&gt;-->
-                                            <!--</select>-->
-                                            <!--</div>-->
-                                            <!--</div>-->
                                             <div class="col-md-6">
                                                 <div class="custom-file-container"
                                                      data-upload-id=userExperienceThumbnail>

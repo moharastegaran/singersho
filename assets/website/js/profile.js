@@ -7,6 +7,7 @@ let focusedPortfolioRow = null, focusedPortfolioIndex = -1;
 let focusedTitleRow = null, focusedTitleIndex = -1;
 let prev = null;
 
+
 function addEditTitleRow(e) {
     e.preventDefault();
 
@@ -24,7 +25,7 @@ function addEditTitleRow(e) {
             $.ajax({
                 async: false,
                 method: "POST",
-                url: "http://127.0.0.1:8000/api/title/artist",
+                url: __url__+"/title/artist",
                 data: {
                     title_id: title_value,
                     description: description,
@@ -35,17 +36,19 @@ function addEditTitleRow(e) {
                     if (typeof response === 'object' && response !== null) {
                         if (response.error) {
                             hasError = true;
-                            $("#userAddTitleForm").addClass("no-collapse");
-                            Snackbar.show({
-                                text: response.messages[0],
-                                actionText: '',
-                                backgroundColor: "#cb1213",
-                                pos: 'bottom-right'
-                            });
+                            form.addClass("no-collapse");
+                            form.find(".form-errors").remove();
+                            form.prepend($("<div></div>").addClass("form-errors col-12"));
+                            for (let i = 0; i < response.messages.length; i++) {
+                                $(".form-errors").append(
+                                    $("<div></div>")
+                                        .addClass("input-error text-danger my-2")
+                                        .text(response.messages[i]))
+                            }
                         } else {
                             hasError = false;
-
-                            $("#userAddTitleForm").removeClass("no-collapse");
+                            form.removeClass("no-collapse");
+                            form.find(".for-errors").remove();
                             $(".title-list").append("" +
                                 "<li class=\"title-list-item\" data-id=\"" + response.new_title.title_id + "\">\n" +
                                 "                                        <div class=\"col-3\">\n" +
@@ -96,7 +99,7 @@ function addEditTitleRow(e) {
             $.ajax({
                 async: false,
                 method: "PATCH",
-                url: "http://127.0.0.1:8000/api/title/artist/edit/" + focusedTitleIndex,
+                url: __url__+"/title/artist/edit/" + focusedTitleIndex,
                 data: {
                     _method : 'PATCH',
                     description: description,
@@ -160,7 +163,7 @@ function deleteTitleRow(current) {
     $.ajax({
         async: false,
         method: "DELETE",
-        url: "http://127.0.0.1:8000/api/title/artist/" + dataId,
+        url: __url__+"/title/artist/" + dataId,
         success: function (response) {
             current.remove();
             if ($(".title-list-item").length < 1) {
@@ -205,7 +208,7 @@ function addPortfolioRow(e) {
             $.ajax({
                 async: false,
                 method: "POST",
-                url: "http://127.0.0.1:8000/api/portfolio/artist",
+                url: __url__+"/portfolio/artist",
                 data: formData,
                 contentType: false,
                 cache: false,
@@ -216,15 +219,19 @@ function addPortfolioRow(e) {
                         if (response.error) {
                             hasError = true;
                             form.addClass("no-collapse");
-                            Snackbar.show({
-                                text: response.messages[0],
-                                actionText: '',
-                                backgroundColor: "#cb1213",
-                                pos: 'bottom-right'
-                            });
+                            let errors = response.messages;
+                            form.find(".form-errors").remove();
+                            form.prepend($("<div></div>").addClass("form-errors col-12"));
+                            for (let i = 0; i < errors.length; i++) {
+                                $(".form-errors").append(
+                                    $("<div></div>")
+                                        .addClass("input-error text-danger my-2")
+                                        .text(errors[i]))
+                            }
                         } else {
                             hasError = false;
                             form.removeClass("no-collapse");
+                            form.find(".form-errors").remove();
                             $(".portfolio-list").append("" +
                                 "<li class=\"portfolio-list-item\" data-id=\"" + response.portfolio[0].id + "\">\n" +
                                 "                                        <div class=\"col-2\">\n" +
@@ -266,7 +273,7 @@ function addPortfolioRow(e) {
             $.ajax({
                 async: false,
                 method: "POST",
-                url: "http://127.0.0.1:8000/api/portfolio/artist/edit/" + focusedPortfolioIndex,
+                url: __url__+"/portfolio/artist/edit/" + focusedPortfolioIndex,
                 data: formData,
                 contentType: false,
                 cache: false,
@@ -339,7 +346,7 @@ function deletePortfolioRow(current) {
     $.ajax({
         async: false,
         method: "DELETE",
-        url: "http://127.0.0.1:8000/api/portfolio/artist/" + dataId,
+        url: __url__+"/portfolio/artist/" + dataId,
         success: function (response) {
             current.remove();
             if ($(".portfolio-list-item").length < 1) {
@@ -373,7 +380,7 @@ function updateUserData($input,$expected_value){
         formData[$input.attr('name')] = $input.val();
         $.ajax({
             method : 'PATCH',
-            url : 'http://127.0.0.1:8000/api/'+$input.attr('name'),
+            url : 'https://8b71e6d6216f.ngrok.io/api/'+$input.attr('name'),
             data : formData,
             success : function (response){
                 if (typeof response === 'object' && response !== null){
@@ -383,7 +390,7 @@ function updateUserData($input,$expected_value){
                     }
                 }
             }
-        })
+        });
     }
 }
 
@@ -404,7 +411,7 @@ $(window).on("load", function () {
     $.ajax({
         async: false,
         method: "GET",
-        url: "http://127.0.0.1:8000/api/me",
+        url: __url__+"/me",
         success: function (response) {
             if (typeof response === 'object' && response !== null) {
                 if (!response.error) {
@@ -419,12 +426,15 @@ $(window).on("load", function () {
                     if (response.data.is_artist) {
 
                         const artist = response.data.other_info.artist[0];
-
                         $("._artist.id").text("شناسه کاربری : "+artist.id);
                         $("[name='is_artist']").prop("checked", true);
+                        $("#tab-user-profile-section").find(".col-lg-7").removeClass("d-none");
                         $(".is-artist-pending").removeClass("d-none");
                         $("#tab-user-profile-section input[name='is_advisor']").prop("checked", artist.is_advisor === 1);
                         $("#tab-user-profile-section input[name='advise_price']").val(artist_advise_price=artist.advise_price);
+                        // if(artist.hasOwnProperty('avatar') && artist.avatar != null){
+                        //     // $("#tab-user-profile-section input[name='advise_price']").a()
+                        // }
                         if (artist.is_advisor === 1) {
                             $("#AdvisorPriceContainer").collapse("show");
                         }
@@ -474,6 +484,7 @@ $(window).on("load", function () {
                             }
                         }
 
+
                         const portfolio = response.data.other_info.portfolio;
                         if (portfolio.length > 0) {
                             $(".portfolio-list-empty").addClass("d-none");
@@ -522,7 +533,7 @@ $(window).on("load", function () {
         }
     });
 
-    $.get("http://127.0.0.1:8000/api/titles", function (response) {
+    $.get(__url__+"/titles", function (response) {
         if (typeof response === 'object' && response !== null) {
             const titles = response.titles;
             if (titles !== null) {
@@ -545,6 +556,26 @@ $(document).ready(function (){
     //     formatDate: "YYYY/MM/DD",
     //     prevArrow: '\u25c4',
     //     nextArrow: '\u25ba',
+    // });
+
+    // $("#profile__tabs a.nav-link").on("click",function (e){
+    //     e.preventDefault();
+    //     const _this = $(this);
+    //     const _target = $(_this.attr('href'));
+    //     const _oldActiveTab = _this.parent().siblings('.active').find('a');
+    //     const _oldTarget = $(_oldActiveTab.attr('href'));
+    //
+    //     if(!_this.hasClass('loaded') && _this.data('content')){
+    //         const dataContent = _this.data('content');
+    //         $.ajax({
+    //             url : dataContent,
+    //         }).done(function (response){
+    //             _target.empty();
+    //             _target.append(response);
+    //             _this.addClass('loaded')
+    //         })
+    //     }
+    //
     // });
 
     $("#userAddTitleForm , #userAddExperienceForm").on("hide.bs.collapse", function (e) {
@@ -591,10 +622,12 @@ $(document).ready(function (){
 
     $("input[name='is_artist']").on("click", function () {
         const isChecked = $(this).is(":checked");
+        console.log("chnged");
         if (isChecked && !is_artist) {
+            console.log("call ajax")
             $.ajax({
                 method: 'PUT',
-                url: 'http://127.0.0.1:8000/api/artist/register',
+                url: 'https://8b71e6d6216f.ngrok.io/api/artist/register',
                 data: {
                     _method: 'PUT'
                 },
@@ -613,7 +646,7 @@ $(document).ready(function (){
         const isChecked = $(this).is(":checked");
         $.ajax({
             method: 'PATCH',
-            url: 'http://127.0.0.1:8000/api/accept_advisor',
+            url: 'https://8b71e6d6216f.ngrok.io/api/accept_advisor',
             data: {
                 _method: 'PATCH'
             },

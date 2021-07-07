@@ -17,7 +17,7 @@ $(document).ready(function () {
         $.ajax({
             async : false,
             method : "POST",
-            url : "http://127.0.0.1:8000/api/register",
+            url : __url__+"/register",
             data :  {
                 first_name : $("input[name='first_name']").val(),
                 last_name : $("input[name='last_name']").val(),

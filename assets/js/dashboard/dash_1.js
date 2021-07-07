@@ -549,7 +549,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             method : "POST",
-            url : "http://127.0.0.1:8000/api/logout",
+            url : __url__+"/logout",
             headers :{
                 Authorization : "Bearer " + localStorage.getItem("accessToken")
             },
@@ -567,7 +567,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             method: "GET",
-            url: "http://127.0.0.1:8000/api/me",
+            url: __url__+"/me",
             headers :{
                 Authorization : "Bearer " + localStorage.getItem("accessToken")
             },

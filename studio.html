@@ -185,10 +185,10 @@
 <main class="main">
     <div class="container-fluid">
         <!-- slider -->
-        <section class="d-flex flex-row align-items-center">
+        <section class="d-flex flex-row align-items-center mt-md-4">
             <div class="col-md-6">
-                <h1 class="hero__title studio name"></h1>
-                <p class="hero__text studio address text-left"></p>
+                <h1 class="hero__title studio name" style="font-size: 30px"></h1>
+                <p class="hero__text studio address text-left" style="font-size: 20px"></p>
                 <p class="hero__text studio price text-left" dir="rtl"></p>
                 <div class="hero__btns justify-content-end">
                     <a href="javascript:void(0)" class="hero__btn hero__btn--red open-modal btn-add-to-basket">رزرو استادیو</a>
@@ -251,7 +251,7 @@
             <!-- title -->
             <div class="col-12">
                 <div class="main__title">
-                    <h2>استادیوهای دیگر</h2>
+                    <h2>پیشنهاد ها</h2>
 
                     <a href="studios.html" class="main__link">دیدن همه
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -419,7 +419,7 @@
 	    const url_string = $(location).attr('href');
 	    const url = new URL(url_string);
 	    const _id = url.searchParams.has('id') ? url.searchParams.get('id') : '1';
-		$.get('http://127.0.0.1:8000/api/studio/'+_id+'/detail',function (response){
+		$.get('https://8b71e6d6216f.ngrok.io/api/studio/'+_id+'/detail',function (response){
 		    if(!response.error){
 		        const _studio = response.studio;
 		        id = _id;

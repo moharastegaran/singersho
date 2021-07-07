@@ -1,9 +1,11 @@
+const __url__ = "https://8b71e6d6216f.ngrok.io/api";
+
 function updateCart($type, $id, $success_message = null, $error_message = null) {
-    console.log("http://127.0.0.1:8000/api/cart/" + $type);
+    console.log(__url__+"/cart/" + $type);
     console.log("itemId" + $id);
     $.ajax({
         method: "PUT",
-        url: "http://127.0.0.1:8000/api/cart/" + $type,
+        url: __url__+"/cart/" + $type,
         headers: {
             authorization: "Bearer " + localStorage.getItem("accessToken")
         },
@@ -15,10 +17,10 @@ function updateCart($type, $id, $success_message = null, $error_message = null) 
             if (response.hasOwnProperty('error') && response.error) {
                 popupCartError($error_message);
             } else {
-                
+
                 updateCartDropdown(response);
 
-                popupCartAdded(response.cart.final_cost,$success_message);
+                popupCartAdded(response.cart.final_cost, $success_message);
             }
         }, error: function (error) {
             popupCartError('لطفا در حساب کاربری خود وارد شوید.');
@@ -26,9 +28,9 @@ function updateCart($type, $id, $success_message = null, $error_message = null) 
     });
 }
 
-function updateCartDropdown(response){
+function updateCartDropdown(response) {
     let details = JSON.parse(response.cart.details);
-    if (details!==null && !Array.isArray(details)) {
+    if (details !== null && !Array.isArray(details)) {
         let _details = [];
         for (const id in details) {
             _details.push(details[id]);
@@ -38,7 +40,7 @@ function updateCartDropdown(response){
     const $cartDropDown = $(".header__action--cart .header__drop");
     const $cartNumber = $(".header__action--cart .header__cart--count");
     $cartDropDown.empty();
-    if(details.length > 0) {
+    if (details.length > 0) {
         for (let i = 0; i < details.length; i++) {
             let html = "<div class='header__product' data-type='" + details[i].type + "' data-id='" + details[i].id + "'>";
             switch (details[i].type) {
@@ -66,7 +68,7 @@ function updateCartDropdown(response){
         }
         $cartNumber.show();
         $cartNumber.text(details.length);
-    }else{
+    } else {
         $cartDropDown.append("<div class='text-white'>سبد خرید خالی است.</div>");
         $cartNumber.hide();
     }
@@ -113,8 +115,8 @@ function popupCartError($message) {
 
 $(window).on('load', function () {
 
-    if(localStorage.getItem("accessToken") !== null){
-        $(".header__action--signin .header__action-btn").attr("href","profile.html");
+    if (localStorage.getItem("accessToken") !== null) {
+        $(".header__action--signin .header__action-btn").attr("href", "profile.html");
         $(".header__action--signin .header__action-btn span").text("پروفایل");
         $(".sidebar__nav").append("<li class='sidebar__nav-item'>\n" +
             "            <a href='javascript:void(0)' class='sidebar__nav-link sidebar__nav-logout'>\n" +
@@ -122,15 +124,15 @@ $(window).on('load', function () {
             "                <span>خروج</span>\n" +
             "            </a>\n" +
             "        </li>");
-    }else{
-        $(".header__action--signin .header__action-btn").attr("href","signin.html");
+    } else {
+        $(".header__action--signin .header__action-btn").attr("href", "signin.html");
         $(".header__action--signin .header__action-btn span").text("وارد شوید");
     }
 
     const $navLinks = $(".sidebar__nav-link");
     const pageUrl = $(location).attr('href').split('/').slice(-1)[0];
-    $.each($navLinks, function (index,dom){
-        if($(dom).attr('href')===pageUrl)
+    $.each($navLinks, function (index, dom) {
+        if ($(dom).attr('href') === pageUrl)
             $(dom).addClass('sidebar__nav-link--active');
         else
             $(dom).removeClass('sidebar__nav-link--active');
@@ -138,7 +140,7 @@ $(window).on('load', function () {
 
     $.ajax({
         method: 'GET',
-        url: 'http://127.0.0.1:8000/api/cart',
+        url: 'https://8b71e6d6216f.ngrok.io/api/cart',
         headers: {
             authorization: "Bearer " + localStorage.getItem("accessToken")
         },
@@ -150,169 +152,172 @@ $(window).on('load', function () {
         }
     });
 
-    $.get('http://127.0.0.1:8000/api/artists', function (response) {
-        console.log("res" + response);
+    $.get('https://8b71e6d6216f.ngrok.io/api/artists', function (response) {
         if (!response.error) {
             const data = response.data;
-            for (const user_id in data) {
-                const name = `${data[user_id]['user']['first_name']}` + ' ' + `${data[user_id]['user']['last_name']}`;
-                let avatar = `${data[user_id]['artist'][0]['avatar']}`;
-                if (avatar !== null) {
-                    avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
+            if (data.length > 0) {
+                for (const user_id in data) {
+                    const name = data[user_id]['user']['first_name'] + ' ' + data[user_id]['user']['last_name'];
+                    let avatar = data[user_id]['artist'][0]['avatar'];
+                    if (avatar != null) {
+                        avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
+                    }else{
+                        avatar = "assets/website/img/avatar.svg";
+                    }
+                    $(".main__carousel--artists").append("" +
+                        "<a href=\"artist.html?id=" + user_id + "\" class=\"artist\">\n" +
+                        "<div class=\"artist__cover\">\n" +
+                        "<img src=\"" + avatar + "\" alt=\"\">\n" +
+                        "</div>\n" +
+                        "<h3 class=\"artist__title\">" + name + "</h3>\n" +
+                        "</a>")
                 }
-                $(".main__carousel--artists").append("" +
-                    "<a href=\"artist.html?id=" + user_id + "\" class=\"artist\">\n" +
-                    "<div class=\"artist__cover\">\n" +
-                    "<img src=\"" + avatar + "\" alt=\"\">\n" +
-                    "</div>\n" +
-                    "<h3 class=\"artist__title\">" + name + "</h3>\n" +
-                    "</a>")
+                $('.main__carousel--artists').owlCarousel({
+                    mouseDrag: true,
+                    touchDrag: true,
+                    dots: true,
+                    loop: true,
+                    autoplay: false,
+                    smartSpeed: 600,
+                    margin: 20,
+                    autoHeight: true,
+                    responsive: {
+                        0: {
+                            items: 2,
+                        },
+                        576: {
+                            items: 3,
+                        },
+                        768: {
+                            items: 4,
+                            margin: 30,
+                        },
+                        992: {
+                            items: 6,
+                            margin: 30,
+                        },
+                        1200: {
+                            items: 6,
+                            margin: 30,
+                        },
+                    }
+                });
+            } else {
+                const parent = $(".main__carousel--artists").parent(".main__carousel-wrap");
+                parent.empty();
+                parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.هنرمندی برای نمایش وجود ندارد</div>");
             }
         }
-        $('.main__carousel--artists').owlCarousel({
-            mouseDrag: true,
-            touchDrag: true,
-            dots: true,
-            loop: true,
-            autoplay: false,
-            smartSpeed: 600,
-            margin: 20,
-            autoHeight: true,
-            responsive: {
-                0: {
-                    items: 2,
-                },
-                576: {
-                    items: 3,
-                },
-                768: {
-                    items: 4,
-                    margin: 30,
-                },
-                992: {
-                    items: 6,
-                    margin: 30,
-                },
-                1200: {
-                    items: 6,
-                    margin: 30,
-                },
-            }
-        });
     });
 
-    $.get('http://127.0.0.1:8000/api/packages/8', function (response) {
-        console.log("res" + response);
+    $.get('https://8b71e6d6216f.ngrok.io/api/packages/8', function (response) {
         if (!response.error) {
             const data = response.packages.data;
             let package_avatar;
-            for (let i = 0; i < data.length; i++) {
-                if (data[i].image)
-                    package_avatar = data[i].image.replace('http://127.0.0.1:8000/storage/', '');
-                else
-                    package_avatar = "assets/website/img/store/item1.jpg";
-                $(".main__carousel--store").append("" +
-                    "<div class=\"product\">\n" +
-                    "<a href=\"#\" class=\"product__img\">\n" +
-                    "<img src=\"" + package_avatar + "\" alt=\"\">\n" +
-                    "</a>\n" +
-                    "<h3 class=\"product__title\"><a href=\"product.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
-                    "<span class=\"product__price\">" + data[i].price + " تومان</span>\n" +
-                    "</div>");
-            }
-            $('.main__carousel--store').owlCarousel({
-                mouseDrag: true,
-                touchDrag: true,
-                dots: true,
-                loop: true,
-                autoplay: false,
-                smartSpeed: 600,
-                margin: 20,
-                autoHeight: true,
-                responsive: {
-                    0: {
-                        items: 2,
-                    },
-                    576: {
-                        items: 3,
-                    },
-                    768: {
-                        items: 3,
-                        margin: 30,
-                    },
-                    992: {
-                        items: 4,
-                        margin: 30,
-                    },
-                    1200: {
-                        items: 5,
-                        margin: 30,
-                    },
+            if (data.length > 0) {
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].image)
+                        package_avatar = data[i].image.replace('http://127.0.0.1:8000/storage/', '');
+                    else
+                        package_avatar = "assets/website/img/store/item1.jpg";
+                    $(".main__carousel--store").append("" +
+                        "<div class=\"product\">\n" +
+                        "<a href=\"#\" class=\"product__img\">\n" +
+                        "<img src=\"" + package_avatar + "\" alt=\"\">\n" +
+                        "</a>\n" +
+                        "<h3 class=\"product__title\"><a href=\"product.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
+                        "<span class=\"product__price\">" + data[i].price + " تومان</span>\n" +
+                        "</div>");
                 }
-            });
+                $('.main__carousel--store').owlCarousel({
+                    mouseDrag: true,
+                    touchDrag: true,
+                    dots: true,
+                    loop: true,
+                    autoplay: false,
+                    smartSpeed: 600,
+                    margin: 20,
+                    autoHeight: true,
+                    responsive: {
+                        0: {
+                            items: 2,
+                        },
+                        576: {
+                            items: 3,
+                        },
+                        768: {
+                            items: 3,
+                            margin: 30,
+                        },
+                        992: {
+                            items: 4,
+                            margin: 30,
+                        },
+                        1200: {
+                            items: 5,
+                            margin: 30,
+                        },
+                    }
+                });
+            } else {
+                const parent = $(".main__carousel--store").parent(".main__carousel-wrap");
+                parent.empty();
+                parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.پکیجی برای نمایش وجود ندارد</div>");
+            }
         }
     });
 
-    $.get('http://127.0.0.1:8000/api/studios/6', function (response) {
+    $.get('https://8b71e6d6216f.ngrok.io/api/studios/6', function (response) {
         if (!response.error) {
             const data = response.studios.data;
-            for (let i = 0; i < data.length; i++) {
-                $(".main__carousel--events").append("" +
-                    "<div class=\"event\"" +
-                    "data-bg=\"" + (data[i].images.length > 0 ? data[i].images[0] : 'assets/website/img/no-image.jpg') + "\">\n" +
-                    // "<a href=\"javascript:void(0)\" class=\"event__ticket open-modal \">" +
-                    // "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M9,10a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V11A1,1,0,0,0,9,10Zm12,1a1,1,0,0,0,1-1V6a1,1,0,0,0-1-1H3A1,1,0,0,0,2,6v4a1,1,0,0,0,1,1,1,1,0,0,1,0,2,1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V14a1,1,0,0,0-1-1,1,1,0,0,1,0-2ZM20,9.18a3,3,0,0,0,0,5.64V17H10a1,1,0,0,0-2,0H4V14.82A3,3,0,0,0,4,9.18V7H8a1,1,0,0,0,2,0H20Z\"/></svg>" +
-                    // "رزرو استادیو" +
-                    // "</a>\n" +
-                    "<span class=\"event__date\">" + data[i].price + " تومان " + "</span>\n" +
-                    // "<span class=\"event__time\">9:30 بعد از ظهر</span>\n" +
-                    "<h3 class=\"event__title\"><a href=\"studio.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
-                    "<p class=\"event__address\">" + data[i].address + "</p>\n" +
-                    "</div>");
-            }
-            $('.main__carousel--events').owlCarousel({
-                mouseDrag: true,
-                touchDrag: true,
-                dots: true,
-                loop: true,
-                autoplay: false,
-                smartSpeed: 600,
-                margin: 20,
-                autoHeight: true,
-                responsive: {
-                    0: {
-                        items: 1,
-                    },
-                    576: {
-                        items: 2,
-                    },
-                    768: {
-                        items: 2,
-                        margin: 30,
-                    },
-                    992: {
-                        items: 3,
-                        margin: 30,
-                    },
-                    1200: {
-                        items: 3,
-                        margin: 30,
-                        mouseDrag: false,
-                    },
+            if (data.length > 0) {
+                for (let i = 0; i < data.length; i++) {
+                    $(".main__carousel--events").append("" +
+                        "<div class=\"event\"" +
+                        "style=\"background-image: url(" + (data[i].images.length > 0 ? data[i].images[0] : 'assets/website/img/studio-placeholder.png') + ");" +
+                        "background-position: center center; background-repeat: no-repeat; background-size: cover\">\n" +
+                        "<span class=\"event__date\">" + data[i].price + " تومان " + "</span>\n" +
+                        // "<span class=\"event__time\">9:30 بعد از ظهر</span>\n" +
+                        "<h3 class=\"event__title\"><a href=\"studio.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
+                        "<p class=\"event__address\">" + data[i].address + "</p>\n" +
+                        "</div>");
                 }
-            });
-
-            $('.open-modal').magnificPopup({
-                fixedContentPos: true,
-                fixedBgPos: true,
-                overflowY: 'auto',
-                type: 'inline',
-                preloader: false,
-                focus: '#username',
-                modal: false,
-                removalDelay: 300,
-                mainClass: 'my-mfp-zoom-in',
-            });
+                $('.main__carousel--events').owlCarousel({
+                    mouseDrag: true,
+                    touchDrag: true,
+                    dots: true,
+                    loop: true,
+                    autoplay: false,
+                    smartSpeed: 600,
+                    margin: 20,
+                    autoHeight: true,
+                    responsive: {
+                        0: {
+                            items: 1,
+                        },
+                        576: {
+                            items: 2,
+                        },
+                        768: {
+                            items: 2,
+                            margin: 30,
+                        },
+                        992: {
+                            items: 3,
+                            margin: 30,
+                        },
+                        1200: {
+                            items: 3,
+                            margin: 30,
+                            mouseDrag: false,
+                        },
+                    }
+                });
+            }
+        }else{
+            const parent = $(".main__carousel--events").parent(".main__carousel-wrap");
+            parent.empty();
+            parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.استودیویی برای نمایش وجود ندارد</div>");
 
         }
     });
@@ -323,49 +328,49 @@ $(document).ready(function () {
     "use strict"; // start of use strict
 
     const $loadingDiv = $('#loadingDiv').show()
-    $(document).ajaxStop(function() {
+    $(document).ajaxStop(function () {
         $loadingDiv.fadeOut();
     });
 
-    $(document).on('click','.cart__delete',function (e){
+    $(document).on('click', '.cart__delete', function (e) {
         e.preventDefault();
         console.log("click");
         const $this = $(this);
         console.log($this.closest('.header__product').data('type'));
         console.log($this.closest('.header__product').data('id'));
         $.ajax({
-            method : 'DELETE',
-            url : 'http://127.0.0.1:8000/api/cart/'+$this.closest('.header__product').data('type'),
+            method: 'DELETE',
+            url: 'https://8b71e6d6216f.ngrok.io/api/cart/' + $this.closest('.header__product').data('type'),
             headers: {
                 authorization: "Bearer " + localStorage.getItem("accessToken")
             },
-            data : {
-                _method : 'DELETE',
-                itemId : $this.closest('.header__product').data('id')
+            data: {
+                _method: 'DELETE',
+                itemId: $this.closest('.header__product').data('id')
             },
-            success : function (response){
-                if(!response.error){
+            success: function (response) {
+                if (!response.error) {
                     updateCartDropdown(response);
                 }
             },
-            error : function (error){
+            error: function (error) {
                 popupCartError();
             }
         });
     });
 
 
-    $(document).on('click','.sidebar__nav-link.sidebar__nav-logout , .profile__logout', function (e){
+    $(document).on('click', '.sidebar__nav-link.sidebar__nav-logout , .profile__logout', function (e) {
         e.preventDefault();
         $.ajax({
-            method : "POST",
-            url : "http://127.0.0.1:8000/api/logout",
-            headers :{
-                Authorization : "Bearer " + localStorage.getItem("accessToken")
+            method: "POST",
+            url: __url__+"/logout",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("accessToken")
             },
-            success : function (response) {
+            success: function (response) {
                 localStorage.removeItem("accessToken");
-                $(location).attr("href","index.html");
+                $(location).attr("href", "index.html");
             }
         });
     })
@@ -410,9 +415,6 @@ $(document).ready(function () {
         }
     });
 
-    /*==============================
-    Carousel
-    ==============================*/
 
     /*==============================
     Navigation
@@ -424,46 +426,6 @@ $(document).ready(function () {
     $('.main__nav--next').on('click', function () {
         var carouselId = $(this).attr('data-nav');
         $(carouselId).trigger('next.owl.carousel');
-    });
-
-    /*==============================
-    Partners
-    ==============================*/
-    $('.partners').owlCarousel({
-        mouseDrag: false,
-        touchDrag: false,
-        dots: false,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 5000,
-        autoplayHoverPause: true,
-        smartSpeed: 600,
-        margin: 20,
-        responsive: {
-            0: {
-                items: 2,
-            },
-            576: {
-                items: 3,
-                margin: 20,
-            },
-            768: {
-                items: 4,
-                margin: 30,
-            },
-            992: {
-                items: 4,
-                margin: 30,
-            },
-            1200: {
-                items: 6,
-                margin: 30,
-            },
-            1900: {
-                items: 8,
-                margin: 30,
-            },
-        }
     });
 
     /*==============================
@@ -481,19 +443,6 @@ $(document).ready(function () {
         margin: 20,
     });
 
-    /*==============================
-    Filter
-    ==============================*/
-    $('.filter__item-menu li').each(function () {
-        $(this).attr('data-value', $(this).text().toLowerCase());
-    });
-
-    $('.filter__item-menu li').on('click', function () {
-        var text = $(this).text();
-        var item = $(this);
-        var id = item.closest('.filter').attr('id');
-        $('#' + id).find('.filter__item-btn input').val(text);
-    });
 
     /*==============================
     Modal
@@ -505,6 +454,18 @@ $(document).ready(function () {
         preloader: false,
         removalDelay: 300,
         mainClass: 'mfp-fade',
+    });
+
+    $('.open-modal').magnificPopup({
+        fixedContentPos: true,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        type: 'inline',
+        preloader: false,
+        focus: '#username',
+        modal: false,
+        removalDelay: 300,
+        mainClass: 'my-mfp-zoom-in',
     });
 
     $('.modal__close').on('click', function (e) {
@@ -552,52 +513,4 @@ $(document).ready(function () {
             continuousScrolling: true
         });
     }
-
-    if ($('.dashbox__scroll').length) {
-        Scrollbar.init(document.querySelector('.dashbox__scroll'), {
-            damping: 0.1,
-            renderByPixels: true,
-            alwaysShowTracks: true,
-            continuousScrolling: true
-        });
-    }
-
-    if ($('.release__list').length) {
-        Scrollbar.init(document.querySelector('.release__list'), {
-            damping: 0.1,
-            renderByPixels: true,
-            alwaysShowTracks: true,
-            continuousScrolling: true
-        });
-    }
-
-    /*==============================
-    Bg
-    ==============================*/
-    $('.hero__slide, .event').each(function () {
-        if ($(this).attr("data-bg")) {
-            $(this).css({
-                'background': 'url(' + $(this).data('bg') + ')',
-                'background-position': 'center center',
-                'background-repeat': 'no-repeat',
-                'background-size': 'cover'
-            });
-        }
-    });
-
-    /*==============================
-    Inputmask
-    ==============================*/
-    $('.stats__form input').inputmask('99-99-99-99');
-
-    /*==============================
-    Player
-    ==============================*/
-
-    /* single */
-    $('a[data-link]').on('click', function (e) {
-        e.preventDefault();
-        let link = $(this);
-        run(link, audio[0]);
-    });
 });

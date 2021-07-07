@@ -204,7 +204,7 @@
         $.ajax({
             async : false,
             method : "GET",
-            url : "http://127.0.0.1:8000/api/studio/my",
+            url : __url__+"/studio/my",
             headers : {
                 authorization : "Bearer "+localStorage.getItem("accessToken")
             },
@@ -292,7 +292,7 @@
         $.ajax({
             async : false,
             method : "PATCH",
-            url : "http://127.0.0.1:8000/api/studio/"+rowId+"/activation",
+            url : __url__+"/studio/"+rowId+"/activation",
             headers : {
                 authorization : "Bearer "+localStorage.getItem("accessToken")
             },
@@ -327,7 +327,7 @@
         $.ajax({
             async : false,
             method : "DELETE",
-            url : "http://127.0.0.1:8000/api/studio/"+dataId,
+            url : __url__+"/studio/"+dataId,
             headers : {
                 authorization : "Bearer "+localStorage.getItem("accessToken")
             },

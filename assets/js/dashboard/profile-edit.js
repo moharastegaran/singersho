@@ -39,7 +39,7 @@ function addEditTitleRow(e) {
             $.ajax({
                 async: false,
                 method: "POST",
-                url: "http://127.0.0.1:8000/api/title/artist",
+                url: __url__+"/title/artist",
                 data: {
                     title_id: title_value,
                     description: description,
@@ -111,7 +111,7 @@ function addEditTitleRow(e) {
             $.ajax({
                 async : false,
                 method : "PATCH",
-                url : "http://127.0.0.1:8000/api/title/artist/"+focusedTitleIndex,
+                url : __url__+"/title/artist/"+focusedTitleIndex,
                 data :{
                     description: description,
                     accept_order: accept_order,
@@ -174,7 +174,7 @@ function deleteTitleRow(current) {
     $.ajax({
         async: false,
         method: "DELETE",
-        url: "http://127.0.0.1:8000/api/title/artist/" + dataId,
+        url: __url__+"/title/artist/" + dataId,
         success: function (response) {
             current.remove();
             if ($(".title-list-item").length < 1) {
@@ -220,7 +220,7 @@ function addPortfolioRow(e) {
             $.ajax({
                 async: false,
                 method: "POST",
-                url: "http://127.0.0.1:8000/api/portfolio/artist",
+                url: __url__+"/portfolio/artist",
                 data: formData,
                 contentType: false,
                 cache: false,
@@ -282,7 +282,7 @@ function addPortfolioRow(e) {
             $.ajax({
                 async : false,
                 method : "POST",
-                url : "http://127.0.0.1:8000/api/portfolio/artist/edit/"+focusedPortfolioIndex,
+                url : __url__+"/portfolio/artist/edit/"+focusedPortfolioIndex,
                 data: formData,
                 contentType: false,
                 cache: false,
@@ -356,7 +356,7 @@ function deletePortfolioRow(current) {
     $.ajax({
         async: false,
         method: "DELETE",
-        url: "http://127.0.0.1:8000/api/portfolio/artist/" + dataId,
+        url: __url__+"/portfolio/artist/" + dataId,
         success: function (response) {
             current.remove();
             if ($(".portfolio-list-item").length < 1) {
@@ -397,7 +397,7 @@ $(window).on("load", function () {
     $.ajax({
         async: false,
         method: "GET",
-        url: "http://127.0.0.1:8000/api/me",
+        url: __url__+"/me",
         success: function (response) {
             console.log("response : "+JSON.stringify(response));
             if (typeof response === 'object' && response !== null) {
@@ -520,7 +520,7 @@ $(window).on("load", function () {
         }
     });
 
-    $.get("http://127.0.0.1:8000/api/titles", function (response, status) {
+    $.get(__url__+"/titles", function (response, status) {
         if (typeof  response === 'object' && response !== null) {
             const titles = response.titles;
             if (titles !== null) {
@@ -531,7 +531,7 @@ $(window).on("load", function () {
         }
     });
 
-    // $.get("http://127.0.0.1:8000/api/title/my", function (response, status) {
+    // $.get(__url__+"/title/my", function (response, status) {
     //     console.log("hello");
     //     if (typeof response === 'object' && response !== null) {
     //         if (!response.error && response.titles.length > 0) {

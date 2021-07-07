@@ -1,6 +1,6 @@
 function updateStoreToPage(pageNum) {
     console.log("page : "+pageNum);
-    $.get('http://127.0.0.1:8000/api/packages?page='+pageNum, function (response) {
+    $.get('https://8b71e6d6216f.ngrok.io/api/packages?page='+pageNum, function (response) {
         if (!response.error) {
             const data = response.packages.data;
             let parent = $('.products-grid');

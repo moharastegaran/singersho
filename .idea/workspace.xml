@@ -2,11 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/website/css/signup.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/forgot-password.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/jquery.easing.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/signin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/signup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/artists.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/authentication/form-1.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/authentication/form-1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/authentication/form-2.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/authentication/form-2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/dashboard/dash_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/dashboard/dash_1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/dashboard/profile-edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/dashboard/profile-edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/artist.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/artist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/package.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/package.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/profile-studio.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/profile-studio.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/file-upload/file-upload-with-preview.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/file-upload/file-upload-with-preview.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/file-upload/file-upload-with-preview.min.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/store.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/studios.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/studios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forgot.html" beforeDir="false" afterPath="$PROJECT_DIR$/forgot.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/podcasts.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pricing.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/signup.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/studio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/edit-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/edit-studio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/new-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/new-studio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/single-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/single-studio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/studios.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/studios.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +304,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../New folder (2)" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/website/js" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -353,7 +380,12 @@
       <workItem from="1624955204726" duration="18979000" />
       <workItem from="1624988899897" duration="7322000" />
       <workItem from="1625033460997" duration="27669000" />
-      <workItem from="1625077829987" duration="6690000" />
+      <workItem from="1625077829987" duration="6942000" />
+      <workItem from="1625134212998" duration="2132000" />
+      <workItem from="1625247396436" duration="4783000" />
+      <workItem from="1625295270784" duration="786000" />
+      <workItem from="1625474815652" duration="14610000" />
+      <workItem from="1625639656576" duration="20938000" />
     </task>
     <servers />
   </component>

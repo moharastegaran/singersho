@@ -9,10 +9,10 @@ $(window).on('load', function () {
     const url = new URL(url_string);
     const id = url.searchParams.get('id');
 
-    $.get('http://127.0.0.1:8000/api/artist/' + id + '/detail', function (response) {
+    $.get('https://8b71e6d6216f.ngrok.io/api/artist/' + id + '/detail', function (response) {
         if (!response.error) {
             const data = response.data;
-            let avatar = data['artist'][0]['avatar'];
+            let avatar = data['artist'][0]['avatar']!=null ? data['artist'][0]['avatar'] : "assets/website/img/avatar.svg";
             _artist_id = data['artist'][0]['id'];
             _is_advisor = data['artist'][0]['is_advisor'];
             _advise_price = data['artist'][0]['advise_price'];
@@ -20,10 +20,10 @@ $(window).on('load', function () {
                 avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
             }
 
-            $(".artist.name").text(`${data['user']['first_name']}` + ' ' + `${data['user']['last_name']}`);
+            $(".artist.name").text(data['user']['first_name'] + ' ' + data['user']['last_name']);
             $(".artist.avatar").attr('src', avatar);
-            $(".artist.experience").text(`${data['artist'][0]['experience']}`);
-            $(".artist.order_description").text(`${data['artist'][0]['order_description']}`);
+            $(".artist.experience").text(data['artist'][0]['experience']);
+            $(".artist.order_description").text(data['artist'][0]['order_description']);
 
             if (data.hasOwnProperty('portfolio') && data.portfolio.length > 0) {
                 for (let i = 0; i < data.portfolio.length; i++) {
@@ -106,7 +106,7 @@ $(document).ready(function () {
         $send_data = $select_type_prices.val().split("_");
         $.magnificPopup.close();
         for (let i = 0; i < $send_data.length; i += 2) {
-            console.log("url : " + "http://127.0.0.1:8000/api/cart/" + $send_data[i + 1]);
+            console.log("url : " + __url__+"/cart/" + $send_data[i + 1]);
             console.log("itemId : " + $send_data[i]);
             updateCart($send_data[i+1],$send_data[i]);
         }

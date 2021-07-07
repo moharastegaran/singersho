@@ -1,5 +1,5 @@
 <script>
-    if(localStorage.getItem("accessToken")!==null) window.location.href = "index.html";
+    if (localStorage.getItem("accessToken") !== null) window.location.href = "index.html";
 </script>
 
 <!DOCTYPE html>
@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="assets/website/css/plyr.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
     <link rel="stylesheet" type="text/css" href="assets/scss/elements/alert.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/website/css/signup.css">
 
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
     <title>سایت ساز و صدا - ثبت نام کاربر</title>
@@ -203,63 +204,97 @@
             <div class="col-12">
                 <div class="sign">
                     <div class="sign__content">
-                        <form id="registeration-form" class="sign__form" style="max-width: 600px">
+                        <form id="registeration-form" class="sign__form">
                             <a href="index.html" class="sign__logo">
                                 <img src="assets/website/img/logo.png" alt="">
                             </a>
 
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="sign__group">
-                                        <input type="text" name="first_name" autocomplete="off"
-                                               class="sign__input" placeholder="نام">
+                            <!-- step 1 -->
+                            <fieldset>
+                                <h2 class="h2">تایید موبایل</h2>
+                                <h3 class="h3">شماره موبایل خود را وارد کنید.</h3>
+                                <!--<label>Name</label>-->
+
+                                <div class="sign__group">
+                                    <input type="text" name="mobile" autocomplete="off"
+                                           class="sign__input" placeholder="***********09">
+                                </div>
+
+                                <input type="button" name="next" class="next action-button sign__btn send__btn" value="ارسال"/>
+
+                            </fieldset>
+
+                            <!-- step 2 -->
+                            <fieldset>
+                                <h2 class="h2">کد برای شما ارسال گردید</h2>
+                                <h3 class="h3">کد تایید ارسال شده را وارد کنید</h3>
+
+                                <div class="sign__group">
+                                    <input type="text" name="code" autocomplete="off"
+                                           class="sign__input" placeholder="کد تایید">
+                                </div>
+
+                                <div class="row mx-0">
+                                    <div class="col-6 pl-0">
+                                        <input type="button" name="go back" class="previous sign__btn" value="بازگشت"/>
+                                    </div>
+                                    <div class="col-6 pr-0">
+                                        <input type="button" name="Submit" class="next action-button sign__btn verify__btn" value="تایید"/>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
-                                    <div class="sign__group">
-                                        <input type="text" name="last_name" autocomplete="off"
-                                               class="sign__input" placeholder="نام خانوادگی">
+                            </fieldset>
+
+                            <!-- step 3 -->
+                            <fieldset>
+                              <div class="row">
+                                    <div class="col-lg-6 col-12 pr-lg-1 px-0">
+                                        <div class="sign__group">
+                                            <input type="text" name="first_name" autocomplete="off"
+                                                   class="sign__input" placeholder="نام">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-12 pl-lg-1 px-0">
+                                        <div class="sign__group">
+                                            <input type="text" name="last_name" autocomplete="off"
+                                                   class="sign__input" placeholder="نام خانوادگی">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 px-0">
+                                        <div class="sign__group">
+                                            <input type="email" name="email" autocomplete="off"
+                                                   class="sign__input" placeholder="ایمیل">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 px-0">
+                                        <div class="sign__group">
+                                            <input type="password" name="password" autocomplete="off"
+                                                   class="sign__input" placeholder="رمز عبور">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 px-0">
+                                        <div class="sign__group">
+                                            <input type="password" name="password_confirmation" autocomplete="off"
+                                                   class="sign__input" placeholder="تکرار رمز عبور">
+                                        </div>
+                                    </div>
+
+                                    <div class="sign__group sign__group--checkbox">
+                                        <input id="remember" name="remember" type="checkbox" checked="checked">
+                                        <label for="remember">من موافقم با <a href="privacy.html">سیاست حفظ حریم
+                                            خصوصی</a></label>
+                                    </div>
+
+                                    <div class="col-12 px-0">
+                                        <button class="action-button sign__btn submit__btn" type="submit">ثبت نام</button>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
-                                    <div class="sign__group">
-                                        <input type="text" name="mobile" autocomplete="off"
-                                               class="sign__input" placeholder="شماره تماس">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="sign__group">
-                                        <input type="email" name="email" autocomplete="off"
-                                               class="sign__input" placeholder="ایمیل">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="sign__group">
-                                        <input type="password" name="password" autocomplete="off"
-                                               class="sign__input" placeholder="رمز عبور">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="sign__group">
-                                        <input type="password" name="password_confirmation" autocomplete="off"
-                                               class="sign__input" placeholder="تکرار رمز عبور">
-                                    </div>
-                                </div>
-
-                                <div class="sign__group sign__group--checkbox">
-                                    <input id="remember" name="remember" type="checkbox" checked="checked">
-                                    <label for="remember">من موافقم با <a href="privacy.html">سیاست حفظ حریم
-                                        خصوصی</a></label>
-                                </div>
-
-                            </div>
-
-                            <button class="sign__btn" type="submit">ثبت نام</button>
+                            </fieldset>
 
                             <span class="sign__text">حساب دارید ؟ <a href="signin.html">وارد شوید!</a></span>
                         </form>
@@ -365,9 +400,8 @@
 </footer>
 <!-- end footer -->
 
-
 <!-- JS -->
-
+<script src="assets/website/js/jquery.easing.min.js"></script>
 <script src="assets/website/js/owl.carousel.min.js"></script>
 <script src="assets/website/js/jquery.magnific-popup.min.js"></script>
 <script src="assets/website/js/smooth-scrollbar.js"></script>
@@ -376,50 +410,7 @@
 <script src="assets/website/js/jquery.inputmask.min.js"></script>
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#registeration-form").on("submit",function (e) {
-            console.log("s");
-            e.preventDefault();
-            $.ajax({
-                async : false,
-                method : "POST",
-                url : "http://127.0.0.1:8000/api/register",
-                data :  {
-                    first_name : $("input[name='first_name']").val(),
-                    last_name : $("input[name='last_name']").val(),
-                    email : $("input[name='email']").val(),
-                    mobile : $("input[name='mobile']").val(),
-                    password : $("input[name='password']").val(),
-                    password_confirmation : $("input[name='password_confirmation']").val()
-                },
-                success : function (response) {
-                    console.log(response);
-                    if(response.error){
-                        let errors = response.messages;
-                        $("#registeration-form .form-errors").remove();
-                        $("#registeration-form").prepend($("<div></div>").addClass("form-errors"));
-                        for(let i=0;i<errors.length;i++){
-                            $(".form-errors").append(
-                                $("<div></div>")
-                                    .addClass("alert alert-outline-danger fade show text-light")
-                                    .text(errors[i]))
-                        }
-                        $(".form-errors .alert").append("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-                            "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x close\" data-dismiss=\"alert\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"></line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"></line></svg>" +
-                            "</button>");
-                    }else{
-                        localStorage.setItem("accessToken",response.access_token);
-                        $(location).attr("href","profile.html");
-
-                    }
-                },error : function (error) {
-                    console.log("error : "+JSON.stringify(error));
-                }
-            });
-        });
-    });
-</script>
+<script src="assets/website/js/signup.js"></script>
 </body>
 
 </html>

@@ -203,7 +203,7 @@
                 <div class="sign">
                     <div class="sign__content">
                         <!-- authorization form -->
-                        <form id="login-form" method="post" action="http://127.0.0.1:8000/api/login" class="sign__form">
+                        <form id="login-form" method="post" action="https://8b71e6d6216f.ngrok.io/api/login" class="sign__form">
                             <a href="index.html" class="sign__logo">
                                 <img src="assets/website/img/logo.png" alt="">
                             </a>
@@ -225,7 +225,7 @@
 
                             <span class="sign__text">حساب ندارید؟ <a href="signup.html">ثبت نام!</a></span>
 
-                            <span class="sign__text"><a href="forgot.html">رمز خودرا فراموش کرده اید?</a></span>
+                            <span class="sign__text"><a href="forgot.html">رمز خود را فراموش کرده اید?</a></span>
                         </form>
                         <!-- end authorization form -->
                     </div>
@@ -340,43 +340,8 @@
 <script src="assets/website/js/jquery.inputmask.min.js"></script>
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
+<script src="assets/website/js/signin.js"></script>
 <script>
-    $(document).ready(function (){
-        $("#login-form").on("submit",function (e){
-            e.preventDefault();
-            $.ajax({
-                async : false,
-                method : "POST",
-                url : "http://127.0.0.1:8000/api/login",
-                data : {
-                    email : $("#login-form input[name='email']").val(),
-                    password : $("#login-form input[name='password']").val()
-                },
-                success : function (response) {
-                    console.log("response");
-                    if(response.error){
-                        let errors = response.messages;
-                        $("#login-form .form-errors").remove();
-                        $("#login-form").prepend($("<div></div>").addClass("form-errors"));
-                        for(let i=0;i<errors.length;i++){
-                            $(".form-errors").append(
-                                $("<div></div>")
-                                    .addClass("alert alert-outline-danger fade show font-iransans")
-                                    .text(errors[i]))
-                        }
-                        $(".form-errors .alert").append("<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
-                            "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-x close\" data-dismiss=\"alert\"><line x1=\"18\" y1=\"6\" x2=\"6\" y2=\"18\"></line><line x1=\"6\" y1=\"6\" x2=\"18\" y2=\"18\"></line></svg>" +
-                            "</button>");
-                    }else{
-                        localStorage.setItem("accessToken",response.access_token);
-                        $(location).attr('href','index.html');
-                    }
-                },error : function (error) {
-                    console.log("error : "+JSON.stringify(error));
-                }
-            });
-        })
-    })
 </script>
 </body>
 

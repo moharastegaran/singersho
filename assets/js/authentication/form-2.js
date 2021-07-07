@@ -23,7 +23,7 @@ $(document).ready(function () {
         $.ajax({
             async : false,
             method : "POST",
-            url : "http://127.0.0.1:8000/api/login",
+            url : __url__+"/login",
             data : {
                 email : $("#login-form input[name='email']").val(),
                 password : $("#login-form input[name='password']").val()

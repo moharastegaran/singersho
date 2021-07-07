@@ -6,7 +6,7 @@ $(window).on('load', function (response) {
         const url = new URL(url_string);
         id = url.searchParams.get('id');
         console.log('id : ' + id);
-        $.get('http://127.0.0.1:8000/api/package/' + id + '/detail', function (response) {
+        $.get('https://8b71e6d6216f.ngrok.io/api/package/' + id + '/detail', function (response) {
             console.log("res : " + response);
             $(".package.name").text(name = response.package.name);
             $(".package.price").text(price = response.package.price);

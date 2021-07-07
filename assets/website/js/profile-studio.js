@@ -6,7 +6,7 @@ $("#formAddStudio").on("submit", function (e) {
     $.ajax({
         async: false,
         method: "POST",
-        url: "http://127.0.0.1:8000/api/studio/register",
+        url: __url__+"/studio/register",
         headers: {
             authorization: "Bearer " + localStorage.getItem("accessToken")
         },
@@ -31,7 +31,7 @@ $("#formAddStudio").on("submit", function (e) {
                             formData.append("image", studioImages[i]);
                             $.ajax({
                                 method: "POST",
-                                url: "http://127.0.0.1:8000/api/studio/" + response.studio.id + "/image",
+                                url: __url__+"/studio/" + response.studio.id + "/image",
                                 headers: {
                                     authorization: "Bearer " + localStorage.getItem("accessToken"),
                                 },
@@ -85,7 +85,7 @@ $(window).on("load", function () {
     $.ajax({
         async : false,
         method : "GET",
-        url : "http://127.0.0.1:8000/api/studio/my",
+        url : __url__+"/studio/my",
         headers : {
             authorization : "Bearer "+localStorage.getItem("accessToken")
         },
@@ -140,7 +140,7 @@ $(".studios_table").on("change","input[type='checkbox']",function () {
     $.ajax({
         async : false,
         method : "PATCH",
-        url : "http://127.0.0.1:8000/api/studio/"+rowId+"/activation",
+        url : __url__+"/studio/"+rowId+"/activation",
         headers : {
             authorization : "Bearer "+localStorage.getItem("accessToken")
         },
@@ -170,7 +170,7 @@ $(".modal .btn-delete-studio").on("click",function (e) {
     $.ajax({
         async : false,
         method : "DELETE",
-        url : "http://127.0.0.1:8000/api/studio/"+dataId,
+        url : __url__+"/studio/"+dataId,
         headers : {
             authorization : "Bearer "+localStorage.getItem("accessToken")
         },
