@@ -57,7 +57,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             method: 'POST',
-            url: 'https://8b71e6d6216f.ngrok.io/api/sms/send/register',
+            url: __url__+'/sms/send/register',
             data: {
                 mobile: _input.val()
             },
@@ -84,7 +84,7 @@ $(document).ready(function () {
         $.ajax({
             async: false,
             method: 'PATCH',
-            url: 'https://8b71e6d6216f.ngrok.io/api/sms/verify/register',
+            url: __url__+'/sms/verify/register',
             data: {
                 mobile: $("input[name='mobile']").val(),
                 code: _input.val()

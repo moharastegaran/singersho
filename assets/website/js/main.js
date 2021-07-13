@@ -1,11 +1,11 @@
-const __url__ = "https://8b71e6d6216f.ngrok.io/api";
+const __url__ = "http://a9481bbeee2d.ngrok.io/api";
 
 function updateCart($type, $id, $success_message = null, $error_message = null) {
-    console.log(__url__+"/cart/" + $type);
+    console.log(__url__ + "/cart/" + $type);
     console.log("itemId" + $id);
     $.ajax({
         method: "PUT",
-        url: __url__+"/cart/" + $type,
+        url: __url__ + "/cart/" + $type,
         headers: {
             authorization: "Bearer " + localStorage.getItem("accessToken")
         },
@@ -140,7 +140,7 @@ $(window).on('load', function () {
 
     $.ajax({
         method: 'GET',
-        url: 'https://8b71e6d6216f.ngrok.io/api/cart',
+        url: __url__ + '/cart',
         headers: {
             authorization: "Bearer " + localStorage.getItem("accessToken")
         },
@@ -152,16 +152,20 @@ $(window).on('load', function () {
         }
     });
 
-    $.get('https://8b71e6d6216f.ngrok.io/api/artists', function (response) {
+    $.get(__url__ + '/artists', function (response) {
         if (!response.error) {
-            const data = response.data;
-            if (data.length > 0) {
+            if (response.hasOwnProperty('is_empty') && response.is_empty === true) {
+                const parent = $(".main__carousel--artists").parent(".main__carousel-wrap");
+                parent.empty();
+                parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.هنرمندی برای نمایش وجود ندارد</div>");
+            } else {
+                const data = response.data;
                 for (const user_id in data) {
                     const name = data[user_id]['user']['first_name'] + ' ' + data[user_id]['user']['last_name'];
                     let avatar = data[user_id]['artist'][0]['avatar'];
                     if (avatar != null) {
                         avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
-                    }else{
+                    } else {
                         avatar = "assets/website/img/avatar.svg";
                     }
                     $(".main__carousel--artists").append("" +
@@ -202,15 +206,11 @@ $(window).on('load', function () {
                         },
                     }
                 });
-            } else {
-                const parent = $(".main__carousel--artists").parent(".main__carousel-wrap");
-                parent.empty();
-                parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.هنرمندی برای نمایش وجود ندارد</div>");
             }
         }
     });
 
-    $.get('https://8b71e6d6216f.ngrok.io/api/packages/8', function (response) {
+    $.get(__url__ + '/packages/8', function (response) {
         if (!response.error) {
             const data = response.packages.data;
             let package_avatar;
@@ -267,7 +267,7 @@ $(window).on('load', function () {
         }
     });
 
-    $.get('https://8b71e6d6216f.ngrok.io/api/studios/6', function (response) {
+    $.get(__url__ + '/studios/6', function (response) {
         if (!response.error) {
             const data = response.studios.data;
             if (data.length > 0) {
@@ -314,7 +314,7 @@ $(window).on('load', function () {
                     }
                 });
             }
-        }else{
+        } else {
             const parent = $(".main__carousel--events").parent(".main__carousel-wrap");
             parent.empty();
             parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.استودیویی برای نمایش وجود ندارد</div>");
@@ -340,7 +340,7 @@ $(document).ready(function () {
         console.log($this.closest('.header__product').data('id'));
         $.ajax({
             method: 'DELETE',
-            url: 'https://8b71e6d6216f.ngrok.io/api/cart/' + $this.closest('.header__product').data('type'),
+            url: __url__ + '/cart/' + $this.closest('.header__product').data('type'),
             headers: {
                 authorization: "Bearer " + localStorage.getItem("accessToken")
             },
@@ -364,7 +364,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             method: "POST",
-            url: __url__+"/logout",
+            url: __url__ + "/logout",
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("accessToken")
             },

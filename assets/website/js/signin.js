@@ -1,20 +1,21 @@
 $(document).ready(function (){
-    $("#login-form").on("submit",function (e){
+    const _form = $("#login-form");
+    _form.on("submit",function (e){
         e.preventDefault();
         $.ajax({
             async : false,
             method : "POST",
             url : __url__+"/login",
             data : {
-                email : $("#login-form input[name='email']").val(),
-                password : $("#login-form input[name='password']").val()
+                mobile : _form.find("input[name='mobile']").val(),
+                password : _form.find("input[name='password']").val()
             },
             success : function (response) {
                 console.log("response");
                 if(response.error){
                     let errors = response.messages;
-                    $("#login-form .form-errors").remove();
-                    $("#login-form").prepend($("<div></div>").addClass("form-errors"));
+                    _form.find(".form-errors").remove();
+                    _form.prepend($("<div></div>").addClass("form-errors"));
                     for(let i=0;i<errors.length;i++){
                         $(".form-errors").append(
                             $("<div></div>")

@@ -419,7 +419,7 @@
 	    const url_string = $(location).attr('href');
 	    const url = new URL(url_string);
 	    const _id = url.searchParams.has('id') ? url.searchParams.get('id') : '1';
-		$.get('https://8b71e6d6216f.ngrok.io/api/studio/'+_id+'/detail',function (response){
+		$.get(__url__+'/studio/'+_id+'/detail',function (response){
 		    if(!response.error){
 		        const _studio = response.studio;
 		        id = _id;

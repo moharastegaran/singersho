@@ -9,7 +9,7 @@ $(window).on('load', function () {
     const url = new URL(url_string);
     const id = url.searchParams.get('id');
 
-    $.get('https://8b71e6d6216f.ngrok.io/api/artist/' + id + '/detail', function (response) {
+    $.get(__url__+'/artist/' + id + '/detail', function (response) {
         if (!response.error) {
             const data = response.data;
             let avatar = data['artist'][0]['avatar']!=null ? data['artist'][0]['avatar'] : "assets/website/img/avatar.svg";

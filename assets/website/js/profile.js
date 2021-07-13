@@ -73,9 +73,8 @@ function addEditTitleRow(e) {
                                 "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                 "                                                    </svg>\n" +
                                 "                                                </a>\n" +
-                                "                                                <a class=\"col px-0 text-center open-modal\" " +
-                                "                                                   href=\"#modal-delete-title-portfolio\"\n" +
-                                "                                                   onclick=\"$(this.closest('li')).addClass('deletable')\">\n" +
+                                "                                                <a class=\"col px-0 text-center open-delete-modal\" " +
+                                "                                                   href=\"javascript:void(0);\">\n" +
                                 "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
                                 "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
                                 "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
@@ -129,7 +128,6 @@ function addEditTitleRow(e) {
                 }
             });
         }
-
         if (!hasError) {
             if ($("li.title-list-item").length > 0) $(".title-list-empty").addClass("d-none");
             form.collapse("hide");
@@ -252,9 +250,8 @@ function addPortfolioRow(e) {
                                 "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                 "                                                    </svg>\n" +
                                 "                                                </a>\n" +
-                                "                                                <a class=\"col px-0 text-center open-modal\"" +
-                                "                                                       onclick=\"$(this.closest('li')).addClass('deletable')\" " +
-                                "                                                       href=\"#modal-delete-title-portfolio\">\n" +
+                                "                                                 <a class=\"col px-0 text-center open-delete-modal\" " +
+                                "                                                   href=\"javascript:void(0);\">\n" +
                                 "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-trash text-dark p-1\">\n" +
                                 "                                                        <polyline points=\"3 6 5 6 21 6\"></polyline>\n" +
                                 "                                                        <path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>\n" +
@@ -380,7 +377,7 @@ function updateUserData($input,$expected_value){
         formData[$input.attr('name')] = $input.val();
         $.ajax({
             method : 'PATCH',
-            url : 'https://8b71e6d6216f.ngrok.io/api/'+$input.attr('name'),
+            url : __url__+'/'+$input.attr('name'),
             data : formData,
             success : function (response){
                 if (typeof response === 'object' && response !== null){
@@ -412,6 +409,9 @@ $(window).on("load", function () {
         async: false,
         method: "GET",
         url: __url__+"/me",
+        headers : {
+            "Authorization" : "Bearer " + localStorage.getItem("accessToken")
+        },
         success: function (response) {
             if (typeof response === 'object' && response !== null) {
                 if (!response.error) {
@@ -467,9 +467,8 @@ $(window).on("load", function () {
                                     "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                     "                                                    </svg>\n" +
                                     "                                                </a>\n" +
-                                    "                                                <a class=\"col text-center px-0 open-modal\" " +
-                                    "                                                   href=\"#modal-delete-title-portfolio\"\n" +
-                                    "                                                   onclick=\"$(this.closest('li')).addClass('deletable');\" >\n" +
+                                    "                                                 <a class=\"col px-0 text-center open-delete-modal\" " +
+                                    "                                                   href=\"javascript:void(0);\">\n" +
                                     "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
                                     "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
                                     "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
@@ -509,9 +508,8 @@ $(window).on("load", function () {
                                     "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                     "                                                    </svg>\n" +
                                     "                                                </a>\n" +
-                                    "                                                 <a class=\"col px-0 text-center open-modal\" " +
-                                    "                                                       href=\"#modal-delete-title-portfolio\"" +
-                                    "                                                       onclick=\"$(this.closest('li')).addClass('deletable')\">\n" +
+                                    "                                                 <a class=\"col px-0 text-center open-delete-modal\" " +
+                                    "                                                       href=\"#modal-delete-title-portfolio\">\n" +
                                     "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-trash text-dark p-1\">\n" +
                                     "                                                        <polyline points=\"3 6 5 6 21 6\"></polyline>\n" +
                                     "                                                        <path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>\n" +
@@ -529,7 +527,7 @@ $(window).on("load", function () {
             }
         },
         error: function (xhr) {
-            console.log("error : " + xhr);
+            console.log("error : " + JSON.stringify(xhr));
         }
     });
 
@@ -577,6 +575,23 @@ $(document).ready(function (){
     //     }
     //
     // });
+
+    $(document).on("click",".open-delete-modal",function (){
+        $(this.closest('li')).addClass('deletable');
+        $.magnificPopup.open({
+            fixedContentPos: true,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            type: 'inline',
+            preloader: false,
+            modal: false,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in',
+            items: {
+                src: '#modal-delete-title-portfolio'
+            },
+        });
+    })
 
     $("#userAddTitleForm , #userAddExperienceForm").on("hide.bs.collapse", function (e) {
         if ($(this).hasClass("no-collapse")) {
@@ -627,7 +642,7 @@ $(document).ready(function (){
             console.log("call ajax")
             $.ajax({
                 method: 'PUT',
-                url: 'https://8b71e6d6216f.ngrok.io/api/artist/register',
+                url: __url__+'/artist/register',
                 data: {
                     _method: 'PUT'
                 },
@@ -646,7 +661,7 @@ $(document).ready(function (){
         const isChecked = $(this).is(":checked");
         $.ajax({
             method: 'PATCH',
-            url: 'https://8b71e6d6216f.ngrok.io/api/accept_advisor',
+            url: __url__+'/accept_advisor',
             data: {
                 _method: 'PATCH'
             },

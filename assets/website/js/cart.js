@@ -48,7 +48,7 @@ $(window).on('load',function (){
 
     $.ajax({
         method: 'GET',
-        url: 'https://8b71e6d6216f.ngrok.io/api/cart',
+        url: __url__+'/cart',
         success: function (response) {
             if (response != null) {
                 updateCartTable(response);
@@ -59,7 +59,7 @@ $(window).on('load',function (){
         }
     });
 
-    $.get('https://8b71e6d6216f.ngrok.io/api/me',function (response){
+    $.get(__url__+'/me',function (response){
         if(!response.error){
             const parent = $("#sign-form-cart");
             parent.find("[name='name']").val(response.data.user.first_name+' '+response.data.user.first_name);
@@ -77,7 +77,7 @@ $(document).ready(function (response){
         console.log('data-type : '+$this.closest('tr').data('type'));
         $.ajax({
             method : 'DELETE',
-            url : 'https://8b71e6d6216f.ngrok.io/api/cart/'+$this.closest('tr').data('type'),
+            url : __url__+'/cart/'+$this.closest('tr').data('type'),
             data : {
                 _method : 'DELETE',
                 itemId : $this.closest('tr').data('id')

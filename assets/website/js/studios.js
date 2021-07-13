@@ -1,6 +1,6 @@
 function updateStudiosToPage(pageNum) {
     console.log("page : " + pageNum);
-    $.get('https://8b71e6d6216f.ngrok.io/api/studios/6?page=' + pageNum, function (response) {
+    $.get(__url__+'/studios/6?page=' + pageNum, function (response) {
         if (!response.error) {
             const data = response.studios.data;
             let parent = $('.studios-grid');

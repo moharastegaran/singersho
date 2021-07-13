@@ -348,7 +348,7 @@
 <script src="assets/website/js/isotope.pkgd.min.js"></script>
 <script>
     $(window).on('load', function () {
-        $.get('https://8b71e6d6216f.ngrok.io/api/titles', function (response) {
+        $.get(__url__+'/titles', function (response) {
             if (!response.error) {
                 const titles = response.titles;
                 $(".slider-radio").append('<input type="radio" name="alltitles" checked="checked"><label data-filter="*">همه</label>')
@@ -359,7 +359,7 @@
                 }
             }
         });
-        $.get('https://8b71e6d6216f.ngrok.io/api/artists', function (response) {
+        $.get(__url__+'/artists', function (response) {
             if (!response.error) {
                 const data = response.data;
                 let parent = $('.artists-grid'), _data = [];

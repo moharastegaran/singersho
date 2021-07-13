@@ -1,6 +1,6 @@
 function updateStoreToPage(pageNum) {
     console.log("page : "+pageNum);
-    $.get('https://8b71e6d6216f.ngrok.io/api/packages?page='+pageNum, function (response) {
+    $.get(__url__+'/packages?page='+pageNum, function (response) {
         if (!response.error) {
             const data = response.packages.data;
             let parent = $('.products-grid');
@@ -36,31 +36,6 @@ function updateStoreToPage(pageNum) {
                     "              <a class='page-link' href='"+links[i].url+"'>"+links[i].label+"</a>" +
                     "          </li>")
             }
-            // if( $('.artists-grid .item').length ) {
-            // const $elements = $(".artists-grid"),
-            //     $filters = $('.slider-radio label');
-            // $elements.isotope({
-            //     isOriginLeft: false
-            // });
-
-            // $filters.on('click', function () {
-            //     $filters.removeClass('active');
-            //     $(this).addClass('active');
-            //     let selector = $(this).data('filter');
-            //     console.log("selector : " + selector);
-            //     $(".artists-grid").isotope({
-            //         filter: selector,
-            //         hiddenStyle: {
-            //             transform: 'scale(.2) skew(30deg)',
-            //             opacity: 0
-            //         },
-            //         visibleStyle: {
-            //             transform: 'scale(1) skew(0deg)',
-            //             opacity: 1,
-            //         },
-            //         transitionDuration: '.5s'
-            //     });
-            // });
         }
     });
 }
