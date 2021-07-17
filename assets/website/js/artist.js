@@ -16,9 +16,6 @@ $(window).on('load', function () {
             _artist_id = data['artist'][0]['id'];
             _is_advisor = data['artist'][0]['is_advisor'];
             _advise_price = data['artist'][0]['advise_price'];
-            if (avatar !== null) {
-                avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
-            }
 
             $(".artist.name").text(data['user']['first_name'] + ' ' + data['user']['last_name']);
             $(".artist.avatar").attr('src', avatar);
@@ -34,7 +31,7 @@ $(window).on('load', function () {
                         "<div class=\"col-md-4 col-12\">\n" +
                         "<div class=\"live\">\n" +
                         "<a href=\"" + (p.sound !== null ? p.sound : (p.url !== null ? p.url : '#')) + "\" class=\"live__cover open-video\">\n" +
-                        "<img src=\"" + p.image.replace('http://127.0.0.1:8000/storage/', '') + "\" alt=\"\">\n" +
+                        "<img src=\"" + p.image + "\" alt=\"\">\n" +
                         "<span class=\"live__value\">"
                         +// new JDate(new Date(p_date[0], p_date[1], p_date[2])).format('dddd DD MMMM YYYY') + "تاریخ انجام: " +
                         "</span>\n" +

@@ -24,7 +24,7 @@ function updateCartTable(response) {
                 html += "<td>"+details[i].full_name+"</td>";
                 break;
             case 'studio' :
-                html += "<td><div class='cart__img'>\n<div class='badge badge-success'>استودیو</div>\n</div></td>";
+                html += "<td><div class='cart__img'>\n<div class='badge badge-success'>استدیو</div>\n</div></td>";
                 html += "<td><a href='studio.html?id="+details[i].id+"'>"+details[i].full_name+"</a></td>";
                 break;
         }

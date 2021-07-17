@@ -2,23 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/website/css/icofont.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/icofont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/fonts/icofont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/view.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/artist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/artists.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/img/arrow2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/img/arrow2.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/img/checkmark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/img/checkmark.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/img/logo.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/img/logo.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/artist.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/artist.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/forgot-password.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/forgot-password.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/package.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/package.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/signin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/profile-studio.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/profile-studio.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/studios.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/studios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cart.html" beforeDir="false" afterPath="$PROJECT_DIR$/cart.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/forgot.html" beforeDir="false" afterPath="$PROJECT_DIR$/forgot.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/product.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/profile.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/signup.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/store.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/studio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/studios.html" beforeDir="false" afterPath="$PROJECT_DIR$/studios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/edit-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/edit-studio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/editProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/editProfile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/new-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/new-studio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/single-studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/single-studio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/studios.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/studios.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/dashboard/team-building.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/dashboard/team-building.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/parts/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/parts/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/parts/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/parts/sidebar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +53,8 @@
       <list>
         <option value="HTML File" />
         <option value="SCSS File" />
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -289,7 +309,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/website/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/website/img" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -298,18 +318,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\img" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\js" />
       <recent name="C:\Users\Mammad\Desktop\New folder" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\js" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website" />
-      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\assets\img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\css" />
+      <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\fonts" />
       <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\auth" />
       <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\plugins\flexslider" />
       <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\plugins\table\datatable" />
-      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\dashboard" />
-      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\editProfile.html" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -373,6 +393,9 @@
       <workItem from="1625639656576" duration="21468000" />
       <workItem from="1625682029960" duration="8297000" />
       <workItem from="1626075380695" duration="600000" />
+      <workItem from="1626176551349" duration="657000" />
+      <workItem from="1626494406443" duration="17188000" />
+      <workItem from="1626524864813" duration="7845000" />
     </task>
     <servers />
   </component>

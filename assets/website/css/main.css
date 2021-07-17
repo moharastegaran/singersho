@@ -390,7 +390,7 @@ body::-webkit-scrollbar-thumb {
   color: #fff;
   padding: 0 5px;
   border-radius: 4px;
-  background-color: #25a56a;
+  background-color: #fca311;
   position: absolute;
   top: 1px;
   left: 10px;
@@ -535,7 +535,7 @@ input{
   transition: 0.5s ease;
 }
 .header__search button:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .header__search button.close {
   left: 15px;
@@ -618,7 +618,7 @@ input{
   fill: #29b474;
 }
 .header__note--fail svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .header__note--info svg {
   fill: #c0c0c0;
@@ -652,7 +652,7 @@ input{
   transition: fill 0.4s ease;
 }
 .header__product button:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .header__product img , .header__product .badge{
   width: 46px;
@@ -679,7 +679,7 @@ input{
   color: #fff;
 }
 .header__product p a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .header__product span {
   padding: 0;
@@ -735,7 +735,7 @@ input{
   }
   .header__action--signin:hover a svg,
   .header__action--signin:hover button svg {
-    fill: #25a56a;
+    fill: #fca311;
   }
   .header__action-btn span {
     display: block;
@@ -830,7 +830,7 @@ input{
     margin-left: 0;
   }
   .header__nav a:hover {
-   color: #25a56a;
+   color: #fca311;
   }
   .header__all {
     display: flex;
@@ -848,7 +848,7 @@ input{
     border-radius: 12px 12px 0 0;
   }
   .header__all:hover {
-   color: #25a56a;
+   color: #fca311;
   }
 }
 /*==============================
@@ -930,7 +930,7 @@ input{
   color: #fff;
 }
 .sidebar__nav-link:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .sidebar__nav-link--active,
 .sidebar__nav-link[aria-expanded="true"] {
@@ -938,11 +938,11 @@ input{
 }
 .sidebar__nav-link--active svg,
 .sidebar__nav-link[aria-expanded="true"] svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .sidebar__nav-link--active:hover svg,
 .sidebar__nav-link[aria-expanded="true"]:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .sidebar__nav-link[aria-expanded="true"] {
   margin-bottom: 15px;
@@ -985,7 +985,7 @@ input{
   width: 4px;
   height: 4px;
   border-radius: 12px;
-  background-color: #25a56a;
+  background-color: #fca311;
   top: 50%;
   right: 25px;
   margin-top: -2px;
@@ -1012,10 +1012,10 @@ input{
   text-align: right;
 }
 .sidebar__menu a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .sidebar__menu a.active {
- color: #25a56a;
+ color: #fca311;
   cursor: default;
 }
 .sidebar--active {
@@ -1118,7 +1118,7 @@ input{
 .player__btn svg {
   width: 18px;
   height: auto;
-  fill: #25a56a;
+  fill: #fca311;
   margin-right: 8px;
 }
 .player--active {
@@ -1146,7 +1146,7 @@ input{
   background-color: transparent !important;
 }
 .plyr__control:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .plyr__controls {
   display: flex;
@@ -1201,7 +1201,7 @@ input{
   background-color: transparent;
 }
 .plyr--full-ui input[type="range"] {
- color: #25a56a !important;
+ color: #fca311 !important;
 }
 /*==============================
 	Main
@@ -1241,7 +1241,7 @@ input{
   color: #c0c0c0;
 }
 .main__title h1 a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .main__title h2 {
   display: flex;
@@ -1259,7 +1259,7 @@ input{
 .main__title h2 svg {
   width: 26px;
   height: auto;
-  fill: #25a56a;
+  fill: #fca311;
   margin-left: 10px;
 }
 .main__title h2 b {
@@ -1269,7 +1269,7 @@ input{
   color: #c0c0c0;
 }
 .main__title h2 a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .main__title h3 {
   display: flex;
@@ -1297,7 +1297,7 @@ input{
   font-weight: 600;
 }
 .main__title p a {
- color: #25a56a;
+ color: #fca311;
   text-decoration: underline;
 }
 .main__title p a:hover {
@@ -1340,10 +1340,10 @@ input{
   color: #c0c0c0;
 }
 .main__title ol li a {
- color: #25a56a;
+ color: #fca311;
 }
 .main__title ol li a:hover {
- color: #25a56a;
+ color: #fca311;
   text-decoration: underline;
 }
 .main__title ol li:last-child {
@@ -1378,7 +1378,7 @@ input{
   color: #fff;
 }
 .main__link:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .main__carousel-wrap {
   position: relative;
@@ -1400,15 +1400,15 @@ input{
 }
 .main__carousel .owl-dot span {
   display: block;
-  height: 4px;
-  width: 10px;
-  border-radius: 2px;
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
   background-color: #c0c0c0;
   transition: 0.5s ease;
 }
 .main__carousel .owl-dot.active span {
-  width: 20px;
-  background-color: #25a56a;
+  /*width: 20px;*/
+  background-color: #fca311;
 }
 .main__nav {
   display: none;
@@ -1504,13 +1504,13 @@ input{
   transition: 0.5s ease;
 }
 .main__filter-search button:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .main__load {
   width: 140px;
   height: 50px;
   border-radius: 10px;
-  background-color: #25a56a;
+  background-color: #fca311;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1525,7 +1525,7 @@ input{
   margin: 30px auto 0;
 }
 .main__load:hover {
-  color: #25a56a;
+  color: #fca311;
   background-color: #222227;
 }
 .main__tabs {
@@ -1566,7 +1566,7 @@ input{
 }
 
 .main__tabs a.active span {
-  color: #25a56a;
+  color: #fca311;
 }
 
 .main__tabs a span {
@@ -1618,14 +1618,14 @@ input{
   color: #fff;
 }
 .main__table thead th a:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .main__table thead th a.active {
   color: #fff;
 }
 .main__table thead th a.active svg {
   width: 16px;
-  fill: #25a56a;
+  fill: #fca311;
 }
 .main__table tbody tr {
   border-bottom: none;
@@ -1672,12 +1672,12 @@ input{
   color: #fff;
 }
 .main__table-text a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .main__table-text--number a {
   font-size: 16px;
   line-height: 22px;
-  border-bottom: 2px dashed #25a56a;
+  border-bottom: 2px dashed #fca311;
 }
 .main__table-text--price {
   font-family: 'IRANSans';
@@ -1831,7 +1831,7 @@ input{
     width: 34px;
     height: 34px;
     left: 0;
-    bottom: -14px;
+    /*bottom: -14px;*/
     z-index: 2;
   }
   .main__nav svg {
@@ -1841,28 +1841,48 @@ input{
     transition: fill 0.5s ease;
   }
   .main__nav:hover svg {
-    fill: #25a56a;
+    fill: #fca311;
   }
   .main__nav--prev {
-    left: -5px;
+    left: 48%;
+    color : #fff;
+    font-size: 35px;
+    transform: translateX(-48%);
   }
   .main__nav--next {
-    left: 25px;
+    left: 52%;
+    font-size: 35px;
+    color : #fff;
+    transform: translateX(-52%);
   }
+
+  .main__nav--prev:hover,  .main__nav--next:hover{
+    color : #fca311;
+  }
+
   .main__nav--hero {
-    bottom: 15px;
+    bottom: 20px;
   }
   .main__nav--hero svg {
     fill: #fff;
   }
   .main__nav--hero.main__nav--prev {
-    left: 65px;
+    left: 48%;
+    font-size: 40px;
+    color : #fff;
+    transform: translateX(-48%);
   }
   .main__nav--hero.main__nav--next {
-    left: 95px;
+    left: 52%;
+    font-size: 40px;
+    color : #fff;
+    transform: translateX(-52%);
+  }
+  .main__nav--hero.main__nav--next:hover,.main__nav--hero.main__nav--prev:hover{
+    color : #fca311;
   }
   .main__nav--hero:hover svg {
-    fill: #25a56a;
+    fill: #fca311;
   }
   .main__filter {
     position: -webkit-sticky;
@@ -1933,7 +1953,7 @@ input{
   color: #c0c0c0;
 }
 .breadcrumb a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 @media (min-width: 1200px) {
   .breadcrumb {
@@ -1991,7 +2011,7 @@ input{
   right: 0;
   height: 3px;
   display: block;
-  background-color: #25a56a;
+  background-color: #fca311;
   transition: 0.5s ease;
   transform: translateY(3px);
   opacity: 0;
@@ -2057,7 +2077,7 @@ input{
   color: #fff;
 }
 .profile__logout:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .profile__user {
   display: flex;
@@ -2159,15 +2179,15 @@ input{
 }
 .hero .owl-dot span {
   display: block;
-  height: 4px;
-  width: 10px;
-  border-radius: 2px;
+  height: 14px;
+  width: 14px;
+  border-radius: 50px;
   background-color: #c0c0c0;
   transition: 0.5s ease;
 }
 .hero .owl-dot.active span {
-  width: 20px;
-  background-color: #25a56a;
+  /*width: 20px;*/
+  background-color: #fca311;
 }
 .hero .owl-stage-outer {
   border-radius: 12px;
@@ -2256,14 +2276,14 @@ input{
   margin-right: 0;
 }
 .hero__btn:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .hero__btn--video {
   text-transform: none;
   font-size: 16px;
 }
 .hero__btn--video svg {
-  fill: #25a56a;
+  fill: #fca311;
   width: 28px;
   height: auto;
   margin-left: 7px;
@@ -2276,17 +2296,17 @@ input{
 }
 
 .hero__btn--video:hover {
-  background-color: #25a56a;
+  background-color: #fca311;
   color: #fff;
   
 }
 .hero__btn--red {
-  background-color: #25a56a;
+  background-color: #fca311;
   color: #fff;
 }
 .hero__btn--red:hover {
   background-color: #16151a;
- color: #25a56a;
+ color: #fca311;
 }
 @media (min-width: 576px) {
   .hero__slide {
@@ -2381,6 +2401,7 @@ input{
 }
 .album__cover img {
   width: 100%;
+  height: 150px;
   display: block;
   position: relative;
   z-index: 1;
@@ -2404,16 +2425,18 @@ input{
   transform: scale(0.8);
   opacity: 0;
   transition: 0.5s ease;
+  color : #fff
 }
 .album__cover a svg {
-  fill: #fff;
-  width: 24px;
+  /*fill: #fca311;*/
+  width: 22px;
   height: auto;
   margin: 1px 0 0 1px;
   transition: fill 0.5s ease;
 }
-.album__cover a:hover svg {
-  fill: #25a56a;
+.album__cover a:hover {
+  /*fill: #fca311;*/
+  color: #fca311;
 }
 .album__cover:hover img {
   opacity: 0.6;
@@ -2423,7 +2446,7 @@ input{
   opacity: 1;
   transform: scale(1);
 }
-.album__cover:hover .album__stat {
+.album__cover:hover .artist__stat {
   opacity: 1;
   transform: scale(1);
 }
@@ -2451,16 +2474,17 @@ input{
   color: #fff;
 }
 .album__title h3 a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .album__title span {
   display: block;
   width: 100%;
   color: #c0c0c0;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: 400;
   white-space: nowrap;
   overflow: hidden;
+  margin-top: 3px;
   text-overflow: ellipsis;
   word-wrap: break-word;
 }
@@ -2468,9 +2492,9 @@ input{
   color: #c0c0c0;
 }
 .album__title span a:hover {
- color: #25a56a;
+ color: #fca311;
 }
-.album__stat {
+.artist__stat {
   position: absolute;
   z-index: 2;
   display: flex;
@@ -2486,17 +2510,17 @@ input{
   opacity: 0;
   transition: 0.5s ease;
 }
-.album__stat span {
+.artist__stat span {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   margin-right: 15px;
 }
-.album__stat span:last-child {
+.artist__stat span:last-child {
   margin-right: 0;
 }
-.album__stat svg {
+.artist__stat svg {
   width: 14px;
   height: auto;
   fill: #fff;
@@ -2509,16 +2533,16 @@ input{
   .album--sidebar {
     margin-top: 20px;
   }
-  .album__stat {
+  .artist__stat {
     font-size: 13px;
   }
-  .album__stat span {
+  .artist__stat span {
     margin-right: 20px;
   }
-  .album__stat span:last-child {
+  .artist__stat span:last-child {
     margin-right: 0;
   }
-  .album__stat svg {
+  .artist__stat svg {
     width: 16px;
   }
 }
@@ -2581,14 +2605,14 @@ input{
 .release__stat svg {
   width: 20px;
   height: auto;
-  fill: #25a56a;
+  fill: #fca311;
   margin-left: 5px;
 }
 .release__buy {
   width: 100%;
   height: 50px;
   border-radius: 12px;
-  background-color: #25a56a;
+  background-color: #fca311;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2604,7 +2628,7 @@ input{
   margin-top: 15px;
 }
 .release__buy svg {
-  fill: #25a56a;
+  fill: #fca311;
   width: 28px;
   height: auto;
   margin-right: 7px;
@@ -2688,7 +2712,7 @@ input{
   margin-top: 15px;
 }
 .store-item__buy svg {
-  fill: #25a56a;
+  fill: #fca311;
   width: 28px;
   height: auto;
   margin-right: 7px;
@@ -2731,7 +2755,7 @@ input{
 }
 .store-item__carousel .owl-dot.active span {
   width: 20px;
-  background-color: #25a56a;
+  background-color: #fca311;
 }
 @media (min-width: 768px) {
   .store-item {
@@ -2837,7 +2861,7 @@ input{
   opacity: 0.8;
 }
 .artist:hover .artist__title {
- color: #25a56a;
+ color: #fca311;
 }
 @media (min-width: 768px) {
   .artist {
@@ -2868,8 +2892,8 @@ input{
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, #000 0%, rgba(0,0,0,0) 100%);
-  opacity: 0.6;
+  background: linear-gradient(45deg, #000 0%, rgba(0,0,0,.5) 100%);
+  opacity: 0.8;
   transition: opacity 0.5s ease;
   z-index: 1;
 }
@@ -2883,10 +2907,13 @@ input{
 .event__time {
   position: relative;
   z-index: 2;
-  font-size: 16px;
+  font-size: 14px;
   color: rgba(255,255,255,0.8);
   font-weight: 400;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+.event__time i, .event__date i{
+  color : #fca311;
 }
 .event__title {
   position: relative;
@@ -2894,15 +2921,15 @@ input{
   font-family: 'IRANSans';
   font-weight: 400;
   color: #fff;
-  font-size: 24px;
-  margin-bottom: 5px;
+  font-size: 20px;
+  margin-bottom: 10px;
   width: 100%;
 }
 .event__title a {
   color: #fff;
 }
 .event__title a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .event__address {
   position: relative;
@@ -2937,19 +2964,20 @@ input{
   width: 18px;
   height: auto;
   margin-left: 7px;
-  fill: #25a56a;
+  /*fill: #fca311;*/
   transition: all ease 0.5s;
 }
 
-.event__ticket:hover svg {
-  fill: #fff;
+.event__ticket:hover {
+  /*fill: #fff;*/
+  color : #fca311;
   transition: all ease 0.5s;
 }
 
 
 .event__ticket:hover {
   color: #fff;
-  background-color: #25a56a;
+  background-color: #fca311;
 }
 .event__out {
   position: absolute;
@@ -2958,7 +2986,7 @@ input{
   min-width: 120px;
   height: 40px;
   border-radius: 10px;
-  background-color: #25a56a;
+  background-color: #fca311;
   display: inline-flex;
   flex-direction: row;
   justify-content: center;
@@ -2971,7 +2999,7 @@ input{
   padding: 0 15px;
 }
 .event:hover:before {
-  opacity: 0.8;
+  opacity: 0.95;
 }
 @media (min-width: 768px) {
   .event {
@@ -3031,7 +3059,7 @@ input{
   height: auto;
 }
 .single-item__rate--red svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .single-item__cover {
   display: flex;
@@ -3062,7 +3090,7 @@ input{
   opacity: 0;
 }
 .single-item__cover:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .single-item__cover.active {
   background-color: #000;
@@ -3071,7 +3099,7 @@ input{
   opacity: 0.5;
 }
 .single-item__cover.active svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .single-item__cover.pause svg {
   opacity: 1;
@@ -3110,7 +3138,7 @@ input{
   color: #fff;
 }
 .single-item__title h4 a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .single-item__title span {
   display: block;
@@ -3128,7 +3156,7 @@ input{
   color: #c0c0c0;
 }
 .single-item__title span a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .single-item__time {
   margin-right: 15px;
@@ -3269,7 +3297,7 @@ input{
   border: 1px solid rgba(255,255,255,0.05);
 }
 .post__video svg {
-  fill: #25a56a;
+  fill: #fca311;
   width: 22px;
   height: auto;
   margin-left: 5px;
@@ -3282,7 +3310,7 @@ input{
 }
 
 .post__video:hover {
-  background-color: #25a56a;
+  background-color: #fca311;
   color: #fff;
 }
 .post__content {
@@ -3348,7 +3376,7 @@ input{
 }
 .post__category:hover {
   color: #fff;
-  background-color: #25a56a;
+  background-color: #fca311;
 }
 .post__title {
   display: block;
@@ -3367,7 +3395,7 @@ input{
   text-align: justify;
 }
 .post__title a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .post__meta {
   margin-top: auto;
@@ -3533,10 +3561,10 @@ input{
   transform: scale(1);
 }
 .live:hover .live__title {
- color: #25a56a;
+ color: #fca311;
 }
 .live:hover .live__title a {
- color: #25a56a;
+ color: #fca311;
 }
 @media (min-width: 768px) {
   .live {
@@ -3606,7 +3634,7 @@ input{
   color: #fff;
 }
 .product__title a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .product__price {
   font-size: 16px;
@@ -3690,19 +3718,19 @@ input{
   color: #fff;
   margin-right: 10px;
   line-height: 100%;
-  border-bottom: 1px dashed #25a56a;
+  border-bottom: 1px dashed #fca311;
 }
 .stats span a svg {
   width: 14px;
   height: auto;
-  fill: #25a56a;
+  fill: #fca311;
   position: relative;
   bottom: auto;
   right: auto;
   transition: 0.5s ease;
 }
 .stats span a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .stats span a:hover svg {
   fill: #c0c0c0;
@@ -3724,13 +3752,13 @@ input{
   color: #c0c0c0;
 }
 .stats p a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .stats svg {
   position: absolute;
   bottom: 15px;
   left: 20px;
-  fill: #25a56a;
+  fill: #fca311;
   width: 30px;
   height: auto;
 }
@@ -3768,7 +3796,7 @@ input{
   justify-content: center;
   align-items: flex-end;
   height: 24px;
- color: #25a56a;
+ color: #fca311;
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 500;
@@ -3788,7 +3816,7 @@ input{
   color: #c0c0c0;
 }
 .stats__form button:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .stats--green svg {
   fill: #29b474;
@@ -3832,7 +3860,7 @@ input{
   font-family: 'IRANSans';
 }
 .dashbox__title h3 svg {
-  fill: #25a56a;
+  fill: #fca311;
   margin-left: 12px;
   width: 22px;
   height: auto;
@@ -3850,7 +3878,7 @@ input{
   font-family: 'IRANSans';
   font-size: 10px;
   pointer-events: none;
-  background-color: #25a56a;
+  background-color: #fca311;
   margin-bottom: auto;
   margin-right: 5px;
 }
@@ -3871,7 +3899,7 @@ input{
   font-family: 'IRANSans';
 }
 .dashbox__more:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .dashbox__refresh {
   display: flex;
@@ -3888,7 +3916,7 @@ input{
   transition: fill 0.5s ease;
 }
 .dashbox__refresh:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .dashbox__table-wrap {
   position: relative;
@@ -3975,7 +4003,7 @@ input{
   fill: #29b474;
 }
 .dashbox__note--fail svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .dashbox__note--info svg {
   fill: #c0c0c0;
@@ -4015,7 +4043,7 @@ input{
   background-color: rgba(37,165,106,0.15);
 }
 .feature__icon svg {
-  fill: #25a56a;
+  fill: #fca311;
   width: auto;
   height: 26px;
 }
@@ -4083,7 +4111,7 @@ input{
   line-height: 100%;
   font-weight: 500;
   font-size: 24px;
-  color: #25a56a;
+  color: #fca311;
   background-color: rgba(37,165,106,0.15);
 }
 .step__title {
@@ -4248,7 +4276,7 @@ input{
 }
 .plan__btn:hover {
   color: #fff;
-  background-color: #25a56a;
+  background-color: #fca311;
 }
 @media (min-width: 768px) {
   .plan {
@@ -4277,7 +4305,7 @@ input{
   font-weight: 400;
 }
 .contacts__list a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .contacts__social {
   display: flex;
@@ -4367,7 +4395,7 @@ input{
   font-weight: 400;
 }
 .cart__table td a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .cart__table td:last-child {
   width: 24px;
@@ -4406,7 +4434,7 @@ input{
   transition: 0.5s ease;
 }
 .cart__delete:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .cart__price {
   font-size: 16px;
@@ -4479,7 +4507,7 @@ input{
   margin: 0;
   height: 40px;
   border-radius: 12px;
-  background-color: #25a56a;
+  background-color: #fca311;
 }
 .cart__promo .sign__btn:hover {
   background-color: #222227;
@@ -4524,7 +4552,7 @@ input{
   transition: fill 0.5s ease;
 }
 .cart__amount button:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .cart__table-wrap {
   position: relative;
@@ -4600,7 +4628,7 @@ input{
 }
 .article__category:hover {
   color: #fff;
-  background-color: #25a56a;
+  background-color: #fca311;
 }
 .article__date {
   display: flex;
@@ -4635,7 +4663,7 @@ input{
   margin-left: 5px;
 }
 .article__place:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .article__content {
   position: relative;
@@ -4705,12 +4733,12 @@ input{
   font-weight: 600;
 }
 .article__content p a {
- color: #25a56a;
+ color: #fca311;
   text-decoration: underline;
 }
 .article__content p a:hover,
 .article__content p a:focus {
- color: #25a56a;
+ color: #fca311;
   text-decoration: none;
 }
 .article__content p:last-child {
@@ -4735,7 +4763,7 @@ input{
   bottom: 2px;
   right: 0;
   width: 3px;
-  background-color: #25a56a;
+  background-color: #fca311;
   border-radius: 3px;
 }
 .article__content blockquote:last-child {
@@ -4760,7 +4788,7 @@ input{
   width: 4px;
   height: 4px;
   border-radius: 12px;
-  background-color: #25a56a;
+  background-color: #fca311;
   right: 0;
   top: 50%;
   margin-top: -2px;
@@ -4824,13 +4852,13 @@ input{
   transition: fill 0.5s ease;
 }
 .article__amount button:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .article__buy {
   width: 218px;
   height: 50px;
   border-radius: 12px;
-  background-color: #25a56a;
+  background-color: #fca311;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -4991,7 +5019,7 @@ input{
   background-color: #4c6c91;
 }
 .share__link:hover {
-  background-color: #25a56a;
+  background-color: #fca311;
   color: #fff;
 }
 /*==============================
@@ -5028,7 +5056,7 @@ input{
   height: 20px;
   padding: 0 5px;
   border-radius: 4px;
-  background-color: #25a56a;
+  background-color: #fca311;
   font-size: 12px;
   color: #fff;
   font-weight: 400;
@@ -5099,10 +5127,10 @@ input{
   font-weight: 600;
 }
 .comments__text a {
- color: #25a56a;
+ color: #fca311;
 }
 .comments__text a:hover {
- color: #25a56a;
+ color: #fca311;
   text-decoration: underline;
 }
 .comments__text span {
@@ -5160,7 +5188,7 @@ input{
   color: #fff;
 }
 .comments__actions button:hover svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .comments__actions button:last-child {
   margin-right: 0;
@@ -5311,11 +5339,11 @@ input{
 .footer__links a svg {
   width: 20px;
   height: auto;
-  fill: #25a56a;
+  fill: #fca311;
   margin-left: 10px;
 }
 .footer__links a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .footer__social {
   display: flex;
@@ -5366,7 +5394,7 @@ input{
   color: #c0c0c0;
 }
 .footer__copyright a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 .footer__title {
   display: block;
@@ -5393,7 +5421,7 @@ input{
   margin-bottom: 0;
 }
 .footer__nav a:hover {
- color: #25a56a;
+ color: #fca311;
 }
 @media (min-width: 576px) {
   .footer {
@@ -5541,7 +5569,7 @@ input{
   font-family: 'IRANSans';
 }
 .sign__input:focus {
-  border-color: #25a56a;
+  border-color: #fca311;
 }
 .sign__select {
   background: url("../img/arrow2.svg") no-repeat center left 20px #222227;
@@ -5559,7 +5587,7 @@ input{
   border: 1px solid transparent;
 }
 .sign__select:focus {
-  border-color: #25a56a;
+  border-color: #fca311;
 }
 .sign__textarea {
   background-color: #222227;
@@ -5578,7 +5606,7 @@ input{
 }
 .sign__textarea:focus {
   background-color: #222227;
-  border: 1px solid #25a56a;
+  border: 1px solid #fca311;
   transition: all ease 0.5s;
 }
 .sign__group {
@@ -5616,11 +5644,11 @@ input{
 }
 .sign__group--checkbox input:not(:checked) + label a,
 .sign__group--checkbox input:checked + label a {
- color: #25a56a;
+ color: #fca311;
 }
 .sign__group--checkbox input:not(:checked) + label a:hover,
 .sign__group--checkbox input:checked + label a:hover {
- color: #25a56a;
+ color: #fca311;
   text-decoration: underline;
 }
 .sign__group--checkbox input:not(:checked) + label:before,
@@ -5668,7 +5696,7 @@ input{
   width: 100%;
   height: 50px;
   border-radius: 10px;
-  background-color: #25a56a;
+  background-color: #fca311;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -5691,7 +5719,7 @@ input{
   color: #fff;
 }
 .sign__btn--blue:hover {
-  background-color: #25a56a;
+  background-color: #fca311;
   color: #fff;
 }
 .sign__text {
@@ -5707,10 +5735,10 @@ input{
 }
 .sign__text a {
   position: relative;
- color: #25a56a;
+ color: #fca311;
 }
 .sign__text a:hover {
- color: #25a56a;
+ color: #fca311;
   text-decoration: underline;
 }
 .sign__text--small {
@@ -5842,7 +5870,7 @@ input{
   color: #fff;
 }
 .sign__radio input:checked + label:before {
-  border-color: #25a56a;
+  border-color: #fca311;
 }
 @media (min-width: 576px) {
   .sign__form {
@@ -5932,7 +5960,7 @@ input{
   width: 100%;
   height: 50px;
   border-radius: 12px;
-  background-color: #25a56a;
+  background-color: #fca311;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -5995,7 +6023,7 @@ input{
   fill: #29b474;
 }
 .modal__icon--red svg {
-  fill: #25a56a;
+  fill: #fca311;
 }
 .modal__icon--purple svg {
   fill: #7640d8;
@@ -6029,7 +6057,7 @@ input{
 }
 .modal__close:hover svg {
   opacity: 1;
-  fill: #25a56a;
+  fill: #fca311;
 }
 @media (min-width: 768px) {
   .modal {
@@ -6178,13 +6206,13 @@ input{
 }
 .slider-radio .sliding-piece {
   border-radius: 12px;
-  background-color: #25a56a;
+  background-color: #fca311;
   z-index: 99;
 }
 .slider-radio input[type=radio]:checked + label ,
 .slider-radio label.active {
   color: #fff;
-  background-color: #25a56a;
+  background-color: #fca311;
 }
 @media (min-width: 768px) {
   .slider-radio {
@@ -6219,7 +6247,7 @@ input{
   background-color: transparent;
 }
 .select2-container .select2-selection--single:hover .select2-selection__rendered {
- color: #25a56a;
+ color: #fca311;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow {
   height: 20px;
@@ -6245,12 +6273,12 @@ input{
 }
 .select2-container--default .select2-results__option[aria-selected="true"] {
   background-color: transparent;
- color: #25a56a;
+ color: #fca311;
   cursor: default;
 }
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
   background-color: transparent;
- color: #25a56a;
+ color: #fca311;
 }
 .select2-results__option {
   padding: 0 0;
@@ -6297,7 +6325,7 @@ input{
   overflow: hidden;
 }
 .scrollbar-thumb-y {
-  background: #25a56a !important;
+  background: #fca311 !important;
   width: 4px !important;
   border-radius: 4px !important;
 }
@@ -6312,7 +6340,7 @@ input{
   overflow: hidden;
 }
 .scrollbar-thumb-x {
-  background: #25a56a !important;
+  background: #fca311 !important;
   height: 4px !important;
   border-radius: 4px !important;
 }

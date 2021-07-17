@@ -1,4 +1,14 @@
-const __url__ = "http://a9481bbeee2d.ngrok.io/api";
+const __url__ = "http://127.0.0.1:8000/api";
+
+function handle_price(num) {
+    let _num = "";
+    let reminder = num.length % 3;
+    _num = num.substr(0, reminder);
+    for (let i = reminder; i < num.length; i += 3) {
+        _num = _num + (i === reminder && reminder === 0 ? "" : ",") + num.substr(i, 3);
+    }
+    return _num;
+}
 
 function updateCart($type, $id, $success_message = null, $error_message = null) {
     console.log(__url__ + "/cart/" + $type);
@@ -57,7 +67,7 @@ function updateCartDropdown(response) {
                     html += "<p>" + details[i].full_name + "</p>\n";
                     break;
                 case 'studio' :
-                    html += "<div class='badge badge-success'>استودیو</div>\n";
+                    html += "<div class='badge badge-success'>استدیو</div>\n";
                     html += "<p><a href='studio.html?id=" + details[i].id + "'>" + details[i].full_name + "</a></p>\n";
                     break;
             }
@@ -163,28 +173,93 @@ $(window).on('load', function () {
                 for (const user_id in data) {
                     const name = data[user_id]['user']['first_name'] + ' ' + data[user_id]['user']['last_name'];
                     let avatar = data[user_id]['artist'][0]['avatar'];
-                    if (avatar != null) {
-                        avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
-                    } else {
+                    let is_advisor = data[user_id]['artist'][0]['is_advisor'];
+                    let advise_price = data[user_id]['artist'][0]['advise_price'];
+                    let advise_html_span = "";
+                    if (avatar == null) {
                         avatar = "assets/website/img/avatar.svg";
                     }
+                    if (is_advisor === 0) {
+                        advise_html_span = "<span>مشاوره ندارد</span>";
+                    } else {
+                        advise_html_span = " <span> هزینه مشاوره : " + advise_price + " <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "<g>\n" +
+                            "<path d=\"M458.667,0H323.349c-25.643,0-49.749,9.984-67.883,28.117L18.197,265.387C6.464,277.12,0,292.715,0,309.376    c0,16.576,6.464,32.171,18.197,43.904L158.72,493.803C170.453,505.536,186.048,512,202.709,512    c16.576,0,32.171-6.464,43.904-18.197l237.269-237.269C502.016,238.4,512,214.293,512,188.651V53.333    C512,23.936,488.064,0,458.667,0z M490.667,188.651c0,19.947-7.765,38.699-21.845,52.779L231.531,478.72    c-15.339,15.339-42.24,15.445-57.707,0L33.28,338.176c-7.701-7.68-11.947-17.92-11.947-28.885c0-10.88,4.245-21.12,11.947-28.821    L270.549,43.2c14.123-14.101,32.853-21.867,52.8-21.867h135.317c17.643,0,32,14.357,32,32V188.651z\" fill=\"#ffffff\" data-original=\"#000000\" style=\"\" class=\"\"/>\n" +
+                            "</g>\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "<g>\n" +
+                            "<path d=\"M394.667,64c-29.397,0-53.333,23.936-53.333,53.333c0,29.397,23.936,53.333,53.333,53.333S448,146.731,448,117.333    C448,87.936,424.064,64,394.667,64z M394.667,149.333c-17.643,0-32-14.357-32-32c0-17.643,14.357-32,32-32s32,14.357,32,32    C426.667,134.976,412.309,149.333,394.667,149.333z\" fill=\"#ffffff\" data-original=\"#000000\" style=\"\" class=\"\"/>\n" +
+                            "</g>\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
+                            "</g>\n" +
+                            "</g></svg></span>"
+                    }
+                    // $(".main__carousel--artists").append("" +
+                    //     "<a href=\"artist.html?id=" + user_id + "\" class=\"artist\">\n" +
+                    //     "<div class=\"artist__cover\">\n" +
+                    //     "<img src=\"" + avatar + "\" alt=\"\">\n" +
+                    //     "<a href=\"artist.html?id="+ user_id +"\"></a>\n"+
+                    //     "<span class=\"artist__stat\">"+advise_html_span+"</span>\n"+
+                    //     "</div>\n" +
+                    //     "<h3 class=\"artist__title\">" + name + "</h3>\n" +
+                    //     "</a>")
+
                     $(".main__carousel--artists").append("" +
-                        "<a href=\"artist.html?id=" + user_id + "\" class=\"artist\">\n" +
-                        "<div class=\"artist__cover\">\n" +
+                        "<div class=\"album\">\n" +
+                        "<div class=\"album__cover\">\n" +
                         "<img src=\"" + avatar + "\" alt=\"\">\n" +
+                        "<a href=\"artist.html?id=" + user_id + "\">\n" +
+                        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n"+
+                        "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n"+
+                        "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n"+
+                        "</svg>\n</a>\n" +
                         "</div>\n" +
-                        "<h3 class=\"artist__title\">" + name + "</h3>\n" +
-                        "</a>")
+                        "<div class=\"album__title\">\n" +
+                        "<h3><a href=\"artist.html?id=" + user_id + "\">" + name + "</a></h3>\n" +
+                        "<span>" + (is_advisor === 0 ? "مشاوره ندارد" : (" مشاوره ساعتی : " + handle_price(advise_price.toString()) + " تومان")) + "</span>\n" +
+                        "</div>\n" +
+                        "</div>")
                 }
                 $('.main__carousel--artists').owlCarousel({
                     mouseDrag: true,
                     touchDrag: true,
-                    dots: true,
+                    dots: false,
                     loop: true,
                     autoplay: false,
                     smartSpeed: 600,
                     margin: 20,
-                    autoHeight: true,
+                    autoHeight: false,
                     responsive: {
                         0: {
                             items: 2,
@@ -197,7 +272,7 @@ $(window).on('load', function () {
                             margin: 30,
                         },
                         992: {
-                            items: 6,
+                            items: 4,
                             margin: 30,
                         },
                         1200: {
@@ -216,10 +291,11 @@ $(window).on('load', function () {
             let package_avatar;
             if (data.length > 0) {
                 for (let i = 0; i < data.length; i++) {
-                    if (data[i].image)
-                        package_avatar = data[i].image.replace('http://127.0.0.1:8000/storage/', '');
-                    else
+                    if (data[i].image == null)
                         package_avatar = "assets/website/img/store/item1.jpg";
+                    else {
+                        package_avatar = data[i].image;
+                    }
                     $(".main__carousel--store").append("" +
                         "<div class=\"product\">\n" +
                         "<a href=\"#\" class=\"product__img\">\n" +
@@ -232,12 +308,12 @@ $(window).on('load', function () {
                 $('.main__carousel--store').owlCarousel({
                     mouseDrag: true,
                     touchDrag: true,
-                    dots: true,
+                    dots: false,
                     loop: true,
                     autoplay: false,
                     smartSpeed: 600,
                     margin: 20,
-                    autoHeight: true,
+                    autoHeight: false,
                     responsive: {
                         0: {
                             items: 2,
@@ -274,18 +350,23 @@ $(window).on('load', function () {
                 for (let i = 0; i < data.length; i++) {
                     $(".main__carousel--events").append("" +
                         "<div class=\"event\"" +
-                        "style=\"background-image: url(" + (data[i].images.length > 0 ? data[i].images[0] : 'assets/website/img/studio-placeholder.png') + ");" +
+                        "style=\"background-image: url(" + (data[i].images.length > 0 ? data[i].images[0].path : 'assets/website/img/studio-placeholder.png') + ");" +
                         "background-position: center center; background-repeat: no-repeat; background-size: cover\">\n" +
-                        "<span class=\"event__date\">" + data[i].price + " تومان " + "</span>\n" +
-                        // "<span class=\"event__time\">9:30 بعد از ظهر</span>\n" +
+                        "<a href=\"studio.html?id=" + data[i].id + "\" class=\"event__ticket\">\n"+
+                        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n"+
+                        "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n"+
+                        "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n"+
+                        "</svg>   مشاهده و رزرو</a>\n"+
+                        "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> تهران</span>\n" +
                         "<h3 class=\"event__title\"><a href=\"studio.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
-                        "<p class=\"event__address\">" + data[i].address + "</p>\n" +
+                        "<span class=\"event__date\" dir='ltr'> <span dir='rtl'>" + handle_price(data[i].price.toString()) + " تومان </span> <i class=\"icofont-price mr-1\"></i> </span>\n" +
+                        // "<p class=\"event__address\">" + data[i].address + "</p>\n" +
                         "</div>");
                 }
                 $('.main__carousel--events').owlCarousel({
                     mouseDrag: true,
                     touchDrag: true,
-                    dots: true,
+                    dots: false,
                     loop: true,
                     autoplay: false,
                     smartSpeed: 600,
@@ -309,7 +390,6 @@ $(window).on('load', function () {
                         1200: {
                             items: 3,
                             margin: 30,
-                            mouseDrag: false,
                         },
                     }
                 });
@@ -317,7 +397,7 @@ $(window).on('load', function () {
         } else {
             const parent = $(".main__carousel--events").parent(".main__carousel-wrap");
             parent.empty();
-            parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.استودیویی برای نمایش وجود ندارد</div>");
+            parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.استدیویی برای نمایش وجود ندارد</div>");
 
         }
     });
@@ -393,11 +473,11 @@ $(document).ready(function () {
     $('.hero').owlCarousel({
         mouseDrag: true,
         touchDrag: true,
-        dots: true,
+        dots: false,
         loop: true,
-        autoplay: false,
+        autoplay: true,
         smartSpeed: 600,
-        autoHeight: true,
+        autoHeight: false,
         items: 1,
         responsive: {
             0: {

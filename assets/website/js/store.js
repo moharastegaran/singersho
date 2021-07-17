@@ -12,9 +12,7 @@ function updateStoreToPage(pageNum) {
                 name = _package.name;
                 price = _package.price;
                 avatar = _package.image;
-                if (avatar !== null) {
-                    avatar = avatar.replace('http://127.0.0.1:8000/storage/', '');
-                }else{
+                if (avatar == null) {
                     avatar = "assets/website/img/store/item1.jpg"
                 }
                 parent.append("<div class=\"col-6 col-sm-4 col-lg-3\">\n" +

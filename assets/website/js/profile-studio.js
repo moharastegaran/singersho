@@ -57,7 +57,7 @@ $("#formAddStudio").on("submit", function (e) {
                         }
                         if (isOk) {
                             Snackbar.show({
-                                text: 'استادیو شما با موفقیت ایجاد شد',
+                                text: 'استدیو شما با موفقیت ایجاد شد',
                                 actionText: 'تشکر',
                                 actionTextColor: '#1f8a02',
                                 onClose : function (element) {
@@ -124,7 +124,7 @@ $(window).on("load", function () {
                     $(".studios_table").append(viewable_html);
                 }
             }else{
-                $(".studios_table").parent().append("<div class='alert alert-outline-info text-light'>تا کنون استودیو ایجاد نکرده اید.</div>")
+                $(".studios_table").parent().append("<div class='alert alert-outline-info text-light'>تا کنون استدیو ایجاد نکرده اید.</div>")
                 $(".studios_table").remove();
             }
         },
