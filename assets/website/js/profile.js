@@ -1,6 +1,6 @@
 // const userProfileAvatarUpload = new FileUploadWithPreview('userProfileAvatar');
 const userExperienceThumbnailUpload = new FileUploadWithPreview('userExperienceThumbnail');
-let portfolioType = "URL";
+let portfolioType = "url";
 let is_artist = false,user_first_name,user_last_name,user_email,user_melli_code,artist_advise_price;
 
 let focusedPortfolioRow = null, focusedPortfolioIndex = -1;
@@ -331,9 +331,9 @@ function editPortfolioRow(current) {
     form.find("[name='name']").val(name);
     form.find("[name='date']").val(date);
     form.find("[name='description']").val(description);
-    form.find("[name='url']").val(url);
+    form.find("[name='url']").val(url!=null ? url : null);
     // form.find("[name='description']").val(description);
-    if (type === 'Sound')
+    if (type === 'sound')
         form.find(".nav-pills a:last-child").tab("show");
     userExperienceThumbnailUpload.addImagesFromPath([$(focusedPortfolioRow).find(".image").attr("src")]);
 }
@@ -631,7 +631,7 @@ $(document).ready(function (){
     $(".nav-pills a").on("click", function () {
         if (prev !== null && $(this).find("img").attr("src") === prev.find("img").attr("src"))
             return;
-        portfolioType = (portfolioType === "URL") ? "Sound" : "URL";
+        portfolioType = (portfolioType === "url") ? "sound" : "url";
         prev = $(this);
     });
 
