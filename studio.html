@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
-
+    <link rel="stylesheet" href="assets/website/css/icofont.min.css">
+    <link rel="stylesheet" href="assets/website/css/jquery.ui.slider.css">
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
     <title>سایت ساز و صدا - صفحه استدیو</title>
 
@@ -192,16 +193,19 @@
     <div class="container-fluid">
         <!-- slider -->
         <section class="d-flex flex-row align-items-center mt-md-4">
-            <div class="col-md-6">
-                <h1 class="hero__title studio name" style="font-size: 30px"></h1>
-                <p class="hero__text studio address text-left" style="font-size: 20px"></p>
+            <div class="col-lg-7 col-md-6 studio__content_list">
+                <span class="mt-4"> عنوان: <i class="icofont-ui-text-chat"></i></span>
+                <h1 class="hero__title studio name"></h1>
+                <span class="mt-4"> آدرس: <i class="icofont-location-pin"></i></span>
+                <p class="hero__text  studio address text-left"></p>
+                <span class="mt-4"> هزینه رزرو ساعتی: <i class="icofont-price"></i></span>
                 <p class="hero__text studio price text-left" dir="rtl"></p>
                 <div class="hero__btns justify-content-end">
                     <a href="javascript:void(0)" class="hero__btn hero__btn--red open-modal btn-add-to-basket">رزرو استدیو</a>
                     <!--						<a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&amp;hl=en&amp;t=v&amp;hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="hero__btn open-map">نمایش مکان</a>-->
                 </div>
             </div>
-            <div class="col-md-6 studio images"></div>
+            <div class="col-lg-5 col-md-6 studio images"></div>
         </section>
         <!-- end slider -->
 
@@ -430,21 +434,35 @@
 		        const _studio = response.studio;
 		        id = _id;
 		        if(_studio.images.length > 0){
-		            $(".studio.images").append("<div class='hero owl-carousel' id='hero'>")
+		            $(".studio.images").append("<div class='store-item__carousel owl-carousel' id='hero'>")
                     for (let i = 0; i < _studio.images.length; i++) {
-                        $(".studio.images").append("<div class='hero__slide' data-bg='"+_studio.images[i]+"'></div>")
+                        $(".studio.images .store-item__carousel").append("<div class='store-item__cover' style=\"background: url("+_studio.images[i].path+") center center no-repeat;background-size: cover;height: 250px\"></div>")
                     }
-                    $(".studio.images").append("<button class=\"main__nav main__nav--hero main__nav--prev\" data-nav=\"#hero\" type=\"button\">\n" +
-                        "                    <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n" +
-                        "                        <path d=\"M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z\"/>\n" +
-                        "                    </svg>\n" +
-                        "                </button>\n" +
-                        "                <button class=\"main__nav main__nav--hero main__nav--next\" data-nav=\"#hero\" type=\"button\">\n" +
-                        "                    <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\">\n" +
-                        "                        <path d=\"M17.92,11.62a1,1,0,0,0-.21-.33l-5-5a1,1,0,0,0-1.42,1.42L14.59,11H7a1,1,0,0,0,0,2h7.59l-3.3,3.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l5-5a1,1,0,0,0,.21-.33A1,1,0,0,0,17.92,11.62Z\"/>\n" +
-                        "                    </svg>\n" +
-                        "                </button>" +
-                        "</div>");
+                    $(".studio.images").append("</div>\n");
+                    $('.store-item__carousel').owlCarousel({
+                        mouseDrag: false,
+                        touchDrag: true,
+                        dots: true,
+                        loop: false,
+                        autoplay: false,
+                        smartSpeed: 600,
+                        autoHeight: false,
+                        items: 1,
+                        responsive: {
+                            0: {
+                                margin: 20,
+                            },
+                            576: {
+                                margin: 20,
+                            },
+                            768: {
+                                margin: 30,
+                            },
+                            1200: {
+                                margin: 30,
+                            },
+                        }
+                    });
                 }else{
 		            $(".studio.images").append("<img src='assets/website/img/studio-placeholder.png' class='img-fluid rounded'>")
                 }
@@ -452,7 +470,7 @@
 		        $(".studio.name").append(name=_studio.name);
 		        $(".studio.description").append(_studio.description);
 		        $(".studio.address").append(_studio.address);
-		        $(".studio.price").append(_studio.price+" تومان");
+		        $(".studio.price").append(handle_price(_studio.price.toString())+" تومان");
                 $(".share__link--tw").attr("href", "http://twitter.com/share?text=" + _studio.name + "&url=" + url_string)
                 $(".share__link--fb").attr("href", "https://facebook.com/sharer/sharer.php?u=" + url_string);
                 $(".share__link--ig").attr("href", "https://www.instagram.com/?url=" + url_string);
@@ -467,6 +485,39 @@
             const $success_message = 'استدیو '+name+' به سبد خرید اضافه شد.';
 
             updateCart('studio',id,$success_message,$error_message);
+        });
+        $("#slider-range").slider({
+            range: true,
+            min: 54,
+            max: 242,
+            step: 1,
+            values: [54, 242],
+            slide: function(e, ui) {
+                var min = Math.floor(ui.values[0]);
+                $('.slider-time').html(min + 'm');
+
+                var max = Math.floor(ui.values[1]);
+
+                $('.slider-time2').html(max + '.');
+
+                $('.box').each(function() {
+                    var startTime = (min);
+                    var endTime = (max);
+                    //console.log('.box[data-start-time="' + startTime + '"]');
+
+                    var value = $(this).data('start-time');
+                    //console.log('Selecting all events between ' + startTime + ' and ' + endTime);
+                    // skeleton key
+                    //console.log(value + '<=' + endTime);
+                    if ((parseInt(endTime) >= parseInt(value) && (parseInt(startTime) <= parseInt(value))) ){
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                    //
+                });
+
+            }
         });
     });
 </script>

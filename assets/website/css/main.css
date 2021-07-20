@@ -426,10 +426,11 @@ body::-webkit-scrollbar-thumb {
 .header__action-btn span {
   display: none;
 }
-.header__action-btn svg {
+.header__action-btn svg, .header__action-btn i {
   width: 24px;
   height: auto;
   fill: #c0c0c0;
+  color: #c0c0c0;
   transition: fill 0.5s ease;
 }
 .header__action-btn:hover svg {
@@ -2750,6 +2751,7 @@ input{
   width: 100%;
   margin-top: 20px;
   position: relative;
+  margin-top: -35px;
 }
 .store-item__carousel .owl-dot {
   margin-left: 10px;
@@ -2759,14 +2761,14 @@ input{
 }
 .store-item__carousel .owl-dot span {
   display: block;
-  height: 4px;
-  width: 10px;
-  border-radius: 2px;
+  height: 12px;
+  width: 12px;
+  border-radius: 50px;
   background-color: #c0c0c0;
   transition: 0.5s ease;
 }
 .store-item__carousel .owl-dot.active span {
-  width: 20px;
+  width: 12px;
   background-color: #fca311;
 }
 @media (min-width: 768px) {
@@ -3028,6 +3030,10 @@ input{
     right: 30px;
   }
 }
+.studio__content_list{
+
+}
+
 /*==============================
 	Single
 ==============================*/
@@ -6388,7 +6394,60 @@ input{
   border-radius: 4px !important;
 }
 
+/*==============================
+	Pagination
+==============================*/
+/*ul.pagination {*/
+/*  position: relative;*/
+/*  background: #fff;*/
+/*  display: flex;*/
+/*  padding: 10px 20px;*/
+/*  border-radius: 50px;*/
+/*  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);*/
+/*}*/
 
+ul.pagination{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 5px 2px rgb(30, 30, 30);
+  padding: 10px;
+  border-radius: 50px;
+}
+
+ul.pagination li:not(:first-child,:last-child) {
+  margin-left: 6px;
+  margin-right: 6px;
+  text-align: center !important;
+  width: 35px;
+  height: 35px;
+}
+ul.pagination li:not(:first-child,:last-child) a{
+  border-radius: 50%;
+}
+ul.pagination li a{
+  color : #fca311;
+  font-size: 19px;
+  background-color: transparent;
+  border-color: transparent;
+}
+ul.pagination li.disabled{
+  cursor: not-allowed;
+  opacity: .5;
+}
+ul.pagination li.active a{
+  background-color: #fca311 !important;
+  border-color : #fca311 !important;
+  color : #fff;
+}
+ul.pagination li a:hover{
+  background-color: transparent !important;
+  border-color : #fca311 !important;
+  color : #fca311;
+}
+ul.pagination li.disabled a{
+  background-color: transparent !important;
+  border : none !important;
+}
 /*==============================
 	Loader - Jumping circles
 ==============================*/

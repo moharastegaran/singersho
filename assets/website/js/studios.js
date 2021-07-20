@@ -1,6 +1,9 @@
+let max_price_studios = 0;
+let min_price_studios = Number.MAX_SAFE_INTEGER;
+
 function updateStudiosToPage(pageNum) {
     console.log("page : " + pageNum);
-    $.get(__url__+'/studios/6?page=' + pageNum, function (response) {
+    $.get(__url__+'/studios/12?page=' + pageNum, function (response) {
         if (!response.error) {
             const data = response.studios.data;
             let parent = $('.studios-grid');
@@ -11,18 +14,23 @@ function updateStudiosToPage(pageNum) {
                 const _studio = data[i];
                 name = _studio.name;
                 price = _studio.price;
+                price = parseInt(price);
                 images = _studio.images;
-                parent.append("<div class=\"col-lg-4 col-md-6 col-12 \"><div class=\"event\" " +
-                    "style=\"background-image: url(" + (data[i].images.length > 0 ? data[i].images[0] : 'assets/website/img/studio-placeholder.png') + ");" +
-                    "background-position: center center; background-repeat: no-repeat; background-size: cover\">" +
-                    "               <a href=\"studio.html?id="+data[i].id+"\" class=\"event__ticket\">" +
-                    "               <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M9,10a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V11A1,1,0,0,0,9,10Zm12,1a1,1,0,0,0,1-1V6a1,1,0,0,0-1-1H3A1,1,0,0,0,2,6v4a1,1,0,0,0,1,1,1,1,0,0,1,0,2,1,1,0,0,0-1,1v4a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V14a1,1,0,0,0-1-1,1,1,0,0,1,0-2ZM20,9.18a3,3,0,0,0,0,5.64V17H10a1,1,0,0,0-2,0H4V14.82A3,3,0,0,0,4,9.18V7H8a1,1,0,0,0,2,0H20Z\"/></svg>" +
-                    "مشاهده جزئیات" +
-                    "               </a>\n" +
-                    "               <span class=\"event__date\">" + _studio.price + " تومان " + "</span>\n" +
-                    "               <h3 class=\"event__title\"><a href=\"studio.html?id=" + _studio.id + "\">" + _studio.name + "</a></h3>\n" +
-                    "               <p class=\"event__address\">" + _studio.address + "</p>\n" +
-                    "       </div></div>");
+                if (price > max_price_studios) max_price_studios = price;
+                if (price < min_price_studios) min_price_studios = price;
+                parent.append("<div class=\"col-lg-4 col-md-6 col-12 \"><div class=\"event\"" +
+                    "style=\"background-image: url(" + (images.length > 0 ? images[0].path : 'assets/website/img/studio-placeholder.png') + ");" +
+                    "background-position: center center; background-repeat: no-repeat; background-size: cover\">\n" +
+                    "<a href=\"studio.html?id=" + _studio.id + "\" class=\"event__ticket\">\n"+
+                    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n"+
+                    "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n"+
+                    "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n"+
+                    "</svg> مشاهده</a>\n"+
+                    "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> "+data[i].city.name+"</span>\n" +
+                    "<h3 class=\"event__title\"><a href=\"studio.html?id=" + data[i].id + "\">" + _studio.name + "</a></h3>\n" +
+                    "<span class=\"event__date\" dir='ltr'> <span dir='rtl'>" + handle_price(_studio.price.toString()) + " تومان </span> <i class=\"icofont-price mr-1\"></i> </span>\n" +
+                    // "<p class=\"event__address\">" + data[i].address + "</p>\n" +
+                    "</div></div>");
             }
             const links = response.studios.links;
             parent = $('.pagination');
@@ -32,31 +40,22 @@ function updateStudiosToPage(pageNum) {
                     "              <a class='page-link' href='" + links[i].url + "'>" + links[i].label + "</a>" +
                     "          </li>")
             }
-            // if( $('.artists-grid .item').length ) {
-            // const $elements = $(".artists-grid"),
-            //     $filters = $('.slider-radio label');
-            // $elements.isotope({
-            //     isOriginLeft: false
-            // });
-
-            // $filters.on('click', function () {
-            //     $filters.removeClass('active');
-            //     $(this).addClass('active');
-            //     let selector = $(this).data('filter');
-            //     console.log("selector : " + selector);
-            //     $(".artists-grid").isotope({
-            //         filter: selector,
-            //         hiddenStyle: {
-            //             transform: 'scale(.2) skew(30deg)',
-            //             opacity: 0
-            //         },
-            //         visibleStyle: {
-            //             transform: 'scale(1) skew(0deg)',
-            //             opacity: 1,
-            //         },
-            //         transitionDuration: '.5s'
-            //     });
-            // });
+            console.log("s : "+min_price_studios+" , m : "+max_price_studios)
+            $(".slider-range-min").text(min_price_studios);
+            $(".slider-range-max").text(max_price_studios);
+            $("#slider-range").slider({
+                range: true,
+                min : min_price_studios,
+                max : max_price_studios,
+                step: 1,
+                values : [min_price_studios,max_price_studios],
+                slide: function(e, ui) {
+                    const min = Math.floor(ui.values[0]);
+                    const max = Math.floor(ui.values[1]);
+                    $(".slider-range-min").text(min);
+                    $(".slider-range-max").text(max);
+                }
+            });
         }
     });
 }
