@@ -17,6 +17,97 @@
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
+    <style>
+        .select2-container {
+            width: auto !important;
+        }
+        .select2-container .select2-selection--single {
+            height: 40px;
+            background-color: transparent;
+            border-radius: 0;
+            border: none;
+        }
+        .select2-container .select2-selection--single .select2-selection__rendered {
+            line-height: 40px;
+            color: #fff;
+            padding: 0 18px 0 0;
+            font-size: 16px;
+            font-family: 'IRANSans';
+            font-weight: 400;
+            transition: 0.5s ease;
+        }
+        .select2-container .select2-selection--single[aria-expanded="true"] {
+            background-color: transparent;
+        }
+        .select2-container .select2-selection--single:hover .select2-selection__rendered {
+            color: #fca311;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 20px;
+            width: 18px;
+            top: 10px;
+            right: 0;
+            background: url("assets/website/img/arrow.svg") no-repeat center right;
+            background-size: 18px auto;
+            margin-top: 1px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow b {
+            display: none;
+        }
+        .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+            background-color: #0e2d49;
+            color: #c0c0c0;
+            white-space: nowrap;
+        }
+        .select2-container--default .select2-results__option--selected {
+            color: #c0c0c0;
+            background-color: #0e2d49;
+            cursor: default;
+        }
+        .select2-container--default .select2-results__option[aria-selected="true"] {
+            background-color: transparent;
+            color: #fca311;
+            cursor: default;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+            background-color: transparent;
+            color: #fca311;
+        }
+        .select2-results__option {
+            padding: 0 0;
+            font-size: 16px;
+            font-family: 'IRANSans';
+            font-weight: 400;
+            color: #c0c0c0;
+            height: 40px;
+            line-height: 40px;
+            transition: 0.5s ease;
+            text-align: right;
+
+        }
+        .select2-dropdown {
+          border-left: none;
+          border-right: none;
+          border-bottom: none;
+          border-top: none;
+          border-radius: 10px !important;
+          min-width: 180px;
+          padding: 5px 15px 5px 15px;
+          background-color: #222227;
+          direction: rtl;
+        }
+        .select2-container--open .select2-dropdown--below {
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+        .select2-container--open .select2-dropdown--above {
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        .slider-radio label{
+            width: 120px;
+        }
+    </style>
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="assets/website/icon/favicon-32x32.png" sizes="32x32">
@@ -234,7 +325,23 @@
                             </svg>
                         </button>
                     </form>
-                    <div class="slider-radio"></div>
+
+                    <div class="main__filter-wrap">
+
+                        <select class="main__select mx-2" name="orders">
+                            <option value="" selected>ترتیب نمایش</option>
+                            <option value="/artists/delivery_time/desc">تاریخ عضویت</option>
+                            <option value="/artists/advise_price/desc">هزینه مشاوره</option>
+                        </select>
+
+                        <select class="main__select mx-2" name="titles">
+                        </select>
+                    </div>
+
+                    <div class="slider-radio">
+                        <input type="radio" name="is_advisor" checked="checked"><label data-filter=".is_advisor">مشاور است</label>
+                        <input type="radio" name="is_advisor"><label data-filter=".is_not_advisor">مشاور نیست</label>
+                    </div>
                 </div>
 
                 <div class="row row--grid artists-grid"></div>
@@ -357,12 +464,16 @@
         $.get(__url__+'/titles', function (response) {
             if (!response.error) {
                 const titles = response.titles;
-                $(".slider-radio").append('<input type="radio" name="alltitles" checked="checked"><label data-filter="*">همه</label>')
+                // $(".slider-radio").append('<input type="radio" name="alltitles" checked="checked"><label data-filter="*">همه</label>')
+                $(".main__select[name='titles']").append('<option value="" selected>همه سبک‌ها</option>')
                 for (let i = 0; i < titles.length; i++) {
-                    $(".slider-radio").append(
-                        '<input type="radio" name="title_' + titles[i].id + '"><label data-filter=".title_' + titles[i].id + '">' + titles[i].name + '</label>'
+                    $(".main__select[name='titles']").append(
+                        '<option value="' + titles[i].id + '">' + titles[i].name + '</option>'
                     )
                 }
+                $('.main__select[name="titles"]').select2({
+                    minimumResultsForSearch: Infinity
+                });
             }
         });
         $.get(__url__+'/artists', function (response) {
@@ -370,23 +481,20 @@
                 const data = response.data;
                 let parent = $('.artists-grid'), _data = [];
                 let name, avatar,titles, titles_html, titles_name_html;
-                for (const id in data) {
-                    const _artist = data[id];
-                    name = _artist.user.first_name + ' ' + _artist.user.last_name;
-                    avatar = _artist.artist[0].avatar;
-                    if (avatar !== null) {
-                        avatar = avatar.replace('https://8b71e6d6216f.ngrok.io/storage/', '');
-                    }
+                for (let i=0;i<data.length;i++) {
+                    const _artist = data[i];
+                    name = _artist.first_name + ' ' + _artist.last_name;
+                    avatar = _artist.avatar;
 
-                    titles = _artist.titles;
-                    titles_html = "";
+                    titles = _artist.skills;
+                    // titles_html = "";
                     titles_name_html=""
                     for (let i = 0; i < titles.length; i++) {
-                        titles_html += "title_" + titles[i].id + " ";
+                        // titles_html += "title_" + titles[i].id + " ";
                         titles_name_html += "<label class='badge badge-dark'>"+titles[i].name+"</label>";
                     }
-                    parent.append("<div class=\"col-6 col-sm-4 col-md-3 item " + titles_html + "\">\n" +
-                        "                        <a href=\"artist.html?id=" + id + "\" class=\"artist\">\n" +
+                    parent.append("<div class=\"col-6 col-sm-4 col-md-3 item " + (data[i].is_advisor===1 ? 'is_advisor' : 'is_not_advisor' ) + "\">\n" +
+                        "                        <a href=\"artist.html?id=" + i + "\" class=\"artist\">\n" +
                         "                            <div class=\"artist__cover\">\n" +
                         "                                <img src=\"" + avatar + "\" alt=\"\">\n" +
                         "                            <div class='badges'>"+titles_name_html+"</div>" +
@@ -421,6 +529,12 @@
                     });
                 });
             }
+        });
+    });
+
+    $(document).ready(function (){
+        $('.main__select[name="orders"]').select2({
+            minimumResultsForSearch: Infinity
         });
     });
 </script>

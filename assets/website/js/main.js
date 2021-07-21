@@ -171,11 +171,11 @@ $(window).on('load', function () {
                 parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.هنرمندی برای نمایش وجود ندارد</div>");
             } else {
                 const data = response.data;
-                for (const user_id in data) {
-                    const name = data[user_id]['user']['first_name'] + ' ' + data[user_id]['user']['last_name'];
-                    let avatar = data[user_id]['artist'][0]['avatar'];
-                    let is_advisor = data[user_id]['artist'][0]['is_advisor'];
-                    let advise_price = data[user_id]['artist'][0]['advise_price'];
+                for (let i=0;i<data.length;i++) {
+                    const name = data[i].first_name + ' ' + data[i].last_name;
+                    let avatar = data[i].avatar;
+                    let is_advisor = data[i].is_advisor;
+                    let advise_price = data[i].advise_price;
                     let advise_html_span = "";
                     if (avatar == null) {
                         avatar = "assets/website/img/avatar.svg";
@@ -226,28 +226,19 @@ $(window).on('load', function () {
                             "</g>\n" +
                             "</g></svg></span>"
                     }
-                    // $(".main__carousel--artists").append("" +
-                    //     "<a href=\"artist.html?id=" + user_id + "\" class=\"artist\">\n" +
-                    //     "<div class=\"artist__cover\">\n" +
-                    //     "<img src=\"" + avatar + "\" alt=\"\">\n" +
-                    //     "<a href=\"artist.html?id="+ user_id +"\"></a>\n"+
-                    //     "<span class=\"artist__stat\">"+advise_html_span+"</span>\n"+
-                    //     "</div>\n" +
-                    //     "<h3 class=\"artist__title\">" + name + "</h3>\n" +
-                    //     "</a>")
 
                     $(".main__carousel--artists").append("" +
                         "<div class=\"album\">\n" +
                         "<div class=\"album__cover\" style=\"background-image: url("+avatar+")\">\n" +
                         // "<img src=\"" + avatar + "\" alt=\"\">\n" +
-                        "<a href=\"artist.html?id=" + user_id + "\">\n" +
+                        "<a href=\"artist.html?id=" + i + "\">\n" +
                         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n"+
                         "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n"+
                         "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n"+
                         "</svg>\n</a>\n" +
                         "</div>\n" +
                         "<div class=\"album__title\">\n" +
-                        "<h3><a href=\"artist.html?id=" + user_id + "\">" + name + "</a></h3>\n" +
+                        "<h3><a href=\"artist.html?id=" + i + "\">" + name + "</a></h3>\n" +
                         "<span>" + (is_advisor === 0 ? "مشاوره ندارد" : (" مشاوره ساعتی : " + handle_price(advise_price.toString()) + " تومان")) + "</span>\n" +
                         "</div>\n" +
                         "</div>")
@@ -363,7 +354,7 @@ $(window).on('load', function () {
                         "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n"+
                         "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n"+
                         "</svg>   مشاهده و رزرو</a>\n"+
-                        "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> "+data[i].city.name +"</span>\n" +
+                        "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> "+data[i].city_name+", "+data[i].province_name +"</span>\n" +
                         "<h3 class=\"event__title\"><a href=\"studio.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
                         "<span class=\"event__date\" dir='ltr'> <span dir='rtl'>" + handle_price(data[i].price.toString()) + " تومان </span> <i class=\"icofont-price mr-1\"></i> </span>\n" +
                         // "<p class=\"event__address\">" + data[i].address + "</p>\n" +
@@ -562,9 +553,9 @@ $(document).ready(function () {
     /*==============================
     Select
     ==============================*/
-    $('.main__select').select2({
-        minimumResultsForSearch: Infinity
-    });
+    // $('.main__select').select2({
+    //     minimumResultsForSearch: Infinity
+    // });
 
     /*==============================
     Scrollbar

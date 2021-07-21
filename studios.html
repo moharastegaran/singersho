@@ -12,44 +12,54 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="assets/website/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/website/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/website/css/select2.min.css">
     <link rel="stylesheet" href="assets/website/css/paymentfont.min.css">
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
     <link rel="stylesheet" href="assets/website/css/icofont.min.css">
     <link rel="stylesheet" href="assets/website/css/jquery.ui.slider.css">
+    <link rel="stylesheet" href="plugins/select2/select2-custom.min.css">
+    <link rel="stylesheet" href="plugins/select2/select2-bs-custom.min.css">
     <style>
-        #price-range-slider{
+        #price-range-slider {
             position: relative;
         }
-        #price-range-slider{
+
+        #price-range-slider {
             position: relative;
-            background:#151515;
-            border-radius:12px;
-            z-index:9999;
+            background: #151515;
+            border-radius: 12px;
+            z-index: 9999;
             width: 280px;
             top: 100%;
-            left: 0;
-            border : 2px solid #222227;
+            left: 50%;
+            transform : translateX(-50%);
+            border: 2px solid #222227;
         }
-        #price-range-slider span,.slider-range-min, .slider-range-max{
+
+
+
+        #price-range-slider span, .slider-range-min, .slider-range-max {
             font-size: 15px;
             margin-bottom: 1rem;
             margin-top: -7px;
         }
+
         #price-range-slider span {
-            color : #ababab;
+            color: #ababab;
         }
-        .slider-range-min, .slider-range-max{
+
+        .slider-range-min, .slider-range-max {
             background: #222227;
             border-radius: 12px;
-            color : #c0c0c0;
+            color: #c0c0c0;
             padding: 2px 8px;
         }
+
         .flat-slider {
             margin-bottom: .5rem;
         }
+
         .flat-slider.ui-corner-all,
         .flat-slider .ui-corner-all {
             border-radius: 0;
@@ -305,49 +315,61 @@
         <div class="row row--grid">
             <div class="col-12">
                 <div class="main__filter">
-                    <form action="#" class="main__filter-search">
-                        <input type="text" placeholder="تاریخ ، مکان و ...">
-                        <button type="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>
-                            </svg>
-                        </button>
-                    </form>
+                    <form action="#" class="w-100 position-relative d-flex justify-content-start align-items-center">
 
-                    <div class="slider-radio">
-                        <input type="radio" name="grade" id="upcoming" checked="checked"><label
-                            for="upcoming">تهران</label>
-                        <input type="radio" name="grade" id="past"><label for="past">سایر شهرستانها</label>
-                    </div>
+                        <div class="main__filter-search">
+                            <input type="text" placeholder="عنوان و ..">
+                        </div>
+                        <!--                        <button type="button">-->
+                        <!--                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">-->
+                        <!--                                <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>-->
+                        <!--                            </svg>-->
+                        <!--                        </button>-->
+                        <div class="main__filter-search">
+                            <select name="sss" multiple="multiple">
+                                <option value="aaa">aaa</option>
+                                <option value="bbb">bbb</option>
+                                <option value="vvv">vvv</option>
+                                <option value="ddd">ddd</option>
+                                <option value="rtt">rtt</option>
+                            </select>
+                        </div>
 
-                    <div id="price-range-container">
-                        <button class="sign__btn w-auto h-auto p-2" data-toggle="collapse" data-target="#price-range-slider">
-                            <i class="icofont-settings"></i>
-                        </button>
-                        <div id="price-range-slider" class="collapse pt-3 pb-4 px-lg-5 px-md-4 position-absolute shadow-lg">
-                            <div class="w-100 d-flex flex-column">
-                                <h6 class="border-bottom pb-3 mb-5 text-light text-center" style="border-color: #222227 !important;">فیلتر محدوده قیمت</h6>
-                                <div class="flat-slider col-12" id="slider-range"></div>
-                                <div class="row mt-3">
-                                    <div class="col-6 d-flex flex-column align-items-center text-center">
-                                        <span>تا</span>
-                                        <span class="slider-range-max">0</span>
-                                        <span>تومان</span>
-                                    </div>
-                                    <div class="col-6 d-flex flex-column align-items-center text-center">
-                                        <span>از</span>
-                                        <span class="slider-range-min">0</span>
-                                        <span>تومان</span>
-                                    </div>
-                                    <div class="col-12 mt-2 border-top" style="border-color: #222227 !important;">
-                                        <button class="sign__btn mb-0" type="submit" style="font-size: 17px">
-                                            <i class="icofont-filter"></i> اعمال محدوده قیمت </button>
+                        <div id="price-range-container" class="position-relative mx-2">
+                            <button class="btn w-auto h-auto p-2" style="font-size: 17px" data-toggle="collapse"
+                                    data-target="#price-range-slider">
+                                <i class="icofont-settings mr-1"></i>
+                                فیلتر قیمت
+                            </button>
+                            <div id="price-range-slider"
+                                 class="collapse pt-3 pb-4 px-lg-5 px-md-4 position-absolute shadow-lg">
+                                <div class="w-100 d-flex flex-column">
+                                    <h6 class="border-bottom pb-3 mb-5 text-light text-center"
+                                        style="border-color: #222227 !important;">فیلتر محدوده قیمت</h6>
+                                    <div class="flat-slider col-12" id="slider-range"></div>
+                                    <div class="row mt-3">
+                                        <div class="col-6 d-flex flex-column align-items-center text-center">
+                                            <span>تا</span>
+                                            <span class="slider-range-max">0</span>
+                                            <span>تومان</span>
+                                        </div>
+                                        <div class="col-6 d-flex flex-column align-items-center text-center">
+                                            <span>از</span>
+                                            <span class="slider-range-min">0</span>
+                                            <span>تومان</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="mr-auto">
+                            <button class="sign__btn w-auto h-auto p-2" type="submit" style="font-size: 17px">
+                                <i class="icofont-filter mr-1"></i> اعمال فیلتر
+                            </button>
+                        </div>
+
+                    </form>
                 </div>
 
                 <div class="row row--grid studios-grid"></div>
@@ -413,11 +435,11 @@
 <script src="assets/website/js/owl.carousel.min.js"></script>
 <script src="assets/website/js/jquery.magnific-popup.min.js"></script>
 <script src="assets/website/js/smooth-scrollbar.js"></script>
-<script src="assets/website/js/select2.min.js"></script>
 <script src="assets/website/js/slider-radio.js"></script>
 <script src="assets/website/js/jquery.inputmask.min.js"></script>
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
+<script src="plugins/select2/select2-custom.min.js"></script>
 <script src="assets/website/js/studios.js"></script>
 </body>
 

@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/website/css/jquery.ui.slider.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/website/js/jquery-ui.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/artists.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/studios.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/studios.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/select2/select2-bs-custom.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/select2/select2-bs-custom.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/select2/select2-bs-custom.min.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/select2/select2-custom.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/select2/select2-custom.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/studio.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/studios.html" beforeDir="false" afterPath="$PROJECT_DIR$/studios.html" afterDir="false" />
     </list>
@@ -282,7 +283,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/website/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/website/css" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -291,11 +292,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\css" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\img" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\js" />
       <recent name="C:\Users\Mammad\Desktop\New folder" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\js" />
-      <recent name="C:\Users\Mammad\Desktop\New folder\assets\website" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\css" />
@@ -372,7 +373,8 @@
       <workItem from="1626614811375" duration="8847000" />
       <workItem from="1626634734411" duration="13430000" />
       <workItem from="1626667886316" duration="12823000" />
-      <workItem from="1626776575080" duration="11374000" />
+      <workItem from="1626776575080" duration="12182000" />
+      <workItem from="1626846678504" duration="15466000" />
     </task>
     <servers />
   </component>

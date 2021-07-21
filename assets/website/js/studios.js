@@ -26,7 +26,7 @@ function updateStudiosToPage(pageNum) {
                     "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n"+
                     "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n"+
                     "</svg> مشاهده</a>\n"+
-                    "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> "+data[i].city.name+"</span>\n" +
+                    "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> "+data[i].city_name+", "+data[i].province_name+"</span>\n" +
                     "<h3 class=\"event__title\"><a href=\"studio.html?id=" + data[i].id + "\">" + _studio.name + "</a></h3>\n" +
                     "<span class=\"event__date\" dir='ltr'> <span dir='rtl'>" + handle_price(_studio.price.toString()) + " تومان </span> <i class=\"icofont-price mr-1\"></i> </span>\n" +
                     // "<p class=\"event__address\">" + data[i].address + "</p>\n" +
@@ -80,7 +80,6 @@ $(document).ready(function () {
     const $loadingDiv = $('#loadingDiv').hide()
     $(document).ajaxStart(function () {
         $loadingDiv.show();
-        console.log("test")
     }).ajaxStop(function () {
         $loadingDiv.hide();
     });
@@ -89,6 +88,14 @@ $(document).ready(function () {
         e.preventDefault();
         const $this = $(this);
         updateStudiosToPage(getCurrentPageNum($this));
+    });
+
+    $(".main__filter-search select").select2({
+        placeholder: '-انتخاب کنید-',
+        dir: "rtl",
+        language: "fa",
+        width: '100%',
+        theme: "bootstrap"
     });
 
 });
