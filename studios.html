@@ -33,10 +33,9 @@
             width: 280px;
             top: 100%;
             left: 50%;
-            transform : translateX(-50%);
+            transform: translateX(-50%);
             border: 2px solid #222227;
         }
-
 
 
         #price-range-slider span, .slider-range-min, .slider-range-max {
@@ -315,28 +314,33 @@
         <div class="row row--grid">
             <div class="col-12">
                 <div class="main__filter">
-                    <form action="#" class="w-100 position-relative d-flex justify-content-start align-items-center">
+                    <form class="main__filter-search">
+                        <input type="text" name="search" placeholder="نام استدیو ...">
+                        <button type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>
+                            </svg>
+                        </button>
+                    </form>
 
-                        <div class="main__filter-search">
-                            <input type="text" placeholder="عنوان و ..">
-                        </div>
-                        <!--                        <button type="button">-->
-                        <!--                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">-->
-                        <!--                                <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>-->
-                        <!--                            </svg>-->
-                        <!--                        </button>-->
-                        <div class="main__filter-search">
-                            <select name="sss" multiple="multiple">
+                    <div class="main__filter-wrap">
+                        <form class="main__filter-cities mb-0">
+                            <select name="cities" multiple="multiple">
                                 <option value="aaa">aaa</option>
                                 <option value="bbb">bbb</option>
                                 <option value="vvv">vvv</option>
                                 <option value="ddd">ddd</option>
                                 <option value="rtt">rtt</option>
                             </select>
-                        </div>
+                            <button type="submit">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>
+                                </svg>
+                            </button>
+                        </form>
 
-                        <div id="price-range-container" class="position-relative mx-2">
-                            <button class="btn w-auto h-auto p-2" style="font-size: 17px" data-toggle="collapse"
+                        <div id="price-range-container" class="position-relative" style="margin-right: 30px">
+                            <button class="sign__btn w-auto h-auto p-2" style="font-size: 17px" data-toggle="collapse"
                                     data-target="#price-range-slider">
                                 <i class="icofont-settings mr-1"></i>
                                 فیلتر قیمت
@@ -359,17 +363,16 @@
                                             <span>تومان</span>
                                         </div>
                                     </div>
+
+                                    <button class="price-filter__btn sign__btn h-auto p-2" type="button" style="font-size: 17px">
+                                        <i class="icofont-filter mr-1"></i> اعمال فیلتر
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="mr-auto">
-                            <button class="sign__btn w-auto h-auto p-2" type="submit" style="font-size: 17px">
-                                <i class="icofont-filter mr-1"></i> اعمال فیلتر
-                            </button>
-                        </div>
-
-                    </form>
                 </div>
 
                 <div class="row row--grid studios-grid"></div>

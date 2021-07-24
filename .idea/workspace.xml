@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/artists.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/imagesloaded.pkgd.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artist.html" beforeDir="false" afterPath="$PROJECT_DIR$/artist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/artists.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/artist.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/artist.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/studios.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/studios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/select2/select2-bs-custom.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/select2/select2-bs-custom.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/select2/select2-bs-custom.min.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/select2/select2-custom.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/select2/select2-custom.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/studio.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/studios.html" beforeDir="false" afterPath="$PROJECT_DIR$/studios.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,8 +27,8 @@
       <list>
         <option value="HTML File" />
         <option value="SCSS File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -374,7 +374,11 @@
       <workItem from="1626634734411" duration="13430000" />
       <workItem from="1626667886316" duration="12823000" />
       <workItem from="1626776575080" duration="12182000" />
-      <workItem from="1626846678504" duration="15466000" />
+      <workItem from="1626846678504" duration="15743000" />
+      <workItem from="1626940841644" duration="18303000" />
+      <workItem from="1626980761167" duration="5737000" />
+      <workItem from="1627035532967" duration="10664000" />
+      <workItem from="1627106935283" duration="25516000" />
     </task>
     <servers />
   </component>

@@ -17,6 +17,15 @@
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
+    <style>
+        .main__portfolio-artist, .main__titles-artist{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
 
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
     <title>سایت ساز و صدا - صفحه هنرمند</title>
@@ -190,11 +199,11 @@
 <!-- player -->
 <div class="player">
     <div class="player__cover">
-        <img src="assets/website/img/covers/TANHAM NAZAR.jpg" alt="">
+        <img src="assets/website/img/no-image.jpg" alt="">
     </div>
 
     <div class="player__content">
-        <span class="player__track"><b class="player__title">تنهام نذار</b> – <span class="player__artist">مهراد خمیری</span></span>
+        <span class="player__track"><b class="player__title">نام آهنگ</b> – <span class="player__artist">نمونه کار</span></span>
         <audio src="assets/website/audio/Mehrad_Khamiri_-_02_Tanham_Nazar.mp3" id="audio" controls></audio>
     </div>
 </div>
@@ -245,7 +254,7 @@
                 </div>
             </div>
             <!-- end title -->
-            <div class="d-flex flex-row justify-content-end col-12 main__portfolio-artist"></div>
+            <div class="d-flex flex-row flex-wrap justify-content-end col-12 main__portfolio-artist"></div>
         </section>
         <!-- end music videos -->
 

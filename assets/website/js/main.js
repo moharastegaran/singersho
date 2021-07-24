@@ -1,6 +1,5 @@
 const __url__ = "http://127.0.0.1:8000/api";
 
-
 function handle_price(num) {
     let _num = "";
     let reminder = num.length % 3;
@@ -163,83 +162,41 @@ $(window).on('load', function () {
         }
     });
 
-    $.get(__url__ + '/artists', function (response) {
+    $.get(__url__ + '/artists/8', function (response) {
         if (!response.error) {
             if (response.hasOwnProperty('is_empty') && response.is_empty === true) {
                 const parent = $(".main__carousel--artists").parent(".main__carousel-wrap");
                 parent.empty();
                 parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.هنرمندی برای نمایش وجود ندارد</div>");
             } else {
-                const data = response.data;
+                const data = response.data.data;
                 for (let i=0;i<data.length;i++) {
                     const name = data[i].first_name + ' ' + data[i].last_name;
                     let avatar = data[i].avatar;
                     let is_advisor = data[i].is_advisor;
                     let advise_price = data[i].advise_price;
-                    let advise_html_span = "";
                     if (avatar == null) {
                         avatar = "assets/website/img/avatar.svg";
                     }
-                    if (is_advisor === 0) {
-                        advise_html_span = "<span>مشاوره ندارد</span>";
-                    } else {
-                        advise_html_span = " <span> هزینه مشاوره : " + advise_price + " <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\"><g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "<g>\n" +
-                            "<path d=\"M458.667,0H323.349c-25.643,0-49.749,9.984-67.883,28.117L18.197,265.387C6.464,277.12,0,292.715,0,309.376    c0,16.576,6.464,32.171,18.197,43.904L158.72,493.803C170.453,505.536,186.048,512,202.709,512    c16.576,0,32.171-6.464,43.904-18.197l237.269-237.269C502.016,238.4,512,214.293,512,188.651V53.333    C512,23.936,488.064,0,458.667,0z M490.667,188.651c0,19.947-7.765,38.699-21.845,52.779L231.531,478.72    c-15.339,15.339-42.24,15.445-57.707,0L33.28,338.176c-7.701-7.68-11.947-17.92-11.947-28.885c0-10.88,4.245-21.12,11.947-28.821    L270.549,43.2c14.123-14.101,32.853-21.867,52.8-21.867h135.317c17.643,0,32,14.357,32,32V188.651z\" fill=\"#ffffff\" data-original=\"#000000\" style=\"\" class=\"\"/>\n" +
-                            "</g>\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "<g>\n" +
-                            "<path d=\"M394.667,64c-29.397,0-53.333,23.936-53.333,53.333c0,29.397,23.936,53.333,53.333,53.333S448,146.731,448,117.333    C448,87.936,424.064,64,394.667,64z M394.667,149.333c-17.643,0-32-14.357-32-32c0-17.643,14.357-32,32-32s32,14.357,32,32    C426.667,134.976,412.309,149.333,394.667,149.333z\" fill=\"#ffffff\" data-original=\"#000000\" style=\"\" class=\"\"/>\n" +
-                            "</g>\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "<g xmlns=\"http://www.w3.org/2000/svg\">\n" +
-                            "</g>\n" +
-                            "</g></svg></span>"
+
+                    let titles_name_html = ""
+                    const titles = data[i].skills;
+                    for (let i = 0; i < titles.length; i++) {
+                        titles_name_html += "<a href='artists.html?page=1&title="+titles[i].name+"' class='badge badge-warning mx-1'>" + titles[i].name + "</a>";
                     }
 
                     $(".main__carousel--artists").append("" +
                         "<div class=\"album\">\n" +
-                        "<div class=\"album__cover\" style=\"background-image: url("+avatar+")\">\n" +
+                        "<div class=\"album__cover single\" style=\"background-image: url("+avatar+")\">\n" +
                         // "<img src=\"" + avatar + "\" alt=\"\">\n" +
-                        "<a href=\"artist.html?id=" + i + "\">\n" +
-                        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n"+
-                        "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n"+
-                        "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n"+
-                        "</svg>\n</a>\n" +
+                        "<a href=\"artist.html?id=" + data[i].id + "\"> مشاهده \n" +
+                        "<i class=\"icofont-eye-alt\"></i>\n" +
+                        "</a>\n" +
+                        "<div class=\"badges\">" + titles_name_html + "</div>\n" +
                         "</div>\n" +
                         "<div class=\"album__title\">\n" +
-                        "<h3><a href=\"artist.html?id=" + i + "\">" + name + "</a></h3>\n" +
-                        "<span>" + (is_advisor === 0 ? "مشاوره ندارد" : (" مشاوره ساعتی : " + handle_price(advise_price.toString()) + " تومان")) + "</span>\n" +
+                        "<h3><a href=\"artist.html?id=" + data[i].id + "\">" + name + "</a></h3>\n" +
+                        "<span>" + (is_advisor === 0 ? "مشاوره نمیدهد" : (" مشاوره ساعتی : " + handle_price(advise_price.toString()) + " تومان")) + "</span>\n" +
                         "</div>\n" +
                         "</div>")
                 }
@@ -268,7 +225,7 @@ $(window).on('load', function () {
                             margin: 30,
                         },
                         1200: {
-                            items: 6,
+                            items: 5,
                             margin: 30,
                         },
                     }
@@ -277,7 +234,7 @@ $(window).on('load', function () {
         }
     });
 
-    $.get(__url__ + '/packages/12', function (response) {
+    $.get(__url__ + '/packages/10', function (response) {
         if (!response.error) {
             const data = response.packages.data;
             let package_avatar;
@@ -347,14 +304,14 @@ $(window).on('load', function () {
                 for (let i = 0; i < data.length; i++) {
                     $(".main__carousel--events").append("" +
                         "<div class=\"event\"" +
-                        "style=\"background-image: url(" + (data[i].images.length > 0 ? data[i].images[0].path : 'assets/website/img/studio-placeholder.png') + ");" +
+                        "style=\"background-image: url(" + (data[i].pictures.length > 0 ? data[i].pictures[0].path : 'assets/website/img/studio-placeholder.png') + ");" +
                         "background-position: center center; background-repeat: no-repeat; background-size: cover\">\n" +
                         "<a href=\"studio.html?id=" + data[i].id + "\" class=\"event__ticket\">\n"+
                         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n"+
                         "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n"+
                         "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n"+
                         "</svg>   مشاهده و رزرو</a>\n"+
-                        "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> "+data[i].city_name+", "+data[i].province_name +"</span>\n" +
+                        "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> "+data[i].geographical_information.city+", "+data[i].geographical_information.province +"</span>\n" +
                         "<h3 class=\"event__title\"><a href=\"studio.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
                         "<span class=\"event__date\" dir='ltr'> <span dir='rtl'>" + handle_price(data[i].price.toString()) + " تومان </span> <i class=\"icofont-price mr-1\"></i> </span>\n" +
                         // "<p class=\"event__address\">" + data[i].address + "</p>\n" +

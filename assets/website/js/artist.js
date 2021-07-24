@@ -12,24 +12,23 @@ $(window).on('load', function () {
     $.get(__url__ + '/artist/' + id + '/detail', function (response) {
         if (!response.error) {
             const data = response.data;
-            const artist_name = data['user']['first_name'] + ' ' + data['user']['last_name'];
-            let avatar = data['artist'][0]['avatar'] != null ? data['artist'][0]['avatar'] : "assets/website/img/avatar.svg";
-            _artist_id = data['artist'][0]['id'];
+            const artist = data.artist;
+            const artist_name = artist.first_name + ' ' + artist.last_name;
+            let avatar = artist.avatar != null ? artist.avatar : "assets/website/img/avatar.svg";
+            _artist_id = artist.id;
 
             $(".artist.name").text(artist_name);
             $(".artist.avatar").attr('src', avatar);
-            $(".artist.experience").text(data['artist'][0]['experience']);
-            $(".artist.order_description").text(data['artist'][0]['order_description']);
-            $(".artist.delivery_time").text(data['artist'][0]['delivery_time'] + ' روز');
-            $(".artist.is_advisor").text((_is_advisor = data['artist'][0]['is_advisor']) === 1 ? 'بله' : 'خیر');
-            $(".artist.advise_price").text(handle_price((_advise_price = data['artist'][0]['advise_price']).toString()) + " تومان");
+            $(".artist.experience").text(artist.experience);
+            $(".artist.order_description").text(artist.order_description);
+            $(".artist.delivery_time").text(artist.delivery_time + ' روز');
+            $(".artist.is_advisor").text((_is_advisor = artist.is_advisor) === 1 ? 'بله' : 'خیر');
+            $(".artist.advise_price").text(handle_price((_advise_price = artist.advise_price).toString()) + " تومان");
             if (_is_advisor === 0) $(".artist.advise_price").parent().remove();
 
-            console.log("data.portfolio.length : " + data.portfolio.length);
             if (data.hasOwnProperty('portfolio') && data.portfolio.length > 0) {
                 for (let i = 0; i < data.portfolio.length; i++) {
                     const p = data.portfolio[i];
-                    console.log("pate : " + p.date);
                     // const p_date = p.date.split('-');
                     $(".main__portfolio-artist").append("" +
                         "<div class=\"col-lg-3 col-md-4 col-sm-6 col-12\">\n" +
@@ -47,12 +46,14 @@ $(window).on('load', function () {
                         "<h3 class=\"live__title\"><a href=\"#\">" + p.name + "</a></h3>\n" +
                         "</div></div>");
                     }
+            }else{
+                // parent.append("<div class='artists-empty rounded border border-warning mt-5 mb-4 mx-auto py-3 px-5 text-warning font-weight-light'>.نمونه کاری ایجاد نکرده است "+artist_name+"</div>")
             }
 
-            if (data.hasOwnProperty('title') && data.title.length > 0) {
-                _artist_titles = data.title;
-                for (let i = 0; i < data.title.length; i++) {
-                    const t = data.title[i];
+            if (data.hasOwnProperty('titles') && data.titles.length > 0) {
+                _artist_titles = data.titles;
+                for (let i = 0; i < data.titles.length; i++) {
+                    const t = data.titles[i];
                     $(".main__titles-artist").append("" +
                         "<div class=\"col-12 col-md-6 col-lg-4\">\n" +
                         "<div class=\"step\">\n" +
@@ -60,7 +61,7 @@ $(window).on('load', function () {
                         "<span class=\"feature__icon\">\n" +
                         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path d=\"M21.65,2.24a1,1,0,0,0-.8-.23l-13,2A1,1,0,0,0,7,5V15.35A3.45,3.45,0,0,0,5.5,15,3.5,3.5,0,1,0,9,18.5V10.86L20,9.17v4.18A3.45,3.45,0,0,0,18.5,13,3.5,3.5,0,1,0,22,16.5V3A1,1,0,0,0,21.65,2.24ZM5.5,20A1.5,1.5,0,1,1,7,18.5,1.5,1.5,0,0,1,5.5,20Zm13-2A1.5,1.5,0,1,1,20,16.5,1.5,1.5,0,0,1,18.5,18ZM20,7.14,9,8.83v-3L20,4.17Z\"></path></svg>\n" +
                         "</span>\n" +
-                        "<h3 class=\"step__title\">" + t.name + "</h3>\n" +
+                        "<h3 class=\"step__title\"><a href='artists.html?title="+t.name+"' class='text-white'>" + t.name + "</a></h3>\n" +
                         "</div>\n" +
                         "<ul class = \"plan__list\">\n" +
                         "<li class = \"" + (t.pivot.accept_order === 1 ? 'green' : 'red') + "\" ><svg xmlns = \"http://www.w3.org/2000/svg\" viewBox = \"0 0 24 24\" >\n" +
@@ -77,6 +78,8 @@ $(window).on('load', function () {
                         "</div>\n" +
                         "</div>")
                 }
+            }else{
+                // parent.append("<div class='artists-empty rounded border border-warning mt-5 mb-4 mx-auto py-3 px-5 text-warning font-weight-light'>.مهارتی ثبت نکرده است "+artist_name+"</div>")
             }
         }
     });

@@ -17,31 +17,39 @@
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
+    <link rel="stylesheet" href="assets/website/css/icofont.min.css">
     <style>
         .select2-container {
             width: auto !important;
         }
+
         .select2-container .select2-selection--single {
             height: 40px;
             background-color: transparent;
             border-radius: 0;
             border: none;
+            margin-left: 10px;
+            margin-right: 10px;
         }
+
         .select2-container .select2-selection--single .select2-selection__rendered {
             line-height: 40px;
             color: #fff;
-            padding: 0 18px 0 0;
+            padding: 0 8px 0 0;
             font-size: 16px;
             font-family: 'IRANSans';
             font-weight: 400;
             transition: 0.5s ease;
         }
+
         .select2-container .select2-selection--single[aria-expanded="true"] {
             background-color: transparent;
         }
+
         .select2-container .select2-selection--single:hover .select2-selection__rendered {
             color: #fca311;
         }
+
         .select2-container--default .select2-selection--single .select2-selection__arrow {
             height: 20px;
             width: 18px;
@@ -51,28 +59,34 @@
             background-size: 18px auto;
             margin-top: 1px;
         }
+
         .select2-container--default .select2-selection--single .select2-selection__arrow b {
             display: none;
         }
+
         .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
             background-color: #0e2d49;
             color: #c0c0c0;
             white-space: nowrap;
         }
+
         .select2-container--default .select2-results__option--selected {
             color: #c0c0c0;
             background-color: #0e2d49;
             cursor: default;
         }
+
         .select2-container--default .select2-results__option[aria-selected="true"] {
             background-color: transparent;
             color: #fca311;
             cursor: default;
         }
+
         .select2-container--default .select2-results__option--highlighted[aria-selected] {
             background-color: transparent;
             color: #fca311;
         }
+
         .select2-results__option {
             padding: 0 0;
             font-size: 16px;
@@ -85,44 +99,48 @@
             text-align: right;
 
         }
+
         .select2-dropdown {
-          border-left: none;
-          border-right: none;
-          border-bottom: none;
-          border-top: none;
-          border-radius: 10px !important;
-          min-width: 180px;
-          padding: 5px 15px 5px 15px;
-          background-color: #222227;
-          direction: rtl;
+            border-left: none;
+            border-right: none;
+            border-bottom: none;
+            border-top: none;
+            border-radius: 10px !important;
+            min-width: 180px;
+            padding: 5px 15px 5px 15px;
+            background-color: #222227;
+            direction: rtl;
         }
+
         .select2-container--open .select2-dropdown--below {
             border-bottom-left-radius: 12px;
             border-bottom-right-radius: 12px;
         }
+
         .select2-container--open .select2-dropdown--above {
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
         }
-        .slider-radio label{
-            width: 120px;
+
+        .slider-radio{
+            width: auto;
+            float: left;
         }
     </style>
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="assets/website/icon/favicon-32x32.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="assets/website/icon/favicon-32x32.png">
-    <style>
-        .artists-list-container {
-            list-style: none;
-            display: flex;
-            flex-direction: row;
-            /*justify-content: end;*/
-            /*width: 100%;*/
-        }
-    </style>
-
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
+
+    <!--    <style>-->
+    <!--        .artists-list-container {-->
+    <!--            list-style: none;-->
+    <!--            display: flex;-->
+    <!--            flex-direction: row;-->
+    <!--            /*justify-content: end;*/-->
+    <!--            /*width: 100%;*/-->
+    <!--        }-->
+    <!--    </style>-->
+
     <title>سایت ساز و صدا - هنرمندان</title>
 
 </head>
@@ -317,9 +335,9 @@
         <div class="row row--grid">
             <div class="col-12">
                 <div class="main__filter">
-                    <form action="#" class="main__filter-search">
-                        <input type="text" placeholder="جست و جو ...">
-                        <button type="button">
+                    <form class="main__filter-search">
+                        <input type="text" name="search" placeholder="نام هنرمند ...">
+                        <button type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>
                             </svg>
@@ -330,8 +348,9 @@
 
                         <select class="main__select mx-2" name="orders">
                             <option value="" selected>ترتیب نمایش</option>
-                            <option value="/artists/delivery_time/desc">تاریخ عضویت</option>
-                            <option value="/artists/advise_price/desc">هزینه مشاوره</option>
+                            <option value="column=delivery_time&isDesk=1">بازه تحویل</option>
+                            <option value="column=created_at&isDesk=1">تاریخ عضویت</option>
+                            <option value="column=advise_price&isDesc=1">هزینه مشاوره</option>
                         </select>
 
                         <select class="main__select mx-2" name="titles">
@@ -339,13 +358,20 @@
                     </div>
 
                     <div class="slider-radio">
-                        <input type="radio" name="is_advisor" checked="checked"><label data-filter=".is_advisor">مشاور است</label>
-                        <input type="radio" name="is_advisor"><label data-filter=".is_not_advisor">مشاور نیست</label>
+                        <input type="radio" name="artist_advisor" checked="checked" value="" id="artist-all"><label
+                            for="artist-all" data-filter="*">همه</label>
+                        <input type="radio" name="artist_advisor" value="1" id="artist-is-advisor"><label
+                            data-filter=".is_advisor" for="artist-is-advisor" style="width: 122px">همراه مشاوره</label>
+                        <input type="radio" name="artist_advisor" value="0" id="artist-is-not-advisor"><label
+                            data-filter=".is_not_advisor" for="artist-is-not-advisor" style="width: 127px">بدون مشاوره
+                        </label>
                     </div>
                 </div>
 
-                <div class="row row--grid artists-grid"></div>
-                <div class="row row--grid artists-pagination justify-content-center my-4"></div>
+                <div class="row row--grid artists-grid">
+                </div>
+
+                <ul class="pagination justify-content-center my-4"></ul>
 
             </div>
         </div>
@@ -459,85 +485,8 @@
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
 <script src="assets/website/js/isotope.pkgd.min.js"></script>
-<script>
-    $(window).on('load', function () {
-        $.get(__url__+'/titles', function (response) {
-            if (!response.error) {
-                const titles = response.titles;
-                // $(".slider-radio").append('<input type="radio" name="alltitles" checked="checked"><label data-filter="*">همه</label>')
-                $(".main__select[name='titles']").append('<option value="" selected>همه سبک‌ها</option>')
-                for (let i = 0; i < titles.length; i++) {
-                    $(".main__select[name='titles']").append(
-                        '<option value="' + titles[i].id + '">' + titles[i].name + '</option>'
-                    )
-                }
-                $('.main__select[name="titles"]').select2({
-                    minimumResultsForSearch: Infinity
-                });
-            }
-        });
-        $.get(__url__+'/artists', function (response) {
-            if (!response.error) {
-                const data = response.data;
-                let parent = $('.artists-grid'), _data = [];
-                let name, avatar,titles, titles_html, titles_name_html;
-                for (let i=0;i<data.length;i++) {
-                    const _artist = data[i];
-                    name = _artist.first_name + ' ' + _artist.last_name;
-                    avatar = _artist.avatar;
-
-                    titles = _artist.skills;
-                    // titles_html = "";
-                    titles_name_html=""
-                    for (let i = 0; i < titles.length; i++) {
-                        // titles_html += "title_" + titles[i].id + " ";
-                        titles_name_html += "<label class='badge badge-dark'>"+titles[i].name+"</label>";
-                    }
-                    parent.append("<div class=\"col-6 col-sm-4 col-md-3 item " + (data[i].is_advisor===1 ? 'is_advisor' : 'is_not_advisor' ) + "\">\n" +
-                        "                        <a href=\"artist.html?id=" + i + "\" class=\"artist\">\n" +
-                        "                            <div class=\"artist__cover\">\n" +
-                        "                                <img src=\"" + avatar + "\" alt=\"\">\n" +
-                        "                            <div class='badges'>"+titles_name_html+"</div>" +
-                        "                            </div>\n" +
-                        "                            <h3 class=\"artist__title\">" + name + "</h3>\n" +
-                        "                        </a>\n" +
-                        "                    </div>\n");
-                }
-                // if( $('.artists-grid .item').length ) {
-                const $elements = $(".artists-grid"),
-                    $filters = $('.slider-radio label');
-                $elements.isotope({
-                    isOriginLeft: false
-                });
-
-                $(document).on('click','.slider-radio label', function () {
-                    $filters.removeClass('active');
-                    $(this).addClass('active');
-                    let selector = $(this).data('filter');
-                    console.log("selector : " + selector);
-                    $(".artists-grid").isotope({
-                        filter: selector,
-                        hiddenStyle: {
-                            transform: 'scale(.2) skew(30deg)',
-                            opacity: 0
-                        },
-                        visibleStyle: {
-                            transform: 'scale(1) skew(0deg)',
-                            opacity: 1,
-                        },
-                        transitionDuration: '.5s'
-                    });
-                });
-            }
-        });
-    });
-
-    $(document).ready(function (){
-        $('.main__select[name="orders"]').select2({
-            minimumResultsForSearch: Infinity
-        });
-    });
-</script>
+<script src="assets/website/js/imagesloaded.pkgd.js"></script>
+<script src="assets/website/js/artists.js"></script>
 </body>
 
 </html>

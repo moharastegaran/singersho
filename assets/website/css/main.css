@@ -1464,16 +1464,16 @@ input{
   z-index: 2;
   padding: 0 20px;
 }
-.main__filter-search {
+.main__filter-search , .main__filter-cities{
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  width: 250px;
   margin-bottom: 10px;
 }
-.main__filter-search input , .main__filter-search select{
+.main__filter-search input , .main__filter-search select, .main__filter-cities select{
   width: 100%;
   height: 40px;
   background-color: #222227;
@@ -1484,12 +1484,15 @@ input{
   padding: 0 20px;
   font-family: 'IRANSans';
 }
+.main__filter-search input, .main__filter-cities select[multiple]{
+  padding-left: 50px;
+}
 .main__filter-search input:focus, .main__filter-search select:focus  {
   border-color: #0e2d49;
 }
 .main__filter-search button {
   position: absolute;
-  left: 20px;
+  left: 17.5px;
   top: 0;
   height: 40px;
   width: auto;
@@ -2388,6 +2391,7 @@ input{
   align-items: flex-start;
   margin-top: 20px;
   width: 100%;
+  position: relative;
 }
 .album__cover, .product__cover {
   display: flex;
@@ -2405,16 +2409,19 @@ input{
   background-position: center;
   height: 150px;
 }
+.album__cover.single{
+  height: 220px;
+}
 .album__cover img {
   width: 100%;
-  height: 150px;
+  /*height: 150px;*/
   display: block;
   position: relative;
   z-index: 1;
   opacity: 1;
   transition: 0.5s ease;
 }
-.album__cover a , .product__cover a{
+.album__cover > a , .product__cover a{
   position: absolute;
   z-index: 2;
   display: flex;
@@ -2433,21 +2440,35 @@ input{
   transition: 0.5s ease;
   color : #fff;
 }
-.product__cover a{
+.album__cover > a, .product__cover a{
   left: auto;
   top: auto;
   margin : 0;
   padding:0 10px;
   width: auto;
 }
-.album__cover a svg , .product__cover a svg{
+
+.album__cover.single > a{
+  font-size: 15px;
+  height: auto;
+  padding: 10px;
+}
+
+.album__cover.single > a svg, .album__cover.single > a i{
+  width: 16px;
+}
+
+.album__cover > a svg , .album__cover.single > a i, .product__cover a svg{
   /*fill: #fca311;*/
   width: 22px;
   height: auto;
   margin: 1px 0 0 1px;
   transition: fill 0.5s ease;
 }
-.album__cover a:hover , .product__cover a:hover{
+
+
+
+.album__cover > a:hover , .product__cover a:hover{
   /*fill: #fca311;*/
   color: #fca311;
 }
@@ -2455,7 +2476,7 @@ input{
   opacity: 0.6;
   transform: scale(1.08);
 }
-.album__cover:hover a , .product__cover:hover a {
+.album__cover:hover > a , .product__cover:hover a {
   opacity: 1;
   transform: scale(1);
 }
@@ -2815,12 +2836,14 @@ input{
   width: 100%;
 }
 
-.artist__cover .badges{
-  /*position: absolute;*/
-  /*right: 0;*/
-  /*bottom: 0;*/
-  /*margin-right: 4%;*/
-  /*margin-bottom: 2%;*/
+.artist__cover .badges,.album__cover .badges{
+  position: absolute;
+  left : 50%;
+  /*right: 5%;*/
+  bottom: 15px;
+  width: 100%;
+  transform: translate(-50%,0%);
+  text-align: center;
 }
 
 .artist__cover:before {
@@ -2913,14 +2936,14 @@ input{
 }
 .event__date {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   font-size: 18px;
   font-weight: 400;
   color: #fff;
 }
 .event__time {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   font-size: 14px;
   color: rgba(255,255,255,0.8);
   font-weight: 400;
@@ -2931,7 +2954,7 @@ input{
 }
 .event__title {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   font-family: 'IRANSans';
   font-weight: 400;
   color: #fff;
@@ -2947,7 +2970,7 @@ input{
 }
 .event__address {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   font-size: 16px;
   color: #fff;
   line-height: 24px;
@@ -2968,7 +2991,7 @@ input{
   align-items: center;
   color: #fff;
   font-size: 16px;
-  z-index: 2;
+  z-index: 1;
   font-family: 'IRANSans';
   font-weight: 500;
   padding: 0 15px;
@@ -6228,7 +6251,7 @@ input{
   border-radius: 12px;
   margin-top: 10px;
   position: relative;
-  width: auto !important;
+  /*width: auto !important;*/
   z-index: 2;
 }
 .slider-radio label {
@@ -6325,7 +6348,7 @@ ul.pagination{
   margin-bottom: 10px;
   box-shadow: 0px 0px 5px 2px rgb(30, 30, 30);
   padding: 10px;
-  border-radius: 50px;
+  border-radius: 20px;
 }
 
 ul.pagination li:not(:first-child,:last-child) {
@@ -6341,6 +6364,7 @@ ul.pagination li:not(:first-child,:last-child) a{
 ul.pagination li a{
   color : #fca311;
   font-size: 19px;
+  padding: .4rem .75rem;
   background-color: transparent;
   border-color: transparent;
 }
