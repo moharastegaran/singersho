@@ -1473,7 +1473,7 @@ input{
   width: 250px;
   margin-bottom: 10px;
 }
-.main__filter-search input , .main__filter-search select, .main__filter-cities select{
+.main__filter-search input , .main__filter-search select{
   width: 100%;
   height: 40px;
   background-color: #222227;

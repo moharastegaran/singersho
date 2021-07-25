@@ -14,111 +14,12 @@
     <link rel="stylesheet" href="assets/website/css/magnific-popup.css">
     <link rel="stylesheet" href="assets/website/css/paymentfont.min.css">
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
+    <link rel="stylesheet" href="assets/website/css/select2.min.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
     <link rel="stylesheet" href="assets/website/css/icofont.min.css">
     <link rel="stylesheet" href="assets/website/css/jquery.ui.slider.css">
-    <link rel="stylesheet" href="plugins/select2/select2-custom.min.css">
-    <link rel="stylesheet" href="plugins/select2/select2-bs-custom.min.css">
-    <style>
-        #price-range-slider {
-            position: relative;
-        }
-
-        #price-range-slider {
-            position: relative;
-            background: #151515;
-            border-radius: 12px;
-            z-index: 9999;
-            width: 280px;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 2px solid #222227;
-        }
-
-
-        #price-range-slider span, .slider-range-min, .slider-range-max {
-            font-size: 15px;
-            margin-bottom: 1rem;
-            margin-top: -7px;
-        }
-
-        #price-range-slider span {
-            color: #ababab;
-        }
-
-        .slider-range-min, .slider-range-max {
-            background: #222227;
-            border-radius: 12px;
-            color: #c0c0c0;
-            padding: 2px 8px;
-        }
-
-        .flat-slider {
-            margin-bottom: .5rem;
-        }
-
-        .flat-slider.ui-corner-all,
-        .flat-slider .ui-corner-all {
-            border-radius: 0;
-        }
-
-        .flat-slider.ui-slider {
-            border: 0;
-            background: #777;
-            border-radius: 6px;
-        }
-
-        .flat-slider.ui-slider-horizontal {
-            height: 6px;
-        }
-
-        .flat-slider.ui-slider-vertical {
-            height: 15em;
-            width: 6px;
-        }
-
-        .flat-slider .ui-slider-handle {
-            width: 19px;
-            height: 19px;
-            background: #fca311;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-        }
-
-        .flat-slider.ui-slider-horizontal .ui-slider-handle {
-            top: 50%;
-            margin-top: -11px;
-        }
-
-        .flat-slider.ui-slider-vertical .ui-slider-handle {
-            left: 50%;
-            margin-left: -11px;
-        }
-
-        .flat-slider .ui-slider-handle:hover {
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
-        }
-
-        .flat-slider .ui-slider-range {
-            border: 0;
-            border-radius: 6px;
-            background: #222227;
-        }
-
-        .flat-slider.ui-slider-horizontal .ui-slider-range {
-            top: 0;
-            height: 6px;
-        }
-
-        .flat-slider.ui-slider-vertical .ui-slider-range {
-            left: 0;
-            width: 6px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/website/css/studios-custom.css">
 
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
     <title>سایت ساز و صدا - استدیوها</title>
@@ -323,57 +224,61 @@
                         </button>
                     </form>
 
-                    <div class="main__filter-wrap">
-                        <form class="main__filter-cities mb-0">
-                            <select name="cities" multiple="multiple">
-                                <option value="aaa">aaa</option>
-                                <option value="bbb">bbb</option>
-                                <option value="vvv">vvv</option>
-                                <option value="ddd">ddd</option>
-                                <option value="rtt">rtt</option>
-                            </select>
-                            <button type="submit">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>
-                                </svg>
-                            </button>
-                        </form>
+                    <div class="main__filter-cities">
+                        <select class="main__select mx-2" name="cities" multiple="multiple">
+                            <!--                            <option value="">ترتیب نمایش</option>-->
+                            <option value="column=delivery_time&isDesk=1">تست یک</option>
+                            <option value="column=created_at&isDesk=1">تست دو</option>
+                            <option value="column=advise_price&isDesc=1">سومی</option>
+                        </select>
+                    </div>
 
-                        <div id="price-range-container" class="position-relative" style="margin-right: 30px">
-                            <button class="sign__btn w-auto h-auto p-2" style="font-size: 17px" data-toggle="collapse"
-                                    data-target="#price-range-slider">
-                                <i class="icofont-settings mr-1"></i>
-                                فیلتر قیمت
-                            </button>
-                            <div id="price-range-slider"
-                                 class="collapse pt-3 pb-4 px-lg-5 px-md-4 position-absolute shadow-lg">
-                                <div class="w-100 d-flex flex-column">
-                                    <h6 class="border-bottom pb-3 mb-5 text-light text-center"
-                                        style="border-color: #222227 !important;">فیلتر محدوده قیمت</h6>
-                                    <div class="flat-slider col-12" id="slider-range"></div>
-                                    <div class="row mt-3">
-                                        <div class="col-6 d-flex flex-column align-items-center text-center">
-                                            <span>تا</span>
-                                            <span class="slider-range-max">0</span>
-                                            <span>تومان</span>
-                                        </div>
-                                        <div class="col-6 d-flex flex-column align-items-center text-center">
-                                            <span>از</span>
-                                            <span class="slider-range-min">0</span>
-                                            <span>تومان</span>
-                                        </div>
+                    <div id="price-range-container" class="position-relative" style="margin-right: 30px">
+                        <button class="sign__btn h-auto p-2" style="width:140px;font-size: 17px" data-toggle="collapse"
+                                data-target="#price-range-slider">
+                            <i class="icofont-settings mr-1"></i>
+                            فیلتر قیمت
+                        </button>
+                        <div id="price-range-slider"
+                             class="collapse pt-3 pb-4 px-lg-5 px-md-4 position-absolute shadow-lg">
+                            <div class="w-100 d-flex flex-column">
+                                <h6 class="border-bottom pb-3 mb-5 text-light text-center"
+                                    style="border-color: #222227 !important;">فیلتر محدوده قیمت</h6>
+                                <div class="flat-slider col-12" id="slider-range"></div>
+                                <div class="row mt-3">
+                                    <div class="col-6 d-flex flex-column align-items-center text-center">
+                                        <span>تا</span>
+                                        <span class="slider-range-max">0</span>
+                                        <span>تومان</span>
                                     </div>
-
-                                    <button class="price-filter__btn sign__btn h-auto p-2" type="button" style="font-size: 17px">
-                                        <i class="icofont-filter mr-1"></i> اعمال فیلتر
-                                    </button>
-
+                                    <div class="col-6 d-flex flex-column align-items-center text-center">
+                                        <span>از</span>
+                                        <span class="slider-range-min">0</span>
+                                        <span>تومان</span>
+                                    </div>
                                 </div>
+
+                                <button class="price-filter__btn sign__btn h-auto p-2" type="button"
+                                        style="font-size: 17px">
+                                    <i class="icofont-filter mr-1"></i> اعمال فیلتر
+                                </button>
+
                             </div>
                         </div>
                     </div>
 
+                    <div class="main__filter-wrap justify-content-end">
+                        <select class="main__select mx-2" name="orders">
+                            <option value="" selected>ترتیب نمایش</option>
+                            <option value="column=created_at&isDesk=1">جدیدترین</option>
+                            <option value="column=created_at&isDesk=0">قدیمی ترین</option>
+                            <option value="column=price&isDesc=0">ارزان ترین</option>
+                            <option value="column=price&isDesc=1">گران ترین</option>
+                        </select>
+                    </div>
+
                 </div>
+
 
                 <div class="row row--grid studios-grid"></div>
 
@@ -443,6 +348,7 @@
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
 <script src="plugins/select2/select2-custom.min.js"></script>
+<script src="assets/website/js/select2.min.js"></script>
 <script src="assets/website/js/studios.js"></script>
 </body>
 
