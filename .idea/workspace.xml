@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/website/css/studios-custom.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/artists.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/css/studios-custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/studios-custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/artists.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/artists.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/package.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/package.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/studios.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/studios.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/product.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/store.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/studios.html" beforeDir="false" afterPath="$PROJECT_DIR$/studios.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -374,7 +382,9 @@
       <workItem from="1627035532967" duration="10664000" />
       <workItem from="1627106935283" duration="26133000" />
       <workItem from="1627192637062" duration="1950000" />
-      <workItem from="1627199610752" duration="8746000" />
+      <workItem from="1627199610752" duration="9297000" />
+      <workItem from="1627351396492" duration="1921000" />
+      <workItem from="1627798424842" duration="25761000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,5 @@
 const __url__ = "http://127.0.0.1:8000/api";
+let __packages = [],__artists = [];
 
 function handle_price(num) {
     let _num = "";
@@ -162,14 +163,15 @@ $(window).on('load', function () {
         }
     });
 
-    $.get(__url__ + '/artists/8', function (response) {
+    $.get(__url__ + '/artists?rpp=8&column=id&isDesk=1', function (response) {
         if (!response.error) {
             if (response.hasOwnProperty('is_empty') && response.is_empty === true) {
                 const parent = $(".main__carousel--artists").parent(".main__carousel-wrap");
                 parent.empty();
                 parent.append("<div class='col-12 alert alert-outline-warning text-light mt-4'>.هنرمندی برای نمایش وجود ندارد</div>");
             } else {
-                const data = response.data.data;
+                const data = response.artists.data;
+                __artists = data;
                 for (let i=0;i<data.length;i++) {
                     const name = data[i].first_name + ' ' + data[i].last_name;
                     let avatar = data[i].avatar;
@@ -177,6 +179,17 @@ $(window).on('load', function () {
                     let advise_price = data[i].advise_price;
                     if (avatar == null) {
                         avatar = "assets/website/img/avatar.svg";
+                    }
+                    if(i<3){
+                        $(".popular_artists_footer").append("" +
+                            "<div class=\"col-md-4 col-sm-6 col-12\">\n" +
+                            "                        <a href=\"artist.html?id="+data[i].id+"\" class=\"artist mt-0\">\n" +
+                        "                            <div class=\"artist__cover\">\n" +
+                        "                                <img src=\""+avatar+"\" alt=\"\">\n" +
+                        "                            </div>\n" +
+                        "                            <h3 class=\"artist__title\" style=\"font-size: 15px\">"+name+"</h3>\n" +
+                        "                        </a>\n" +
+                        "                    </div>")
                     }
 
                     let titles_name_html = ""
@@ -234,9 +247,10 @@ $(window).on('load', function () {
         }
     });
 
-    $.get(__url__ + '/packages/10', function (response) {
+    $.get(__url__ + '/packages?rpp=8&column=id&isDesk=1', function (response) {
         if (!response.error) {
             const data = response.packages.data;
+            __packages = data;
             let package_avatar;
             if (data.length > 0) {
                 for (let i = 0; i < data.length; i++) {
@@ -247,12 +261,11 @@ $(window).on('load', function () {
                     }
                     $(".main__carousel--store").append("" +
                         "<div class=\"product\">\n" +
-                        "<div class=\"product__cover\" style=\"background-image: url("+package_avatar+")\">\n" +
+                        "<div class=\"product__cover single\" style=\"background-image: url("+package_avatar+")\">\n" +
                         "<a href=\"product.html?id=" + data[i].id + "\">" +
-                        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\">\n" +
-                        "<path d=\"M8.5,19A1.5,1.5,0,1,0,10,20.5,1.5,1.5,0,0,0,8.5,19ZM19,16H7a1,1,0,0,1,0-2h8.49121A3.0132,3.0132,0,0,0,18.376,11.82422L19.96143,6.2749A1.00009,1.00009,0,0,0,19,5H6.73907A3.00666,3.00666,0,0,0,3.92139,3H3A1,1,0,0,0,3,5h.92139a1.00459,1.00459,0,0,1,.96142.7251l.15552.54474.00024.00506L6.6792,12.01709A3.00006,3.00006,0,0,0,7,18H19a1,1,0,0,0,0-2ZM17.67432,7l-1.2212,4.27441A1.00458,1.00458,0,0,1,15.49121,12H8.75439l-.25494-.89221L7.32642,7ZM16.5,19A1.5,1.5,0,1,0,18,20.5,1.5,1.5,0,0,0,16.5,19Z\"/>\n"+
-                        "</svg> میخرمش\n"+
+                        "<i class=\"icofont-shopping-cart\"></i> میخرمش\n"+
                         "</a>\n"+
+                        "<span class=\"product__stat\"><span><i class=\"icofont-downloaded\"></i> "+data[i].po_number+" خرید </span><span><i class=\"icofont-users\"></i> "+data[i].members.length+" عضو </span></span>\n "+
                         // "<img src=\"" + package_avatar + "\" alt=\"\">\n" +
                         "</div>\n" +
                         "<h3 class=\"product__title\"><a href=\"product.html?id=" + data[i].id + "\">" + data[i].name + "</a></h3>\n" +
@@ -297,7 +310,7 @@ $(window).on('load', function () {
         }
     });
 
-    $.get(__url__ + '/studios/6', function (response) {
+    $.get(__url__ + '/studios?rpp=6&column=id&isDesk=1', function (response) {
         if (!response.error) {
             const data = response.studios.data;
             if (data.length > 0) {

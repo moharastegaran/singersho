@@ -1,9 +1,9 @@
 function updateArtistsWithParams(params = $(location).attr('search')) {
     const _params = appendUrlParam(params);
-    $.get(__url__ + '/artists/20?'+ _params, function (response) {
+    $.get(__url__ + '/artists?rpp=20&'+ _params, function (response) {
             if (!response.error) {
                 let parent = $('.artists-grid');
-                let items = response.data.data;
+                let items = response.artists.data;
                 let titles, titles_name_html;
                 parent.empty();
                 if (items.length > 0) {
@@ -32,12 +32,12 @@ function updateArtistsWithParams(params = $(location).attr('search')) {
                 }else{
                     parent.append("<div class='artists-empty rounded border border-warning mt-5 mb-4 mx-auto py-3 px-5 text-warning font-weight-light'>.هنرمندی برای نمایش وجود ندارد</div>")
                 }
-                const links = response.data.links;
+                const links = response.artists.links;
                 parent = $('.pagination');
                 parent.empty();
                 for (let i = 0; i < links.length; i++) {
                     parent.append("<li class='page-item " + (!links[i].url ? 'disabled' : (links[i].active ? 'active' : '')) + "'>" +
-                        "              <a class='page-link' href='javascript:void(0)' onclick='"+(links[i].url !== null ?  "updateArtistsWithParams(\""+links[i].url.substr(2)+"\")" : 'javascript:void(0)')+"'>" + links[i].label + "</a>" +
+                        "              <a class='page-link' href='javascript:void(0)' onclick='"+(links[i].url !== null ?  "updateArtistsWithParams(\""+links[i].url.substr(links[i].url.indexOf('?')+1)+"\")" : 'javascript:void(0)')+"'>" + links[i].label + "</a>" +
                         "          </li>")
                 }
                 // const $elements = $('.artists-grid'),
@@ -112,9 +112,9 @@ function appendUrlParam(params) {
 
 $(window).on('load', function () {
 
-    $.get(__url__ + '/titles', function (response) {
+    $.get(__url__ + '/titles?rpp=100', function (response) {
         if (!response.error) {
-            const titles = response.titles;
+            const titles = response.titles.data;
             $(".main__select[name='titles']").append('<option value="" selected>همه سبک‌ها</option>')
             for (let i = 0; i < titles.length; i++) {
                 $(".main__select[name='titles']").append(

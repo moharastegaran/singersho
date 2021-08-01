@@ -1,10 +1,10 @@
 let max_price_studios = 0;
 let min_price_studios = Number.MAX_SAFE_INTEGER;
-let current_min_price = -1,  current_max_price = -1;
+let current_min_price = -1, current_max_price = -1;
 
 function updateStudiosWithParams(params = $(location).attr('search')) {
     const _params = appendUrlParam(params);
-    $.get(__url__ + '/studios/12?' + _params, function (response) {
+    $.get(__url__ + '/studios?rpp=12&' + _params, function (response) {
         if (!response.error) {
             const data = response.studios.data;
             let parent = $('.studios-grid');
@@ -98,6 +98,21 @@ function appendUrlParam(params) {
 }
 
 $(window).on('load', function () {
+
+    const _this = $(".select2-search__field");
+    $.get(__url__ + "/cities?rpp=1250&search=" + _this.val(), function (response) {
+        console.log(JSON.stringify(response))
+        const cities = response.cities.data;
+        const _select2 = $('.main__select[name="cities"]');
+        _select2.find("option").remove();
+        for (let i = 0; i < cities.length; i++) {
+            const option = new Option(cities[i].name, cities[i].id);
+            _select2.append(option);
+        }
+        _select2.trigger('change');
+    });
+
+
     updateStudiosWithParams("page=" + (getUrlParam('page') !== null ? getUrlParam('page') : 1));
     if (getUrlParam('min_max') !== null) {
         let min_max = getUrlParam('min_max');
@@ -105,6 +120,15 @@ $(window).on('load', function () {
         $(".slider-range-min").text(min_max[0]);
         $(".slider-range-max").text(min_max[1]);
     }
+    if(getUrlParam("cityIds") !== null){
+        let ids = getUrlParam("cityIds");
+        ids = ids.split("_");
+        for (let i = 0; i < ids.length; i++) {
+            $('.main__select[name="cities"]').val(ids[i]);
+        }
+        $('.main__select[name="cities"]').trigger('change');
+    }
+    $(".main__filter-search input").val(getUrlParam('search'));
 });
 
 $(document).ready(function () {
@@ -115,7 +139,8 @@ $(document).ready(function () {
         dir: "rtl",
         multiple: true,
         maximumSelectionLength: 2,
-        placeholder: "جستجوی شهر ..."
+        placeholder: "جستجوی شهر ...",
+        noResults: "شهری پیدا نشد"
     });
 
 
@@ -135,5 +160,22 @@ $(document).ready(function () {
     $(".main__select[name='orders']").on("change", function () {
         updateStudiosWithParams($(this).val())
     });
+
+    $('.main__select[name="cities"]').on("change", function () {
+        let cities = $(this).val(), _cities = "";
+        if (cities.length) {
+            for (let i = 0; i < cities.length; i++) {
+                _cities += cities[i];
+                if (i!==cities.length-1)
+                    _cities+="_";
+            }
+            updateStudiosWithParams("page=1&cityIds=" + _cities);
+        }
+    });
+
+    $(".main__filter-search").on("submit",function (e){
+        e.preventDefault();
+        updateStudiosWithParams("page=1&search="+$(this).find('input[name="search"]').val());
+    })
 
 });

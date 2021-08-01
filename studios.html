@@ -71,10 +71,11 @@
 
             <div class="header__action header__action--signin">
                 <a class="header__action-btn" href="#">
+                    <i class="icofont-ui-user"></i>
                     <span></span>
-                    <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M20,12a1,1,0,0,0-1-1H11.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L11.41,13H19A1,1,0,0,0,20,12ZM17,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V16a1,1,0,0,0-2,0v3a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V8a1,1,0,0,0,2,0V5A3,3,0,0,0,17,2Z"/>
-                    </svg>
+                    <!--                    <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">-->
+                    <!--                        <path d="M20,12a1,1,0,0,0-1-1H11.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L11.41,13H19A1,1,0,0,0,20,12ZM17,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V16a1,1,0,0,0-2,0v3a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V8a1,1,0,0,0,2,0V5A3,3,0,0,0,17,2Z"/>-->
+                    <!--                    </svg>-->
                 </a>
             </div>
         </div>
@@ -225,46 +226,7 @@
                     </form>
 
                     <div class="main__filter-cities">
-                        <select class="main__select mx-2" name="cities" multiple="multiple">
-                            <!--                            <option value="">ترتیب نمایش</option>-->
-                            <option value="column=delivery_time&isDesk=1">تست یک</option>
-                            <option value="column=created_at&isDesk=1">تست دو</option>
-                            <option value="column=advise_price&isDesc=1">سومی</option>
-                        </select>
-                    </div>
-
-                    <div id="price-range-container" class="position-relative" style="margin-right: 30px">
-                        <button class="sign__btn h-auto p-2" style="width:140px;font-size: 17px" data-toggle="collapse"
-                                data-target="#price-range-slider">
-                            <i class="icofont-settings mr-1"></i>
-                            فیلتر قیمت
-                        </button>
-                        <div id="price-range-slider"
-                             class="collapse pt-3 pb-4 px-lg-5 px-md-4 position-absolute shadow-lg">
-                            <div class="w-100 d-flex flex-column">
-                                <h6 class="border-bottom pb-3 mb-5 text-light text-center"
-                                    style="border-color: #222227 !important;">فیلتر محدوده قیمت</h6>
-                                <div class="flat-slider col-12" id="slider-range"></div>
-                                <div class="row mt-3">
-                                    <div class="col-6 d-flex flex-column align-items-center text-center">
-                                        <span>تا</span>
-                                        <span class="slider-range-max">0</span>
-                                        <span>تومان</span>
-                                    </div>
-                                    <div class="col-6 d-flex flex-column align-items-center text-center">
-                                        <span>از</span>
-                                        <span class="slider-range-min">0</span>
-                                        <span>تومان</span>
-                                    </div>
-                                </div>
-
-                                <button class="price-filter__btn sign__btn h-auto p-2" type="button"
-                                        style="font-size: 17px">
-                                    <i class="icofont-filter mr-1"></i> اعمال فیلتر
-                                </button>
-
-                            </div>
-                        </div>
+                        <select class="main__select mx-2" name="cities" multiple="multiple"></select>
                     </div>
 
                     <div class="main__filter-wrap justify-content-end">

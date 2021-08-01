@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
+    <link rel="stylesheet" href="assets/website/css/icofont.min.css">
+    <style>
+        .main__members-package div:first-child{
+            padding-right: 0;
+        }
+    </style>
 
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
     <title>سایت ساز و صدا - صفحه محصول</title>
@@ -68,10 +74,11 @@
 
             <div class="header__action header__action--signin">
                 <a class="header__action-btn" href="#">
+                    <i class="icofont-ui-user"></i>
                     <span></span>
-                    <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M20,12a1,1,0,0,0-1-1H11.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L11.41,13H19A1,1,0,0,0,20,12ZM17,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V16a1,1,0,0,0-2,0v3a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V8a1,1,0,0,0,2,0V5A3,3,0,0,0,17,2Z"/>
-                    </svg>
+                    <!--                    <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">-->
+                    <!--                        <path d="M20,12a1,1,0,0,0-1-1H11.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L11.41,13H19A1,1,0,0,0,20,12ZM17,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V16a1,1,0,0,0-2,0v3a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V8a1,1,0,0,0,2,0V5A3,3,0,0,0,17,2Z"/>-->
+                    <!--                    </svg>-->
                 </a>
             </div>
         </div>
@@ -214,27 +221,26 @@
                     <div class="store-item__content">
                         <div class="store-item__cover">
                             <img src="assets/website/img/store/item4.jpg" class="package image" alt="">
-                        </div>
-                    </div>
-
-                    <div class="store-item__description">
-                        <!-- article content -->
-                        <div class="article__content">
-                            <h4>درباره ی <span class="package name"></span></h4>
-
-                            <span class="article__price"><span class="package price"></span> تومان</span>
-
-                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی
-                                در شصت و سه درصد گذشته حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</p>
-
-                            <a href="#" class="article__buy btn-add-to-basket">
+                            <a href="#" class="article__buy btn-add-to-basket w-100 mt-3">
                                 افزودن به سبد خرید
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#fff">
                                     <path d="M8.5,19A1.5,1.5,0,1,0,10,20.5,1.5,1.5,0,0,0,8.5,19ZM19,16H7a1,1,0,0,1,0-2h8.49121A3.0132,3.0132,0,0,0,18.376,11.82422L19.96143,6.2749A1.00009,1.00009,0,0,0,19,5H6.73907A3.00666,3.00666,0,0,0,3.92139,3H3A1,1,0,0,0,3,5h.92139a1.00459,1.00459,0,0,1,.96142.7251l.15552.54474.00024.00506L6.6792,12.01709A3.00006,3.00006,0,0,0,7,18H19a1,1,0,0,0,0-2ZM17.67432,7l-1.2212,4.27441A1.00458,1.00458,0,0,1,15.49121,12H8.75439l-.25494-.89221L7.32642,7ZM16.5,19A1.5,1.5,0,1,0,18,20.5,1.5,1.5,0,0,0,16.5,19Z"></path>
                                 </svg>
                             </a>
+                        </div>
+                    </div>
+
+                    <div class="store-item__description">
+                        <!-- article content -->
+
+                        <div class="article__content">
+
+                            <h4>درباره ی <span class="package name"></span></h4>
+                            <span class="article__price"><span class="package price"></span> تومان </span>
+                            <span><strong>بازه زمان تحویل محصول: </strong><span class="package delivery_time"></span></span>
+                            <span><strong>تعداد خرید محصول: </strong><span class="package po_number"></span></span>
+                            <p><strong>توضیحات: </strong><span class="package description"></span></p>
+
                         </div>
                         <!-- end article content -->
 
@@ -262,6 +268,18 @@
                         </div>
                         <!-- end share -->
                     </div>
+
+                    <section class="col-12 row row--grid">
+                        <!-- title -->
+                        <div class="col-12">
+                            <div class="main__title">
+                                <h2>اعضا</h2>
+                            </div>
+                        </div>
+                        <!-- end title -->
+                        <div class="col-12 main__members-package d-flex flex-row flex-wrap justify-content-start align-items-center"></div>
+                    </section>
+
                 </div>
             </div>
         </div>
