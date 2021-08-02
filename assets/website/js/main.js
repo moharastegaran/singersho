@@ -1,4 +1,6 @@
-const __url__ = "http://127.0.0.1:8000/api";
+//const __url__ = "http://127.0.0.1:8000/api";
+const __url__ = "http://37.152.185.83:8000/api";
+
 let __packages = [],__artists = [];
 
 function handle_price(num) {
