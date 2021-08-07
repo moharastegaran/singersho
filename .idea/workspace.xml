@@ -2,18 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="980ce97a-6a9a-4e16-ae02-1a4d7a7e6e65" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/website/css/infobox.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/img/ui-user.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/profile-common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/website/js/studio.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/profile_add_studio.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/singing_test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/artists.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/scss/elements/alert.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/scss/elements/alert.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/css/studios-custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/studios-custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/website/js/artists.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/artists.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/css/select2.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/css/select2.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/package.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/package.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/profile-studio.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/profile-studio.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/website/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/profile-main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/website/js/studios.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/website/js/studios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/store.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/studio.html" beforeDir="false" afterPath="$PROJECT_DIR$/studio.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/studios.html" beforeDir="false" afterPath="$PROJECT_DIR$/studios.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +38,8 @@
       <list>
         <option value="HTML File" />
         <option value="SCSS File" />
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -295,17 +304,17 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\css" />
+      <recent name="C:\Users\Mammad\Desktop\New folder" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\img" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\js" />
-      <recent name="C:\Users\Mammad\Desktop\New folder" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\js" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\img" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\css" />
       <recent name="C:\Users\Mammad\Desktop\New folder\assets\website\fonts" />
       <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\views\auth" />
       <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\plugins\flexslider" />
-      <recent name="C:\Users\Mammad\Desktop\saaz&amp;seda\plugins\table\datatable" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -384,7 +393,17 @@
       <workItem from="1627192637062" duration="1950000" />
       <workItem from="1627199610752" duration="9297000" />
       <workItem from="1627351396492" duration="1921000" />
-      <workItem from="1627798424842" duration="25761000" />
+      <workItem from="1627798424842" duration="25970000" />
+      <workItem from="1627889640114" duration="14566000" />
+      <workItem from="1627993165914" duration="17719000" />
+      <workItem from="1628052239092" duration="9907000" />
+      <workItem from="1628078725629" duration="815000" />
+      <workItem from="1628161966818" duration="1016000" />
+      <workItem from="1628148437386" duration="1262000" />
+      <workItem from="1628230991267" duration="828000" />
+      <workItem from="1628233816980" duration="6622000" />
+      <workItem from="1628252656545" duration="4508000" />
+      <workItem from="1628344246720" duration="1934000" />
     </task>
     <servers />
   </component>
@@ -427,6 +446,17 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/assets/js/dashboard/profile-edit.js</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/assets/js/elements/tooltip.js">

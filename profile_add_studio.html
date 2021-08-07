@@ -16,11 +16,10 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="assets/website/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/website/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/website/css/select2.min.css">
+<!--    <link rel="stylesheet" href="assets/website/css/select2.min.css">-->
     <link rel="stylesheet" href="assets/website/css/paymentfont.min.css">
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
-    <link rel="stylesheet" href="assets/website/css/icofont.min.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
 
     <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css">
@@ -28,43 +27,11 @@
     <link href="plugins/persian-datepicker/persian-datepicker.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="assets/scss/forms/switches.min.css">
     <link type="text/css" rel="stylesheet" href="assets/scss/elements/alert.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/website/css/infobox.css">
+    <link type="text/css" rel="stylesheet" href="plugins/select2/select2-custom.min.css">
+    <link type="text/css" rel="stylesheet" href="plugins/select2/select2-bs-custom.min.css">
     <style>
         ::placeholder {
             font-size: 12px;
-        }
-
-        .portfolio-list-item, .title-list-item {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            margin-bottom: 2rem;
-            margin-top: 2rem;
-            padding-top: .5rem;
-            padding-bottom: .5rem;
-            color: #cdcdcd;
-        }
-
-        .portfolio-list-item.focus, .title-list-item:focus {
-            box-shadow: 0 0 5px rgba(104, 104, 104, 0.85);
-        }
-
-        .portfolio-list-item h4, .title-list-item h4 {
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .portfolio-list-item p, .title-list-item p {
-            font-size: 11px;
-            font-weight: 100;
-            line-height: 17px !important;
-            text-align: right !important;
-            margin-bottom: 0 !important;
-        }
-
-        .portfolio-list-item .badge {
-            font-weight: 200;
         }
 
         .form-group .error {
@@ -106,7 +73,7 @@
     </style>
 
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
-    <title>سایت ساز و صدا - پروفایل کاربری</title>
+    <title>سایت ساز و صدا - پروفایل کاربری - افزودن استدیو</title>
 
 </head>
 <body>
@@ -315,15 +282,15 @@
                         role="tablist">
                         <div class="d-flex flex-row align-items-center">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#tab-user-profile"
+                                <a class="nav-link" href="profile.html"
                                    aria-selected="true">پروفایل</a>
                             </li>
                             <li class="nav-item nav-item-add-studio">
-                                <a class="nav-link" href="profile_add_studio.html"
+                                <a class="nav-link active" data-toggle="tab" href="#tab-user-add-studio-section"
                                    aria-selected="true">افزودن استدیو</a>
                             </li>
                             <li class="nav-item nav-item-view-studios">
-                                <a class="nav-link" href="profile_add_studio.html"
+                                <a class="nav-link" href="profile.html"
                                    aria-selected="true">استدیوهای من</a>
                             </li>
                         </div>
@@ -362,386 +329,337 @@
 
                 <!-- content tabs -->
                 <div class="tab-content">
-                    <div class="tab-pane fade show active" id="tab-user-profile">
-                        <div class="user_is_not_artist col-12 d-none">
+<!--                    <div class="tab-pane fade show active" id="tab-user-profile">-->
+<!--                        <div class="user_is_not_artist col-12 d-none">-->
 
-                            <!--                            <div class="dashbox__title">-->
-                            <!--                                <h3>پروفایل</h3>-->
-                            <!--                            </div>-->
-                            <!--                            <div class="dashbox__list-wrap">-->
-                            <div class="row mx-auto">
-                                <div class="col-sm-6 my-4">
-                                    <div class="infobox-3 infobox-artist">
-                                        <div class="info-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                                <path d="M21.65,2.24a1,1,0,0,0-.8-.23l-13,2A1,1,0,0,0,7,5V15.35A3.45,3.45,0,0,0,5.5,15,3.5,3.5,0,1,0,9,18.5V10.86L20,9.17v4.18A3.45,3.45,0,0,0,18.5,13,3.5,3.5,0,1,0,22,16.5V3A1,1,0,0,0,21.65,2.24ZM5.5,20A1.5,1.5,0,1,1,7,18.5,1.5,1.5,0,0,1,5.5,20Zm13-2A1.5,1.5,0,1,1,20,16.5,1.5,1.5,0,0,1,18.5,18ZM20,7.14,9,8.83v-3L20,4.17Z"></path>
-                                            </svg>
-                                        </div>
-                                        <h5 class="info-heading text-white">ثبت هنرمند</h5>
-                                        <p class="info-text">
-                                            در صورتی که هنرمند هستید و علاقه مند به دریافت پروژه هستید مهارت ها و نمونه
-                                            کارهای خود را به عنوان هنرمند ثبت کنید.
-                                        </p>
-                                        <a id="btn-register-artist" class="info-link sign__user-studio--btn" href="javascript:void(0)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                 class="feather feather-arrow-right">
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                <polyline points="12 5 19 12 12 19"></polyline>
-                                            </svg>
-                                            تکمیل پروفایل
-                                        </a>
-                                    </div>
-                                </div>
+<!--                            &lt;!&ndash;                            <div class="dashbox__title">&ndash;&gt;-->
+<!--                            &lt;!&ndash;                                <h3>پروفایل</h3>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                            &lt;!&ndash;                            <div class="dashbox__list-wrap">&ndash;&gt;-->
+<!--                            <div class="row mx-auto">-->
+<!--                                <div class="col-12 alert custom-alert-1 alert-arrow-left alert-icon-left alert-light-warning my-4"-->
+<!--                                     role="alert">-->
+<!--                                    <div class="media">-->
+<!--                                        <div class="media-body align-items-center">-->
+<!--                                            <div class="alert-text">-->
+<!--                                                    <span> در صورتی که <strong-->
+<!--                                                            style="vertical-align: middle">هنرمند</strong> هستید برای دریافت سفارش پروفایل خود را تکمیل کنید.</span>-->
+<!--                                            </div>-->
+<!--                                            <div class="alert-btn">-->
+<!--                                                <button type="button" id="btn-register-artist"-->
+<!--                                                        class="btn btn-light-default font-weight-bold"-->
+<!--                                                        style="border-radius: 12px;font-size: 16px">تکمیل پروفایل-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
 
-                                <div class="col-sm-6 my-4">
-                                    <div class="infobox-3 infobox-studio">
-                                        <div class="info-icon">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                                                <path d="M21.65,2.24a1,1,0,0,0-.8-.23l-13,2A1,1,0,0,0,7,5V15.35A3.45,3.45,0,0,0,5.5,15,3.5,3.5,0,1,0,9,18.5V10.86L20,9.17v4.18A3.45,3.45,0,0,0,18.5,13,3.5,3.5,0,1,0,22,16.5V3A1,1,0,0,0,21.65,2.24ZM5.5,20A1.5,1.5,0,1,1,7,18.5,1.5,1.5,0,0,1,5.5,20Zm13-2A1.5,1.5,0,1,1,20,16.5,1.5,1.5,0,0,1,18.5,18ZM20,7.14,9,8.83v-3L20,4.17Z"></path>
-                                            </svg>
-                                        </div>
-                                        <h5 class="info-heading text-white">ثبت استدیو</h5>
-                                        <p class="info-text">
-                                            در صورتی که استدیو دارید برای اجاره استدیو(های) خود آن(ها) با کلیک بر روی دکمه زیر استدیوی خود را ثبت کنید و اجاره دهید.
-                                        </p>
-                                        <a class="info-link sign__user-studio--btn" href="javascript:void(0)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                 class="feather feather-arrow-right">
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                <polyline points="12 5 19 12 12 19"></polyline>
-                                            </svg>
-                                            افزودن استدیو
-                                        </a>
-                                    </div>
-                                </div>
+<!--                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"-->
+<!--                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"-->
+<!--                                         stroke-linecap="round" stroke-linejoin="round"-->
+<!--                                         class="feather feather-bell">-->
+<!--                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>-->
+<!--                                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>-->
+<!--                                    </svg>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                        <div class="user_is_artist row mx-auto d-none">-->
+<!--                            <div class="col-md-6 pl-md-0">-->
+<!--                                <div class="dashbox">-->
 
-                                <!--                                <div class="col-12 alert custom-alert-1 alert-arrow-left alert-icon-left alert-light-warning my-4"-->
-                                <!--                                     role="alert">-->
-                                <!--                                    <div class="media">-->
-                                <!--                                        <div class="media-body align-items-center">-->
-                                <!--                                            <div class="alert-text">-->
-                                <!--                                                    <span> در صورتی که <strong-->
-                                <!--                                                            style="vertical-align: middle">هنرمند</strong> هستید برای دریافت سفارش پروفایل خود را تکمیل کنید.</span>-->
-                                <!--                                            </div>-->
-                                <!--                                            <div class="alert-btn">-->
-                                <!--                                                <button type="button" id="btn-register-artist"-->
-                                <!--                                                        class="btn btn-light-default font-weight-bold"-->
-                                <!--                                                        style="border-radius: 12px;font-size: 16px">تکمیل پروفایل-->
-                                <!--                                                </button>-->
-                                <!--                                            </div>-->
-                                <!--                                        </div>-->
-                                <!--                                    </div>-->
+<!--                                    <div class="dashbox__title">-->
+<!--                                        <h3>مهارت ها</h3>-->
+<!--                                        <button type="button"-->
+<!--                                                class="btn btn-sm btn-outline-success btn-title-toggle"-->
+<!--                                                data-toggle="collapse"-->
+<!--                                                data-target="#userAddTitleForm">-->
+<!--                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"-->
+<!--                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"-->
+<!--                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                                                 class="feather feather-plus">-->
+<!--                                                <line x1="12" y1="5" x2="12" y2="19"></line>-->
+<!--                                                <line x1="5" y1="12" x2="19" y2="12"></line>-->
+<!--                                            </svg>-->
+<!--                                            افزودن-->
+<!--                                        </button>-->
+<!--                                        <button type="button"-->
+<!--                                                class="btn btn-sm btn-outline-warning btn-title-toggle d-none"-->
+<!--                                                data-toggle="collapse"-->
+<!--                                                data-target="#userAddTitleForm">-->
+<!--                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"-->
+<!--                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"-->
+<!--                                                 stroke-width="2"-->
+<!--                                                 stroke-linecap="round" stroke-linejoin="round"-->
+<!--                                                 class="feather feather-corner-up-right">-->
+<!--                                                <polyline points="15 14 20 9 15 4"></polyline>-->
+<!--                                                <path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>-->
+<!--                                            </svg>-->
+<!--                                            بازگشت-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                    <div class="dashbox__list-wrap">-->
+<!--                                        <div class="row collapse" id="userAddTitleForm">-->
+<!--                                            <div class="col-md-6 my-lg-3 my-2">-->
+<!--                                                <div class="sign__group">-->
+<!--                                                    <label class="sign__label" for="userTitleName">عنوان-->
+<!--                                                        *</label>-->
+<!--                                                    <select id="userTitleName" name="name" class="sign__input"-->
+<!--                                                            required>-->
+<!--                                                        <option selected disabled>&#45;&#45; انتخاب کنید &#45;&#45;</option>-->
+<!--                                                    </select>-->
+<!--                                                </div>-->
+<!--                                                <div class="sign__group align-items-center">-->
+<!--                                                    <span class="sign__label mr-3">پذیرش کار</span>-->
+<!--                                                    <label class="switch s-success mr-2 mb-0"><input-->
+<!--                                                            type="checkbox"-->
+<!--                                                            name="accept_order">-->
+<!--                                                        <span class="slider round"></span></label>-->
+<!--                                                </div>-->
+<!--                                                <div class="sign__group">-->
+<!--                                                    <label class="sign__label" for="userAcceptOrderPrice">هزینه-->
+<!--                                                        انجام-->
+<!--                                                        *</label>-->
+<!--                                                    <input id="userAcceptOrderPrice" type="text"-->
+<!--                                                           autocomplete="off"-->
+<!--                                                           name="order_price" class="sign__input"-->
+<!--                                                           placeholder="به تومان" required>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-md-6 my-lg-3 my-2">-->
+<!--                                                <div class="sign__group">-->
+<!--                                                    <label class="sign__label" for="userTitleDescription">توضیحات-->
+<!--                                                        (اختیاری)</label>-->
+<!--                                                    <textarea id="userTitleDescription" rows="8"-->
+<!--                                                              name="description"-->
+<!--                                                              maxlength="191" class="sign__input"-->
+<!--                                                              style="height: auto"-->
+<!--                                                              placeholder="توضیحات کامل تر = تعداد درخواست بیشتر"></textarea>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-12">-->
+<!--                                                <button type="button" class="btn btn-outline-secondary"-->
+<!--                                                        onclick="addEditTitleRow(event)">ذخیره-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <ul class="col-12 title-list mt-3">-->
+<!--                                            <div class="title-list-empty">-->
+<!--                                                <div class="alert alert-outline-warning text-light mb-4"-->
+<!--                                                     role="alert">-->
+<!--                                                    <button type="button" class="close" data-dismiss="alert"-->
+<!--                                                            aria-label="Close">-->
+<!--                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"-->
+<!--                                                             height="24"-->
+<!--                                                             data-dismiss="alert" viewBox="0 0 24 24"-->
+<!--                                                             fill="none"-->
+<!--                                                             stroke="currentColor" stroke-width="2"-->
+<!--                                                             stroke-linecap="round"-->
+<!--                                                             stroke-linejoin="round"-->
+<!--                                                             class="feather feather-x close">-->
+<!--                                                            <line x1="18" y1="6" x2="6" y2="18"></line>-->
+<!--                                                            <line x1="6" y1="6" x2="18" y2="18"></line>-->
+<!--                                                        </svg>-->
+<!--                                                    </button>-->
+<!--                                                    <strong>مهارتی ثبت نشده است.</strong> ایجاد کنید-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6 pr-md-0">-->
+<!--                                <div class="dashbox">-->
 
-                                <!--                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"-->
-                                <!--                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"-->
-                                <!--                                         stroke-linecap="round" stroke-linejoin="round"-->
-                                <!--                                         class="feather feather-bell">-->
-                                <!--                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>-->
-                                <!--                                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>-->
-                                <!--                                    </svg>-->
-                                <!--                                </div>-->
-                            </div>
-                            <!--                            </div>-->
-                        </div>
-                        <div class="user_is_artist row mx-auto d-none">
-                            <div class="col-md-6 pl-md-0 pr-md-2 px-0">
-                                <div class="dashbox">
+<!--                                    <div class="dashbox__title">-->
+<!--                                        <h4 class="sign__title mb-0">نمونه کارها</h4>-->
+<!--                                        <button type="button"-->
+<!--                                                class="btn btn-sm btn-outline-success btn-portfolio-toggle"-->
+<!--                                                data-toggle="collapse"-->
+<!--                                                data-target="#userAddExperienceForm">-->
+<!--                                            افزودن-->
+<!--                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"-->
+<!--                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"-->
+<!--                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"-->
+<!--                                                 class="feather feather-plus">-->
+<!--                                                <line x1="12" y1="5" x2="12" y2="19"></line>-->
+<!--                                                <line x1="5" y1="12" x2="19" y2="12"></line>-->
+<!--                                            </svg>-->
+<!--                                        </button>-->
+<!--                                        <button type="button"-->
+<!--                                                class="btn btn-sm btn-outline-warning btn-portfolio-toggle d-none"-->
+<!--                                                data-toggle="collapse"-->
+<!--                                                data-target="#userAddExperienceForm">-->
+<!--                                            بازگشت-->
+<!--                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"-->
+<!--                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"-->
+<!--                                                 stroke-width="2"-->
+<!--                                                 stroke-linecap="round" stroke-linejoin="round"-->
+<!--                                                 class="feather feather-corner-up-right">-->
+<!--                                                <polyline points="15 14 20 9 15 4"></polyline>-->
+<!--                                                <path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>-->
+<!--                                            </svg>-->
+<!--                                        </button>-->
+<!--                                    </div>-->
 
-                                    <div class="dashbox__title">
-                                        <h3>مهارت ها</h3>
-                                        <button type="button"
-                                                class="btn btn-sm btn-outline-success btn-title-toggle"
-                                                data-toggle="collapse"
-                                                data-target="#userAddTitleForm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg>
-                                            افزودن
-                                        </button>
-                                        <button type="button"
-                                                class="btn btn-sm btn-outline-warning btn-title-toggle d-none"
-                                                data-toggle="collapse"
-                                                data-target="#userAddTitleForm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                 stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                 class="feather feather-corner-up-right">
-                                                <polyline points="15 14 20 9 15 4"></polyline>
-                                                <path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
-                                            </svg>
-                                            بازگشت
-                                        </button>
-                                    </div>
-                                    <div class="dashbox__list-wrap">
-                                        <div class="row collapse" id="userAddTitleForm">
-                                            <div class="col-md-6 my-lg-3 my-2">
-                                                <div class="sign__group">
-                                                    <label class="sign__label" for="userTitleName">عنوان
-                                                        *</label>
-                                                    <select id="userTitleName" name="name" class="sign__input"
-                                                            required>
-                                                        <option selected disabled>-- انتخاب کنید --</option>
-                                                    </select>
-                                                </div>
-                                                <div class="sign__group align-items-center">
-                                                    <span class="sign__label mr-3">پذیرش کار</span>
-                                                    <label class="switch s-success mr-2 mb-0"><input
-                                                            type="checkbox"
-                                                            name="accept_order">
-                                                        <span class="slider round"></span></label>
-                                                </div>
-                                                <div class="sign__group">
-                                                    <label class="sign__label" for="userAcceptOrderPrice">هزینه
-                                                        انجام
-                                                        *</label>
-                                                    <input id="userAcceptOrderPrice" type="text"
-                                                           autocomplete="off"
-                                                           name="order_price" class="sign__input"
-                                                           placeholder="به تومان" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-lg-3 my-2">
-                                                <div class="sign__group">
-                                                    <label class="sign__label" for="userTitleDescription">توضیحات
-                                                        (اختیاری)</label>
-                                                    <textarea id="userTitleDescription" rows="8"
-                                                              name="description"
-                                                              maxlength="191" class="sign__input"
-                                                              style="height: auto"
-                                                              placeholder="توضیحات کامل تر = تعداد درخواست بیشتر"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                        onclick="addEditTitleRow(event)">ذخیره
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <ul class="col-12 title-list mt-3">
-                                            <div class="title-list-empty">
-                                                <div class="alert alert-outline-warning text-light mb-4"
-                                                     role="alert">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-label="Close">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                             height="24"
-                                                             data-dismiss="alert" viewBox="0 0 24 24"
-                                                             fill="none"
-                                                             stroke="currentColor" stroke-width="2"
-                                                             stroke-linecap="round"
-                                                             stroke-linejoin="round"
-                                                             class="feather feather-x close">
-                                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                        </svg>
-                                                    </button>
-                                                    <strong>مهارتی ثبت نشده است.</strong> ایجاد کنید
-                                                </div>
-                                            </div>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 pr-md-0 pl-md-2 px-0">
-                                <div class="dashbox">
-
-                                    <div class="dashbox__title">
-                                        <h4 class="sign__title mb-0">نمونه کارها</h4>
-                                        <button type="button"
-                                                class="btn btn-sm btn-outline-success btn-portfolio-toggle"
-                                                data-toggle="collapse"
-                                                data-target="#userAddExperienceForm">
-                                            افزودن
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                 class="feather feather-plus">
-                                                <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            </svg>
-                                        </button>
-                                        <button type="button"
-                                                class="btn btn-sm btn-outline-warning btn-portfolio-toggle d-none"
-                                                data-toggle="collapse"
-                                                data-target="#userAddExperienceForm">
-                                            بازگشت
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                 stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round"
-                                                 class="feather feather-corner-up-right">
-                                                <polyline points="15 14 20 9 15 4"></polyline>
-                                                <path d="M4 20v-7a4 4 0 0 1 4-4h12"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                    <div class="dashbox__list-wrap">
-                                        <div class="row collapse" id="userAddExperienceForm">
-                                            <div class="col-md-6">
-                                                <div class="sign__group">
-                                                    <label class="sign__label" for="userExperienceTitle">عنوان
-                                                        *</label>
-                                                    <input id="userExperienceTitle" type="text"
-                                                           autocomplete="off"
-                                                           name="name" class="sign__input"
-                                                           placeholder="نوازندگی موزیک متن سریال گاندو"
-                                                           required>
-                                                </div>
-                                                <div class="sign__group">
-                                                    <label class="sign__label" for="userExperienceDate">تاریخ
-                                                        انجام
-                                                        *</label>
-                                                    <input id="userExperienceDate" type="text"
-                                                           autocomplete="off"
-                                                           name="date" class="sign__input"
-                                                           placeholder="1400/02/25"
-                                                           required>
-                                                </div>
-                                                <!--                                            <div class="form-group mb-3">-->
-                                                <!--                                                <label for="userExperienceDate">تاریخ انجام *</label>-->
-                                                <!--                                                <div class="input-group">-->
-                                                <!--                                                    <input id="userExperienceDate" type="text"-->
-                                                <!--                                                           class="form-control form-control-sm" name="date"-->
-                                                <!--                                                           autocomplete="off" placeholder="1400/02/25" required>-->
-                                                <!--                                                    <div class="input-group-append">-->
-                                                <!--                                                                            <span class="input-group-text">-->
-                                                <!--                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"-->
-                                                <!--                                                                         height="24"-->
-                                                <!--                                                                         viewBox="0 0 24 24" fill="none"-->
-                                                <!--                                                                         stroke="currentColor" stroke-width="2"-->
-                                                <!--                                                                         stroke-linecap="round" stroke-linejoin="round"-->
-                                                <!--                                                                         class="feather feather-clipboard"><path-->
-                                                <!--                                                                            d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect-->
-                                                <!--                                                                            x="8" y="2" width="8" height="4" rx="1"-->
-                                                <!--                                                                            ry="1"></rect></svg>-->
-                                                <!--                                                                            </span>-->
-                                                <!--                                                    </div>-->
-                                                <!--                                                </div>-->
-                                                <!--                                            </div>-->
-                                                <div class="w-100 mb-3">
-                                                    <ul class="nav nav-pills mt-3 justify-content-center"
-                                                        id="rounded-circle-pills-icon-tab" role="tablist">
-                                                        <li class="nav-item mr-2">
-                                                            <a class="nav-link mb-1 rounded-circle active"
-                                                               data-toggle="pill"
-                                                               href="#rounded-circle-pills-icon-portfolio-external-url"
-                                                               aria-controls="rounded-circle-pills-icon-home">
-                                                                <img src="assets/img/external-link.svg"
-                                                                     alt="external link" class="p-2">
-                                                            </a>
-                                                        </li>
-                                                        <li class="nav-item ml-2 mr-2">
-                                                            <a class="nav-link mb-1 rounded-circle"
-                                                               id="rounded-circle-pills-icon-profile-tab"
-                                                               data-toggle="pill"
-                                                               href="#rounded-circle-pills-icon-portfolio-upload"
-                                                               aria-controls="rounded-circle-pills-icon-profile">
-                                                                <img src="assets/img/upload.svg" alt="upload"
-                                                                     class="p-2">
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                    <div class="tab-content">
-                                                        <div class="tab-pane fade show active"
-                                                             id="rounded-circle-pills-icon-portfolio-external-url">
-                                                            <div class="sign__group">
-                                                                <label class="sign__label"
-                                                                       for="userExperienceUrl">آدرس
-                                                                    اینترنتی</label>
-                                                                <input id="userExperienceUrl" type="url"
-                                                                       autocomplete="off"
-                                                                       name="url" class="sign__input"
-                                                                       placeholder="آدرس اینترنتی"
-                                                                       required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="tab-pane fade"
-                                                             id="rounded-circle-pills-icon-portfolio-upload">
-                                                            <div class="sign__group">
-                                                                <label class="sign__label"
-                                                                       for="userExperienceFileUpload">فایل
-                                                                    نمونه کار</label>
-                                                                <div class="input-group">
-                                                                    <input id="userExperienceFileUpload"
-                                                                           type="file"
-                                                                           class="sign__input" name="sound"
-                                                                           accept="audio/*" autocomplete="off"
-                                                                           placeholder="فایل نمونه کار">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="custom-file-container"
-                                                     data-upload-id=userExperienceThumbnail>
-                                                    <label>تصویر نمونه کار را وارد کنید.<a
-                                                            href="javascript:void(0)"
-                                                            class="custom-file-container__image-clear"
-                                                            title="حذف عکس">x</a></label>
-                                                    <label class="custom-file-container__custom-file">
-                                                        <input type="file" name="image"
-                                                               class="custom-file-container__custom-file__custom-file-input"
-                                                               accept="image/*">
-                                                        <input type="hidden" name="MAX_FILE_SIZE"
-                                                               value="10485760"/>
-                                                        <span class="custom-file-container__custom-file__custom-file-control"></span>
-                                                    </label>
-                                                    <div class="custom-file-container__image-preview"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="sign__group">
-                                                    <label class="sign__label"
-                                                           for="userExperienceDescription">توضیحات</label>
-                                                    <textarea id="userExperienceDescription" name="description"
-                                                              class="sign__input" placeholder="توضیحات"
-                                                              rows="3" style="height: auto" required></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                        onclick="addPortfolioRow(event)">ذخیره
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <ul class="col-12 portfolio-list mt-3">
-                                            <div class="portfolio-list-empty">
-                                                <div class="alert alert-outline-warning text-light mb-4"
-                                                     role="alert">
-                                                    <button type="button" class="close" data-dismiss="alert"
-                                                            aria-label="Close">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                             height="24"
-                                                             data-dismiss="alert" viewBox="0 0 24 24"
-                                                             fill="none"
-                                                             stroke="currentColor" stroke-width="2"
-                                                             stroke-linecap="round"
-                                                             stroke-linejoin="round"
-                                                             class="feather feather-x close">
-                                                            <line x1="18" y1="6" x2="6" y2="18"></line>
-                                                            <line x1="6" y1="6" x2="18" y2="18"></line>
-                                                        </svg>
-                                                    </button>
-                                                    <strong>نمونه کاری ثبت نشده است.</strong> ایجاد کنید
-                                                </div>
-                                            </div>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                                    <div class="dashbox__list-wrap">-->
+<!--                                        <div class="row collapse" id="userAddExperienceForm">-->
+<!--                                            <div class="col-md-6">-->
+<!--                                                <div class="sign__group">-->
+<!--                                                    <label class="sign__label" for="userExperienceTitle">عنوان-->
+<!--                                                        *</label>-->
+<!--                                                    <input id="userExperienceTitle" type="text"-->
+<!--                                                           autocomplete="off"-->
+<!--                                                           name="name" class="sign__input"-->
+<!--                                                           placeholder="نوازندگی موزیک متن سریال گاندو"-->
+<!--                                                           required>-->
+<!--                                                </div>-->
+<!--                                                <div class="sign__group">-->
+<!--                                                    <label class="sign__label" for="userExperienceDate">تاریخ-->
+<!--                                                        انجام-->
+<!--                                                        *</label>-->
+<!--                                                    <input id="userExperienceDate" type="text"-->
+<!--                                                           autocomplete="off"-->
+<!--                                                           name="date" class="sign__input"-->
+<!--                                                           placeholder="1400/02/25"-->
+<!--                                                           required>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;                                            <div class="form-group mb-3">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                <label for="userExperienceDate">تاریخ انجام *</label>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                <div class="input-group">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    <input id="userExperienceDate" type="text"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                           class="form-control form-control-sm" name="date"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                           autocomplete="off" placeholder="1400/02/25" required>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    <div class="input-group-append">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                            <span class="input-group-text">&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                         height="24"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                         viewBox="0 0 24 24" fill="none"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                         stroke="currentColor" stroke-width="2"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                         stroke-linecap="round" stroke-linejoin="round"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                         class="feather feather-clipboard"><path&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                            d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                            x="8" y="2" width="8" height="4" rx="1"&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                            ry="1"></rect></svg>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                                            </span>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                    </div>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                                </div>&ndash;&gt;-->
+<!--                                                &lt;!&ndash;                                            </div>&ndash;&gt;-->
+<!--                                                <div class="w-100 mb-3">-->
+<!--                                                    <ul class="nav nav-pills mt-3 justify-content-center"-->
+<!--                                                        id="rounded-circle-pills-icon-tab" role="tablist">-->
+<!--                                                        <li class="nav-item mr-2">-->
+<!--                                                            <a class="nav-link mb-1 rounded-circle active"-->
+<!--                                                               data-toggle="pill"-->
+<!--                                                               href="#rounded-circle-pills-icon-portfolio-external-url"-->
+<!--                                                               aria-controls="rounded-circle-pills-icon-home">-->
+<!--                                                                <img src="assets/img/external-link.svg"-->
+<!--                                                                     alt="external link" class="p-2">-->
+<!--                                                            </a>-->
+<!--                                                        </li>-->
+<!--                                                        <li class="nav-item ml-2 mr-2">-->
+<!--                                                            <a class="nav-link mb-1 rounded-circle"-->
+<!--                                                               id="rounded-circle-pills-icon-profile-tab"-->
+<!--                                                               data-toggle="pill"-->
+<!--                                                               href="#rounded-circle-pills-icon-portfolio-upload"-->
+<!--                                                               aria-controls="rounded-circle-pills-icon-profile">-->
+<!--                                                                <img src="assets/img/upload.svg" alt="upload"-->
+<!--                                                                     class="p-2">-->
+<!--                                                            </a>-->
+<!--                                                        </li>-->
+<!--                                                    </ul>-->
+<!--                                                    <div class="tab-content">-->
+<!--                                                        <div class="tab-pane fade show active"-->
+<!--                                                             id="rounded-circle-pills-icon-portfolio-external-url">-->
+<!--                                                            <div class="sign__group">-->
+<!--                                                                <label class="sign__label"-->
+<!--                                                                       for="userExperienceUrl">آدرس-->
+<!--                                                                    اینترنتی</label>-->
+<!--                                                                <input id="userExperienceUrl" type="url"-->
+<!--                                                                       autocomplete="off"-->
+<!--                                                                       name="url" class="sign__input"-->
+<!--                                                                       placeholder="آدرس اینترنتی"-->
+<!--                                                                       required>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="tab-pane fade"-->
+<!--                                                             id="rounded-circle-pills-icon-portfolio-upload">-->
+<!--                                                            <div class="sign__group">-->
+<!--                                                                <label class="sign__label"-->
+<!--                                                                       for="userExperienceFileUpload">فایل-->
+<!--                                                                    نمونه کار</label>-->
+<!--                                                                <div class="input-group">-->
+<!--                                                                    <input id="userExperienceFileUpload"-->
+<!--                                                                           type="file"-->
+<!--                                                                           class="sign__input" name="sound"-->
+<!--                                                                           accept="audio/*" autocomplete="off"-->
+<!--                                                                           placeholder="فایل نمونه کار">-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-md-6">-->
+<!--                                                <div class="custom-file-container"-->
+<!--                                                     data-upload-id=userExperienceThumbnail>-->
+<!--                                                    <label>تصویر نمونه کار را وارد کنید.<a-->
+<!--                                                            href="javascript:void(0)"-->
+<!--                                                            class="custom-file-container__image-clear"-->
+<!--                                                            title="حذف عکس">x</a></label>-->
+<!--                                                    <label class="custom-file-container__custom-file">-->
+<!--                                                        <input type="file" name="image"-->
+<!--                                                               class="custom-file-container__custom-file__custom-file-input"-->
+<!--                                                               accept="image/*">-->
+<!--                                                        <input type="hidden" name="MAX_FILE_SIZE"-->
+<!--                                                               value="10485760"/>-->
+<!--                                                        <span class="custom-file-container__custom-file__custom-file-control"></span>-->
+<!--                                                    </label>-->
+<!--                                                    <div class="custom-file-container__image-preview"></div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-12">-->
+<!--                                                <div class="sign__group">-->
+<!--                                                    <label class="sign__label"-->
+<!--                                                           for="userExperienceDescription">توضیحات</label>-->
+<!--                                                    <textarea id="userExperienceDescription" name="description"-->
+<!--                                                              class="sign__input" placeholder="توضیحات"-->
+<!--                                                              rows="3" style="height: auto" required></textarea>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-12">-->
+<!--                                                <button type="button" class="btn btn-outline-secondary"-->
+<!--                                                        onclick="addPortfolioRow(event)">ذخیره-->
+<!--                                                </button>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <ul class="col-12 portfolio-list mt-3">-->
+<!--                                            <div class="portfolio-list-empty">-->
+<!--                                                <div class="alert alert-outline-warning text-light mb-4"-->
+<!--                                                     role="alert">-->
+<!--                                                    <button type="button" class="close" data-dismiss="alert"-->
+<!--                                                            aria-label="Close">-->
+<!--                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"-->
+<!--                                                             height="24"-->
+<!--                                                             data-dismiss="alert" viewBox="0 0 24 24"-->
+<!--                                                             fill="none"-->
+<!--                                                             stroke="currentColor" stroke-width="2"-->
+<!--                                                             stroke-linecap="round"-->
+<!--                                                             stroke-linejoin="round"-->
+<!--                                                             class="feather feather-x close">-->
+<!--                                                            <line x1="18" y1="6" x2="6" y2="18"></line>-->
+<!--                                                            <line x1="6" y1="6" x2="18" y2="18"></line>-->
+<!--                                                        </svg>-->
+<!--                                                    </button>-->
+<!--                                                    <strong>نمونه کاری ثبت نشده است.</strong> ایجاد کنید-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 <!--                        <div id="alert-sign-studio"-->
 <!--                             class="col-12 alert custom-alert-1 bg-primary text-white my-4 d-none" role="alert">-->
 <!--                            &lt;!&ndash;                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" data-dismiss="alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>&ndash;&gt;-->
@@ -769,12 +687,11 @@
 <!--                                </div>-->
 <!--                            </div>-->
 <!--                        </div>-->
-                    </div>
+<!--                    </div>-->
                     <div class="tab-pane fade" id="tab-edit-profile">
                         <div class="row row--grid">
                             <div class="col-lg-12">
                                 <div class="dashbox">
-
                                     <div class="dashbox__title">
                                         <h3>ویرایش اطلاعات</h3>
                                     </div>
@@ -915,110 +832,80 @@
                             </div>
                         </div>
                     </div>
-                    <!--                    <div class="tab-pane fade" id="tab-user-add-studio-section">-->
-                    <!--                        <div class="row row&#45;&#45;grid">-->
-                    <!--                            <div class="col-lg-12">-->
-                    <!--                                <div class="dashbox">-->
+                    <div class="tab-pane fade show active" id="tab-user-add-studio-section">
+                        <div class="row row--grid">
+                            <div class="col-lg-12">
+                                <div class="dashbox">
 
-                    <!--                                    <div class="dashbox__title">-->
-                    <!--                                        <h3>افزودن استدیو</h3>-->
-                    <!--                                    </div>-->
-                    <!--                                    <div class="dashbox__list-wrap">-->
-                    <!--                                        <form id="formAddStudio" enctype="multipart/form-data">-->
-                    <!--                                            <div class="row">-->
-                    <!--                                                <div class="col-md-8 col-sm-10 mx-auto mb-5">-->
-                    <!--                                                    <div class="custom-file-container"-->
-                    <!--                                                         data-upload-id="studioImagesFileContainer">-->
-                    <!--                                                        <label>آپلود عکس(ها) <a href="javascript:void(0)"-->
-                    <!--                                                                                class="custom-file-container__image-clear"-->
-                    <!--                                                                                title="حذف عکس">x</a></label>-->
-                    <!--                                                        <label class="custom-file-container__custom-file">-->
-                    <!--                                                            <input type="file"-->
-                    <!--                                                                   class="custom-file-container__custom-file__custom-file-input"-->
-                    <!--                                                                   multiple>-->
-                    <!--                                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760"/>-->
-                    <!--                                                            <span class="custom-file-container__custom-file__custom-file-control"></span>-->
-                    <!--                                                        </label>-->
-                    <!--                                                        <div class="custom-file-container__image-preview"></div>-->
-                    <!--                                                    </div>-->
-                    <!--                                                </div>-->
-                    <!--                                                <div class="col-md-6 mb-3">-->
-                    <!--                                                    <div class="sign__group">-->
-                    <!--                                                        <label class="sign__label" for="studioNameInput">نام-->
-                    <!--                                                            استدیو</label>-->
-                    <!--                                                        <input id="studioNameInput" type="text" autocomplete="off"-->
-                    <!--                                                               name="name" class="sign__input" required>-->
-                    <!--                                                    </div>-->
-                    <!--                                                </div>-->
-                    <!--                                                <div class="col-md-6 mb-3">-->
-                    <!--                                                    <div class="sign__group">-->
-                    <!--                                                        <label class="sign__label" for="studioRentCostInput">هزینه-->
-                    <!--                                                            اجاره(ساعتی)</label>-->
-                    <!--                                                        <input id="studioRentCostInput" type="text" autocomplete="off"-->
-                    <!--                                                               name="price" class="sign__input" required>-->
-                    <!--                                                    </div>-->
-                    <!--                                                </div>-->
-                    <!--                                                <div class="col-md-6 mb-3">-->
-                    <!--                                                    <div class="sign__group">-->
-                    <!--                                                        <label class="sign__label"-->
-                    <!--                                                               for="studioGeoLocationTextArea">آدرس</label>-->
-                    <!--                                                        <textarea id="studioGeoLocationTextArea"-->
-                    <!--                                                                  style="resize: none;height: auto" rows="4"-->
-                    <!--                                                                  name="address"-->
-                    <!--                                                                  placeholder="آدرس دقیق استدیو را وارد کنید"-->
-                    <!--                                                                  class="sign__input" required></textarea>-->
-                    <!--                                                    </div>-->
-                    <!--                                                </div>-->
-                    <!--                                                <div class="col-md-6 mb-3">-->
-                    <!--                                                    <div class="sign__group">-->
-                    <!--                                                        <label class="sign__label" for="studioExtraDescriptionTextArea">توضیحات-->
-                    <!--                                                            تکمیلی استدیو(اختیاری)</label>-->
-                    <!--                                                        <textarea id="studioExtraDescriptionTextArea"-->
-                    <!--                                                                  style="resize: none;height: auto" rows="4"-->
-                    <!--                                                                  name="description" class="sign__input"-->
-                    <!--                                                                  required></textarea>-->
-                    <!--                                                    </div>-->
-                    <!--                                                </div>-->
-                    <!--                                                <div class="col-12 mb-3">-->
-                    <!--                                                    <button type="submit" class="sign__btn">افزودن استدیو</button>-->
-                    <!--                                                </div>-->
-                    <!--                                            </div>-->
-                    <!--                                        </form>-->
-                    <!--                                    </div>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-
-                    <!--                    <div class="tab-pane fade" id="tab-user-list-studios-section">-->
-                    <!--                        <div class="row row&#45;&#45;grid">-->
-                    <!--                            <div class="col-12">-->
-                    <!--                                <div class="dashbox">-->
-                    <!--                                    <div class="dashbox__title">-->
-                    <!--                                        <h3>استدیوهای من</h3>-->
-                    <!--                                    </div>-->
-                    <!--                                    <div class="dashbox__table-wrap">-->
-                    <!--                                        <div class="dashbox__table-scroll">-->
-                    <!--                                            <table class="main__table studios_table">-->
-                    <!--                                                <thead>-->
-                    <!--                                                <tr>-->
-                    <!--                                                    <th>#</th>-->
-                    <!--                                                    <th><a href="javascript:void(0)">در دسترس</a></th>-->
-                    <!--                                                    <th style="width:25%"><a href="javascript:void(0)">نام</a></th>-->
-                    <!--                                                    <th><a href="javascript:void(0)">هزینه اجاره</a></th>-->
-                    <!--                                                    <th><a href="javascript:void(0)">وضعیت</a></th>-->
-                    <!--                                                    <th style="width: 5%"></th>-->
-                    <!--                                                </tr>-->
-                    <!--                                                </thead>-->
-                    <!--                                                <tbody>-->
-                    <!--                                                </tbody>-->
-                    <!--                                            </table>-->
-                    <!--                                        </div>-->
-                    <!--                                    </div>-->
-                    <!--                                </div>-->
-                    <!--                            </div>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
+                                    <div class="dashbox__title">
+                                        <h3>افزودن استدیو</h3>
+                                    </div>
+                                    <div class="dashbox__list-wrap">
+                                        <form id="formAddStudio" enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col-md-8 col-sm-10 mx-auto mb-5">
+                                                    <div class="custom-file-container"
+                                                         data-upload-id="studioImagesFileContainer">
+                                                        <label>آپلود عکس(ها) <a href="javascript:void(0)"
+                                                                                class="custom-file-container__image-clear"
+                                                                                title="حذف عکس">x</a></label>
+                                                        <label class="custom-file-container__custom-file">
+                                                            <input type="file"
+                                                                   class="custom-file-container__custom-file__custom-file-input"
+                                                                   multiple>
+                                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760"/>
+                                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                                        </label>
+                                                        <div class="custom-file-container__image-preview"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="sign__group">
+                                                        <label class="sign__label" for="studioNameInput">نام
+                                                            استدیو</label>
+                                                        <input id="studioNameInput" type="text" autocomplete="off"
+                                                               name="name" class="sign__input" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="sign__group">
+                                                        <label class="sign__label" for="studioRentCostInput">هزینه
+                                                            اجاره(ساعتی)</label>
+                                                        <input id="studioRentCostInput" type="text" autocomplete="off"
+                                                               name="price" class="sign__input" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="sign__group">
+                                                        <label class="sign__label"
+                                                               for="studioGeoLocationTextArea">آدرس</label>
+                                                        <textarea id="studioGeoLocationTextArea"
+                                                                  style="resize: none;height: auto" rows="4"
+                                                                  name="address"
+                                                                  placeholder="آدرس دقیق استدیو را وارد کنید"
+                                                                  class="sign__input" required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <div class="sign__group">
+                                                        <label class="sign__label" for="studioExtraDescriptionTextArea">توضیحات
+                                                            تکمیلی استدیو(اختیاری)</label>
+                                                        <textarea id="studioExtraDescriptionTextArea"
+                                                                  style="resize: none;height: auto" rows="4"
+                                                                  name="description" class="sign__input"
+                                                                  required></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <button type="submit" class="sign__btn">افزودن استدیو</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- end content tabs -->
@@ -1175,13 +1062,13 @@
 <script src="assets/website/js/owl.carousel.min.js"></script>
 <script src="assets/website/js/jquery.magnific-popup.min.js"></script>
 <script src="assets/website/js/smooth-scrollbar.js"></script>
-<script src="assets/website/js/select2.min.js"></script>
+<!--<script src="assets/website/js/select2.min.js"></script>-->
 <script src="assets/website/js/slider-radio.js"></script>
 <script src="assets/website/js/jquery.inputmask.min.js"></script>
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
 <script src="assets/website/js/profile-common.js"></script>
-<script src="assets/website/js/profile-main.js"></script>
+<script src="assets/website/js/profile-studio.js"></script>
 
 </body>
 

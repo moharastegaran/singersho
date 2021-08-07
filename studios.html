@@ -217,7 +217,7 @@
             <div class="col-12">
                 <div class="main__filter">
                     <form class="main__filter-search">
-                        <input type="text" name="search" placeholder="نام استدیو ...">
+                        <input type="text" name="search" placeholder="نام و آدرس استدیو ...">
                         <button type="submit">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"/>
@@ -237,6 +237,40 @@
                             <option value="column=price&isDesc=0">ارزان ترین</option>
                             <option value="column=price&isDesc=1">گران ترین</option>
                         </select>
+                    </div>
+
+                    <div id="price-range-container" class="position-relative" style="margin-right: 30px">
+                        <button class="sign__btn h-auto p-2" style="width:140px;font-size: 17px" data-toggle="collapse"
+                                data-target="#price-range-slider">
+                            <i class="icofont-settings mr-1"></i>
+                            فیلتر قیمت
+                        </button>
+                        <div id="price-range-slider"
+                             class="collapse pt-3 pb-4 px-lg-5 px-md-4 position-absolute shadow-lg">
+                            <div class="w-100 d-flex flex-column">
+                                <h6 class="border-bottom pb-3 mb-5 text-light text-center"
+                                    style="border-color: #222227 !important;">فیلتر محدوده قیمت</h6>
+                                <div class="flat-slider col-12" id="slider-range"></div>
+                                <div class="row mt-3">
+                                    <div class="col-6 d-flex flex-column align-items-center text-center">
+                                        <span>تا</span>
+                                        <span class="slider-range-max">0</span>
+                                        <span>تومان</span>
+                                    </div>
+                                    <div class="col-6 d-flex flex-column align-items-center text-center">
+                                        <span>از</span>
+                                        <span class="slider-range-min">0</span>
+                                        <span>تومان</span>
+                                    </div>
+                                </div>
+
+                                <button class="price-filter__btn sign__btn h-auto p-2" type="button"
+                                        style="font-size: 17px">
+                                    <i class="icofont-filter mr-1"></i> اعمال فیلتر
+                                </button>
+
+                            </div>
+                        </div>
                     </div>
 
                 </div>

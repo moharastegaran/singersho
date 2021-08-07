@@ -1,12 +1,8 @@
-// const userProfileAvatarUpload = new FileUploadWithPreview('userProfileAvatar');
 const userExperienceThumbnailUpload = new FileUploadWithPreview('userExperienceThumbnail');
 let portfolioType = "url";
-let is_artist = false,user_first_name,user_last_name,user_email,user_melli_code,artist_advise_price;
 
 let focusedPortfolioRow = null, focusedPortfolioIndex = -1;
 let focusedTitleRow = null, focusedTitleIndex = -1;
-let prev = null;
-
 
 function addEditTitleRow(e) {
     e.preventDefault();
@@ -51,20 +47,20 @@ function addEditTitleRow(e) {
                             form.find(".for-errors").remove();
                             $(".title-list").append("" +
                                 "<li class=\"title-list-item\" data-id=\"" + response.new_title.title_id + "\">\n" +
-                                "                                        <div class=\"col-3\">\n" +
+                                "                                        <div class=\"col-md-3 col-4 text-left px-1\">\n" +
                                 "                                            <h4 class='name'>" + title_text + "</h4>\n" +
                                 "                                        </div>\n" +
-                                "                                        <div class=\"col-3 fa-number d-flex align-items-center\">\n" +
+                                "                                        <div class=\"col-md-3 col-5 fa-number d-flex flex-column flex-wrap justify-content-start align-items-start px-1\">\n" +
                                 "                                           <label class=\"switch s-success mr-2 mb-0\">\n" +
                                 "                                                <input type=\"checkbox\" class='accept_order' " + (accept_order === 1 ? 'checked' : '') + " disabled><span class=\"slider round\"></span>\n" +
-                                "                                           </label><span class='order_price mx-1'>" + order_price + "</span>" + " تومان " +
+                                "                                           </label><span><span class='order_price mx-1'>" + order_price + "</span>" + "تومان </span> " +
                                 "                                        </div>\n" +
-                                "                                        <div class=\"col-5\">\n" +
-                                "                                            <p class=\"mb-0 description\">" + description + "</p>\n" +
+                                "                                        <div class=\"col-4 d-md-block d-none px-1\">\n" +
+                                "                                            <p class=\"description\">" + description + "</p>\n" +
                                 "                                        </div>\n" +
-                                "                                        <div class=\"col-1\">\n" +
-                                "                                            <div class=\"row\">\n" +
-                                "                                                <a class=\"col px-0 text-center\" href=\"javascript:void(0);\"\n" +
+                                "                                        <div class=\"col-md-2 col-3 px-1\">\n" +
+                                "                                            <div class=\"d-flex flex-row justify-content-end\">\n" +
+                                "                                                <a href=\"javascript:void(0);\"\n" +
                                 "                                                   onclick='editTitleRow(this)'>\n" +
                                 "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
                                 "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
@@ -73,7 +69,7 @@ function addEditTitleRow(e) {
                                 "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                 "                                                    </svg>\n" +
                                 "                                                </a>\n" +
-                                "                                                <a class=\"col px-0 text-center open-delete-modal\" " +
+                                "                                                <a class=\"open-delete-modal\" " +
                                 "                                                   href=\"javascript:void(0);\">\n" +
                                 "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
                                 "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
@@ -232,10 +228,10 @@ function addPortfolioRow(e) {
                             form.find(".form-errors").remove();
                             $(".portfolio-list").append("" +
                                 "<li class=\"portfolio-list-item\" data-id=\"" + response.portfolio[0].id + "\">\n" +
-                                "                                        <div class=\"col-2\">\n" +
+                                "                                        <div class=\"col-md-2 col-3 px-1\">\n" +
                                 "                                            <img src='" + (('image' in response.portfolio[0]) ? response.portfolio[0].image : '../../assets/img/90x90.jpg') + "' class=\"rounded-circle image\" width=\"50\" height=\"50\">\n" +
                                 "                                        </div>\n" +
-                                "                                        <div class=\"col-9\">\n" +
+                                "                                        <div class=\"col-md-8 col-6 px-1\">\n" +
                                 "                                            <h4 class='name'>" + response.portfolio[0].name + "</h4>\n" +
                                 "                                            <p>تاریخ انتشار: <span class=\"fa-number date\">" + response.portfolio[0].date + "</span></p>\n" +
                                 // "                                            <div class=\"d-flex flex-row justify-content-start align-items-center badges\">\n" + typesHtml + "</div>\n" +
@@ -243,16 +239,16 @@ function addPortfolioRow(e) {
                                 "                                            <p class=\"sr-only url\">" + response.portfolio[0].url + "</p>\n" +
                                 "                                            <p class=\"sr-only type\">" + response.portfolio[0].type + "</p>\n" +
                                 "                                        </div>\n" +
-                                "                                        <div class=\"col-1\">\n" +
-                                "                                            <div class=\"row\">\n" +
-                                "                                                <a class=\"col px-0 text-center\" href=\"javascript:void(0);\" onclick='editPortfolioRow(this)'>\n" +
+                                "                                        <div class=\"col-md-2 col-3 px-1\">\n" +
+                                "                                            <div class=\"d-flex flex-row justify-content-end\">\n" +
+                                "                                                <a href=\"javascript:void(0);\" onclick='editPortfolioRow(this)'>\n" +
                                 "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-edit-2 px-1 text-warning\">\n" +
                                 "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
                                 "                                                    </svg>\n" +
                                 "                                                </a>\n" +
-                                "                                                 <a class=\"col px-0 text-center open-delete-modal\" " +
+                                "                                                 <a class=\"open-delete-modal\" " +
                                 "                                                   href=\"javascript:void(0);\">\n" +
-                                "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-trash text-dark p-1\">\n" +
+                                "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-trash text-dark px-1\">\n" +
                                 "                                                        <polyline points=\"3 6 5 6 21 6\"></polyline>\n" +
                                 "                                                        <path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>\n" +
                                 "                                                    </svg>\n" +
@@ -371,173 +367,22 @@ function showDeleteModal($this) {
     $("#modal-delete-profile").modal('show');
 }
 
-function updateUserData($input,$expected_value){
-    if($input.val()!==$expected_value){
-        let formData = {};
-        formData[$input.attr('name')] = $input.val();
-        $.ajax({
-            method : 'PATCH',
-            url : __url__+'/'+$input.attr('name'),
-            data : formData,
-            success : function (response){
-                if (typeof response === 'object' && response !== null){
-                    $input.siblings(".input-error").remove();
-                    if (response.error){
-                        $input.after("<span class='input-error text-danger'>"+response.messages[0]+"</span>")
-                    }
-                }
-            }
-        });
-    }
-}
+$("#userAddTitleForm").on("show.bs.collapse hide.bs.collapse", function () {
+    $(".btn-title-toggle").toggleClass("d-none");
+});
+
+$("#userAddExperienceForm").on("show.bs.collapse hide.bs.collapse", function () {
+    $(".btn-portfolio-toggle").toggleClass("d-none");
+});
 
 $(window).on("load", function () {
 
-    $("#userAddTitleForm textarea[name='description']").maxlength({
-        warningClass: "badge badge-secondary",
-        limitReachedClass: "badge badge-warning",
-        alwaysShow: true
-    });
-
-    $.ajaxSetup({
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', "Bearer " + localStorage.getItem("accessToken"));
-        }
-    });
-
-    $.ajax({
-        async: false,
-        method: "GET",
-        url: __url__+"/me",
-        headers : {
-            "Authorization" : "Bearer " + localStorage.getItem("accessToken")
-        },
-        success: function (response) {
-            if (typeof response === 'object' && response !== null) {
-                if (!response.error) {
-                    $(".user.full_name").text(response.data.user.first_name + ' ' + response.data.user.last_name);
-                    $("#tab-user-profile-section input[name='first_name']").val(user_first_name=response.data.user.first_name);
-                    $("#tab-user-profile-section input[name='last_name']").val(user_last_name=response.data.user.last_name);
-                    $("#tab-user-profile-section input[name='email']").val(user_email=response.data.user.email);
-                    $("#tab-user-profile-section input[name='melli_code']").val(user_melli_code=response.data.user.melli_code);
-
-                    is_artist = response.data.is_artist;
-
-                    if (response.data.is_artist) {
-
-                        const artist = response.data.other_info.artist[0];
-                        $("._artist.id").text("شناسه کاربری : "+artist.id);
-                        $("[name='is_artist']").prop("checked", true);
-                        $("#tab-user-profile-section").find(".col-lg-7").removeClass("d-none");
-                        $(".is-artist-pending").removeClass("d-none");
-                        $("#tab-user-profile-section input[name='is_advisor']").prop("checked", artist.is_advisor === 1);
-                        $("#tab-user-profile-section input[name='advise_price']").val(artist_advise_price=artist.advise_price);
-                        // if(artist.hasOwnProperty('avatar') && artist.avatar != null){
-                        //     // $("#tab-user-profile-section input[name='advise_price']").a()
-                        // }
-                        if (artist.is_advisor === 1) {
-                            $("#AdvisorPriceContainer").collapse("show");
-                        }
-
-                        const titles = response.data.other_info.titles;
-                        if (titles.length > 0) {
-                            $(".title-list-empty").addClass("d-none");
-                            for (let i = 0; i < titles.length; i++) {
-                                $(".title-list").append("" +
-                                    "<li class=\"title-list-item\" data-id=\"" + titles[i].pivot.title_id + "\">\n" +
-                                    "                                        <div class=\"col-3\">\n" +
-                                    "                                            <h4 class='name'>" + titles[i].name + "</h4>\n" +
-                                    "                                        </div>\n" +
-                                    "                                         <div class=\"col-3 fa-number d-flex align-items-center\">\n" +
-                                    "                                           <label class=\"switch s-success mr-2 mb-0\">\n" +
-                                    "                                                <input type=\"checkbox\" class='accept_order' " + (titles[i].pivot.accept_order === 1 ? 'checked' : '') + " disabled><span class=\"slider round\"></span>\n" +
-                                    "                                           </label><span class='order_price mx-1'>" + titles[i].pivot.order_price + "</span>" + " تومان " +
-                                    "                                        </div>\n" +
-                                    "                                        <div class=\"col-5\">\n" +
-                                    "                                            <p class=\"mb-0 description\">" + titles[i].pivot.description + "</p>\n" +
-                                    "                                        </div>\n" +
-                                    "                                        <div class=\"col-1\">\n" +
-                                    "                                            <div class=\"row\">\n" +
-                                    "                                                <a class=\"col px-0 text-center\" href=\"javascript:void(0);\"\n" +
-                                    "                                                   onclick='editTitleRow(this)'>\n" +
-                                    "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
-                                    "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
-                                    "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
-                                    "                                                         class=\"feather feather-edit-2 px-1 text-warning\">\n" +
-                                    "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
-                                    "                                                    </svg>\n" +
-                                    "                                                </a>\n" +
-                                    "                                                 <a class=\"col px-0 text-center open-delete-modal\" " +
-                                    "                                                   href=\"javascript:void(0);\">\n" +
-                                    "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
-                                    "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
-                                    "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
-                                    "                                                         class=\"feather feather-trash text-dark px-1\">\n" +
-                                    "                                                        <polyline points=\"3 6 5 6 21 6\"></polyline>\n" +
-                                    "                                                        <path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>\n" +
-                                    "                                                    </svg>\n" +
-                                    "                                                </a>\n" +
-                                    "                                            </div>\n" +
-                                    "                                        </div>\n" +
-                                    "                                    </li>");
-                            }
-                        }
-
-
-                        const portfolio = response.data.other_info.portfolio;
-                        if (portfolio.length > 0) {
-                            $(".portfolio-list-empty").addClass("d-none");
-                            for (let i = 0; i < portfolio.length; i++) {
-                                $(".portfolio-list").append("" +
-                                    "<li class=\"portfolio-list-item\" data-id=\"" + portfolio[i].id + "\">\n" +
-                                    "                                        <div class=\"col-2\">\n" +
-                                    "                                            <img src='" + (('image' in portfolio[i]) ? portfolio[i].image : '../../assets/img/90x90.jpg') + "' class=\"rounded-circle image\" width=\"50\" height=\"50\">\n" +
-                                    "                                        </div>\n" +
-                                    "                                        <div class=\"col-9\">\n" +
-                                    "                                            <h4 class='name'>" + portfolio[i].name + "</h4>\n" +
-                                    "                                            <p>تاریخ انتشار: <span class=\"fa-number date\">" + portfolio[i].date + "</span></p>\n" +
-                                    // "                                            <div class=\"d-flex flex-row justify-content-start align-items-center badges\">\n" + typesHtml + "</div>\n" +
-                                    "                                            <p class=\"description\">" + portfolio[i].description + "</p>\n" +
-                                    "                                            <p class=\"sr-only url\">" + portfolio[i].url + "</p>\n" +
-                                    "                                            <p class=\"sr-only type\">" + portfolio[i].type + "</p>\n" +
-                                    "                                        </div>\n" +
-                                    "                                        <div class=\"col-1\">\n" +
-                                    "                                            <div class=\"row\">\n" +
-                                    "                                                <a class=\"col px-0 text-center\" href=\"javascript:void(0);\" onclick='editPortfolioRow(this)'>\n" +
-                                    "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-edit-2 px-1 text-warning\">\n" +
-                                    "                                                        <path d=\"M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z\"></path>\n" +
-                                    "                                                    </svg>\n" +
-                                    "                                                </a>\n" +
-                                    "                                                 <a class=\"col px-0 text-center open-delete-modal\" " +
-                                    "                                                       href=\"#modal-delete-title-portfolio\">\n" +
-                                    "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-trash text-dark p-1\">\n" +
-                                    "                                                        <polyline points=\"3 6 5 6 21 6\"></polyline>\n" +
-                                    "                                                        <path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>\n" +
-                                    "                                                    </svg>\n" +
-                                    "                                                </a>\n" +
-                                    "                                            </div>\n" +
-                                    "                                        </div>\n" +
-                                    "                                    </li>");
-                            }
-                        }
-                    } else {
-                        $("#tab-user-profile-section").find(".col-lg-7").remove();
-                    }
-                }
-            }
-        },
-        error: function (xhr) {
-            console.log("error : " + JSON.stringify(xhr));
-        }
-    });
-
     $.get(__url__+"/titles", function (response) {
         if (typeof response === 'object' && response !== null) {
-            const titles = response.titles;
+            const titles = response.titles.data;
             if (titles !== null) {
                 for (let i = 0; i < titles.length; i++)
                     $("#userAddTitleForm select").append($("<option value='" + titles[i].id + "'>" + titles[i].name + "</option>"));
-
             }
         }
     });
@@ -545,6 +390,12 @@ $(window).on("load", function () {
 });
 
 $(document).ready(function (){
+
+    $("#userAddExperienceForm .custom-file-container__image-preview").css({
+        backgroundImage : "url(assets/website/img/portfolio.svg)",
+        marginTop : "50px"
+    })
+
     // $("#userExperienceDate").persianDatepicker({
     //     months: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"],
     //     dowTitle: ["شنبه", "یکشنبه", "دوشنبه", "سه شنبه", "چهارشنبه", "پنج شنبه", "جمعه"],
@@ -576,49 +427,6 @@ $(document).ready(function (){
     //
     // });
 
-    $(document).on("click",".open-delete-modal",function (){
-        $(this.closest('li')).addClass('deletable');
-        $.magnificPopup.open({
-            fixedContentPos: true,
-            fixedBgPos: true,
-            overflowY: 'auto',
-            type: 'inline',
-            preloader: false,
-            modal: false,
-            removalDelay: 300,
-            mainClass: 'my-mfp-zoom-in',
-            items: {
-                src: '#modal-delete-title-portfolio'
-            },
-        });
-    })
-
-    $("#userAddTitleForm , #userAddExperienceForm").on("hide.bs.collapse", function (e) {
-        if ($(this).hasClass("no-collapse")) {
-            e.preventDefault();
-        }
-    });
-
-    $("#userAddTitleForm").on("show.bs.collapse hide.bs.collapse", function () {
-        $(".btn-title-toggle").toggleClass("d-none");
-    });
-
-    $("#userAddExperienceForm").on("show.bs.collapse hide.bs.collapse", function () {
-        $(".btn-portfolio-toggle").toggleClass("d-none");
-    });
-
-    $("#modal-delete-profile").on("show.bs.modal", function () {
-        if ($("li.deletable").hasClass("title-list-item")) {
-            console.log("list-item");
-            $(this).find(".modal-title").text("حذف مهارت");
-            $(this).find(".modal-body .modal-text").text("آیا از حذف این مهارت مطمئن هستید؟");
-        } else if ($("li.deletable").hasClass("portfolio-list-item")) {
-            console.log("experience-item");
-            $(this).find(".modal-title").text("حذف نمونه کار");
-            $(this).find(".modal-body .modal-text").text("آیا از حذف این نمونه کار مطمئن هستید؟");
-        }
-    });
-
     $("#modal-delete-title-portfolio .btn-delete-title-portfolio").on("click", function () {
         if ($("li.deletable").hasClass("title-list-item")) {
             deleteTitleRow($("li.deletable"));
@@ -635,60 +443,48 @@ $(document).ready(function (){
         prev = $(this);
     });
 
-    $("input[name='is_artist']").on("click", function () {
-        const isChecked = $(this).is(":checked");
-        console.log("chnged");
-        if (isChecked && !is_artist) {
-            console.log("call ajax")
-            $.ajax({
-                method: 'PUT',
-                url: __url__+'/artist/register',
-                data: {
-                    _method: 'PUT'
-                },
-                success: function (response) {
-                    if (typeof response === 'object' && response !== null) {
-                        if (!response.error) {
-                            $(location).attr('href', 'profile.html');
-                        }
-                    }
-                }
-            });
-        }
-    });
+    // $("input[name='is_artist']").on("click", function () {
+    //     const isChecked = $(this).is(":checked");
+    //     console.log("chnged");
+    //     if (isChecked && !is_artist) {
+    //         console.log("call ajax")
+    //         $.ajax({
+    //             method: 'PUT',
+    //             url: __url__+'/artist/register',
+    //             data: {
+    //                 _method: 'PUT'
+    //             },
+    //             success: function (response) {
+    //                 if (typeof response === 'object' && response !== null) {
+    //                     if (!response.error) {
+    //                         $(location).attr('href', 'profile.html');
+    //                     }
+    //                 }
+    //             }
+    //         });
+    //     }
+    // });
 
-    $("input[name='is_advisor']").on("click", function () {
-        const isChecked = $(this).is(":checked");
+    $("#btn-register-artist").on("click",function (e){
+        e.preventDefault();
+        console.log("call ajax")
         $.ajax({
-            method: 'PATCH',
-            url: __url__+'/accept_advisor',
+            method: 'PUT',
+            url: __url__+'/artist/register',
             data: {
-                _method: 'PATCH'
+                _method: 'PUT'
             },
             success: function (response) {
                 if (typeof response === 'object' && response !== null) {
                     if (!response.error) {
-                        console.log(JSON.stringify(response));
+                        $(location).attr('href', 'profile.html');
                     }
                 }
             }
         });
-    });
+    })
 
-    $("input[name='first_name']").on("blur",function (){
-        updateUserData($(this),user_first_name);
+    $(".sign__user-studio--btn").on("click",function (){
+        updateUserData(null,null,"avatar");
     });
-    $("input[name='last_name']").on("blur",function (){
-        updateUserData($(this),user_last_name);
-    });
-    $("input[name='email']").on("blur",function (){
-        updateUserData($(this),user_email);
-    });
-    $("input[name='melli_code']").on("blur",function (){
-        updateUserData($(this),user_melli_code);
-    });
-    $("input[name='advise_price']").on("blur",function (){
-        updateUserData($(this),artist_advise_price);
-    });
-
 })

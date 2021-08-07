@@ -40,14 +40,14 @@ function updateCart($type, $id, $success_message = null, $error_message = null) 
 }
 
 function updateCartDropdown(response) {
-    let details = JSON.parse(response.cart.details);
-    if (details !== null && !Array.isArray(details)) {
-        let _details = [];
-        for (const id in details) {
-            _details.push(details[id]);
-        }
-        details = _details;
-    }
+    let details = response.cart.details;
+    // if (details !== null && !Array.isArray(details)) {
+    //     let _details = [];
+    //     for (const id in details) {
+    //         _details.push(details[id]);
+    //     }
+    //     details = _details;
+    // }
     const $cartDropDown = $(".header__action--cart .header__drop");
     const $cartNumber = $(".header__action--cart .header__cart--count");
     $cartDropDown.empty();
@@ -406,8 +406,7 @@ $(document).ready(function () {
         });
     });
 
-
-    $(document).on('click', '.sidebar__nav-link.sidebar__nav-logout , .profile__logout', function (e) {
+    $(document).on('click', '.sidebar__nav-link.sidebar__nav-logout ', function (e) {
         e.preventDefault();
         $.ajax({
             method: "POST",

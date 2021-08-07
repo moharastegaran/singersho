@@ -912,7 +912,7 @@ input{
   transition: 0.4s ease;
   position: relative;
 }
-.sidebar__nav-link svg {
+.sidebar__nav-link svg , .sidebar__nav-link i{
   fill: #c0c0c0;
   width: 22px;
   height: auto;
@@ -920,7 +920,7 @@ input{
   margin-left: 12px;
   margin-bottom: 2px;
 }
-.sidebar__nav-link svg:last-child {
+.sidebar__nav-link svg:last-child, .sidebar__nav-link i:last-child {
   width: 16px;
   margin-right: 0;
   margin-top: 3px;
@@ -930,20 +930,23 @@ input{
 .sidebar__nav-link:hover {
   color: #fff;
 }
-.sidebar__nav-link:hover svg {
+.sidebar__nav-link:hover svg, .sidebar__nav-link:hover i {
   fill: #fca311;
+  color: #fca311;
 }
 .sidebar__nav-link--active,
 .sidebar__nav-link[aria-expanded="true"] {
   color: #c0c0c0;
 }
-.sidebar__nav-link--active svg,
-.sidebar__nav-link[aria-expanded="true"] svg {
+.sidebar__nav-link--active svg, .sidebar__nav-link--active i
+.sidebar__nav-link[aria-expanded="true"] svg,.sidebar__nav-link[aria-expanded="true"] i{
   fill: #fca311;
+  color: #fca311;
 }
-.sidebar__nav-link--active:hover svg,
-.sidebar__nav-link[aria-expanded="true"]:hover svg {
+.sidebar__nav-link--active:hover svg,.sidebar__nav-link--active:hover i,
+.sidebar__nav-link[aria-expanded="true"]:hover svg,.sidebar__nav-link[aria-expanded="true"]:hover i{
   fill: #fca311;
+  color: #fca311;
 }
 .sidebar__nav-link[aria-expanded="true"] {
   margin-bottom: 15px;
@@ -6660,7 +6663,7 @@ ul.pagination li.disabled a{
   width: 18px;
   top: 10px;
   right: 0 !important;
-  background: url(assets/website/img/arrow.svg) no-repeat center right;
+  background: url(../img/arrow.svg) no-repeat center right;
   background-size: 18px auto;
   margin-top: 1px;
 }

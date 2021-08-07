@@ -10,7 +10,7 @@ $(window).on('load', function () {
             console.log("res : " + response);
             const package = response.package;
             $(".package.name").text(name = package.name);
-            $(".package.price").text(price = package.price);
+            $(".package.price").text(handle_price((price = package.price).toString()));
             $(".package.description").text(package.description!=null ? package.description : "ندارد");
             $(".package.delivery_time").text(package.delivery_time);
             $(".package.po_number").text(package.po_number);

@@ -18,27 +18,31 @@ function updateStoreWithParams(params = $(location).attr('search')) {
                 current_max_price = max_price_package;
 
             parent.empty();
-            for (let i=0;i<data.length;i++) {
-                const _package = data[i];
-                name = _package.name;
-                price = _package.price;
-                avatar = _package.image;
-                if (avatar == null) {
-                    avatar = "assets/website/img/store/item1.jpg"
+            if(data.length > 0 ) {
+                for (let i = 0; i < data.length; i++) {
+                    const _package = data[i];
+                    name = _package.name;
+                    price = _package.price;
+                    avatar = _package.image;
+                    if (avatar == null) {
+                        avatar = "assets/website/img/store/item1.jpg"
+                    }
+                    parent.append("" +
+                        "<div class=\"col-6 col-sm-4 col-lg-3\">\n" +
+                        "<div class=\"product\">\n" +
+                        "<div class=\"product__cover single\" style=\"background-image: url(" + avatar + ")\">\n" +
+                        "<a href=\"product.html?id=" + _package.id + "\">" +
+                        "<i class=\"icofont-shopping-cart\"></i> میخرمش\n" +
+                        "</a>\n" +
+                        "<span class=\"product__stat\"><span><i class=\"icofont-downloaded\"></i> " + _package.po_number + " خرید </span><span><i class=\"icofont-users\"></i> " + _package.members.length + " عضو </span></span>\n " +
+                        "</div>\n" +
+                        "<h3 class=\"product__title\"><a href=\"product.html?id=" + _package.id + "\" class=\"product__img\">" + _package.name + "</a></h3>\n" +
+                        "<span class=\"product__price\">" + handle_price(_package.price.toString()) + " تومان</span>\n" +
+                        "</div>\n" +
+                        "</div>");
                 }
-                parent.append("" +
-                    "<div class=\"col-6 col-sm-4 col-lg-3\">\n" +
-                    "<div class=\"product\">\n" +
-                    "<div class=\"product__cover single\" style=\"background-image: url("+avatar+")\">\n" +
-                    "<a href=\"product.html?id=" + _package.id + "\">" +
-                    "<i class=\"icofont-shopping-cart\"></i> میخرمش\n"+
-                    "</a>\n"+
-                    "<span class=\"product__stat\"><span><i class=\"icofont-downloaded\"></i> "+_package.po_number+" خرید </span><span><i class=\"icofont-users\"></i> "+_package.members.length+" عضو </span></span>\n "+
-                    "</div>\n" +
-                    "<h3 class=\"product__title\"><a href=\"product.html?id="+_package.id+"\" class=\"product__img\">"+_package.name+"</a></h3>\n" +
-                    "<span class=\"product__price\">"+handle_price(_package.price.toString())+" تومان</span>\n" +
-                    "</div>\n" +
-                    "</div>");
+            }else{
+                parent.append("<div class='store-empty rounded border border-warning mt-5 mb-4 mx-auto py-3 px-5 text-warning font-weight-light'>.پکیجی برای نمایش وجود ندارد</div>")
             }
             const links = response.packages.links;
             parent = $('.pagination');

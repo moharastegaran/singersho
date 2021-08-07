@@ -6,7 +6,7 @@ function updateStudiosWithParams(params = $(location).attr('search')) {
     const _params = appendUrlParam(params);
     $.get(__url__ + '/studios?rpp=12&' + _params, function (response) {
         if (!response.error) {
-            const data = response.studios.data;
+            const studios = response.studios.data;
             let parent = $('.studios-grid');
             let name, images, price;
 
@@ -18,25 +18,29 @@ function updateStudiosWithParams(params = $(location).attr('search')) {
                 current_max_price = max_price_studios;
 
             parent.empty();
-            for (let i = 0; i < data.length; i++) {
-                const _studio = data[i];
-                name = _studio.name;
-                price = _studio.price;
-                price = parseInt(price);
-                images = _studio.pictures;
-                parent.append("<div class=\"col-lg-4 col-md-6 col-12 \"><div class=\"event\"" +
-                    "style=\"background-image: url(" + (images.length > 0 ? images[0].path : 'assets/website/img/studio-placeholder.png') + ");" +
-                    "background-position: center center; background-repeat: no-repeat; background-size: cover\">\n" +
-                    "<a href=\"studio.html?id=" + _studio.id + "\" class=\"event__ticket\">\n" +
-                    "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n" +
-                    "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n" +
-                    "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n" +
-                    "</svg> مشاهده</a>\n" +
-                    "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> " + data[i].geographical_information.city + ", " + data[i].geographical_information.province + "</span>\n" +
-                    "<h3 class=\"event__title\"><a href=\"studio.html?id=" + data[i].id + "\">" + _studio.name + "</a></h3>\n" +
-                    "<span class=\"event__date\" dir='ltr'> <span dir='rtl'>" + handle_price(_studio.price.toString()) + " تومان </span> <i class=\"icofont-price mr-1\"></i> </span>\n" +
-                    // "<p class=\"event__address\">" + data[i].address + "</p>\n" +
-                    "</div></div>");
+            if (studios.length > 0) {
+                for (let i = 0; i < studios.length; i++) {
+                    const _studio = studios[i];
+                    name = _studio.name;
+                    price = _studio.price;
+                    price = parseInt(price);
+                    images = _studio.pictures;
+                    parent.append("<div class=\"col-lg-4 col-md-6 col-12 \"><div class=\"event\"" +
+                        "style=\"background-image: url(" + (images.length > 0 ? images[0].path : 'assets/website/img/studio-placeholder.png') + ");" +
+                        "background-position: center center; background-repeat: no-repeat; background-size: cover\">\n" +
+                        "<a href=\"studio.html?id=" + _studio.id + "\" class=\"event__ticket\">\n" +
+                        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\n" +
+                        "<path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"></path>\n" +
+                        "<circle cx=\"12\" cy=\"12\" r=\"3\"></circle>\n" +
+                        "</svg> مشاهده</a>\n" +
+                        "<span class=\"event__time\"><i class=\"icofont-location-pin\"></i> <a href=\"studios.html?cityIds=" + studios[i].geographical_information.city_id + "\" class=\"text-white border-bottom border-white\" >" + studios[i].geographical_information.city + "</a>, " + studios[i].geographical_information.province + "</span>\n" +
+                        "<h3 class=\"event__title\"><a href=\"studio.html?id=" + studios[i].id + "\">" + _studio.name + "</a></h3>\n" +
+                        "<span class=\"event__date\" dir='ltr'> <span dir='rtl'>" + handle_price(_studio.price.toString()) + " تومان </span> <i class=\"icofont-price mr-1\"></i> </span>\n" +
+                        // "<p class=\"event__address\">" + studios[i].address + "</p>\n" +
+                        "</div></div>");
+                }
+            }else{
+                parent.append("<div class='studios-empty rounded border border-warning mt-5 mb-4 mx-auto py-3 px-5 text-warning font-weight-light'>.استدیویی برای نمایش وجود ندارد</div>")
             }
             const links = response.studios.links;
             parent = $('.pagination');
@@ -101,14 +105,14 @@ $(window).on('load', function () {
 
     const _this = $(".select2-search__field");
     $.get(__url__ + "/cities?rpp=1250&search=" + _this.val(), function (response) {
-        console.log(JSON.stringify(response))
         const cities = response.cities.data;
         const _select2 = $('.main__select[name="cities"]');
-        _select2.find("option").remove();
+        const cityIds = getUrlParam("cityIds")!==null ? getUrlParam("cityIds").split("_") : [];
         for (let i = 0; i < cities.length; i++) {
             const option = new Option(cities[i].name, cities[i].id);
             _select2.append(option);
         }
+        _select2.val(cityIds);
         _select2.trigger('change');
     });
 
@@ -121,17 +125,21 @@ $(window).on('load', function () {
         $(".slider-range-max").text(min_max[1]);
     }
     if(getUrlParam("cityIds") !== null){
-        let ids = getUrlParam("cityIds");
-        ids = ids.split("_");
-        for (let i = 0; i < ids.length; i++) {
-            $('.main__select[name="cities"]').val(ids[i]);
-        }
-        $('.main__select[name="cities"]').trigger('change');
+
+        cityIds = cityIds.split("_");
+
     }
+
     $(".main__filter-search input").val(getUrlParam('search'));
 });
 
 $(document).ready(function () {
+
+
+    $('.main__select[name="orders"]').select2({
+        minimumResultsForSearch: Infinity,
+        dir: "rtl"
+    });
 
     $('.main__select[name="cities"]').select2({
         // minimumResultsForSearch: Infinity,
@@ -140,13 +148,9 @@ $(document).ready(function () {
         multiple: true,
         maximumSelectionLength: 2,
         placeholder: "جستجوی شهر ...",
-        noResults: "شهری پیدا نشد"
-    });
-
-
-    $('.main__select[name="orders"]').select2({
-        minimumResultsForSearch: Infinity,
-        dir: "rtl"
+        // message : {
+        //     noResults: "شهری پیدا نشد"
+        // }
     });
 
     $(".price-filter__btn").on("click", function (e) {
@@ -163,14 +167,14 @@ $(document).ready(function () {
 
     $('.main__select[name="cities"]').on("change", function () {
         let cities = $(this).val(), _cities = "";
-        if (cities.length) {
+        if (cities.length>0) {
             for (let i = 0; i < cities.length; i++) {
                 _cities += cities[i];
                 if (i!==cities.length-1)
                     _cities+="_";
             }
-            updateStudiosWithParams("page=1&cityIds=" + _cities);
         }
+        updateStudiosWithParams("page=1&cityIds=" + _cities);
     });
 
     $(".main__filter-search").on("submit",function (e){
