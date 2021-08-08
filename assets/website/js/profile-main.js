@@ -70,7 +70,7 @@ function addEditTitleRow(e) {
                                 "                                                    </svg>\n" +
                                 "                                                </a>\n" +
                                 "                                                <a class=\"open-delete-modal\" " +
-                                "                                                   href=\"javascript:void(0);\">\n" +
+                                "                                                   href=\"#modal-delete-title-portfolio\">\n" +
                                 "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
                                 "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
                                 "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
@@ -82,6 +82,16 @@ function addEditTitleRow(e) {
                                 "                                            </div>\n" +
                                 "                                        </div>\n" +
                                 "                                    </li>");
+                            $(".open-delete-modal").magnificPopup({
+                                fixedContentPos: true,
+                                fixedBgPos: true,
+                                overflowY: 'auto',
+                                type: 'inline',
+                                preloader: false,
+                                modal: false,
+                                removalDelay: 300,
+                                mainClass: 'my-mfp-zoom-in',
+                            });
                         }
                     }
                 },
@@ -247,7 +257,7 @@ function addPortfolioRow(e) {
                                 "                                                    </svg>\n" +
                                 "                                                </a>\n" +
                                 "                                                 <a class=\"open-delete-modal\" " +
-                                "                                                   href=\"javascript:void(0);\">\n" +
+                                "                                                   href=\"#modal-delete-title-portfolio\">\n" +
                                 "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-trash text-dark px-1\">\n" +
                                 "                                                        <polyline points=\"3 6 5 6 21 6\"></polyline>\n" +
                                 "                                                        <path d=\"M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2\"></path>\n" +
@@ -256,10 +266,20 @@ function addPortfolioRow(e) {
                                 "                                            </div>\n" +
                                 "                                        </div>\n" +
                                 "                                    </li>");
+                            $(".open-delete-modal").magnificPopup({
+                                fixedContentPos: true,
+                                fixedBgPos: true,
+                                overflowY: 'auto',
+                                type: 'inline',
+                                preloader: false,
+                                modal: false,
+                                removalDelay: 300,
+                                mainClass: 'my-mfp-zoom-in',
+                            });
                         }
                     }
                 }, error: function (error) {
-                    console.log("error : " + JSON.stringify(error));
+                    console.log("error : " + JSON.stringify(error) );
                 }
             });
         } else {

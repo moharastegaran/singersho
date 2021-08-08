@@ -1,3 +1,7 @@
+<script>
+    if (localStorage.getItem("accessToken") === null) window.location.href = "index.html";
+</script>
+
 <!DOCTYPE html>
 <html lang="fa">
 
@@ -16,11 +20,60 @@
     <link rel="stylesheet" href="assets/website/css/paymentfont.min.css">
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
+    <link rel="stylesheet" href="assets/website/css/icofont.min.css">
     <link rel="stylesheet" href="assets/website/css/main.css">
-    <link rel="stylesheet" type="text/css" href="plugins/file-upload/file-upload-with-preview.min.css">
+
+    <link href="plugins/file-upload/file-upload-with-preview.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/scss/elements/alert.css" rel="stylesheet" type="text/css">
+    <link href="plugins/persian-datepicker/persian-datepicker.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="assets/scss/forms/switches.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/scss/elements/alert.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/website/css/infobox.css">
+    <style>
+        ::placeholder {
+            font-size: 12px;
+        }
+
+        .form-group .error {
+            font-size: 12px;
+            margin-top: 2px;
+            color: #dc3545;
+        }
+
+        .nav-link {
+            padding: 1rem
+        }
+
+        .profile__logout {
+            width: auto;
+            height: auto;
+            color: #fff;
+            font-size: 16px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 8.5px;
+            padding-bottom: 8.5px;
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .profile__logout svg {
+            /*color: #888ea8;*/
+            vertical-align: middle;
+            width: 26.5px;
+            height: 26.5px;
+            fill: rgba(0, 23, 55, 0.08);
+            cursor: pointer;
+            margin: auto;
+            padding-left: .25rem;
+            padding-right: .25rem;
+            transform: none;
+        }
+
+    </style>
 
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
-    <title>سایت ساز و صدا - تست خوانندگی</title>
+    <title>سایت ساز و صدا - استدیوهای من</title>
 
 </head>
 <body>
@@ -69,10 +122,11 @@
 
             <div class="header__action header__action--signin">
                 <a class="header__action-btn" href="#">
+                    <i class="icofont-ui-user"></i>
                     <span></span>
-                    <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path d="M20,12a1,1,0,0,0-1-1H11.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L11.41,13H19A1,1,0,0,0,20,12ZM17,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V16a1,1,0,0,0-2,0v3a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V8a1,1,0,0,0,2,0V5A3,3,0,0,0,17,2Z"/>
-                    </svg>
+                    <!--                    <svg style="transform: rotate(180deg);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">-->
+                    <!--                        <path d="M20,12a1,1,0,0,0-1-1H11.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L11.41,13H19A1,1,0,0,0,20,12ZM17,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V16a1,1,0,0,0-2,0v3a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V8a1,1,0,0,0,2,0V5A3,3,0,0,0,17,2Z"/>-->
+                    <!--                    </svg>-->
                 </a>
             </div>
         </div>
@@ -196,104 +250,253 @@
             <div class="col-12">
                 <ul class="breadcrumb">
                     <li class="breadcrumb__item"><a href="index.html">صفحه اصلی</a></li>
-                    <li class="breadcrumb__item breadcrumb__item--active">تست خوانندگی</li>
+                    <li class="breadcrumb__item breadcrumb__item--active">پروفایل</li>
                 </ul>
             </div>
             <!-- end breadcrumb -->
 
             <!-- title -->
-            <div class="col-6">
-                <img src="assets/website/img/singing_test.jpg" class="img-fluid" style="border-top-left-radius: 100px;border-top-right-radius: 100px;border-bottom-right-radius: 100px;border-bottom-left-radius: 3px">
-            </div>
-            <div class="col-6">
-                <div class="main__title">
-                    <h1 style="font-size: 30px">تست صدا و تست خوانندگی رایگان!</h1>
-
-                    <p>می خوای تست خوانندگی بدی؟
-                        <br>
-                        ثبت نام در تست خوانندگی آکادمی ساز و صدا بسیار ساده است. در ادامه مطلب روش ثبت نام در تست صدا رو کامل توضیح داده ایم.</p>
+            <div class="col-12">
+                <div class="main__title main__title--page">
+                    <h1>پروفایل</h1>
                 </div>
             </div>
             <!-- end title -->
-
-            <div class="col-12 col-lg-4">
-                <div class="step">
-                    <span class="step__number">03</span>
-                    <h3 class="step__title">ارسال صدا در سایت</h3>
-                    <p class="step__text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                        طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-4">
-                <div class="step">
-                    <span class="step__number">02</span>
-                    <h3 class="step__title">ضبط صدا با کیفیت خوب</h3>
-                    <p class="step__text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                        طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                </div>
-            </div>
-
-            <div class="col-12 col-lg-4">
-                <div class="step">
-                    <span class="step__number">01</span>
-                    <h3 class="step__title">ورود به حساب کاربری</h3>
-                    <p class="step__text">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از
-                        طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                </div>
-            </div>
-
         </div>
 
-        <div class="col-lg-10 col-12 mx-auto my-4">
-            <form id="singing-test-form" method="post">
-            <div class="custom-file-container"
-                 data-upload-id="singingTestFileUpload">
-                <label>آپلود صدا <a href="javascript:void(0)"
-                                        class="custom-file-container__image-clear"
-                                        title="حذف صدا">x</a></label>
-                <label class="custom-file-container__custom-file">
-                    <input type="file" accept="audio/*"
-                           class="custom-file-container__custom-file__custom-file-input">
-                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760"/>
-                    <span class="custom-file-container__custom-file__custom-file-control"></span>
-                </label>
-                <div class="custom-file-container__image-preview"></div>
+        <div dir="rtl" class="row row--grid">
+            <div class="col-12">
+                <div class="profile">
+                    <div class="profile__user">
+                        <div class="profile__avatar">
+                            <img src="assets/website/img/avatar.svg" alt="">
+                        </div>
+                        <div class="profile__meta">
+                            <h3 class="user full_name"></h3>
+                            <span class="_artist id"></span>
+                        </div>
+                    </div>
+
+                    <!-- tabs nav -->
+                    <ul class="nav nav-tabs profile__tabs w-100 justify-content-between" id="profile__tabs"
+                        role="tablist">
+                        <div class="d-flex flex-row align-items-center">
+                            <li class="nav-item">
+                                <a class="nav-link" href="profile.html"
+                                   aria-selected="true">پروفایل</a>
+                            </li>
+                            <li class="nav-item nav-item-add-studio">
+                                <a class="nav-link" href="profile_add_studio.html"
+                                   aria-selected="true">افزودن استدیو</a>
+                            </li>
+                            <li class="nav-item nav-item-view-studios">
+                                <a class="nav-link active" href="profile_add_studio.html"
+                                   aria-selected="true">استدیوهای من</a>
+                            </li>
+                        </div>
+                        <li>
+                            <a data-toggle="tab" href="#tab-edit-profile"
+                               class="profile__logout sign__btn h-auto text-white" type="button">
+
+                                ویرایش اطلاعات
+
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fefefe"
+                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                     class="feather feather-edit-2">
+                                    <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- end tabs nav -->
+
+                </div>
+
+                <!-- content tabs -->
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-user-list-studios-section">
+                        <div class="row row--grid">
+                            <div class="col-12">
+                                <div class="dashbox">
+                                    <div class="dashbox__title">
+                                        <h3>استدیوهای من</h3>
+                                    </div>
+                                    <div class="dashbox__table-wrap">
+                                        <div class="dashbox__table-scroll">
+                                            <table class="main__table studios_table">
+                                                <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th style="width: 12%" class="text-left pl-0"><a href="javascript:void(0)">در دسترس</a></th>
+                                                    <th style="width:25%"><a href="javascript:void(0)">نام</a></th>
+                                                    <th><a href="javascript:void(0)">شهر</a></th>
+                                                    <th><a href="javascript:void(0)">هزینه اجاره</a></th>
+                                                    <th><a href="javascript:void(0)">وضعیت</a></th>
+                                                    <th style="width: 5%"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="tab-edit-profile">
+                        <div class="row row--grid">
+                            <div class="col-lg-12">
+                                <div class="dashbox">
+
+                                    <div class="dashbox__title">
+                                        <h3>ویرایش اطلاعات</h3>
+                                    </div>
+                                    <div class="dashbox__list-wrap">
+                                        <div class="row">
+                                            <div class="col-md-4 col-12 mx-auto mb-4">
+                                                <div class="custom-file-container"
+                                                     data-upload-id=userProfileAvatar>
+                                                    <label>
+                                                        انتخاب عکس پروفایل<a href="javascript:void(0)"
+                                                                             class="custom-file-container__image-clear"
+                                                                             title="Clear Image">x</a>
+                                                    </label>
+                                                    <label class="custom-file-container__custom-file">
+                                                        <input type="file" name="avatar"
+                                                               class="custom-file-container__custom-file__custom-file-input"
+                                                               accept="image/*">
+                                                        <input type="hidden" name="MAX_FILE_SIZE"
+                                                               value="10485760"/>
+                                                        <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                                    </label>
+                                                    <div class="custom-file-container__image-preview"></div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row col-md-8 col-12 mb-4">
+                                                <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-3">
+                                                    <div class="sign__group">
+                                                        <label class="sign__label" for="userFirstName">نام</label>
+                                                        <input id="userFirstName" type="text" autocomplete="off"
+                                                               name="first_name" class="sign__input"
+                                                               placeholder="نام">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-3">
+                                                    <div class="sign__group">
+                                                        <label class="sign__label" for="userLastName">نام
+                                                            خانوادگی</label>
+                                                        <input id="userLastName" type="text" autocomplete="off"
+                                                               name="last_name" class="sign__input"
+                                                               placeholder="نام خانوادگی">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-3">
+                                                    <div class="sign__group">
+                                                        <label class="sign__label"
+                                                               for="userEmailAddress">ایمیل</label>
+                                                        <input id="userEmailAddress" type="email" autocomplete="off"
+                                                               name="email" class="sign__input"
+                                                               placeholder="someone@example.com">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-3">
+                                                    <div class="sign__group">
+                                                        <label class="sign__label" for="userMelliCode">کد
+                                                            ملی</label>
+                                                        <input id="userMelliCode" type="text" name="melli_code"
+                                                               class="sign__input"
+                                                               placeholder="مثال : 1233214400">
+                                                    </div>
+                                                </div>
+
+                                                <!--                                                &lt;!&ndash; visible only if user is artist &ndash;&gt;&ndash;&gt;-->
+                                                <div class="col-12 d-none is-artist-pending my-3">
+                                                    <div class="d-flex flex-row justify-content-start align-items-center">
+                                                        <!--                                                    <div class="col-4 text-center">-->
+                                                        <label class="switch s-icons s-outline s-outline-primary mr-2"
+                                                               data-toggle="collapse"
+                                                               data-target="#AdvisorPriceContainer">
+                                                            <!-- set to checked if user is artist -->
+                                                            <input type="checkbox" name="is_advisor">
+                                                            <span class="slider"></span>
+                                                        </label>
+                                                        <!--                                                    </div>-->
+                                                        <div class="is-advisor-description text-light">
+                                                            در صورتی که مشاوره کاری میدهید این تیک را فعال کنید
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 col-12 pr-md-auto px-0 collapse"
+                                                         id="AdvisorPriceContainer">
+                                                        <div class="sign__group mt-3">
+                                                            <label class="sign__label" for="artistAdvisePrice">هزینه
+                                                                مشاوره</label>
+                                                            <input id="artistAdvisePrice" type="text"
+                                                                   name="advise_price"
+                                                                   class="sign__input" autocomplete="off"
+                                                                   placeholder="هزینه ساعتی به تومان">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!--                                        <div class="row is-artist-container my-3">-->
+                                        <!--                                            <div class="col-8 is-artist-description text-light">-->
+                                        <!--                                                در صورتی که علاقه مند به دریافت پروژه هستید. گزینه مقابل را فعال کنید و-->
+                                        <!--                                                رزومه-->
+                                        <!--                                                خود را کامل کنید.-->
+                                        <!--                                            </div>-->
+                                        <!--                                            <div class="col-4 text-center">-->
+                                        <!--                                                <label class="switch s-icons s-outline s-outline-success mr-2">-->
+                                        <!--                                                    &lt;!&ndash; set to checked if user is artist &ndash;&gt;-->
+                                        <!--                                                    <input type="checkbox" name="is_artist">-->
+                                        <!--                                                    <span class="slider"></span>-->
+                                        <!--                                                </label>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
+                                        <!--                                        &lt;!&ndash; visible only if user is artist &ndash;&gt;-->
+                                        <!--                                        <div class="row d-none is-artist-pending my-3">-->
+                                        <!--                                            &lt;!&ndash;<div class="row">&ndash;&gt;-->
+                                        <!--                                            <div class="col-8 is-advisor-description text-light">-->
+                                        <!--                                                در صورت که مشاوره کاری به دیگران انجام میدهید گزینه مقابل را فعال کنید و-->
+                                        <!--                                                هزینه مشاوره ساعتی را به تومان وارد کنید-->
+                                        <!--                                            </div>-->
+                                        <!--                                            <div class="col-4 text-center">-->
+                                        <!--                                                <label class="switch s-icons s-outline s-outline-primary mr-2"-->
+                                        <!--                                                       data-toggle="collapse" data-target="#AdvisorPriceContainer">-->
+                                        <!--                                                    &lt;!&ndash; set to checked if user is artist &ndash;&gt;-->
+                                        <!--                                                    <input type="checkbox" name="is_advisor">-->
+                                        <!--                                                    <span class="slider"></span>-->
+                                        <!--                                                </label>-->
+                                        <!--                                            </div>-->
+                                        <!--                                            &lt;!&ndash;</div>&ndash;&gt;-->
+                                        <!--                                            <div class="col-12 collapse" id="AdvisorPriceContainer">-->
+                                        <!--                                                <div class="sign__group mt-3">-->
+                                        <!--                                                    <label class="sign__label" for="artistAdvisePrice">هزینه مشاوره</label>-->
+                                        <!--                                                    <input id="artistAdvisePrice" type="text" name="advise_price"-->
+                                        <!--                                                           class="sign__input" autocomplete="off"-->
+                                        <!--                                                           placeholder="هزینه ساعتی به تومان">-->
+                                        <!--                                                </div>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end content tabs -->
             </div>
-                <input type="submit" class="submit__btn btn article__buy mx-auto my-4" value="ارسال صدا">
-            </form>
         </div>
     </div>
 </main>
 <!-- end main content -->
-
-<div id="modal-singing-test-sent" class="zoom-anim-dialog modal modal--info mfp-hide">
-		<span class="modal__icon modal__icon--green">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.72,8.79l-4.29,4.3L8.78,11.44a1,1,0,1,0-1.41,1.41l2.35,2.36a1,1,0,0,0,.71.29,1,1,0,0,0,.7-.29l5-5a1,1,0,0,0,0-1.42A1,1,0,0,0,14.72,8.79ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"></path></svg>
-		</span>
-
-    <button class="modal__close" type="button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"></path></svg></button>
-
-    <h4 class="sign__title">تست صدای شما با موفقیت ارسال شد</h4>
-
-    <div class="sign__group sign__group--row">
-        <span class="sign__text sign__text--small">
-            به زودی از طرف پشتیبان سایت بررسی میشود و نتیجه به شما اطلاع رسانی میشود.
-        </span>
-    </div>
-    <button title="Close (Esc)" type="button" class="mfp-close">×</button>
-</div>
-
-<div id="modal-unauthorized" class="zoom-anim-dialog mfp-hide modal modal--info">
-
-    <button class="modal__close" type="button">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/>
-        </svg>
-    </button>
-    <span class="sign__title _cart message">برای تست صدا ابتدا در حساب خود <a href="signin.html">وارد شوید</a>.</span>
-    <!--    <a class="sign__btn mb-0" type="button" href="signin.html">ورود</a>-->
-</div>
 
 <!-- footer -->
 <footer class="footer">
@@ -388,7 +591,56 @@
 </footer>
 <!-- end footer -->
 
+<!-- modal delete title portfolio -->
+<div id="modal-delete-title-portfolio" class="zoom-anim-dialog mfp-hide modal modal--info" style="height: auto">
+    <button class="modal__close" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/>
+        </svg>
+    </button>
+    <h4 class="sign__title">از حذف این استدیو مطمئن هستید؟</h4>
+    <div class="sign__group sign__group--row mb-0">
+        <div class="col-6 mx-auto">
+            <button class="btn btn-lg btn-success btn-block btn-delete-title-portfolio" type="button">حذف</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-lg btn-outline-success btn-block" type="button"
+                    onclick="$.magnificPopup.close();">انصراف
+            </button>
+        </div>
+    </div>
+</div>
+<!-- end modal delete title portfolio -->
+
+<!-- modal delete studio -->
+<div id="modal-delete-studio" class="zoom-anim-dialog mfp-hide modal modal--info" style="height: auto">
+    <button class="modal__close" type="button" onclick="$('tr.deletable').removeClass('deletable')">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"/>
+        </svg>
+    </button>
+    <h4 class="sign__title">از حذف این استدیو مطمئن هستید ؟</h4>
+    <div class="sign__group sign__group--row mb-0">
+        <div class="col-6 mx-auto">
+            <button class="btn btn-lg btn-warning btn-block btn-delete-studio" type="button">حذف</button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-lg btn-outline-warning btn-block" type="button"
+                    onclick="$('tr.deletable').removeClass('deletable');$.magnificPopup.close();">انصراف
+            </button>
+        </div>
+    </div>
+</div>
+<!-- end modal delete studio -->
+
 <!-- JS -->
+
+<script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
+<script src="plugins/persian-datepicker/persian-datepicker.min.js"></script>
+<script src="plugins/snackbar/snackbar.min.js"></script>
+<script src="assets/js/elements/custom-snackbar.js"></script>
+<script src="plugins/bootstrap-maxlength/bootstrap-maxlength.js"></script>
+<script src="plugins/bootstrap-maxlength/custom-bs-maxlength.js"></script>
 
 <script src="assets/website/js/owl.carousel.min.js"></script>
 <script src="assets/website/js/jquery.magnific-popup.min.js"></script>
@@ -398,71 +650,9 @@
 <script src="assets/website/js/jquery.inputmask.min.js"></script>
 <script src="assets/website/js/plyr.min.js"></script>
 <script src="assets/website/js/main.js"></script>
-<script src="plugins/file-upload/file-upload-with-preview.min.js"></script>
-<script>
-    const fileUpload = new FileUploadWithPreview("singingTestFileUpload",{
-        text : {
-            browse : "جستجو",
-            chooseFile : "انتخاب صدا"
-        }
-    });
-    $(".custom-file-container__image-preview").css({
-        backgroundImage : "url(assets/website/img/singing_test_background.png)",
-        backgroundSize : "contain",
-        backgroundPosition : "top center",
-        margin : "20px 0"
-    });
-    $("#singing-test-form").on("submit",function (e){
-        e.preventDefault();
-        const _form = $(this);
-        const file = _form.find("input[type='file']").get(0).files[0];
-        console.log("co : "+file)
-        const formData = new FormData();
-        formData.append("singing_file",file);
-        $.ajax({
-            async : false,
-            method : "POST",
-            url : __url__+"/singing",
-            headers : {
-                authorization : "Bearer "+localStorage.getItem("accessToken")
-            },
-            data : formData,
-            processData: false,
-            contentType: false,
-            success : function (response){
-                if(response!==null && typeof response === 'object'){
-                    if(!response.error){
-                        $.magnificPopup.open({
-                            fixedContentPos: true,
-                            type: 'inline',
-                            modal: false,
-                            removalDelay: 300,
-                            mainClass: 'my-mfp-zoom-in',
-                            items: {
-                                src: '#modal-singing-test-sent'
-                            },
-                        })
-                    }else{
-                        alert(response.messages[0]);
-                    }
-                }
-            },
-            error : function (xhr){
-                $.magnificPopup.open({
-                    overflowY: 'auto',
-                    type: 'inline',
-                    preloader: false,
-                    modal: false,
-                    removalDelay: 200,
-                    mainClass: 'my-mfp-zoom-in',
-                    items: {
-                        src: '#modal-unauthorized'
-                    },
-                });
-            }
-        });
-    });
-</script>
+<script src="assets/website/js/profile-common.js"></script>
+<script src="assets/website/js/profile_my_studios.js"></script>
+
 </body>
 
 </html>

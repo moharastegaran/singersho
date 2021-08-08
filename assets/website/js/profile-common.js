@@ -1,29 +1,29 @@
 const userProfileAvatarUpload = new FileUploadWithPreview('userProfileAvatar');
-let is_artist = false,user_first_name,user_last_name,user_email,user_melli_code,artist_advise_price;
+let is_artist = false, user_first_name, user_last_name, user_email, user_melli_code, artist_advise_price;
 let prev = null;
 
-function updateUserData($input,$expected_value, $urlParam = null){
-    if($input===null || $input.val()!==$expected_value){
+function updateUserData($input, $expected_value, $urlParam = null) {
+    if ($input === null || $input.val() !== $expected_value) {
         let formData = {}, urlParam;
         if ($input !== null) {
             formData[$input.attr('name')] = $input.val();
             urlParam = $input.attr('name');
-        }else{
+        } else {
             urlParam = $urlParam;
         }
         $.ajax({
-            method : 'PATCH',
-            url : __url__+'/'+urlParam,
-            data : formData,
-            success : function (response){
-                if (typeof response === 'object' && response !== null){
-                    if($input !== null){
+            method: 'PATCH',
+            url: __url__ + '/' + urlParam,
+            data: formData,
+            success: function (response) {
+                if (typeof response === 'object' && response !== null) {
+                    if ($input !== null) {
                         $input.siblings(".input-error").remove();
-                        if (response.error){
-                            $input.after("<span class='input-error text-danger'>"+response.messages[0]+"</span>")
+                        if (response.error) {
+                            $input.after("<span class='input-error text-danger'>" + response.messages[0] + "</span>")
                         }
-                    }else if($urlParam === "avatar"){
-                        $(location).attr("href","profile.html")
+                    } else if ($urlParam === "avatar") {
+                        $(location).attr("href", "profile.html")
                     }
                 }
             }
@@ -45,24 +45,41 @@ $(window).on("load", function () {
         }
     });
 
+    $.get(__url__ + '/singing', function (response) {
+        if (response !== null && typeof response === 'object') {
+            if (!response.error) {
+                if (response.tests.length > 0) {
+                    const pageLink = $(location).attr('href');
+                    const fileName = pageLink.substr(pageLink.lastIndexOf("/") + 1);
+                    const isTabActive = fileName.indexOf("profile_singing_tests.html") >= 0;
+                    $("#profile__tabs > div").append("" +
+                        "<li class=\"nav-item nav-item-singing-tests\">\n" +
+                        "                                <a class=\"nav-link "+(isTabActive ? 'active' : '')+"\" href=\""+(isTabActive ? '#tab-user-singing-tests-section' : 'profile_singing_tests.html')+"\"\n" +
+                        "                                   aria-selected=\"true\">تست‌های خوانندگی</a>\n" +
+                        "                            </li>");
+                }
+            }
+        }
+    });
+
     $.ajax({
         async: false,
         method: "GET",
-        url: __url__+"/me",
-        headers : {
-            "Authorization" : "Bearer " + localStorage.getItem("accessToken")
+        url: __url__ + "/me",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("accessToken")
         },
         success: function (response) {
             if (typeof response === 'object' && response !== null) {
                 if (!response.error) {
                     $(".user.full_name").text(response.data.user.first_name + ' ' + response.data.user.last_name);
-                    $("#tab-edit-profile input[name='first_name']").val(user_first_name=response.data.user.first_name);
-                    $("#tab-edit-profile input[name='last_name']").val(user_last_name=response.data.user.last_name);
-                    $("#tab-edit-profile input[name='email']").val(user_email=response.data.user.email);
-                    $("#tab-edit-profile input[name='melli_code']").val(user_melli_code=response.data.user.melli_code);
-                    if(response.data.user.has_studio === 1){
+                    $("#tab-edit-profile input[name='first_name']").val(user_first_name = response.data.user.first_name);
+                    $("#tab-edit-profile input[name='last_name']").val(user_last_name = response.data.user.last_name);
+                    $("#tab-edit-profile input[name='email']").val(user_email = response.data.user.email);
+                    $("#tab-edit-profile input[name='melli_code']").val(user_melli_code = response.data.user.melli_code);
+                    if (response.data.user.has_studio === 1) {
                         $("#alert-sign-studio").addClass("d-none");
-                    }else{
+                    } else {
                         $("#alert-sign-studio").removeClass("d-none");
                     }
 
@@ -72,26 +89,26 @@ $(window).on("load", function () {
                         $(".user_is_artist").removeClass("d-none");
                         $(".user_is_not_artist").addClass("d-none");
                         const artist = response.data.other_info.artist;
-                        $("._artist.id").text("شناسه کاربری : "+artist.id);
-                        if(artist.avatar !== null)
+                        $("._artist.id").text("شناسه کاربری : " + artist.id);
+                        if (artist.avatar !== null)
                             userProfileAvatarUpload.addImagesFromPath([artist.avatar])
                         $("[name='is_artist']").prop("checked", true);
                         // $("#tab-user-profile-section").find(".col-lg-7").removeClass("d-none");
                         $(".is-artist-pending").removeClass("d-none");
                         // $("#tab-user-profile-section input[name='is_advisor']").prop("checked", artist.is_advisor === 1);
-                        $("#tab-user-profile-section input[name='advise_price']").val(artist_advise_price=artist.advise_price);
+                        $("#tab-user-profile-section input[name='advise_price']").val(artist_advise_price = artist.advise_price);
                         // if(artist.hasOwnProperty('avatar') && artist.avatar != null){
                         //     // $("#tab-user-profile-section input[name='advise_price']").a()
                         // }
                         if (artist.is_advisor === 1) {
                             $("#AdvisorPriceContainer").collapse("show");
-                            $("input[name='is_advisor']").prop("checked",true)
+                            $("input[name='is_advisor']").prop("checked", true)
                         }
 
                         const titles = response.data.other_info.titles;
-                        console.log("$(location).attr('href') : "+$(location).attr('href'));
-                        console.log("$(location).attr('href').indexOf : "+$(location).attr('href').indexOf("profile.html") );
-                        if($(location).attr('href').indexOf("profile.html") >= 0){
+                        console.log("$(location).attr('href') : " + $(location).attr('href'));
+                        console.log("$(location).attr('href').indexOf : " + $(location).attr('href').indexOf("profile.html"));
+                        if ($(location).attr('href').indexOf("profile.html") >= 0) {
                             if (titles.length > 0) {
                                 $(".title-list-empty").addClass("d-none");
                                 for (let i = 0; i < titles.length; i++) {
@@ -120,7 +137,7 @@ $(window).on("load", function () {
                                         "                                                    </svg>\n" +
                                         "                                                </a>\n" +
                                         "                                                 <a class=\"open-delete-modal\" " +
-                                        "                                                   href=\"javascript:void(0);\">\n" +
+                                        "                                                   href=\"#modal-delete-title-portfolio\">\n" +
                                         "                                                    <svg width=\"28\" xmlns=\"http://www.w3.org/2000/svg\"\n" +
                                         "                                                         viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"\n" +
                                         "                                                         stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"\n" +
@@ -132,6 +149,16 @@ $(window).on("load", function () {
                                         "                                            </div>\n" +
                                         "                                        </div>\n" +
                                         "                                    </li>");
+                                    $(".open-delete-modal").magnificPopup({
+                                        fixedContentPos: true,
+                                        fixedBgPos: true,
+                                        overflowY: 'auto',
+                                        type: 'inline',
+                                        preloader: false,
+                                        modal: false,
+                                        removalDelay: 300,
+                                        mainClass: 'my-mfp-zoom-in',
+                                    });
                                 }
                             }
 
@@ -170,6 +197,16 @@ $(window).on("load", function () {
                                         "                                            </div>\n" +
                                         "                                        </div>\n" +
                                         "                                    </li>");
+                                    $(".open-delete-modal").magnificPopup({
+                                        fixedContentPos: true,
+                                        fixedBgPos: true,
+                                        overflowY: 'auto',
+                                        type: 'inline',
+                                        preloader: false,
+                                        modal: false,
+                                        removalDelay: 300,
+                                        mainClass: 'my-mfp-zoom-in',
+                                    });
                                 }
                             }
                         }
@@ -186,7 +223,7 @@ $(window).on("load", function () {
         }
     });
 
-    $.get(__url__+"/titles", function (response) {
+    $.get(__url__ + "/titles", function (response) {
         if (typeof response === 'object' && response !== null) {
             const titles = response.titles.data;
             if (titles !== null) {
@@ -198,10 +235,10 @@ $(window).on("load", function () {
 
 });
 
-$(document).ready(function (){
+$(document).ready(function () {
 
     $(".custom-file-container__image-preview").css({
-        backgroundImage : "url(assets/website/img/ui-user.svg)"
+        backgroundImage: "url(assets/website/img/ui-user.svg)"
     })
 
     // $("#userExperienceDate").persianDatepicker({
@@ -261,7 +298,7 @@ $(document).ready(function (){
         const isChecked = $(this).is(":checked");
         $.ajax({
             method: 'PATCH',
-            url: __url__+'/accept_advisor',
+            url: __url__ + '/accept_advisor',
             data: {
                 _method: 'PATCH'
             },
@@ -274,44 +311,44 @@ $(document).ready(function (){
             }
         });
     });
-    $("input[name='first_name']").on("blur",function (){
-        updateUserData($(this),user_first_name);
+    $("input[name='first_name']").on("blur", function () {
+        updateUserData($(this), user_first_name);
     });
-    $("input[name='last_name']").on("blur",function (){
-        updateUserData($(this),user_last_name);
+    $("input[name='last_name']").on("blur", function () {
+        updateUserData($(this), user_last_name);
     });
-    $("input[name='email']").on("blur",function (){
-        updateUserData($(this),user_email);
+    $("input[name='email']").on("blur", function () {
+        updateUserData($(this), user_email);
     });
-    $("input[name='melli_code']").on("blur",function (){
-        updateUserData($(this),user_melli_code);
+    $("input[name='melli_code']").on("blur", function () {
+        updateUserData($(this), user_melli_code);
     });
-    $("input[name='advise_price']").on("blur",function (){
-        updateUserData($(this),artist_advise_price);
+    $("input[name='advise_price']").on("blur", function () {
+        updateUserData($(this), artist_advise_price);
     });
-    $(".sign__user-studio--btn").on("click",function (){
-        updateUserData(null,null,"avatar");
+    $(".sign__user-studio--btn").on("click", function () {
+        updateUserData(null, null, "avatar");
     });
 
-    $("input[name='avatar']").on("change",function (){
+    $("input[name='avatar']").on("change", function () {
         const _fileInput = $(this);
-        if($(this).files.length){
+        if ($(this).files.length) {
             let formData = {};
             formData['avatar'] = $(this).files[0];
             $.ajax({
-                method : 'PATCH',
-                url : __url__+'/avatar',
-                data : formData,
-                processData : false,
-                cache : false,
-                contentType : false,
-                success : function (response){
-                    if (typeof response === 'object' && response !== null){
+                method: 'PATCH',
+                url: __url__ + '/avatar',
+                data: formData,
+                processData: false,
+                cache: false,
+                contentType: false,
+                success: function (response) {
+                    if (typeof response === 'object' && response !== null) {
                         _fileInput.siblings(".input-error").remove();
-                        if(!response.error){
+                        if (!response.error) {
                             userProfileAvatarUpload.addImagesFromPath([response.avatar])
-                        }else{
-                            _fileInput.after("<span class='input-error text-danger'>"+response.messages[0]+"</span>")
+                        } else {
+                            _fileInput.after("<span class='input-error text-danger'>" + response.messages[0] + "</span>")
                         }
                     }
                 }

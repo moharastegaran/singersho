@@ -16,7 +16,6 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="assets/website/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/website/css/magnific-popup.css">
-<!--    <link rel="stylesheet" href="assets/website/css/select2.min.css">-->
     <link rel="stylesheet" href="assets/website/css/paymentfont.min.css">
     <link rel="stylesheet" href="assets/website/css/slider-radio.css">
     <link rel="stylesheet" href="assets/website/css/plyr.css">
@@ -73,7 +72,7 @@
     </style>
 
     <link rel="icon" type="image/png" href="assets/website/img/favicon.png" sizes="32x32">
-    <title>سایت ساز و صدا - پروفایل کاربری - افزودن استدیو</title>
+    <title>سایت ساز و صدا - افزودن استدیو</title>
 
 </head>
 <body>
@@ -290,7 +289,7 @@
                                    aria-selected="true">افزودن استدیو</a>
                             </li>
                             <li class="nav-item nav-item-view-studios">
-                                <a class="nav-link" href="profile.html"
+                                <a class="nav-link" href="profile_my_studios.html"
                                    aria-selected="true">استدیوهای من</a>
                             </li>
                         </div>
@@ -770,7 +769,7 @@
                                                         </label>
                                                         <!--                                                    </div>-->
                                                         <div class="is-advisor-description text-light">
-                                                            در صورتی که مشاوره کاری میدهید این تیک راا فعال کنید
+                                                            در صورتی که مشاوره کاری میدهید این تیک را فعال کنید
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-12 pr-md-auto px-0 collapse"
@@ -842,15 +841,15 @@
                                     </div>
                                     <div class="dashbox__list-wrap">
                                         <form id="formAddStudio" enctype="multipart/form-data">
-                                            <div class="row">
-                                                <div class="col-md-8 col-sm-10 mx-auto mb-5">
+                                            <div class="row align-items-start">
+                                                <div class="col-md-6 col-sm-10 mb-5">
                                                     <div class="custom-file-container"
                                                          data-upload-id="studioImagesFileContainer">
                                                         <label>آپلود عکس(ها) <a href="javascript:void(0)"
                                                                                 class="custom-file-container__image-clear"
-                                                                                title="حذف عکس">x</a></label>
+                                                                                title="حذف همه">x</a></label>
                                                         <label class="custom-file-container__custom-file">
-                                                            <input type="file"
+                                                            <input type="file" name="images[]"
                                                                    class="custom-file-container__custom-file__custom-file-input"
                                                                    multiple>
                                                             <input type="hidden" name="MAX_FILE_SIZE" value="10485760"/>
@@ -859,43 +858,58 @@
                                                         <div class="custom-file-container__image-preview"></div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <div class="sign__group">
-                                                        <label class="sign__label" for="studioNameInput">نام
-                                                            استدیو</label>
-                                                        <input id="studioNameInput" type="text" autocomplete="off"
-                                                               name="name" class="sign__input" required>
+                                                <div class="row col-md-6 pl-md-0 pr-md-2 px-0 mx-auto">
+                                                    <div class="col-md-12 mb-2 px-md-0">
+                                                        <div class="sign__group">
+                                                            <label class="sign__label" for="studioNameInput">نام
+                                                                استدیو</label>
+                                                            <input id="studioNameInput" type="text" autocomplete="off"
+                                                                   name="name" class="sign__input" required>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <div class="sign__group">
-                                                        <label class="sign__label" for="studioRentCostInput">هزینه
-                                                            اجاره(ساعتی)</label>
-                                                        <input id="studioRentCostInput" type="text" autocomplete="off"
-                                                               name="price" class="sign__input" required>
+                                                    <div class="col-md-12 mb-2 px-md-0">
+                                                        <div class="sign__group">
+                                                            <label class="sign__label" for="studioCity">
+                                                                شهر
+                                                            </label>
+                                                            <select id="studioCity" name="city_id"
+                                                                    class="sign__select" required></select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <div class="sign__group">
-                                                        <label class="sign__label"
-                                                               for="studioGeoLocationTextArea">آدرس</label>
-                                                        <textarea id="studioGeoLocationTextArea"
-                                                                  style="resize: none;height: auto" rows="4"
-                                                                  name="address"
-                                                                  placeholder="آدرس دقیق استدیو را وارد کنید"
-                                                                  class="sign__input" required></textarea>
+                                                    <div class="col-md-12 mb-2 px-md-0">
+                                                        <div class="sign__group">
+                                                            <label class="sign__label" for="studioRentCostInput">مبلغ
+                                                                اجاره</label>
+                                                            <input id="studioRentCostInput" type="text" autocomplete="off"
+                                                                  placeholder="مبلغ را به ازاری هر ساعت وارد کنید" name="price" class="sign__input" required>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6 mb-3">
-                                                    <div class="sign__group">
-                                                        <label class="sign__label" for="studioExtraDescriptionTextArea">توضیحات
-                                                            تکمیلی استدیو(اختیاری)</label>
-                                                        <textarea id="studioExtraDescriptionTextArea"
-                                                                  style="resize: none;height: auto" rows="4"
-                                                                  name="description" class="sign__input"
-                                                                  required></textarea>
+
+                                                    <div class="col-md-12 mb-2 px-md-0">
+                                                        <div class="sign__group">
+                                                            <label class="sign__label"
+                                                                   for="studioGeoLocationTextArea">آدرس</label>
+                                                            <textarea id="studioGeoLocationTextArea"
+                                                                      style="resize: none;height: auto" rows="2"
+                                                                      name="address"
+                                                                      placeholder="آدرس دقیق استدیو را وارد کنید"
+                                                                      class="sign__input" required></textarea>
+                                                        </div>
                                                     </div>
+
                                                 </div>
+
+<!--                                                <div class="col-md-12 mb-2">-->
+<!--                                                    <div class="sign__group">-->
+<!--                                                        <label class="sign__label" for="studioExtraDescriptionTextArea">توضیحات-->
+<!--                                                            (اختیاری)</label>-->
+<!--                                                        <textarea id="studioExtraDescriptionTextArea"-->
+<!--                                                                  style="resize: none;height: auto" rows="3"-->
+<!--                                                                  name="description" class="sign__input"-->
+<!--                                                                  required></textarea>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
                                                 <div class="col-12 mb-3">
                                                     <button type="submit" class="sign__btn">افزودن استدیو</button>
                                                 </div>
@@ -1062,7 +1076,7 @@
 <script src="assets/website/js/owl.carousel.min.js"></script>
 <script src="assets/website/js/jquery.magnific-popup.min.js"></script>
 <script src="assets/website/js/smooth-scrollbar.js"></script>
-<!--<script src="assets/website/js/select2.min.js"></script>-->
+<script src="plugins/select2/select2-custom.min.js"></script>
 <script src="assets/website/js/slider-radio.js"></script>
 <script src="assets/website/js/jquery.inputmask.min.js"></script>
 <script src="assets/website/js/plyr.min.js"></script>
