@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Component_329_1" width="44" height="39" data-name="Component 329 – 1" viewBox="0 0 44 39">
+    <defs>
+        <style>
+            #Component_329_1 .cls-10, #Component_329_1 .cls-30{fill:none} #Component_329_1 .cls-30{stroke:#19874b;stroke-width:2.2px} #Component_329_1 .cls-40{stroke:none}
+        </style>
+    </defs>
+    <path id="Rectangle_4213" d="M0 0H44V39H0z" class="cls-10" data-name="Rectangle 4213"/>
+    <g id="Group_2992" data-name="Group 2992" transform="translate(-201 -8277)">
+        <g id="Rectangle_4097" fill="#42b95c" stroke="#19874b" stroke-width="2.2px" data-name="Rectangle 4097" transform="translate(204 8277)">
+            <rect width="17.51" height="17.51" class="cls-40" rx="2"/>
+            <rect width="15.31" height="15.31" x="1.1" y="1.1" class="cls-10" rx=".9"/>
+        </g>
+        <g id="Rectangle_4098" class="cls-30" data-name="Rectangle 4098" transform="translate(224.694 8277)">
+            <rect width="18.306" height="17.51" class="cls-40" rx="2"/>
+            <rect width="16.106" height="15.31" x="1.1" y="1.1" class="cls-10" rx=".9"/>
+        </g>
+        <g id="Rectangle_4099" class="cls-30" data-name="Rectangle 4099" transform="translate(204 8297.694)">
+            <rect width="17.51" height="18.306" class="cls-40" rx="2"/>
+            <rect width="15.31" height="16.106" x="1.1" y="1.1" class="cls-10" rx=".9"/>
+        </g>
+        <g id="Rectangle_4100" class="cls-30" data-name="Rectangle 4100" transform="translate(224.694 8297.694)">
+            <rect width="18.306" height="18.306" class="cls-40" rx="2"/>
+            <rect width="16.106" height="16.106" x="1.1" y="1.1" class="cls-10" rx=".9"/>
+        </g>
+    </g>
+</svg>
