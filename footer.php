@@ -1,6 +1,6 @@
 </main>
 
-<footer class="<?php if (strpos($current_url,'index.php')!==false){ ?> line-background <?php } ?>">
+<footer class="<?php if (strpos($current_url, 'index.php') !== false) { ?> line-background <?php } ?>">
     <div class="d-flex flex-row flex-wrap align-items-start justify-content-around">
         <div class="col-md-4 col-sm-6 text-right">
             <a href="index.php" class="logo"><img src="assets/img/logo.png" height="35"></a>
@@ -13,36 +13,41 @@
             </p>
         </div>
         <div class="col-md-4 col-sm-6 mt-sm-0 mt-4">
-            <h4>اطلاعات تماس</h4>
-            <ul class="list-group-flush">
-                <li class="list-group-item"><!--<strong><i class="fas fa-map-marker-alt"></i> آدرس ما:</strong>-->تهران،
-                    شریعتی، پایینتر از سیدخندان، نبش کوچه جهاد، پلاک ۸۳۸
+            <h4>دسترسی سریع</h4>
+            <ul class="list-group-flush footer-links">
+                <?php global $page_name; ?>
+                <li class="list-group-item <?php if(strpos($page_name,'index')!==false){ echo 'active'; }?> ?>">
+                    <a href="index.php" class="text-white">خانه</a>
                 </li>
-                <li class="list-group-item"><strong><i class="fas fa-envelope"></i> ایمیل:</strong>info@singersho.com
+                <li class="list-group-item <?php if(strpos($page_name,'artists')!==false){ echo 'active'; }?>">
+                    <a href="artists.php" class="text-white">هنرمندان</a>
                 </li>
-                <li class="list-group-item"><strong><i class="fas fa-phone"></i> شماره تماس <num class="number">1</num>:</strong><span dir="ltr" class="number">+98 21 88732542</span>
+                <li class="list-group-item <?php if(strpos($page_name,'store')!==false){ echo 'active'; }?>">
+                    <a href="store.php" class="text-white">فروشگاه</a>
                 </li>
-                <li class="list-group-item"><strong><i class="fas fa-phone"></i> شماره تماس <num class="number">2</num>:</strong><span dir="ltr" class="number">+98 912 309 4047</span>
+                <li class="list-group-item <?php if(strpos($page_name,'studios')!==false){ echo 'active'; }?>">
+                    <a href="studios.php" class="text-white">استدیوها</a>
                 </li>
             </ul>
         </div>
-<!--        <div class="col-md-4">-->
-<!--            <h4>دسترسی سریع</h4>-->
-<!--            <table class="table-responsive border-0">-->
-<!--                <tr>-->
-<!--                    <td><a href="#" class="hvr-shrink">صفحه اصلی</a></td>-->
-<!--                    <td><a href="#" class="hvr-shrink">تست خوانندگی</a></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td><a href="#" class="hvr-shrink">صفحه اصلی</a></td>-->
-<!--                    <td><a href="#" class="hvr-shrink">تست خوانندگی</a></td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                    <td><a href="#" class="hvr-shrink">صفحه اصلی</a></td>-->
-<!--                    <td><a href="#" class="hvr-shrink">تست خوانندگی</a></td>-->
-<!--                </tr>-->
-<!--            </table>-->
-<!--        </div>-->
+        <div class="col-md-4 col-sm-6 mt-sm-0 mt-4">
+            <h4>اطلاعات تماس</h4>
+            <ul class="list-group-flush">
+                <li class="list-group-item border-bottom-0"><!--<strong><i class="fas fa-map-marker-alt"></i> آدرس ما:</strong>-->تهران،
+                    شریعتی، پایینتر از سیدخندان، نبش کوچه جهاد، پلاک ۸۳۸
+                </li>
+                <li class="list-group-item border-bottom-0"><strong><i class="fas fa-envelope"></i> ایمیل:</strong>info@singersho.com
+                </li>
+                <li class="list-group-item border-bottom-0"><strong><i class="fas fa-phone"></i> شماره تماس
+                        <num class="number">1</num>
+                        :</strong><span dir="ltr" class="number">+98 21 88732542</span>
+                </li>
+                <li class="list-group-item"><strong><i class="fas fa-phone"></i> شماره تماس
+                        <num class="number">2</num>
+                        :</strong><span dir="ltr" class="number">+98 912 309 4047</span>
+                </li>
+            </ul>
+        </div>
     </div>
     <div class="copyright">
         <div class="col-md-4 col-sm-6 text-sm-right text-center">
@@ -84,6 +89,8 @@
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/js/perfect-scrollbar.min.js"></script>
+<script src="assets/js/select2.min.js"></script>
+<script src="assets/js/select2-custom.min.js"></script>
 <script src="assets/js/crange-slider.js"></script>
 <script src="assets/js/main.js"></script>
 </body>

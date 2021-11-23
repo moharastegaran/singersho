@@ -10,20 +10,36 @@ document.addEventListener('mousedown', (event) => {
 
 $(document).ready(function () {
 
-    // const ps = new PerfectScrollbar('.filters__total-container', {
-    //     wheelSpeed:.5,
-    //     swipeEasing:!0,
-    //     minScrollbarLength:40,
-    //     maxScrollbarLength:300,
-    //     suppressScrollX : true
-    // });
-
     const current_url = $(location).attr('href');
     let api_url = null;
-    if (current_url.indexOf('artists')>=0)
+    if (current_url.indexOf('artists') >= 0)
         api_url = 'artist';
-    else if(current_url.indexOf('studios')>=0)
+    else if (current_url.indexOf('studios') >= 0)
         api_url = 'studio';
+    else if (current_url.indexOf('store') >= 0)
+        api_url = 'package';
+
+    $('.main__select2[name="cities"]').select2({
+        // minimumResultsForSearch: Infinity,
+        width: "100%",
+        dir: "rtl",
+        multiple: true,
+        maximumSelectionLength: 2,
+        placeholder: "شهر ...",
+        message: {
+            noResults: "اوپس"
+        }
+    });
+
+    // $('.main__select2[name="cities"]').on('change', function () {
+    // const ps = new PerfectScrollbar('.select2-results__options', {
+    //     wheelSpeed: .5,
+    //     swipeEasing: !0,
+    //     minScrollbarLength: 40,
+    //     maxScrollbarLength: 300,
+    //     suppressScrollX: true
+    // });
+    // })
 
     $('a[href="#mm-menu"]').on('click', function (e) {
         e.preventDefault();
@@ -86,13 +102,31 @@ $(document).ready(function () {
                 $(slider.data('value-1')).text(formatPrice(value[1]));
             }
         }
+        if (value = getUrlParams('min_max')) {
+            const inputMin = $('.filter__single-formrange').find('[name="price_min"]');
+            const inputMax = $('.filter__single-formrange').find('[name="price_max"]');
+            const min = value.split('_')[0];
+            const max = value.split('_')[1];
+            if (max < parseInt(inputMax.attr('max')))
+                inputMax.val(max);
+            if (min > parseInt(inputMin.attr('min')))
+                inputMin.val(min);
+        }
+        if (value = getUrlParams('cityIds')) {
+            const cities = value !== null ? value.split('_') : [];
+            $('.main__select2[name=\'cities\']').val(cities);
+            $('.main__select2[name=\'cities\']').trigger('change');
+        }
         if (value = getUrlParams('rpp')) {
             $('.rpp-number').removeClass('rpp-current');
             $('.rpp-number[data-rpp=\'' + value + '\']').addClass('rpp-current');
         }
 
+        if ($('.filter__list-itemdel.show').length > 0)
+            $('.filter__reset').addClass('show');
+
         const parent = $('#list__main-container');
-        const count = parent.find('.artist').length;
+        const count = parent.find('.' + api_url).length;
         const emptyBlock = parent.find('#main-list-empty');
         if (count > 0) {
             emptyBlock.addClass('d-none');
@@ -102,7 +136,6 @@ $(document).ready(function () {
             emptyBlock.removeClass('d-none');
         }
     });
-
 
 
     $('[data-ripple]').on('click', function (e) {
@@ -184,6 +217,11 @@ $(document).ready(function () {
         $('.filter__list-itemdel').removeClass('show');
         $('#filter__name-form [name=\'search\']').val(null);
         $('.filter__checkbox [name=\'title\']').prop('checked', false);
+
+        $('.filter__single-formrange').find('[name="price_min"]').val(null);
+        $('.filter__single-formrange').find('[name="price_max"]').val(null);
+        $('.main__select2[name=\'cities\']').val(null);
+        $('.main__select2[name=\'cities\']').trigger('change');
         resetSlider();
 
         /* hide button */
@@ -196,16 +234,16 @@ $(document).ready(function () {
     });
 
     /* List item title */
-    $('.filter__single-cb').on('change', 'input[name=\'title\']', function () {
+    $('.filter__single-cb').on('change', 'input:radio', function () {
 
         $(this).prop('checked', true);
         $(this).closest('.filter').find('.filter__list-itemdel').removeClass('show');
         $(this).parent().prev('.filter__list-itemdel').addClass('show');
 
-        if($('.filter__reset.show').length===0)
+        if ($('.filter__reset.show').length === 0)
             $('.filter__reset').addClass('show');
 
-        appendUrlParam('title=' + $(this).val());
+        appendUrlParam($(this).val());
         updateDataList();
     });
 
@@ -214,31 +252,32 @@ $(document).ready(function () {
         $(this).next().find('input').prop('checked', false);
         $(this).removeClass('show');
 
-        if($('.filter__list-itemdel.show').length===0)
+        if ($('.filter__list-itemdel.show').length === 0)
             $('.filter__reset').removeClass('show');
 
         deleteUrlParams('title');
         updateDataList()
     });
 
-    /* Range slider */
+    /* Slide Range slider */
     $('.filter__single-range').on('click', '.filter__slider-range--btn', function (e) {
         e.preventDefault();
         $(this).next('.filter__list-itemdel').addClass('show');
         const [min, max] = $(".slider").slider("option", "values");
 
-        if($('.filter__reset.show').length===0)
+        if ($('.filter__reset.show').length === 0)
             $('.filter__reset').addClass('show');
 
         appendUrlParam('page=1&ap_min_max=' + min + '_' + max + '&page=1');
         updateDataList();
     });
+
     $('.filter__single-range').on('click', '.filter__list-itemdel.show', function (e) {
         e.preventDefault();
         $(this).removeClass('show');
         resetSlider();
 
-        if($('.filter__list-itemdel.show').length===0)
+        if ($('.filter__list-itemdel.show').length === 0)
             $('.filter__reset').removeClass('show');
 
         deleteUrlParams('ap_min_max');
@@ -252,7 +291,7 @@ $(document).ready(function () {
         const search = $this.find('[name=\'search\']').val();
         $this.find('.form-group--addon .filter__list-itemdel').addClass('show');
 
-        if($('.filter__reset.show').length===0)
+        if ($('.filter__reset.show').length === 0)
             $('.filter__reset').addClass('show');
 
         appendUrlParam('page=1&search=' + search + '&page=1');
@@ -265,12 +304,103 @@ $(document).ready(function () {
         $this.removeClass('show');
         $this.closest('form').find('[name=\'search\']').val(null);
 
-        if($('.filter__list-itemdel.show').length===0)
+        if ($('.filter__list-itemdel.show').length === 0)
             $('.filter__reset').removeClass('show');
 
         deleteUrlParams('search');
         updateDataList();
     });
+
+    /* Input range Filter */
+    $('.filter__single-formrange').on('submit', function (e) {
+        e.preventDefault();
+        const inputMin = $(this).find('[name="price_min"]');
+        const inputMax = $(this).find('[name="price_max"]');
+        if (inputMin.val() !== '' || inputMax.val() !== '') {
+            const min = inputMin.val() !== '' ? inputMin.val() : inputMin.attr('min');
+            const max = inputMax.val() !== '' ? inputMax.val() : inputMax.attr('max');
+
+            $(this).find('.filter__list-itemdel').addClass('show');
+
+            if ($('.filter__list-itemdel.show').length === 0)
+                $('.filter__reset').addClass('show');
+
+            appendUrlParam('page=1&'+(api_url==='package' ? 'p_' : '')+'min_max=' + min + '_' + max);
+            updateDataList();
+        }
+    });
+
+    $('.filter__single-formrange').on('click', '.filter__list-itemdel.show', function (e) {
+        e.preventDefault();
+        $(this).removeClass('show');
+
+        const parent = $('.filter__single-formrange');
+        parent.find('[name="price_min"],[name="price_max"]').val(null);
+
+        if ($('.filter__list-itemdel.show').length === 0)
+            $('.filter__reset').removeClass('show');
+
+        deleteUrlParams((api_url==='package' ? 'p_' : '')+'min_max');
+        updateDataList();
+    });
+
+    /* Cities Range Filter */
+    $('.main__select2[name=\'cities\']').on('change', function () {
+        let cities = $(this).val(), _cities = "";
+        if (cities.length > 0) {
+            for (let i = 0; i < cities.length; i++) {
+                _cities += cities[i];
+                if (i !== cities.length - 1)
+                    _cities += "_";
+            }
+            appendUrlParam("cityIds=" + _cities);
+        } else {
+            deleteUrlParams('cityIds');
+        }
+        appendUrlParam('page=1');
+        updateDataList();
+    });
+
+    $('body').on('click', '.select2-selection__choice__remove', function () {
+        const val = $(this).parent('li').data('select2-id');
+        console.log("id : " + val);
+        const select2 = $('.main__select2[name="cities"]');
+        const select_values = select2.val();
+        let cities = "";
+
+        const index = select_values.indexOf(val);
+        if (index > -1) {
+            select_values.splice(index, 1);
+            if (select_values.length > 0) {
+                select2.val(select_values);
+                for (let i = 0; i < select_values.length; i++) {
+                    cities += select_values[i];
+                    if (i !== select_values.length - 1)
+                        cities += "_";
+                }
+                appendUrlParam("cityIds=" + cities);
+            } else {
+                deleteUrlParams('cityIds');
+            }
+            appendUrlParam('page=1');
+            updateDataList();
+        }
+    });
+
+    $('#lists__main-list').on('click', '.studio__location-badge', function (e) {
+        e.preventDefault();
+        const currentUrl = $(location).attr('href');
+        const cityId = $(this).data('id');
+        if (currentUrl.indexOf($(this).attr('href')) >= 0) {
+            $('.main__select2[name=\'cities\']').val([cityId]);
+            $('.main__select2[name=\'cities\']').trigger('change');
+            appendUrlParam("page=1&cityIds=" + cityId);
+            updateDataList();
+        } else {
+            $(location).attr('href',$(this).attr('href')+"?cityIds="+cityId);
+        }
+    })
+
 
     $('body, #list__main-container').on('click', '.css-select__option', function () {
         // cssSelect(this);
@@ -293,13 +423,13 @@ $(document).ready(function () {
         const title = $(this).data('title');
         if (currentUrl.indexOf($(this).attr('href')) >= 0) {
             appendUrlParam('title=' + title);
-            const radio = $('.filter__checkbox [value=\'' + title + '\']');
+            const radio = $('.filter__checkbox [value=\'title=' + title + '\']');
             radio.attr('checked', true);
             radio.parents('.filter').removeClass('show');
             radio.parent().prev('.filter__list-itemdel').addClass('show');
             updateDataList();
-        }else{
-            $(location).attr('href',$(this).attr('href')+"?title="+title);
+        } else {
+            $(location).attr('href', $(this).attr('href') + "?title=" + title);
         }
     })
 
@@ -321,11 +451,11 @@ $(document).ready(function () {
     });
 
     /* pagination handler */
-    $('body').on('click','.pagination li:not(.active) a, .pagination-custom_outline .next, .pagination-custom_outline .prev',function (e){
+    $('body').on('click', '.pagination li:not(.active) a, .pagination-custom_outline .next, .pagination-custom_outline .prev', function (e) {
         e.preventDefault();
         const link = $(this).attr('href');
-        const pageNum = link.substr(link.lastIndexOf('=')+1);
-        appendUrlParam('page='+pageNum);
+        const pageNum = link.substr(link.lastIndexOf('=') + 1);
+        appendUrlParam('page=' + pageNum);
         updateDataList();
     });
 
@@ -337,16 +467,17 @@ $(document).ready(function () {
 
     function updateDataList(_params = getUrlParams()) {
         blockUI();
-        const parent = $('#artists__main-list');
+        const parent = $('#lists__main-list');
+        // console.log("s" + _params);
         $.ajax({
             method: 'GET',
-            url: 'ajax/'+api_url+'s/filter.php',
+            url: 'ajax/' + api_url + 's/filter.php',
             data: {
                 params: _params
             },
             success: function (response) {
                 parent.children('.row').html(response);
-                const count = parent.find('.'+api_url).length;
+                const count = parent.find('.' + api_url).length;
                 const emptyBlock = parent.find('#main-list-empty');
                 if (count > 0) {
                     emptyBlock.addClass('d-none');

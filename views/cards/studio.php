@@ -1,7 +1,7 @@
 <div class="studio">
-    <div class="studio__cover"
-         style="background-image: url(<?php echo count($studio['pictures'])>0 ? $studio['pictures'][0]['path'] : 'assets/img/artists/3.jpg'?>)">
-        <a href="artists.php" class="studio__location-badge"
+    <div class="studio__cover <?php if(count($studio['pictures'])<1) echo 'blank-background'; ?>"
+         style="background-image: url(<?php echo count($studio['pictures'])>0 ? $studio['pictures'][0]['path'] : 'assets/img/studio-placeholder.png'?>)">
+        <a href="studios.php" class="studio__location-badge"
            data-id="<?php echo $studio['geographical_information']['city_id']?>">
             <?php echo $studio['geographical_information']['city']?>
         </a>

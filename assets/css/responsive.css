@@ -281,7 +281,7 @@
 }
 
 @media (max-width: 580px) {
-    #artists__main-header, .responsive-filterbar-toggle {
+    #list___main-header, .responsive-filterbar-toggle {
         padding-left: 4px;
         padding-right: 4px;
     }
@@ -508,7 +508,7 @@
         max-width: 250px;
     }
 
-    #artists__main-header, .responsive-filterbar-toggle {
+    #list___main-header, .responsive-filterbar-toggle {
         padding-left: 0px;
         padding-right: 0px;
     }

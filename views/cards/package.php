@@ -1,4 +1,4 @@
-<div class="product" data-id="<?php echo $package['id']; ?>">
+<div class="product package" data-id="<?php echo $package['id']; ?>">
     <div class="product__cover single" style="background-image: url(<?php echo $package['image']; ?>)">
         <!--                            <a href="#"><i class="icofont-shopping-cart"></i> میخرمش-->
         <!--                            </a>-->

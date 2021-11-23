@@ -24,66 +24,68 @@
 </div>
 
 <div class="d-flex flex-column justify-content-center swish-wrapper text-center" id="auth-page">
-    <div class="container-fluid form-container register box-rounded">
-        <div class="row">
+    <div class="container-fluid form-container login rounded">
+        <div class="row flex-row-reverse">
 
-            <div class="col-md-6 d-flex overlay-box shadow">
-                <div class="overlay-background rounded"></div>
+            <div class="col-md-6 overlay-box shadow">
+                <div class="overlay-background rounded my-auto"></div>
                 <div class="overlay-content mx-auto">
                     <div class="row no-gutters my-auto">
                         <div class="col logo py-4 mx-auto">
-                            <a class="logo-link" href="index.php">
-                                <img class="logo-image" alt="Logo" src="assets/img/logo.png">
-                            </a>
+                            <a class="logo-link" href="index.php"><img class="logo-image" alt="Logo" src="assets/img/logo.png" /></a>
                         </div>
                     </div>
                     <div class="row no-gutters my-auto">
                         <div class="col message-box px-3 mx-auto">
-                            <h2 class="text-white mb-4">خوش آمدید!</h2>
-                            <p class="mb-4">با آدرس ایمیل و رمز ورود خود وارد شوید تا با ما در ارتباط باشید.</p>
-                            <a class="btn bg-white text-neutral btn-lg shadow-lg mb-4 box-rounded" href="login1.php">ورود</a>
+                            <h2 class="text-white mb-4">سلام دوست من!</h2>
+                            <p class="mb-4">برای شروع سفر با ما حساب کاربری ایجاد کنید.</p>
+                            <a class="btn bg-white text-neutral btn-lg shadow-lg mb-4 box-rounded" href="signup.php">ثبت
+                                نام</a>
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            <div class="col-md-6 form-box bg-white rounded shadow my-auto">
+            <div class="col-md-6 form-box rounded shadow my-auto">
                 <div class="d-flex flex-column sign-in-container h-100">
                     <div class="align-items-center sign-in mx-auto my-auto px-4 py-5">
 
                         <form class="sign-in-form h-100">
-                            <h2 class="text-header text-decoration-underline">حساب ایجاد کنید</h2>
+                            <h2 class="text-header text-decoration-underline">لطفا وارد شوید</h2>
 
-                            <div class="form-group mb-3 mt-4">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text box-rounded-left"><i class="fas fa-user-circle"></i></span>
-                                    </div>
-                                    <input class="form-control form-control-lg box-rounded-right" type="text" required="" placeholder="نام">
-                                    <div class="input-group-append"></div>
-                                </div>
-                            </div>
                             <div class="form-group mb-3 mt-4">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text box-rounded-left"><i class="fas fa-envelope"></i></span>
                                     </div>
-                                    <input class="form-control form-control-lg box-rounded-right" type="email" placeholder="ایمیل" required="">
+                                    <input class="form-control form-control-lg box-rounded-right" type="email" placeholder="ایمیل" required="" />
                                     <div class="input-group-append"></div>
                                 </div>
                             </div>
-                            <div class="form-group my-4">
+                            <div class="form-group mb-3 mt-4">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text box-rounded-left"><i class="fas fa-lock"></i></span>
                                     </div>
-                                    <input class="form-control form-control-lg box-rounded-right" type="password" placeholder="رمز عبور" required="">
+                                    <input class="form-control form-control-lg box-rounded-right" type="password" placeholder="رمز عبور" required="" />
                                     <div class="input-group-append"></div>
                                 </div>
                             </div>
 
-                            <button class="btn btn-main shadow-sm btn-block box-rounded" type="submit">ثبت نام</button>
+
+                            <div class="form-row text-nowrap d-flex my-4">
+                                <div class="col d-flex align-items-center">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="formCheck" />
+                                        <label class="form-check-label justify-content-lg-center align-items-lg-center" for="formCheck">مرا به خاطر بسپار</label>
+                                    </div>
+                                </div>
+                                <div class="col d-flex justify-content-end align-items-center"><a class="text-neutral forgot-password-text" href="forgot-password.html">رمز عبور
+                                        خود را فراموش کرده اید؟</a></div>
+                            </div>
+
+                            <button class="btn btn-main shadow-sm btn-block box-rounded" type="submit">ورود</button>
                         </form>
 
                     </div>

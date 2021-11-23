@@ -6,20 +6,16 @@ require_once 'config/config.php';
 $params = isset($_GET['params']) ? $_GET['params'] : $_SERVER['QUERY_STRING'];
 $params = query_string_to_array($params, ['rpp' => 12]);
 
-$get_studios = callAPI('GET', RAW_API . 'studios', $params);
-$studios = json_decode($get_studios, true);
-$data = $studios['studios']['data'];
-$links = $studios['studios']['links'];
-$price_min = $studios['price_min'];
-$price_max = $studios['price_max'];
+$get_packages = callAPI('GET', RAW_API . 'packages', $params);
+$packages = json_decode($get_packages, true);
+$data = $packages['packages']['data'];
+$links = $packages['packages']['links'];
+$price_min = $packages['p_min'];
+$price_max = $packages['p_max'];
 
-
-$get_cities = callAPI('GET', RAW_API . 'cities', ['rpp' => 1250]);
-$cities = json_decode($get_cities, true);
-$cities = $cities['cities']['data'];
 ?>
     <div id="list__main-container" class="container-fluid">
-        <div class="row">
+        <div class="row px-0 mx-auto">
             <div class="filters__total-back"></div>
             <div class="col-xl-3 col-lg-4 filters__total-container">
                 <button class="filters__hide-btn"><i class="fas fa-times ml-3"></i>خروج</button>
@@ -32,23 +28,58 @@ $cities = $cities['cities']['data'];
                                 <li class="filter__single filter__single-cb">
                                     <div class="filter__title">
                                         <img src="assets/img/filter.png" class="img-fluid">
-                                        <span>شهر</span>
+                                        <span>مرتب‌سازی</span>
                                     </div>
-                                    <div class="filter__single-wrap filter__single-cities">
-                                        <select class="main__select2" name="cities" multiple>
-                                            <?php for ($i = 0; $i < count($cities); $i++) : ?>
-                                                <option value="<?php echo $cities[$i]['id']; ?>">
-                                                    <?php echo $cities[$i]['name']; ?>
-                                                </option>
-                                            <?php endfor; ?>
-                                        </select>
+                                    <div class="filter__single-wrap">
+                                        <ul class="filter__list">
+                                            <li class="filter__list-item">
+                                                <span class="filter__list-itemdel"></span>
+                                                <div class="filter__checkbox">
+                                                    <input type="radio"
+                                                           id="sortingorder__priceDesk"
+                                                           value="column=price&isDesk=1" name="title">
+                                                    <span class="filter__checkmark"></span>
+                                                    <label for="sortingorder__priceDesk">گران ترین</label>
+                                                </div>
+                                            </li>
+                                            <li class="filter__list-item">
+                                                <span class="filter__list-itemdel"></span>
+                                                <div class="filter__checkbox">
+                                                    <input type="radio"
+                                                           id="sortingorder__priceNotDesk"
+                                                           value="column=price&isDesk=0" name="title">
+                                                    <span class="filter__checkmark"></span>
+                                                    <label for="sortingorder__priceNotDesk">ارزان ترین</label>
+                                                </div>
+                                            </li>
+                                            <li class="filter__list-item">
+                                                <span class="filter__list-itemdel"></span>
+                                                <div class="filter__checkbox">
+                                                    <input type="radio"
+                                                           id="sortingorder__oldest"
+                                                           value="column=created_at&isDesk=0" name="title">
+                                                    <span class="filter__checkmark"></span>
+                                                    <label for="sortingorder__oldest">قدیمی ترین</label>
+                                                </div>
+                                            </li>
+                                            <li class="filter__list-item">
+                                                <span class="filter__list-itemdel"></span>
+                                                <div class="filter__checkbox">
+                                                    <input type="radio"
+                                                           id="sortingorder__youngest"
+                                                           value="column=created_at&isDesk=1" name="title">
+                                                    <span class="filter__checkmark"></span>
+                                                    <label for="sortingorder__youngest">جدید ترین</label>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
 
                                 <li class="filter__single">
                                     <div class="filter__title">
                                         <img src="assets/img/filter.png" class="img-fluid">
-                                        <span>نام استدیو</span>
+                                        <span>نام پکیج</span>
                                     </div>
                                     <div class="filter__single-wrap">
                                         <div id="filter__name-wrap">
@@ -74,7 +105,7 @@ $cities = $cities['cities']['data'];
                                 <li class="filter__single filter__single-range">
                                     <div class="filter__title">
                                         <img src="assets/img/filter.png" class="img-fluid">
-                                        <span>هزینه اجاره</span>
+                                        <span>هزینه پکیج</span>
                                     </div>
                                     <div class="filter__single-wrap filter__single-formrange">
                                         <form method="get">
@@ -110,34 +141,34 @@ $cities = $cities['cities']['data'];
             </div>
             <div class="col-xl-9 col-lg-8">
 
-                <div class="page-title page-studios">
-                    <h1>استدیوها</h1>
+                <div class="page-title page-packages">
+                    <h1>فروشگاه</h1>
                 </div>
 
                 <div id="list___main-header">
-                    <div class="sorting">
-                        <!--                        <img src="assets/img/icons/align-left.svg" class="ml-1">-->
-                        <span style="font-size: 13px; color: #aaa">مرتب‌سازی بر اساس :</span>
-                        <div class="css-select">
-                            <input type="hidden" name="select__sort-order" value="" data-css-select="hidden"/>
-                            <input type="text" class="css-select__selected" value="پیشفرض" readonly
-                                   data-css-select="selected"/>
-                            <div class="css-select__dropdown">
-                                <button type="button" class="css-select__option"
-                                        data-css-select="column=created_at&isDesk=1">جدیدتر
-                                </button>
-                                <button type="button" class="css-select__option"
-                                        data-css-select="column=created_at&isDesk=0">قدیمی‌تر
-                                </button>
-                                <button type="button" class="css-select__option"
-                                        data-css-select="column=price&isDesk=1">گران‌تر
-                                </button>
-                                <button type="button" class="css-select__option"
-                                        data-css-select="column=price&isDesk=0">ارزان‌تر
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="sorting">-->
+<!--                                                <img src="assets/img/icons/align-left.svg" class="ml-1">-->
+<!--                        <span style="font-size: 13px; color: #aaa">مرتب‌سازی بر اساس :</span>-->
+<!--                        <div class="css-select">-->
+<!--                            <input type="hidden" name="select__sort-order" value="" data-css-select="hidden"/>-->
+<!--                            <input type="text" class="css-select__selected" value="پیشفرض" readonly-->
+<!--                                   data-css-select="selected"/>-->
+<!--                            <div class="css-select__dropdown">-->
+<!--                                <button type="button" class="css-select__option"-->
+<!--                                        data-css-select="column=created_at&isDesk=1">جدیدتر-->
+<!--                                </button>-->
+<!--                                <button type="button" class="css-select__option"-->
+<!--                                        data-css-select="column=created_at&isDesk=0">قدیمی‌تر-->
+<!--                                </button>-->
+<!--                                <button type="button" class="css-select__option"-->
+<!--                                        data-css-select="column=delivery_time&isDesk=1">بازه تحویل-->
+<!--                                </button>-->
+<!--                                <button type="button" class="css-select__option"-->
+<!--                                        data-css-select="column=advise_price&isDesk=1">هزینه مشاوره-->
+<!--                                </button>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="ul-rpp">
                         <img src="assets/img/icons/apps-sort.svg">
                         <a href="javascript:void(0)" class="rpp-number rpp-current" data-rpp="12"><span>12</span></a>
@@ -165,9 +196,9 @@ $cities = $cities['cities']['data'];
                     </div>
                     <div class="row">
                         <?php for ($i = 0; $i < count($data); $i++) : ?>
-                            <div class="col-lg-4 col-md-4 col-sm-6 px-xl-1">
-                                <?php $studio = $data[$i]; ?>
-                                <?php include 'views/cards/studio.php' ?>
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                                <?php $package = $data[$i]; ?>
+                                <?php include 'views/cards/package.php' ?>
                             </div>
                         <?php endfor; ?>
 
@@ -177,4 +208,5 @@ $cities = $cities['cities']['data'];
             </div>
         </div>
     </div>
+
 <?php include 'footer.php';

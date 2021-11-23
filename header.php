@@ -25,6 +25,7 @@ $page_name = substr($current_url,strrpos($current_url,'/')+1);
     <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
 
     <link rel="stylesheet" type="text/css" href="assets/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/css/select2.min.css">
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
@@ -36,26 +37,44 @@ $page_name = substr($current_url,strrpos($current_url,'/')+1);
     <ul class="list-group-flush">
         <li class="list-group-item">
             <a href="index.php" data-ripple="">
-                <img src="assets/img/icons/home.svg">
+<!--                <img src="assets/img/icons/home.svg">-->
                 صفحه اصلی
             </a>
         </li>
         <li class="list-group-item">
             <a href="index.php" data-ripple="">
-                <img src="assets/img/icons/computer.svg">
+<!--                <img src="assets/img/icons/computer.svg">-->
                 تست خوانندگی
             </a>
         </li>
         <li class="list-group-item">
             <a href="about.php" data-ripple="">
-                <img src="assets/img/icons/info.svg">
+<!--                <img src="assets/img/icons/info.svg">-->
                 درباره ما
             </a>
         </li>
         <li class="list-group-item">
             <a href="contact.php" data-ripple="">
-                <img src="assets/img/icons/phone-call.svg">
+<!--                <img src="assets/img/icons/phone-call.svg">-->
                 تماس باما
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="store.php" data-ripple="">
+                <!--                <img src="assets/img/icons/phone-call.svg">-->
+                فروشگاه
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="artists.php" data-ripple="">
+                <!--                <img src="assets/img/icons/phone-call.svg">-->
+                هنرمندان
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="studios.php" data-ripple="">
+                <!--                <img src="assets/img/icons/phone-call.svg">-->
+                استدیوها
             </a>
         </li>
     </ul>
@@ -81,10 +100,10 @@ $page_name = substr($current_url,strrpos($current_url,'/')+1);
                 <!--                    <span class="bar-2"></span>-->
                 <!--                    <span class="bar-3"></span>-->
                 <ul class="dropped dropdown-menu">
-                    <li class="dropdown-item"><a href="#"><img src="assets/img/icons/shop.svg"> فروشگاه</a></li>
+                    <li class="dropdown-item"><a href="store.php"><img src="assets/img/icons/shop.svg"> فروشگاه</a></li>
                     <li class="dropdown-item"><a href="artists.php"><img src="assets/img/icons/users.svg"> هنرمندان</a></li>
-                    <li class="dropdown-item"><a href="#"><img src="assets/img/icons/music.svg"> استدیوها</a></li>
-                    <li class="dropdown-item"><a href="login.php"><img src="assets/img/icons/sign-in-alt.svg"> ورود</a></li>
+                    <li class="dropdown-item"><a href="studios.php"><img src="assets/img/icons/music.svg"> استدیوها</a></li>
+                    <li class="dropdown-item"><a href="login1.php"><img src="assets/img/icons/sign-in-alt.svg"> ورود</a></li>
                 </ul>
             </li>
             <li class="nav-item <?php if(strpos($page_name,'index')!==false){ echo 'active'; }?>"><a href="index.php" class="nav-link hvr-underline-from-center">صفحه اصلی</a></li>

@@ -61,7 +61,7 @@ $packages = $response['packages']['data'];
                     آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه
                     ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
                 </p>
-                <a href="javascript:void(0)" class="btn__goto-shop hvr-grow-rotate" data-ripple="">فروشگاه</a>
+                <a href="store.php" class="btn__goto-shop hvr-grow-rotate" data-ripple="">فروشگاه</a>
             </div>
         </div>
 
@@ -108,7 +108,7 @@ $packages = $response['packages']['data'];
                 آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه
                 ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
             </p>
-            <a href="javascript:void(0)" class="btn__goto-studios hvr-grow-rotate" data-ripple="">استادیوها</a>
+            <a href="studios.php" class="btn__goto-studios hvr-grow-rotate" data-ripple="">استدیوها</a>
         </div>
         <div class="col-lg-6 col-md-10 col-sm-10 col-11 mx-auto">
             <img src="assets/img/abut-singersho.png" class="img__about-studios">

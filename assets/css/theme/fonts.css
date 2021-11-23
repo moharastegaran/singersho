@@ -1,0 +1,54 @@
+@font-face {
+    font-family: iranyekan;
+    src: url(../../fonts/IRANYekan.ttf);
+}
+
+@font-face {
+    font-family: iranyekanBold;
+    src: url(../../fonts/IRANYekan-Bold.ttf);
+}
+
+@font-face {
+    font-family: iranyekanLight;
+    src: url(../../fonts/IRANYekan-Light.ttf);
+}
+
+@font-face {
+    font-family: iranyekanMedium;
+    src: url(../../fonts/IRANYekan-Medium.ttf);
+}
+
+@font-face {
+    font-family: iranyekanThin;
+    src: url(../../fonts/IRANYekan-Thin.ttf);
+}
+
+@font-face {
+    font-family: iranyekanBlack;
+    src: url(../../fonts/IRANYekan-Black.ttf);
+}
+
+@font-face {
+    font-family: iranyekanExtraBlack;
+    src: url(../../fonts/IRANYekan-ExtraBlack.ttf);
+}
+
+@font-face {
+    font-family: iranyekanExtraBold;
+    src: url(../../fonts/IRANYekan-ExtraBold.ttf)
+}
+
+@font-face {
+    font-family: faNum;
+    src: url(../../fonts/IRANSansWeb-FaNum.ttf)
+}
+
+@font-face {
+    font-family: sarbaz;
+    src: url(../../fonts/Sarbaz.ttf)
+}
+
+@font-face {
+    font-family: dana;
+    src: url(../../fonts/Dana.ttf)
+}
