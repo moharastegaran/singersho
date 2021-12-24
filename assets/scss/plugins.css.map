@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAAQ,6BAAqB;AACrB,uBAAe;AACf,oEAA4D;AAC5D,4BAAoB;AAC5B;;;;;;;EAOE;AACM,+DAAoD",
-"sources": ["plugins.scss"],
-"names": [],
-"file": "plugins.css"
-}
