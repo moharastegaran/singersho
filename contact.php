@@ -1,7 +1,13 @@
 <?php
 include 'header.php';
-?>
 
+if ($_SERVER['REQUEST_METHOD']==='POST'){
+    $data = $_POST;
+    $contact_result = callAPI('POST',RAW_API.'contact_us',$data);
+    $contact_result = json_decode($contact_result,true);
+}
+
+?>
 
     <img src="assets/img/striped-half-circle.png" style="position: absolute;left: 0;top: 10%;max-width: 80%">
 
@@ -52,28 +58,30 @@ include 'header.php';
                         </p>
                     </div>
                     <div class="w-100">
-                        <form method="post" class="contact-form">
+                        <form method="post" class="contact-form" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="contact-input-group">
                                         <input type="text" class="contact-form-input" placeholder="نام*"
+                                               value="<?php echo isset($contact_result['error']) && $contact_result['error'] ? $data['full_name'] : null; ?>"
                                                autocomplete="off" name="full_name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="contact-input-group">
                                         <input type="email" class="contact-form-input" placeholder="ایمیل*"
+                                               value="<?php echo isset($contact_result['error']) && $contact_result['error'] ? $data['email'] : null; ?>"
                                                autocomplete="off" name="email">
                                     </div>
                                 </div>
                             </div>
                             <div class="contact-input-group">
                                 <input type="text" class="contact-form-input" placeholder="موضوع" autocomplete="off"
+                                       value="<?php echo isset($contact_result['error']) && $contact_result['error'] ? $data['subject'] : null; ?>"
                                        name="subject">
                             </div>
                             <div class="contact-input-group">
-                                <textarea class="contact-form-input" placeholder="توضیحات*" name="description"
-                                          rows="5"></textarea>
+                                <textarea class="contact-form-input" placeholder="توضیحات*" name="description" rows="5"><?php echo isset($contact_result['error']) && $contact_result['error'] ? $data['description'] : null; ?></textarea>
                             </div>
                             <button type="submit">
                                 ارسال
@@ -96,3 +104,13 @@ include 'header.php';
 
 <?php
 include 'footer.php';
+if (isset($contact_result['error'])) : ?>
+<script>
+    Snackbar.show({
+        text: "<?php echo $contact_result['messages'][0]; ?>",
+        showAction: false,
+        pos: 'top-right <?php echo $contact_result['error'] ? 'danger' : ''; ?>',
+        duration: <?php echo $contact_result['error'] ? 3000 : 6000; ?>
+    });
+</script>
+<?php endif; ?>

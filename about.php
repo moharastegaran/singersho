@@ -1,7 +1,6 @@
 <?php
 
 include 'header.php';
-require_once 'config/config.php';
 ?>
 
 <div class="container-fluid mx-auto">

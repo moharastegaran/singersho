@@ -1,5 +1,4 @@
 <?php
-include 'config/config.php';
 include 'header.php';
 
 $get_data = callAPI('GET',RAW_API.'artists',array('rpp'=>6));
@@ -15,7 +14,7 @@ $packages = $response['packages']['data'];
         <img src="assets/img/header-bg.png">
         <div class="position-relative text-center" style="z-index: 3">
             <h1 class="scale-up-center">یک کلیک تا خوانندگی</h1>
-            <a href="#" class="btn-singing-test hvr-grow-rotate slide-top" data-ripple="">خواننده شو</a>
+            <a href="singing_test.php" class="btn-singing-test hvr-grow-rotate slide-top" data-ripple="">خواننده شو</a>
         </div>
     </section>
 
@@ -23,7 +22,7 @@ $packages = $response['packages']['data'];
         <h2>هنرمندان</h2>
 
         <div class="position-relative">
-            <div class="owl-carousel" id="artists-carousel">
+            <div class="owl-carousel artists__carousel" id="artists-carousel">
                 <?php for($i=0;$i<count($artists);$i++) : ?>
                     <?php $artist = $artists[$i]; ?>
                     <?php include 'views/cards/artist.php' ?>

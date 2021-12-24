@@ -8,7 +8,7 @@
     </div>
     <div class="studio__content">
         <span class="studio__price"><?php echo format_price($studio['price']); ?></span>
-        <h3 class="studio__title"><a href="javascript:void(0)"><?php echo $studio['name']; ?></a></h3>
+        <h3 class="studio__title"><a href="studio.php?id=<?php echo $studio['id']; ?>"><?php echo $studio['name']; ?></a></h3>
         <p class="studio__description">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 8.25C9.92893 8.25 8.25 9.92893 8.25 12C8.25 14.0711 9.92893 15.75 12 15.75C14.0711 15.75 15.75 14.0711 15.75 12C15.75 9.92893 14.0711 8.25 12 8.25Z"/>

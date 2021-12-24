@@ -1,15 +1,16 @@
-var mmin,mmax;
+let mmin,mmax;
 $('.slider').each(function(e) {
-
-    var slider = $(this),
+    let slider = $(this),
         width = slider.width(),
         handle,
         handleObj;
         mmin = parseInt(slider.data('mmin')),
         mmax = parseInt(slider.data('mmax'));
-    // console.log("mmin : "+mmin);
+    console.log("mmin : "+mmin);
+    console.log("mmax : "+mmax);
 
     let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    console.log("w : "+width);
     svg.setAttribute('viewBox', '0 0 ' + width + ' 83');
 
     slider.html(svg);

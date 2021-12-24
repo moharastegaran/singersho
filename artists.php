@@ -1,7 +1,6 @@
 <?php
 
 include 'header.php';
-require_once 'config/config.php';
 
 $params = isset($_GET['params']) ? $_GET['params'] : $_SERVER['QUERY_STRING'];
 $params = query_string_to_array($params, ['rpp' => 12]);
@@ -10,6 +9,7 @@ $get_artists = callAPI('GET', RAW_API . 'artists', $params);
 $artists = json_decode($get_artists, true);
 $data = $artists['artists']['data'];
 $links = $artists['artists']['links'];
+
 
 $get_titles = callAPI('GET', RAW_API . 'titles', false);
 $titles = json_decode($get_titles, true);
@@ -81,7 +81,8 @@ $titles = $titles['titles']['data'];
                                         <span>هزینه مشاوره</span>
                                     </div>
                                     <div class="filter__single-wrap">
-                                        <div class="slider" data-mmin="1000" data-mmax="60000"
+                                        <div class="slider" data-mmin="<?php echo $artists['ap_min']; ?>"
+                                             data-mmax="<?php echo $artists['ap_max']; ?>"
                                              data-value-0="#slider-range-min" data-value-1="#slider-range-max"
                                              data-range="#third"></div>
                                         <div class="slider__range-results row mt-3">
@@ -140,16 +141,16 @@ $titles = $titles['titles']['data'];
                                    data-css-select="selected"/>
                             <div class="css-select__dropdown">
                                 <button type="button" class="css-select__option"
-                                        data-css-select="column=created_at&isDesk=1">جدیدتر
+                                        data-css-select="column=id&isDesc=1">جدیدتر
                                 </button>
                                 <button type="button" class="css-select__option"
-                                        data-css-select="column=created_at&isDesk=0">قدیمی‌تر
+                                        data-css-select="column=id&isDesc=0">قدیمی‌تر
                                 </button>
                                 <button type="button" class="css-select__option"
-                                        data-css-select="column=delivery_time&isDesk=1">بازه تحویل
+                                        data-css-select="column=delivery_time&isDesc=1">بازه تحویل
                                 </button>
                                 <button type="button" class="css-select__option"
-                                        data-css-select="column=advise_price&isDesk=1">هزینه مشاوره
+                                        data-css-select="column=advise_price&isDesc=1">هزینه مشاوره
                                 </button>
                             </div>
                         </div>

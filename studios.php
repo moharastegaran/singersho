@@ -1,7 +1,6 @@
 <?php
 
 include 'header.php';
-require_once 'config/config.php';
 
 $params = isset($_GET['params']) ? $_GET['params'] : $_SERVER['QUERY_STRING'];
 $params = query_string_to_array($params, ['rpp' => 12]);
@@ -124,16 +123,16 @@ $cities = $cities['cities']['data'];
                                    data-css-select="selected"/>
                             <div class="css-select__dropdown">
                                 <button type="button" class="css-select__option"
-                                        data-css-select="column=created_at&isDesk=1">جدیدتر
+                                        data-css-select="column=id&isDesc=1">جدیدتر
                                 </button>
                                 <button type="button" class="css-select__option"
-                                        data-css-select="column=created_at&isDesk=0">قدیمی‌تر
+                                        data-css-select="column=id&isDesc=0">قدیمی‌تر
                                 </button>
                                 <button type="button" class="css-select__option"
-                                        data-css-select="column=price&isDesk=1">گران‌تر
+                                        data-css-select="column=price&isDesc=1">گران‌تر
                                 </button>
                                 <button type="button" class="css-select__option"
-                                        data-css-select="column=price&isDesk=0">ارزان‌تر
+                                        data-css-select="column=price&isDesc=0">ارزان‌تر
                                 </button>
                             </div>
                         </div>

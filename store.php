@@ -1,7 +1,6 @@
 <?php
 
 include 'header.php';
-require_once 'config/config.php';
 
 $params = isset($_GET['params']) ? $_GET['params'] : $_SERVER['QUERY_STRING'];
 $params = query_string_to_array($params, ['rpp' => 12]);
@@ -36,20 +35,20 @@ $price_max = $packages['p_max'];
                                                 <span class="filter__list-itemdel"></span>
                                                 <div class="filter__checkbox">
                                                     <input type="radio"
-                                                           id="sortingorder__priceDesk"
-                                                           value="column=price&isDesk=1" name="title">
+                                                           id="sortingorder__priceDesc"
+                                                           value="column=price&isDesc=1" name="title">
                                                     <span class="filter__checkmark"></span>
-                                                    <label for="sortingorder__priceDesk">گران ترین</label>
+                                                    <label for="sortingorder__priceDesc">گران ترین</label>
                                                 </div>
                                             </li>
                                             <li class="filter__list-item">
                                                 <span class="filter__list-itemdel"></span>
                                                 <div class="filter__checkbox">
                                                     <input type="radio"
-                                                           id="sortingorder__priceNotDesk"
-                                                           value="column=price&isDesk=0" name="title">
+                                                           id="sortingorder__priceNotDesc"
+                                                           value="column=price&isDesc=0" name="title">
                                                     <span class="filter__checkmark"></span>
-                                                    <label for="sortingorder__priceNotDesk">ارزان ترین</label>
+                                                    <label for="sortingorder__priceNotDesc">ارزان ترین</label>
                                                 </div>
                                             </li>
                                             <li class="filter__list-item">
@@ -57,7 +56,7 @@ $price_max = $packages['p_max'];
                                                 <div class="filter__checkbox">
                                                     <input type="radio"
                                                            id="sortingorder__oldest"
-                                                           value="column=created_at&isDesk=0" name="title">
+                                                           value="column=id&isDesc=0" name="title">
                                                     <span class="filter__checkmark"></span>
                                                     <label for="sortingorder__oldest">قدیمی ترین</label>
                                                 </div>
@@ -67,7 +66,7 @@ $price_max = $packages['p_max'];
                                                 <div class="filter__checkbox">
                                                     <input type="radio"
                                                            id="sortingorder__youngest"
-                                                           value="column=created_at&isDesk=1" name="title">
+                                                           value="column=id&isDesc=1" name="title">
                                                     <span class="filter__checkmark"></span>
                                                     <label for="sortingorder__youngest">جدید ترین</label>
                                                 </div>

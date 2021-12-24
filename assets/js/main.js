@@ -1,13 +1,3 @@
-document.addEventListener('mousedown', (event) => {
-    const target = event.target;
-    if (!(target.dataset.cssSelect && target.dataset.cssSelect === 'selected')) {
-        return null;
-    }
-    if (window.getComputedStyle(target.nextElementSibling).visibility === 'visible') {
-        setTimeout(() => void document.activeElement.blur(), 0);
-    }
-});
-
 $(document).ready(function () {
 
     const current_url = $(location).attr('href');
@@ -40,6 +30,12 @@ $(document).ready(function () {
     //     suppressScrollX: true
     // });
     // })
+    $('[name="sss"]').select2({
+        width: "100%",
+        dir: "rtl",
+        tags: false,
+        minimumResultsForSearch: -1
+    });
 
     $('a[href="#mm-menu"]').on('click', function (e) {
         e.preventDefault();
@@ -88,7 +84,7 @@ $(document).ready(function () {
             parent.find('.form-group--addon').addClass('show');
         }
         if (value = getUrlParams('title')) {
-            const radio = $('.filter__single-cb [value=\'' + value + '\']');
+            const radio = $('.filter__single-cb [value$=\'' + value + '\']');
             radio.prop('checked', true);
             radio.parent().prev('.filter__list-itemdel').addClass('show');
         }
@@ -155,8 +151,7 @@ $(document).ready(function () {
         }, 500);
     });
 
-    // $('.owl-carousel').slick();
-    const owl = $('.owl-carousel').owlCarousel({
+    const owl = $('.owl-carousel.artists__carousel').owlCarousel({
         mouseDrag: true,
         touchDrag: true,
         items: 3,
@@ -164,27 +159,41 @@ $(document).ready(function () {
         nav: false,
         margin: 10,
         responsive: {
-            0: {
-                items: 1
-            },
-            567: {
-                items: 2
-            },
-            992: {
-                items: 3
-            }
+            0: {items: 1},
+            567: {items: 2},
+            992: {items: 3}
         }
     });
-
+    $('.owl-carousel.studio__carousel').owlCarousel({
+        mouseDrag: true,
+        touchDrag: true,
+        items: 1,
+        dots: false,
+        nav: false,
+        margin: 10
+    });
+    // $('.owl-carousel.studio__suggestions-carousel').owlCarousel({
+    //     mouseDrag: true,
+    //     touchDrag: true,
+    //     items: 3,
+    //     dots: false,
+    //     nav: false,
+    //     margin: 10,
+    //     responsive: {
+    //         0: {items: 1},
+    //         567: {items: 2},
+    //         992: {items: 3}
+    //     }
+    // });
     $('.main__nav--prev').on('click', function () {
-        // var carouselId = $(this).attr('data-nav');
-        owl.trigger('prev.owl.carousel');
+        const carousel = $(this).siblings('.owl-carousel');
+        carousel.trigger('prev.owl.carousel');
         watchArrows();
     });
 
     $('.main__nav--next').on('click', function () {
-        // var carouselId = $(this).attr('data-nav');
-        owl.trigger('next.owl.carousel');
+        const carousel = $(this).siblings('.owl-carousel');
+        carousel.trigger('next.owl.carousel');
         watchArrows()
     });
 
@@ -198,12 +207,13 @@ $(document).ready(function () {
     watchArrows();
 
     function watchArrows() {
-        if (owl.find('.owl-item:first-child').hasClass('active')) {
+        const carousel = $('.owl-carousel');
+        if (carousel.find('.owl-item:first-child').hasClass('active')) {
             $('.main__nav--prev').addClass('deactive');
         } else {
             $('.main__nav--prev').removeClass('deactive');
         }
-        if (owl.find('.owl-item:last-child').hasClass('active')) {
+        if (carousel.find('.owl-item:last-child').hasClass('active')) {
             $('.main__nav--next').addClass('deactive');
         } else {
             $('.main__nav--next').removeClass('deactive');
@@ -325,7 +335,7 @@ $(document).ready(function () {
             if ($('.filter__list-itemdel.show').length === 0)
                 $('.filter__reset').addClass('show');
 
-            appendUrlParam('page=1&'+(api_url==='package' ? 'p_' : '')+'min_max=' + min + '_' + max);
+            appendUrlParam('page=1&' + (api_url === 'package' ? 'p_' : '') + 'min_max=' + min + '_' + max);
             updateDataList();
         }
     });
@@ -340,7 +350,7 @@ $(document).ready(function () {
         if ($('.filter__list-itemdel.show').length === 0)
             $('.filter__reset').removeClass('show');
 
-        deleteUrlParams((api_url==='package' ? 'p_' : '')+'min_max');
+        deleteUrlParams((api_url === 'package' ? 'p_' : '') + 'min_max');
         updateDataList();
     });
 
@@ -387,7 +397,7 @@ $(document).ready(function () {
         }
     });
 
-    $('#lists__main-list').on('click', '.studio__location-badge', function (e) {
+    $(document).on('click', '.studio__location-badge', function (e) {
         e.preventDefault();
         const currentUrl = $(location).attr('href');
         const cityId = $(this).data('id');
@@ -397,7 +407,7 @@ $(document).ready(function () {
             appendUrlParam("page=1&cityIds=" + cityId);
             updateDataList();
         } else {
-            $(location).attr('href',$(this).attr('href')+"?cityIds="+cityId);
+            $(location).attr('href', $(this).attr('href') + "?cityIds=" + cityId);
         }
     })
 
@@ -412,7 +422,8 @@ $(document).ready(function () {
         parent.find('[data-css-select="selected"]').val($this.html());
         // parent.find('[data-css-select="hidden"]').val = query;
         // parent.find('[data-css-select="selected"]').value = $this.text();
-        $('.css-select__dropdown').focusout();
+        // $('.css-select__dropdown').focusout();
+        document.activeElement.blur();
         appendUrlParam(query);
         updateDataList();
     });
@@ -563,5 +574,215 @@ $(document).ready(function () {
     //     parent.querySelector('[data-css-select="selected"]').value = option.innerHTML;
     //     $(document).activeElement.blur();
     // });
+
+    /*********************/
+    /*    Add to Cart    */
+    /*********************/
+    $('.btn__buy-package').on('click', function () {
+        const id = $(this).data('id');
+        if (id != null) {
+            $.ajax({
+                method: 'POST',
+                url: 'ajax/cart/add.php',
+                data: {
+                    type: 'package',
+                    itemId: id
+                }, success: function (response) {
+                    response = JSON.parse(response);
+                    Snackbar.show({
+                        text: response.hasOwnProperty('messages') ? (typeof response['messages'] === 'string' ? response['messages'] : response['messages'][0]) : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول به سبد خرید شما افزوده شد'),
+                        showAction: false,
+                        pos: 'top-right '+(response.error ? ' danger' : ''),
+                        duration: 3000
+                    });
+                    if (!response.error){
+                        $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
+                    }
+                }, error : function (error){
+                    console.log("error : "+error);
+                }
+            });
+        }
+    });
+
+    $('.btn__remove-package').on('click', function () {
+        const id = $(this).data('id');
+        if (id != null) {
+            $.ajax({
+                method: 'POST',
+                url: 'ajax/cart/delete.php',
+                data: {
+                    type: 'package',
+                    itemId: id
+                }, success: function (response) {
+                    console.log("res : "+response);
+                    response = JSON.parse(response);
+                    Snackbar.show({
+                        text: response.hasOwnProperty('messages') ? (typeof response['messages'] === 'string' ? response['messages'] : response['messages'][0]) : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول از سبد خرید شما حذف شد'),
+                        showAction: false,
+                        pos: 'top-right '+(response.error ? ' danger' : ''),
+                        duration: 3000
+                    });
+                    if (!response.error){
+                        $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
+                    }
+                }, error : function (error){
+                    console.log("error : "+error);
+                }
+            });
+        }
+    });
+
+    /*********************/
+    /* Send singing Test */
+    /*********************/
+    $('#singing__test-form').on('submit', function (e) {
+        e.preventDefault();
+        const form = $(this);
+        let formData = new FormData();
+        const files = form.find('[name="singing_file"]')[0].files;
+        console.log("files : " + files);
+        if (files) {
+            formData.append('singing_file', files[0]);
+            $.ajax({
+                async: false,
+                method: 'POST',
+                url: 'ajax/singing/send.php',
+                data: formData,
+                processData: false,
+                cache: false,
+                contentType: false,
+                success: function (response) {
+                    console.log(response);
+                    form.next('.alert').remove();
+                    try {
+                        response = JSON.parse(response);
+                        if (response.error) {
+                            form.after('<div class="alert alert-lg alert-outline-danger"></div>');
+                            form.next('.alert').text(response.messages[0]);
+                        } else {
+                            form.after('<div class="alert alert-lg alert-outline-success"></div>');
+                            form.next('.alert').text('صدای شما ارسال شد. به زودی با شما تماس خواهیم گرفت');
+                            setTimeout(function () {
+                                $(location).attr('href', 'index.php');
+                            }, 2000);
+                        }
+                    } catch (_) {
+                        form.after('<div class="alert alert-lg  alert-outline-danger"></div>');
+                        form.next('.alert').text('برای ارسال صدا ابتدا در اکانت خود لاگین شوید');
+                    }
+                }, error: function (error) {
+                    console.log('error : ' + error);
+                }
+            })
+        } else {
+            alert("باید فایل را انتخاب کنید")
+        }
+    })
+
+    /*********************/
+    /* Audio File Upload */
+
+    /*********************/
+
+    function handleFiles(event) {
+        var files = event.target.files;
+        $("#track").attr("src", URL.createObjectURL(files[0]));
+        document.getElementById("track").load();
+        $("div.player").toggleClass('d-none');
+        $(".file-upload-wrapper").toggleClass('d-none');
+    }
+
+    $("#audiofile").on("change", handleFiles);
+
+    $('#track').each(function (index, audio) {
+        $(audio).on('canplay', function () {
+            $("#duration")[0].innerHTML = sec2time(audio.duration);
+            $("#timeslieder")[0].max = audio.duration * 1000;
+        });
+    });
+
+    /* start button */
+    $("#start").on('click', function () {
+        $("#track")[0].play();
+        $(this).toggleClass('d-none');
+        $("#pause").toggleClass('d-none');
+    });
+    /* pause button */
+    $("#pause").on('click', function () {
+        $("#track")[0].pause();
+        $(this).toggleClass('d-none');
+        $("#start").toggleClass('d-none');
+    });
+    /* reset button */
+    $("#reset").on('click', function () {
+        $("#track")[0].load();
+        $("#start").toggleClass('d-none');
+        $("#pause").toggleClass('d-none');
+    });
+    /* timeupdate log */
+    if ($('#track').length > 0) {
+        $('#track')[0].addEventListener('timeupdate', function () {
+            const currentTimeSec = this.currentTime;
+            const currentTimeMs = this.currentTime * 1000;
+            $("#currentTime")[0].innerHTML = sec2time(currentTimeSec);
+            $("#timeslieder")[0].value = currentTimeMs;
+            initRangeEl();
+            const arrayTime = [sec2time(currentTimeSec), currentTimeMs];
+        }, false);
+    }
+
+    function sec2time(timeInSeconds) {
+        const pad = function (num, size) {
+                return ('000' + num).slice(size * -1);
+            },
+            time = parseFloat(timeInSeconds).toFixed(3),
+            hours = Math.floor(time / 60 / 60),
+            minutes = Math.floor(time / 60) % 60,
+            seconds = Math.floor(time - minutes * 60),
+            milliseconds = time.slice(-3);
+        return pad(hours, 2) + ':' + pad(minutes, 2) + ':' + pad(seconds, 2);
+    }
+
+
+    /* timeline slieder */
+    function valueTotalRatio(value, min, max) {
+        return ((value - min) / (max - min)).toFixed(2);
+    }
+
+    function getLinearGradientCSS(ratio, leftColor, rightColor) {
+        return [
+            '-webkit-gradient(',
+            'linear, ',
+            'left top, ',
+            'right top, ',
+            'color-stop(' + ratio + ', ' + leftColor + '), ',
+            'color-stop(' + ratio + ', ' + rightColor + ')',
+            ')'
+        ].join('');
+    }
+
+    3
+
+    function updateRangeEl(rangeEl) {
+        const ratio = valueTotalRatio(rangeEl.value, rangeEl.min, rangeEl.max);
+        rangeEl.style.backgroundImage = getLinearGradientCSS(ratio, '#6a6a70', '#fffcfc');
+    }
+
+    function initRangeEl() {
+        var rangeEl = document.getElementById("timeslieder");
+        updateRangeEl(rangeEl);
+        rangeEl.addEventListener("input", function (e) {
+            updateRangeEl(e.target);
+        });
+    }
+
+    if ($("#timeslieder").length > 0) {
+        $("#timeslieder")[0].addEventListener("input", function (e) {
+            updateRangeEl(e.target);
+            this.value = e.target.value;
+            $("#track")[0].currentTime = e.target.value / 1000;
+        });
+    }
 
 });
