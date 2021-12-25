@@ -194,9 +194,23 @@ $price_max = $packages['p_max'];
                         <p>نتیجه‌ای یافت نشد</p>
                     </div>
                     <div class="row">
-                        <?php for ($i = 0; $i < count($data); $i++) : ?>
+                        <?php
+                        $packageIds = array();
+                        if (isset($_SESSION['cart'])){
+                            $cart_details = json_decode($_SESSION['cart'], true);
+                            $cart_details = $cart_details['details'];
+                            if (count($cart_details)){
+                                for ($j=0;$j<count($cart_details);$j++){
+                                    if ($cart_details[$j]['type']==='package'){
+                                        array_push($packageIds,$cart_details[$j]['id']);
+                                    }
+                                }
+                            }
+                        }
+                        for ($i = 0; $i < count($data); $i++) : ?>
                             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                                 <?php $package = $data[$i]; ?>
+                                <?php $package['in_cart'] = in_array($package['id'],$packageIds) ?>
                                 <?php include 'views/cards/package.php' ?>
                             </div>
                         <?php endfor; ?>

@@ -93,6 +93,111 @@ section h2 {
 
 
 /* checkbox */
+
+
+
+input, textarea, select {
+    background-color: var(--dark-1) !important;
+    color: #c0c0c0;
+    font-family: faNum;
+    border-radius: 4px;
+    box-shadow: none;
+    min-height: 38px;
+    max-height: 44px;
+    position: relative;
+    transition: all 1s ease 0s;
+    padding: 8px;
+    border: 1px solid rgba(56, 57, 57, 0.55);
+    outline: none;
+    font-size: 14px;
+    width: 100%;
+}
+
+textarea {
+    resize: none;
+    min-height: auto;
+    max-height: max-content;
+}
+
+.sign__text {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--bitter-green);
+    width: 100%;
+    text-align: center;
+}
+
+.sign__text--small {
+    font-size: 13px;
+    line-height: 25px;
+    text-align: right;
+}
+
+.sign__group{
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+.sign__group input:focus,.sign__group textarea:focus{
+    border-color: var(--dark-green);
+}
+.sign__group-inline input:focus,.sign__group-inline textarea:focus{
+    border-left: none;
+}
+
+.sign__group-inline{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    margin-bottom: .5rem;
+}
+
+.sign__group-inline input,.sign__group-inline textarea,.sign__group-inline select{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    flex-grow: 1;
+}
+
+.sign__group .sign__btn{
+    width: 100%;
+    padding-bottom: .8rem;
+    padding-top: .8rem;
+    color: var(--light);
+    background-color: #222227;
+    background-image: none;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    text-align: center;
+    transition: .5s;
+}
+.sign__group .sign__btn:hover{
+    color: var(--light);
+    background-color: var(--dark-green);
+}
+
+.sign__group-inline .sign__btn{
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0px;
+    background-color: transparent;
+    color: var(--dark-green);
+    outline: none;
+    border: 1px solid var(--dark-green);
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 14px;
+    width: 75px;
+}
+
 .new-checkbox {
     cursor: pointer;
     position: relative;
@@ -1590,7 +1695,7 @@ header.sticky a.nav-link, header.confirm-sticky a.nav-link {
     font-weight: 500;
 }
 
-.product__addto-basket {
+.product__addto-basket, .product__deletefrom-basket {
     font-size: 22px;
     position: absolute;
     bottom: 10px;
@@ -1601,14 +1706,25 @@ header.sticky a.nav-link, header.confirm-sticky a.nav-link {
     opacity: 0;
 }
 
-.product:hover .product__addto-basket {
+.product__addto-basket svg,  .product__deletefrom-basket svg{
+    width: 30px;
+    height: 30px;
+}
+.product__addto-basket svg{
+    fill: var(--light-green);
+}
+.product__deletefrom-basket svg{
+    fill: var(--red-danger);
+}
+
+.product:hover .product__addto-basket,.product:hover .product__deletefrom-basket {
     transform: scale(1);
     opacity: 1;
 }
 
-.product__addto-basket i {
-    color: var(--light-purple);
-}
+/*.product__addto-basket i {*/
+/*    color: var(--light-purple);*/
+/*}*/
 
 .features-container {
     margin-top: 130px;
@@ -4247,14 +4363,20 @@ textarea.contact-form-input {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 18px;
-    height: 18px;
+    width: 25px;
+    height: 25px;
+    outline: none;
+    background: none;
+    border: none;
 }
 .cart__delete svg {
     fill: #c0c0c0;
-    width: 18px;
+    width: 25px;
     height: auto;
     transition: 0.5s ease;
+}
+.cart__delete:hover svg {
+    fill: var(--grape-purple);
 }
 .cart__info {
     display: flex;
@@ -4278,13 +4400,13 @@ textarea.contact-form-input {
     justify-content: flex-start;
     align-items: flex-start;
 }
-
-element.style {
-}
 .cart__total span {
     font-size: 28px;
     color: #fff;
     line-height: 100%;
     font-family: faNum;
     font-weight: 500;
+}
+.cart__promo{
+    width: 250px;
 }

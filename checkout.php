@@ -1,26 +1,23 @@
 <?php
 include 'header.php';
 
-$cart_details = array();
-if (isset($_SESSION['cart'])) {
-    $cart_details = json_decode($_SESSION['cart'], true);
-}
+$cart_details = array(); ?>
 
-?>
-
-<div class="cart__single container mx-auto">
+    <div class="container mx-auto cart__single">
     <nav aria-label="breadcrumbs">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.php" title="خانه">خانه</a></li>
             <li class="breadcrumb-item active" aria-current="page">تسویه حساب</li>
         </ul>
     </nav>
-    <div class="thead">
-        <h1 class="thead-main">سبد خرید</h1>
-    </div>
-    <div dir="rtl" class="row">
+<?php if (isset($_SESSION['cart'])) :
+    $cart_details = json_decode($_SESSION['cart'], true); ?>
+    <div class="row mt-5 mb-5">
         <div class="col-12 col-lg-8">
             <!-- cart -->
+            <div class="thead">
+                <h1 class="thead-main">سبد خرید</h1>
+            </div>
             <div class="cart">
                 <div class="cart__table-wrap">
                     <div class="cart__table-scroll" data-scrollbar="true" tabindex="-1"
@@ -47,10 +44,12 @@ if (isset($_SESSION['cart'])) {
                                                              alt="<?php echo $cart_details['details'][$i]['full_name']; ?>">
                                                     </div>
                                                 </td>
-                                                <td><a href="package.php?id=<?php echo $cart_details['details'][$i]['id']; ?>">
-                                                        <?php echo $cart_details['details'][$i]['full_name']; ?></a></td>
+                                                <td>
+                                                    <a href="package.php?id=<?php echo $cart_details['details'][$i]['id']; ?>">
+                                                        <?php echo $cart_details['details'][$i]['full_name']; ?></a>
+                                                </td>
                                                 <td><span class="cart__price">
-                                                        <?php echo format_price($cart_details['details'][$i]['price']).' تومان'?>
+                                                        <?php echo format_price($cart_details['details'][$i]['price']) . ' تومان' ?>
                                                     </span></td>
                                                 <?php break; ?>
                                             <?php endswitch; ?>
@@ -72,13 +71,13 @@ if (isset($_SESSION['cart'])) {
                 <div class="cart__info">
                     <div class="cart__total">
                         <p>جمع کل:</p>
-                        <span><?php echo format_price($cart_details['final_cost']). 'تومان' ?></span>
+                        <span><?php echo format_price($cart_details['final_cost']) . ' تومان' ?></span>
                     </div>
 
                     <!-- promo -->
-                    <form action="#" class="cart__promo">
+                    <form action="#" class="cart__promo sign__group sign__group-inline">
                         <input type="text" class="sign__input" placeholder="کد تخفیف">
-                        <button type="button" class="sign__btn sign__btn--blue">اعمال</button>
+                        <button type="button" class="sign__btn btn-purple">اعمال</button>
                     </form>
                     <!-- end promo -->
 
@@ -90,27 +89,52 @@ if (isset($_SESSION['cart'])) {
 
         <div class="col-12 col-lg-4">
             <!-- checkout -->
-            <form action="#" class="sign__form sign__form--cart">
-                <h3 class="sign__title">تسویه حساب</h3>
-                <div class="sign__group">
-                    <input type="text" name="name" placeholder="نام و نام خانوادگی">
-                </div>
+            <div class="thead">
+                <h1 class="thead-main">اطلاعات تسویه</h1>
+            </div>
+            <div class="cart">
+                <div class="cart__table-wrap">
+                    <form action="#" class="sign__form--cart">
+                        <div class="sign__group">
+                            <input type="text" name="name" placeholder="نام و نام خانوادگی" autocomplete="off">
+                        </div>
 
-                <div class="sign__group">
-                    <input type="text" name="email" placeholder="ایمیل">
-                </div>
+                        <div class="sign__group">
+                            <input type="text" name="email" placeholder="ایمیل" autocomplete="off">
+                        </div>
 
-                <div class="sign__group">
-                    <input dir="ltr" type="text" name="phone" placeholder="09*********">
+                        <div class="sign__group">
+                            <input dir="ltr" type="text" name="phone" placeholder="09*********"
+                                   style="letter-spacing: 1px">
+                        </div>
+                        <div class="sign__group">
+                            <p class="sign__text sign__text--small">
+                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان
+                                گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است
+                            </p>
+                        </div>
+                        <div class="sign__group">
+                            <button type="button" class="sign__btn">تکمیل</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="sign__group sign__group--row">
-                    <span class="sign__text sign__text--small text-justify">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</span>
-                </div>
-                <button type="button" class="sign__btn">تکمیل</button>
-            </form>
+            </div>
             <!-- end checkout -->
         </div>
     </div>
-</div>
+    </div>
+<?php else: ?>
+    <div class="row mt-5 mb-5">
+        <div class="col-12">
+            <!-- cart -->
+            <div class="thead">
+                <h1 class="thead-main">سبد خرید</h1>
+            </div>
+            <div class="alert alert-lg alert-outline-danger mt-4 mw-100" style="margin-right: 0;">
+                سبد خرید شما خالی است.
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 
 <?php include 'footer.php';

@@ -578,7 +578,7 @@ $(document).ready(function () {
     /*********************/
     /*    Add to Cart    */
     /*********************/
-    $('.btn__buy-package').on('click', function () {
+    $(document).on('click','.btn__buy-package , .product .product__addto-basket', function () {
         const id = $(this).data('id');
         if (id != null) {
             $.ajax({
@@ -592,20 +592,22 @@ $(document).ready(function () {
                     Snackbar.show({
                         text: response.hasOwnProperty('messages') ? (typeof response['messages'] === 'string' ? response['messages'] : response['messages'][0]) : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول به سبد خرید شما افزوده شد'),
                         showAction: false,
-                        pos: 'top-right '+(response.error ? ' danger' : ''),
+                        pos: 'top-right ' + (response.error ? ' danger' : ''),
                         duration: 3000
                     });
-                    if (!response.error){
+                    if (!response.error) {
                         $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
+                        $('.product .product__addto-basket').toggleClass('product__deletefrom-basket product__addto-basket');
+                        // $('.product .product__addto-basket').addClass('product__deletefrom-basket');
                     }
-                }, error : function (error){
-                    console.log("error : "+error);
+                }, error: function (error) {
+                    console.log("error : " + error);
                 }
             });
         }
     });
 
-    $('.btn__remove-package').on('click', function () {
+    $(document).on('click','.btn__remove-package, .product .product__deletefrom-basket', function () {
         const id = $(this).data('id');
         if (id != null) {
             $.ajax({
@@ -615,19 +617,21 @@ $(document).ready(function () {
                     type: 'package',
                     itemId: id
                 }, success: function (response) {
-                    console.log("res : "+response);
+                    console.log("res : " + response);
                     response = JSON.parse(response);
                     Snackbar.show({
                         text: response.hasOwnProperty('messages') ? (typeof response['messages'] === 'string' ? response['messages'] : response['messages'][0]) : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول از سبد خرید شما حذف شد'),
                         showAction: false,
-                        pos: 'top-right '+(response.error ? ' danger' : ''),
+                        pos: 'top-right ' + (response.error ? ' danger' : ''),
                         duration: 3000
                     });
-                    if (!response.error){
+                    if (!response.error) {
                         $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
+                        $('.product .product__deletefrom-basket').toggleClass('product__deletefrom-basket product__addto-basket');
+                        $('.product .product__addto-basket > svg > path:first-child').css({transform : ''});
                     }
-                }, error : function (error){
-                    console.log("error : "+error);
+                }, error: function (error) {
+                    console.log("error : " + error);
                 }
             });
         }

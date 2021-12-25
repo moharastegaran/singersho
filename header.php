@@ -5,12 +5,13 @@ $page_name = substr($current_url, strrpos($current_url, '/') + 1);
 if (isset($_SESSION['access_token'])){
     $cart = callAPI('GET',RAW_API.'cart',false,true);
     $cart = json_decode($cart,true);
-    if (!$cart['error']){
+    if (!$cart['error'] && count($cart['cart']['details'])){
         $_SESSION['cart'] = json_encode([
             'final_cost' => $cart['cart']['final_cost'],
             'details' => $cart['cart']['details'],
         ]);
     }else{
+        unset($_SESSION['cart']);
         if (count($cart['messages'])){
             die($cart['messages'][0]);
         }
