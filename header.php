@@ -2,17 +2,19 @@
 include 'config/config.php';
 $current_url = $_SERVER['REQUEST_URI'];
 $page_name = substr($current_url, strrpos($current_url, '/') + 1);
-if (isset($_SESSION['access_token'])){
-    $cart = callAPI('GET',RAW_API.'cart',false,true);
-    $cart = json_decode($cart,true);
-    if (!$cart['error'] && count($cart['cart']['details'])){
+$cart_counter = 0;
+if (isset($_SESSION['access_token'])) {
+    $cart = callAPI('GET', RAW_API . 'cart', false, true);
+    $cart = json_decode($cart, true);
+    if (!$cart['error'] && count($cart['cart']['details'])) {
         $_SESSION['cart'] = json_encode([
             'final_cost' => $cart['cart']['final_cost'],
             'details' => $cart['cart']['details'],
         ]);
-    }else{
+        $cart_counter = count($cart['cart']['details']);
+    } else {
         unset($_SESSION['cart']);
-        if (count($cart['messages'])){
+        if (count($cart['messages'])) {
             die($cart['messages'][0]);
         }
     }
@@ -52,9 +54,7 @@ if (isset($_SESSION['access_token'])){
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
     <?php endif; ?>
-    <!--    <link rel="stylesheet" href="assets/css/switches.min.css">-->
 </head>
-
 <body>
 
 <!-- deleteModal -->
@@ -177,13 +177,25 @@ if (isset($_SESSION['access_token'])){
             <img src="assets/img/logo.png">
         </a>
 
-        <ul class="navbar-nav">
+        <ul class="navbar-nav align-items-center">
             <li class="nav-item <?php if (strpos($page_name, 'about') !== false) {
                 echo 'active';
             } ?>"><a href="about.php" class="nav-link hvr-underline-from-center">درباره ما</a></li>
             <li class="nav-item <?php if (strpos($page_name, 'contact') !== false) {
                 echo 'active';
             } ?>"><a href="contact.php" class="nav-link hvr-underline-from-center">تماس با ما</a></li>
+            <li class="nav-item">
+                <a href="checkout.php" class="btn__cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M22.713,4.077A2.993,2.993,0,0,0,20.41,3H4.242L4.2,2.649A3,3,0,0,0,1.222,0H1A1,1,0,0,0,1,2h.222a1,1,0,0,1,.993.883l1.376,11.7A5,5,0,0,0,8.557,19H19a1,1,0,0,0,0-2H8.557a3,3,0,0,1-2.82-2h11.92a5,5,0,0,0,4.921-4.113l.785-4.354A2.994,2.994,0,0,0,22.713,4.077ZM21.4,6.178l-.786,4.354A3,3,0,0,1,17.657,13H5.419L4.478,5H20.41A1,1,0,0,1,21.4,6.178Z"/>
+                        <circle cx="7" cy="22" r="2"/>
+                        <circle cx="17" cy="22" r="2"/>
+                    </svg>
+<!--                    --><?php //if (isset($cart_counter) && $cart_counter > 0) : ?>
+<!--                        <span class="cart__counter">--><?php //echo $cart_counter; ?><!--</span>-->
+<!--                    --><?php //endif; ?>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>

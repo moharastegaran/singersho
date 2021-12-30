@@ -6,11 +6,29 @@ if (isset($_GET['id'])) {
     $get_artist = json_decode($get_artist, true);
     if (!$get_artist['error']) {
         $artist = $get_artist['data'];
+    } else {
+        die("artist not found");
+    }
+
+    if ($artist['artist']['is_advisor'] == 1) {
+        $get_times = callAPI('GET', RAW_API . 'reservation/advisor', ['rpp' => 1000, 'id' => $artist['artist']['id']]);
+        $get_times = json_decode($get_times, true);
+        if (!$get_times['error']) {
+            $times = $get_times['dates']['data'];
+        }
+    }
+
+    $cart_advisors = array();
+    if (isset($_SESSION['cart'])) {
+        $cart_details = json_decode($_SESSION['cart'], true)['details'];
+        $cart_advisors = array_values(array_filter($cart_details, function ($item) {
+            return $item['type'] === 'advisor';
+        }));
     }
 }
 ?>
 
-    <div class="container mx-auto artist__single">
+    <div class="container mx-auto artist__single" data-id="<?php echo $artist['artist']['id']; ?>">
         <nav aria-label="breadcrumbs">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php" title="خانه">خانه</a></li>
@@ -46,8 +64,28 @@ if (isset($_GET['id'])) {
                             </svg>
                             <span>هزینه مشاوره</span>
                             <p class="advise_price" data-price="<?php echo $artist['artist']['advise_price']; ?>">
-                                <?php echo format_price($artist['artist']['advise_price']) . ' تومان' ?>
+                                <?php echo 'ساعتی ' . format_price($artist['artist']['advise_price']) . ' تومان' ?>
                             </p>
+                            <?php if ($artist['artist']['is_advisor'] == 1): ?>
+                                <?php if (isset($times) && count($times)) : ?>
+                                    <a href="#modal-topup" class="select__advisor"
+                                       data-id="<?php echo $artist['artist']['id']; ?>">درخواست مشاوره</a>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if (count($cart_advisors)) : ?>
+                                <ul class="listicon">
+                                    <?php for ($k = 0; $k < count($cart_advisors); $k++) : ?>
+                                        <li class="listicon-item" data-id="<?php echo $cart_advisors[$k]['id']; ?>">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="m23.707 16.325a1 1 0 0 0 -1.414 0l-5.627 5.628-2.688-2.653a1 1 0 0 0 -1.435 1.4l2.744 2.7a1.876 1.876 0 0 0 1.345.6h.033a1.873 1.873 0 0 0 1.335-.553l5.707-5.708a1 1 0 0 0 0-1.414z"/>
+                                                <path d="m11.09 21.959a10 10 0 1 1 10.91-9.959c0 .307-.015.611-.041.911a1 1 0 0 0 .907 1.089.989.989 0 0 0 1.085-.907c.032-.363.049-.726.049-1.093a12 12 0 1 0 -13.09 11.951h.091a1 1 0 0 0 .089-2z"/>
+                                                <path d="m11 7v4.586l-2.707 2.707a1 1 0 1 0 1.414 1.414l3-3a1 1 0 0 0 .293-.707v-5a1 1 0 0 0 -2 0z"/>
+                                            </svg>
+                                            <?php echo $cart_advisors[$k]['']; ?>
+                                        </li>
+                                    <?php endfor; ?>
+                                </ul>
+                            <?php endif; ?>
                         </li>
                         <li class="artist__info-list-item">
                             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -61,46 +99,47 @@ if (isset($_GET['id'])) {
                         </li>
                     </ul>
                     <div style="padding-left: 40px;padding-right: 40px">
-<!--                        --><?php //if (count($artist['titles'])) : ?>
-<!--                            <div class="css-select w-100">-->
-<!--                                <input type="hidden" name="artist_title_id" value="" data-css-select="hidden"/>-->
-<!--                                <input type="text" class="css-select__selected" value="انتخاب مهارت" readonly-->
-<!--                                       data-css-select="selected"/>-->
-<!--                                <div class="css-select__dropdown">-->
-<!--                                    --><?php //for ($i = 0; $i < count($artist['titles']); $i++) : ?>
-<!--                                        <button type="button" class="css-select__option"-->
-<!--                                                data-css-select="--><?php //echo $artist['titles'][$i]['id']; ?><!--">-->
-<!--                                            --><?php //echo $artist['titles'][$i]['name']; ?>
-<!--                                        </button>-->
-<!--                                    --><?php //endfor; ?>
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        --><?php //endif; ?>
-<!--                        --><?php //if ($artist['artist']['is_advisor'] == 1) : ?>
-<!--                            <div class="col-12 text-right my-2">-->
-<!--                                <div class="n-chk">-->
-<!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
-<!--                                        <input type="radio" class="new-control-input" name="artist_type" value="teammate"-->
-<!--                                               checked="">-->
-<!--                                        <span class="new-control-indicator"></span> مهارت-->
-<!--                                    </label>-->
-<!--                                </div>-->
-<!--                                <div class="n-chk">-->
-<!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
-<!--                                        <input type="radio" class="new-control-input" name="artist_type" value="advisor">-->
-<!--                                        <span class="new-control-indicator"></span> مشاوره-->
-<!--                                    </label>-->
-<!--                                </div>-->
-<!--                                <div class="n-chk">-->
-<!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
-<!--                                        <input type="radio" class="new-control-input" name="artist_type"-->
-<!--                                               value="advisor_teammate">-->
-<!--                                        <span class="new-control-indicator"></span> هر دو-->
-<!--                                    </label>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        --><?php //endif; ?>
-                        <a href="javascript:void(0)" class="btn__buy-artist w-100">انتخاب هنرمند</a>
+                        <!--                        --><?php //if (count($artist['titles'])) : ?>
+                        <!--                            <div class="css-select w-100">-->
+                        <!--                                <input type="hidden" name="artist_title_id" value="" data-css-select="hidden"/>-->
+                        <!--                                <input type="text" class="css-select__selected" value="انتخاب مهارت" readonly-->
+                        <!--                                       data-css-select="selected"/>-->
+                        <!--                                <div class="css-select__dropdown">-->
+                        <!--                                    --><?php //for ($i = 0; $i < count($artist['titles']); $i++) : ?>
+                        <!--                                        <button type="button" class="css-select__option"-->
+                        <!--                                                data-css-select="-->
+                        <?php //echo $artist['titles'][$i]['id']; ?><!--">-->
+                        <!--                                            --><?php //echo $artist['titles'][$i]['name']; ?>
+                        <!--                                        </button>-->
+                        <!--                                    --><?php //endfor; ?>
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        --><?php //endif; ?>
+                        <!--                        --><?php //if ($artist['artist']['is_advisor'] == 1) : ?>
+                        <!--                            <div class="col-12 text-right my-2">-->
+                        <!--                                <div class="n-chk">-->
+                        <!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
+                        <!--                                        <input type="radio" class="new-control-input" name="artist_type" value="teammate"-->
+                        <!--                                               checked="">-->
+                        <!--                                        <span class="new-control-indicator"></span> مهارت-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="n-chk">-->
+                        <!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
+                        <!--                                        <input type="radio" class="new-control-input" name="artist_type" value="advisor">-->
+                        <!--                                        <span class="new-control-indicator"></span> مشاوره-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+                        <!--                                <div class="n-chk">-->
+                        <!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
+                        <!--                                        <input type="radio" class="new-control-input" name="artist_type"-->
+                        <!--                                               value="advisor_teammate">-->
+                        <!--                                        <span class="new-control-indicator"></span> هر دو-->
+                        <!--                                    </label>-->
+                        <!--                                </div>-->
+                        <!--                            </div>-->
+                        <!--                        --><?php //endif; ?>
+                        <!--                        <a href="javascript:void(0)" class="btn__buy-artist w-100">انتخاب هنرمند</a>-->
                     </div>
                 </div>
             </div>
@@ -110,7 +149,7 @@ if (isset($_GET['id'])) {
                 <p class="order_description"><?php echo $artist['artist']['order_description']; ?></p>
 
                 <?php if (count($artist['titles'])) : ?>
-                    <div class="artist__titles mt-4 mb-3">
+                    <div class="artist__titles mt-4 mb-4">
                         <div class="thead"><h2 class="thead-main">مهارت‌ها</h2></div>
                         <?php $_titles = $artist['titles']; ?>
                         <?php for ($i = 0; $i < count($_titles); $i++) : ?>
@@ -121,12 +160,22 @@ if (isset($_GET['id'])) {
                                 <?php echo $_titles[$i]['name']; ?>
                             </span>
                                 <?php if ($_titles[$i]['pivot']['accept_order'] == 1) : ?>
-                                    <div>
-                                        <strong class="accepts_order ml-2">سفارش می‌پذیرد</strong>
-                                        <span class="order_price"><?php echo format_price($_titles[$i]['pivot']['order_price']) . ' تومان'; ?></span>
-                                        <p class="description"><?php echo $_titles[$i]['pivot']['description']; ?></p>
-                                    </div>
+                                    <a class="select__title" data-id="<?php echo $_titles[$i]['pivot']['id']; ?>">
+                                        افزودن
+                                        (<?php echo '<span class="faNum">' . format_price($_titles[$i]['pivot']['order_price']) . ' تومان</span>' ?>
+                                        )
+                                    </a>
+                                <?php else : ?>
+                                    <a class="noselect__title">انتخاب غیر فعال</a>
                                 <?php endif; ?>
+                                <!--                                    <div>-->
+                                <!--                                        <strong class="accepts_order ml-2">سفارش می‌پذیرد</strong>-->
+                                <!--                                        <span class="order_price">-->
+                                <?php //echo format_price($_titles[$i]['pivot']['order_price']) . ' تومان'; ?><!--</span>-->
+                                <?php if (!empty($_titles[$i]['pivot']['description'])) : ?>
+                                    <p class="description"><?php echo $_titles[$i]['pivot']['description']; ?></p>
+                                <?php endif; ?>
+                                <!--                                    </div>-->
                             </li>
                         <?php endfor; ?>
                     </div>
@@ -200,4 +249,85 @@ if (isset($_GET['id'])) {
 
 
 <?php
+$cart_advisors = array_column($cart_advisors,'id');
+if (count($times)) : ?>
+    <div id="modal-topup" class="mfp-hide magnific-modal">
+        <button class="modal__close" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"></path>
+            </svg>
+        </button>
+        <h4 class="modal__title">تعیین زمان مشاوره</h4>
+
+        <ul class="listicon mb-4 mt-4">
+            <li class="listicon-item item-large">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round" class="feather feather-user">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <?php echo $artist['artist']['first_name'] . ' ' . $artist['artist']['last_name']; ?>
+            </li>
+            <li class="listicon-item item-large">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20.457,4.555,12.486.126a1,1,0,0,0-.972,0L3.543,4.555A3,3,0,0,0,2,7.177V19a5.006,5.006,0,0,0,5,5H17a5.006,5.006,0,0,0,5-5V7.177A3,3,0,0,0,20.457,4.555ZM20,19a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V7.177A1,1,0,0,1,4.515,6.3L12,2.144,19.486,6.3A1,1,0,0,1,20,7.177Z"/>
+                    <circle cx="12" cy="7" r="1.5"/>
+                </svg>
+                ساعتی <strong
+                        class="faNum mx-1"><?php echo format_price($artist['artist']['advise_price']); ?></strong>تومان
+            </li>
+        </ul>
+        <!--        <div class="advisor__days-selectrow row justify-content-between align-items-center px-4 mt-4">-->
+        <!--            <a href="javascript:void(0)" class="advisor__day-prev disabled" data-id="0">-->
+        <!--                <i class="fas fa-chevron-right ml-1"></i>-->
+        <!--                قبلی-->
+        <!--            </a>-->
+        <div class="sign__group advisor__dates-select mb-0">
+            <select name="advisor__days-select">
+                <?php for ($i = 0; $i < count($times); $i++) { ?>
+                    <option value="<?php echo $times[$i]['shamsi_date_2']; ?>">
+                        <?php echo $times[$i]['shamsi_date_1']; ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
+        <!--            <a href="javascript:void(0)" class="advisor__day-next -->
+        <?php //echo count($times) === 1 ? 'disabled' : ''; ?><!--"-->
+        <!--               data-id="2">-->
+        <!--                بعدی-->
+        <!--                <i class="fas fa-chevron-left mr-1"></i>-->
+        <!--            </a>-->
+        <!--        </div>-->
+
+        <?php
+        $current_time = $times[0];
+        if (count($current_time['details'])) {
+            $current_time_details = $current_time['details'];
+            echo "<ul class='advisor__times-list mb-4'>";
+            for ($j = 0; $j < count($current_time_details); $j++) : ?>
+                <?php if (!$current_time_details[$j]['is_reserve']) : ?>
+                    <li class="advisor__time-badge <?php echo in_array($current_time_details[$j]['id'], $cart_advisors) ? ' selected' : ''; ?>">
+                        <a href="javascript:void(0)" data-id="<?php echo $current_time_details[$j]['id']; ?>">
+                            <?php echo $current_time_details[$j]['allowed_hour']['started_at'] . ' تا ' . $current_time_details[$j]['allowed_hour']['ended_at']; ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            <?php endfor;
+            echo "</ul>";
+        } ?>
+        <!--                <ul class="advisor__times-list">-->
+        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">10:30 تا 11</a></li>-->
+        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">11 تا 11:30</a></li>-->
+        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">11:30 تا 12</a></li>-->
+        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">12:30 تا 13</a></li>-->
+        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">13:30 تا 14</a></li>-->
+        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">14:30 تا 15</a></li>-->
+        <!--                </ul>-->
+        <p class="advisor__help-block">
+            کافیست بر روی ساعت مورد نظر کلیک کنید
+        </p>
+    </div>
+<?php endif;
+
 include 'footer.php';

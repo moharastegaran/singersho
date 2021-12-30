@@ -456,9 +456,11 @@ $(document).ready(function () {
     });
 
     $('.responsive-filterbar-toggle a').on('click', function () {
-        $('.filters__total-container').addClass('is-open');
-        $('html').addClass('overflow-hidden');
-        $('.filters__total-back').addClass('show');
+        $('.filters__total-container').addClass('is-open', function () {
+            setTimeout(function () {
+                $('.filters__total-wrap').addClass('open')
+            }, 500);
+        });
     });
 
     /* pagination handler */
@@ -471,15 +473,18 @@ $(document).ready(function () {
     });
 
     $('body').on('click', '.filters__total-container .filters__hide-btn, .filters__total-back', function () {
-        $('.filters__total-container').removeClass('is-open');
-        $('html').removeClass('overflow-hidden');
-        $('.filters__total-back').removeClass('show');
+        $('.filters__total-wrap').removeClass('open', function () {
+            setTimeout(function () {
+                $('.filters__total-container').removeClass('is-open')
+            }, 500);
+        });
     });
 
     function updateDataList(_params = getUrlParams()) {
         blockUI();
         const parent = $('#lists__main-list');
-        // console.log("s" + _params);
+        console.log("s" + _params);
+        console.log("url == " + 'ajax/' + api_url + 's/filter.php');
         $.ajax({
             method: 'GET',
             url: 'ajax/' + api_url + 's/filter.php',
@@ -487,6 +492,7 @@ $(document).ready(function () {
                 params: _params
             },
             success: function (response) {
+                console.log("res ::: " + response);
                 parent.children('.row').html(response);
                 const count = parent.find('.' + api_url).length;
                 const emptyBlock = parent.find('#main-list-empty');
@@ -499,13 +505,14 @@ $(document).ready(function () {
                 }
             },
             error: function (error) {
+                console.log("res ::: " + error);
                 console.log("e: " + error);
             }
         });
     }
 
-    function blockUI() {
-        $.blockUI({
+    function blockUI(element=null) {
+        const options = {
             message: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader spin"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>',
             timeout: 1000,
             overlayCSS: {
@@ -520,7 +527,12 @@ $(document).ready(function () {
                 padding: 0,
                 backgroundColor: 'transparent'
             }
-        });
+        };
+        if (element !== null) {
+            $(element).block(options);
+        } else {
+            $.blockUI(options);
+        }
     }
 
     function getUrlParams(key = null) {
@@ -575,10 +587,61 @@ $(document).ready(function () {
     //     $(document).activeElement.blur();
     // });
 
-    /*********************/
-    /*    Add to Cart    */
-    /*********************/
-    $(document).on('click','.btn__buy-package , .product .product__addto-basket', function () {
+    /********************/
+    /*   Package Cart   */
+    /********************/
+
+    $(document).on('click', 'button.cart__delete', function (e) {
+        e.preventDefault();
+        $(this).closest('tr').addClass('has-focus');
+        $('#deleteModal-container').fadeIn();
+    });
+
+    $('#deleteModal-container').on('click', 'a.cancel', function () {
+        $('tr.has-focus').removeClass('has-focus');
+        $('#deleteModal-container').fadeOut();
+    });
+
+    $('#deleteModal-container').on('click', 'a.ok', function () {
+        const id = $('tr.has-focus').data('id');
+        const type = $('tr.has-focus').data('type');
+        $.ajax({
+            method: 'POST',
+            url: 'ajax/cart/delete.php',
+            data: {
+                itemId: id,
+                type: type
+            },
+            success: function (response) {
+                response = JSON.parse(response);
+
+                if (!response.error) {
+                    $('tr.has-focus').fadeOut("slow", () => {
+                        setTimeout(() => {
+                            $(this).remove();
+                        }, 100);
+                    });
+                    if ($('.cart__table').find('tr').length < 1) {
+                        $(location).attr('href',$(location).attr('href'));
+                    }
+                } else {
+                    $('tr.has-focus').removeClass('has-focus');
+                }
+                $('#deleteModal-container').fadeOut();
+                Snackbar.show({
+                    text: response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول از سبد خرید شما حذف شد',
+                    showAction: false,
+                    pos: 'top-right ' + (response.error ? ' danger' : ''),
+                    duration: 3000
+                });
+            }, error: function (error) {
+                console.log("error : " + error);
+            }
+        })
+    });
+
+    $(document).on('click', '.btn__buy-package , .product .product__addto-basket', function () {
+        const _this = $(this);
         const id = $(this).data('id');
         if (id != null) {
             $.ajax({
@@ -597,7 +660,7 @@ $(document).ready(function () {
                     });
                     if (!response.error) {
                         $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
-                        $('.product .product__addto-basket').toggleClass('product__deletefrom-basket product__addto-basket');
+                       _this.toggleClass('product__deletefrom-basket product__addto-basket');
                         // $('.product .product__addto-basket').addClass('product__deletefrom-basket');
                     }
                 }, error: function (error) {
@@ -607,7 +670,7 @@ $(document).ready(function () {
         }
     });
 
-    $(document).on('click','.btn__remove-package, .product .product__deletefrom-basket', function () {
+    $(document).on('click', '.btn__remove-package, .product .product__deletefrom-basket', function () {
         const id = $(this).data('id');
         if (id != null) {
             $.ajax({
@@ -628,13 +691,147 @@ $(document).ready(function () {
                     if (!response.error) {
                         $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
                         $('.product .product__deletefrom-basket').toggleClass('product__deletefrom-basket product__addto-basket');
-                        $('.product .product__addto-basket > svg > path:first-child').css({transform : ''});
+                        $('.product .product__addto-basket > svg > path:first-child').css({transform: ''});
                     }
                 }, error: function (error) {
                     console.log("error : " + error);
                 }
             });
         }
+    });
+
+    /********************/
+    /*   Artist Cart    */
+    /********************/
+
+    $('.modal__close').on('click',function (){
+        $.magnificPopup.close();
+    });
+
+    $('a.select__advisor').magnificPopup({
+        type: 'inline',
+        fixedContentPos: true,
+        fixedBgPos: true,
+        overflowY: 'auto',
+        preloader: false,
+        modal: false,
+        removalDelay: 300,
+        mainClass: 'mfp-fade'
+    });
+
+    $(document).on('click', '.advisor__time-badge a', function (e) {
+        e.preventDefault()
+        const _this = $(this);
+        const isSelected = _this.parent('li').hasClass('selected');
+        $.ajax({
+            method: 'POST',
+            url: 'ajax/cart/'+(isSelected ? 'delete' : 'add')+'.php',
+            data: {
+                type: 'advisor',
+                itemId: _this.data('id')
+            }, success: function (response) {
+                console.log("res : " + response);
+                response = JSON.parse(response);
+                Snackbar.show({
+                    text: response.hasOwnProperty('messages') ? (typeof response['messages'] === 'string' ? response['messages'] : response['messages'][0]) : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول از سبد خرید شما حذف شد'),
+                    showAction: false,
+                    pos: 'top-right ' + (response.error ? ' danger' : ''),
+                    duration: 3000
+                });
+                if (!response.error) {
+                    $.magnificPopup.close();
+                    _this.parent('li').toggleClass('selected');
+                }
+            }, error: function (error) {
+                console.log("error : " + error);
+            }
+        });
+    });
+
+    // $('.advisor__day-next, .advisor__day-prev').on('click',function (e){
+    //     e.preventDefault();
+    //     let itemIndex = $(this).data('id');
+    //     const artistId = $('.artist__single').data('id');
+    //     const modal = $('#modal-topup');
+    //     console.log(artistId+"..."+itemIndex)
+    //     blockUI(modal.find('.advisor__times-list'));
+    //     $.ajax({
+    //         method : 'GET',
+    //         url : 'ajax/artists/advisor/get.php',
+    //         data : {itemId : artistId, itemIndex : itemIndex},
+    //         success : function (response){
+    //             if (typeof response === 'object') {
+    //                 console.log("is obj");
+    //             }else{
+    //                 console.log("is not obj");
+    //                 modal.find('.advisor__times-list').remove();
+    //                 modal.find('.advisor__days-selectrow').after(response);
+    //             }
+    //             console.log('res: '+response);
+    //         }, error : function (error){
+    //             console.log('error : '+error);
+    //         }
+    //     })
+    // });
+
+    $('select[name="advisor__days-select"]').on('change',function (e){
+        e.preventDefault();
+        const itemDate = $(this).val();
+        const artistId = $('.artist__single').data('id');
+        const modal = $('#modal-topup');
+        console.log(artistId+"..."+itemDate)
+        blockUI(modal.find('.advisor__times-list'));
+        $.ajax({
+            method : 'GET',
+            url : 'ajax/artists/advisor/get.php',
+            data : {itemId : artistId, itemDate : itemDate},
+            success : function (response){
+                if (typeof response === 'object') {
+                    console.log("is obj");
+                }else{
+                    console.log("is not obj");
+                    modal.find('.advisor__times-list').remove();
+                    modal.find('select[name="advisor__days-select"]').after(response);
+                }
+                console.log('res: '+response);
+            }, error : function (error){
+                console.log('error : '+error);
+            }
+        })
+    });
+
+    // $('.artist__single').on('click', 'button.select__title', function () {
+    //     const id = $(this).data('id');
+    //     if (id != null) {
+    //         $.ajax({
+    //             method: 'POST',
+    //             url: 'ajax/cart/add.php',
+    //             data: {
+    //                 type: 'teammate',
+    //                 itemId: id
+    //             }, success: function (response) {
+    //                 // console.log("res : "+response);
+    //                 response = JSON.parse(response);
+    //                 Snackbar.show({
+    //                     text: response.hasOwnProperty('messages') ? response['messages'][0] : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول به سبد خرید شما افزوده شد'),
+    //                     showAction: false,
+    //                     pos: 'top-right ' + (response.error ? ' danger' : ''),
+    //                     duration: 3000
+    //                 });
+    //                 // if (!response.error) {
+    //                 //     $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
+    //                 //     $('.product .product__addto-basket').toggleClass('product__deletefrom-basket product__addto-basket');
+    //                 //     // $('.product .product__addto-basket').addClass('product__deletefrom-basket');
+    //                 // }
+    //             }, error: function (error) {
+    //                 console.log("error : " + error);
+    //             }
+    //         });
+    //     }
+    // });
+
+    $('.artist__single button.select__advisor').on('click', function () {
+
     });
 
     /*********************/

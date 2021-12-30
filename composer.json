@@ -1,6 +1,7 @@
 {
   "require": {
     "ext-curl": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "morilog/jalali": "3.*"
   }
 }

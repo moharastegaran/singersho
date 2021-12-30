@@ -3,12 +3,12 @@
         <!--                    <a href="#"> مشاهده-->
         <!--                        <i class="icofont-eye-alt"></i>-->
         <!--                    </a>-->
-        <?php if (array_key_exists('skills', $artist) && count($artist['skills'])) : ?>
+        <?php if (array_key_exists('titles', $artist) && count($artist['titles'])) : ?>
             <div class="artist__stat">
-                <?php for ($k = 0; $k < count($artist['skills']); $k++) : ?>
+                <?php for ($k = 0; $k < count($artist['titles']); $k++) : ?>
                     <a href="artists.php" class="artist__badge"
-                       data-title="<?php echo $artist['skills'][$k]['name']; ?>">
-                        <?php echo $artist['skills'][$k]['name']; ?>
+                       data-title="<?php echo $artist['titles'][$k]['name']; ?>">
+                        <?php echo $artist['titles'][$k]['name']; ?>
                     </a>
                 <?php endfor; ?>
             </div>

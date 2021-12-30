@@ -35,9 +35,11 @@ $cart_details = array(); ?>
 
                                 <tbody>
                                 <?php for ($i = 0; $i < count($cart_details['details']); $i++) : ?>
-                                    <tr>
+                                    <tr data-id="<?php echo $cart_details['details'][$i]['id']; ?>"
+                                        data-type="<?php echo $cart_details['details'][$i]['type']; ?>">
                                         <?php switch ($cart_details['details'][$i]['type']) :
-                                            case 'package' : ?>
+                                            case 'package' :
+                                            case 'advisor' : ?>
                                                 <td>
                                                     <div class="cart__img">
                                                         <img src="<?php echo $cart_details['details'][$i]['image']; ?>"
@@ -45,8 +47,13 @@ $cart_details = array(); ?>
                                                     </div>
                                                 </td>
                                                 <td>
+                                                    <?php if ($cart_details['details'][$i]['type'] === 'package') : ?>
                                                     <a href="package.php?id=<?php echo $cart_details['details'][$i]['id']; ?>">
-                                                        <?php echo $cart_details['details'][$i]['full_name']; ?></a>
+                                                        <?php endif ?>
+                                                        <?php echo $cart_details['details'][$i]['full_name']; ?>
+                                                        <?php if ($cart_details['details'][$i]['type'] === 'package') : ?>
+                                                    </a>
+                                                <?php endif; ?>
                                                 </td>
                                                 <td><span class="cart__price">
                                                         <?php echo format_price($cart_details['details'][$i]['price']) . ' تومان' ?>
@@ -75,7 +82,7 @@ $cart_details = array(); ?>
                     </div>
 
                     <!-- promo -->
-                    <form action="#" class="cart__promo sign__group sign__group-inline">
+                    <form class="cart__form-discount sign__group sign__group-inline" method="get">
                         <input type="text" class="sign__input" placeholder="کد تخفیف">
                         <button type="button" class="sign__btn btn-purple">اعمال</button>
                     </form>
@@ -124,16 +131,44 @@ $cart_details = array(); ?>
     </div>
     </div>
 <?php else: ?>
-    <div class="row mt-5 mb-5">
-        <div class="col-12">
-            <!-- cart -->
+    <div class="row my-md-5 my-sm-4 my-3">
+        <div class="col-md-12">
             <div class="thead">
                 <h1 class="thead-main">سبد خرید</h1>
             </div>
-            <div class="alert alert-lg alert-outline-danger mt-4 mw-100" style="margin-right: 0;">
-                سبد خرید شما خالی است.
+        </div>
+        <div class="<?php echo (!isset($_SESSION['access_token'])) ? 'col-md-8' : 'col-md-12'; ?>">
+            <div class="cart cart__empty">
+                <div class="cart__table-wrap py-5">
+                    <div class="col-lg-5 col-md-7 col-12 mx-auto">
+                        <img src="assets/img/empty-cart.png" class="img-fluid pb-4">
+                        <h6 class="cart__empty-title">سبد خرید شما خالی است!</h6>
+                        <p class="cart__empty-text">می‌توانید برای مشاهده محصولات بیشتر به صفحات زیر بروید</p>
+                        <ul class="redirect-links">
+                            <li><a href="artists.php">هنرمندان</a></li>
+                            <li><a href="store.php">فروشگاه</a></li>
+                            <li><a href="studios.php">استدیوها</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
+        <?php if (!isset($_SESSION['access_token'])) : ?>
+            <div class="col-md-4 my-md-0 my-3">
+                <a href="login.php">
+                    <div class="cart cart__empty">
+                        <div class="cart__table-wrap text-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M18.9,0H5.1A5.055,5.055,0,0,0,0,5V8A1,1,0,0,0,2,8V5A3.054,3.054,0,0,1,5.1,2H18.9A3.054,3.054,0,0,1,22,5V19a3.054,3.054,0,0,1-3.1,3H5.1A3.054,3.054,0,0,1,2,19V16a1,1,0,0,0-2,0v3a5.055,5.055,0,0,0,5.1,5H18.9A5.055,5.055,0,0,0,24,19V5A5.055,5.055,0,0,0,18.9,0Z"/>
+                                <path d="M3,12a1,1,0,0,0,1,1H4l13.188-.03-4.323,4.323a1,1,0,1,0,1.414,1.414l4.586-4.586a3,3,0,0,0,0-4.242L14.281,5.293a1,1,0,0,0-1.414,1.414l4.262,4.263L4,11A1,1,0,0,0,3,12Z"/>
+                            </svg>
+                            <h6 class="cart__empty-title">ورود به حساب کاربری</h6>
+                            <p class="cart__empty-text">برای مشاهده محصولات سبد خرید خود وارد حساب کاربری‌تان شوید.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <?php endif; ?>
     </div>
 <?php endif; ?>
 

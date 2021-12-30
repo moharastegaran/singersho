@@ -86,7 +86,6 @@
 
 <div id="mm-blocker"></div>
 
-
 <script src="assets/js/jquery-3.6.0.min.js"></script>
 <!--<script src="assets/js/jquery.nice-select.min.js"></script>-->
 <script src="assets/js/jquery-ui.min.js"></script>
