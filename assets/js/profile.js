@@ -7,7 +7,7 @@ $(document).ready(function () {
     }).on('hide.bs.collapse', function () {
         const $element = $('#advisorDateTimesAccordion .collapse.show').closest('.card');
         const deletableTimes = $element.find('.advisor__time-badge.selected.deleted a');
-        handleAdvisorTime($element.data('date'),deletableTimes,true);
+        handleAdvisorTime($element.data('date'), deletableTimes, true);
     });
 
     let userExperienceThumbnail, userProfileAvatar, studioImages;
@@ -321,10 +321,10 @@ $(document).ready(function () {
         $(this).siblings('li').addClass('d-none');
     });
 
-    $('#advisorDateTimesAccordion .btn__select-all').on('click', function (e) {
+    $('#advisorDateTimesAccordion').on('click', '.btn__select-all', function (e) {
         e.preventDefault();
-        const badges = $(this).closest('.card-body').find('.advisor__time-badge');
-        badges.addClass('selected');
+        const badges = $(this).closest('.card').find('.advisor__time-badge');
+        badges.addClass('added');
     });
 
     $('.profile-advisor__times').on('click', '.advisor__time-badge', function (e) {
@@ -336,61 +336,43 @@ $(document).ready(function () {
         e.preventDefault();
         const parent = $('#advisorDateTimesAccordion');
         const date = $('[name="advisor_date"]').val();
-        const cards = parent.find('.card');
-        let isOk = true;
-        for (let i = 0; i < cards.length; i++) {
-            if (cards.eq(i).data('date')===date){
-                isOk=false;
-                break;
+        if (date!==''){
+            console.log("date : " + date);
+            const cards = parent.find('.card');
+            let isOk = true;
+            for (let i = 0; i < cards.length; i++) {
+                if (cards.eq(i).data('date') === date) {
+                    isOk = false;
+                    break;
+                }
+            }
+            if (!isOk) {
+                Snackbar.show({
+                    text: 'تاریخ قبلا اضافه شده است',
+                    showAction: false,
+                    pos: 'top-right danger',
+                    duration: 3000
+                });
+            } else {
+                $('[name="advisor_date"]').val(null);
+                const accordion = $('#advisorDateTimesAccordion');
+                const content = $('#advisorDateTimesAccordion .card.d-none').html();
+                const rand = Math.ceil(Math.random() * 1000);
+                accordion.prepend('<div class="card">' + content + '</div>');
+                const newCard = accordion.find('.card').first();
+                newCard.find('.card-date').text(date);
+                newCard.attr('data-date',date);
+                newCard.find('.collapse').attr('id', 'advisorDateTimesAccordionNumber' + rand);
+                newCard.find('[role="menu"]').attr('data-target', '#advisorDateTimesAccordionNumber' + rand);
             }
         }
-        // console.log(...cardsDates);
-        // console.log(date);
-        if (!isOk) {
-            Snackbar.show({
-                text: 'تاریخ قبلا اضافه شده است',
-                showAction: false,
-                pos: 'top-right danger',
-                duration: 3000
-            });
-        } else {
-            const accordion = $('#advisorDateTimesAccordion');
-            const content = $('#advisorDateTimesAccordion .card.d-none').html();
-            accordion.prepend('<div class="card">' + content + '</div>');
-        }
-        // $.ajax({
-        //     method: 'POST',
-        //     url: 'ajax/artists/advisor/add.php',
-        //     data: {date: date},
-        //     success: function (response) {
-        //         console.log("res : " + response);
-        //         response = JSON.parse(response);
-        //         if (response.error){
-        //             Snackbar.show({
-        //                 text: response.hasOwnProperty('messages') ? response.messages[0] : 'مشکلی پیش آمد. مجددا امتحان کنید',
-        //                 showAction: false,
-        //                 pos: 'top-right danger',
-        //                 duration: 3000
-        //             });
-        //             }else{
-        //                 const accordion = $('#advisorDateTimesAccordion');
-        //                 // const randNumber = Math.random()*1000;
-        //                 // let content = accordion.find('.card').last().html();
-        //                 const content = $('#advisorDateTimesAccordion .card.d-none').html();
-        //                 // content = content.toString().replace(idAttr,'advisorDateTimesAccordionNumber'+randNumber);
-        //                 accordion.prepend('<div class="card">'+content+'</div>');
-        //         }
-        //     }, error: function (error) {
-        //         console.log("err : " + error);
-        //     }
-        // })
     });
 
     $('.profile-advisor__times').on('click', '.btn__save-all', function (e) {
         e.preventDefault();
         const parent = $(this).closest('.card');
         const times = parent.find('.advisor__time-badge.added:not(.selected) a');
-        handleAdvisorTime(parent.data('date'),times);
+        handleAdvisorTime(parent.data('date'), times);
     });
 
     $('.profile-advisor__times').on('click', '.remove__items-all', function (e) {
@@ -398,14 +380,16 @@ $(document).ready(function () {
         $('#advisorDateTimesAccordion').collapse('hide');
         const parent = $(this).closest('.card');
         const times = parent.find('.advisor__time-badge.selected a');
-        handleAdvisorTime(parent.data('date'),times,true);
-        parent.fadeOut("slow",function (){
-           setTimeout(function (){parent.remove()},100);
+        handleAdvisorTime(parent.data('date'), times, true);
+        parent.fadeOut("slow", function () {
+            setTimeout(function () {
+                parent.remove()
+            }, 100);
         });
     })
 
-    function handleAdvisorTime(date,listItems,is_delete=false){
-        if (listItems.length>0){
+    function handleAdvisorTime(date, listItems, is_delete = false) {
+        if (listItems.length > 0) {
             let timesStr = "";
             for (let i = 0; i < listItems.length; i++) {
                 timesStr += listItems.eq(i).data('id');
@@ -414,28 +398,28 @@ $(document).ready(function () {
             }
             $.ajax({
                 method: 'POST',
-                url: 'ajax/artists/advisor/'+(is_delete?'delete':'add')+'.php',
+                url: 'ajax/artists/advisor/' + (is_delete ? 'delete' : 'add') + '.php',
                 data: {date: date, time: timesStr},
                 success: function (response) {
                     console.log("res : " + response);
                     response = JSON.parse(response);
                     if (!response.error) {
-                    //     Snackbar.show({
-                    //         text: response.hasOwnProperty('messages') ? response.messages[0] : 'مشکلی پیش آمد. مجددا امتحان کنید',
-                    //         showAction: false,
-                    //         pos: 'top-right danger',
-                    //         duration: 3000
-                    //     });
-                    // }else{
-                        if (!is_delete){
+                        if (!is_delete) {
                             $('#advisorDateTimesAccordion').find('.collapse.show').collapse('hide');
                         }
+                    } else {
+                        Snackbar.show({
+                            text: response.hasOwnProperty('messages') ? response.messages[0] : 'مشکلی پیش آمد. مجددا امتحان کنید',
+                            showAction: false,
+                            pos: 'top-right danger',
+                            duration: 3000
+                        });
                     }
                 }, error: function (error) {
                     console.log("err : " + error);
                 }
             })
-        }else if (!is_delete){
+        } else if (!is_delete) {
             $('#advisorDateTimesAccordion').find('.collapse.show').collapse('hide');
         }
     }
@@ -540,28 +524,8 @@ $(document).ready(function () {
     });
 
 
-    $('.profile-box__avatar').magnificPopup({
-        type: 'image',
-        fixedContentPos: true,
-        fixedBgPos: true,
-        overflowY: 'auto',
-        preloader: false,
-        focus: '#username',
-        modal: false,
-        removalDelay: 300,
-        mainClass: 'mfp-fade'
-    });
-    $('.btn__change-mobile').magnificPopup({
-        type: 'inline',
-        fixedContentPos: true,
-        fixedBgPos: true,
-        overflowY: 'auto',
-        preloader: false,
-        focus: '#username',
-        modal: false,
-        removalDelay: 300,
-        mainClass: 'mfp-fade'
-    });
+    $('.profile-box__avatar-overlay:not(.d-none)').magnificPopup({type: 'image',});
+    $('.btn__change-mobile').magnificPopup({type: 'inline',});
 
     /****************/
     /* Delete Modal */
@@ -720,7 +684,7 @@ $(document).ready(function () {
         $(this).closest('tr').remove();
     });
 
-    $("input[name='first_name'],input[name='last_name'],input[name='email'],input[name='melli_code'],input[name='advise_price'],textarea[name='experience'],textarea[name='order_description']")
+    $("input[name='first_name'],input[name='last_name'],input[name='email'],input[name='melli_code'],input[name='advise_price'],input[name='delivery_time'],textarea[name='experience'],textarea[name='order_description']")
         .on("blur", function () {
             if ($(this).val() !== $(this).data('current'))
                 updateUserData($(this));
@@ -728,6 +692,7 @@ $(document).ready(function () {
 
     $('input[name="avatar"]').on('change', function () {
         let formData = new FormData();
+        const _this = $(this);
         formData.append('avatar', $(this)[0].files[0]);
         $.ajax({
             method: 'POST',
@@ -739,7 +704,11 @@ $(document).ready(function () {
             success: function (response) {
                 response = JSON.parse(response);
                 if (!response.error) {
-                    $(this).closest('.profile-box__avatar').css({backgroundImage: 'url(' + response.avatar + ')'})
+                    const overlayDiv = _this.parent().prev('.profile-box__avatar-overlay');
+                    overlayDiv.parent().css({backgroundImage: 'url(' + response.avatar + ')'})
+                    overlayDiv.attr('href', response.avatar);
+                    overlayDiv.removeClass('d-none');
+                    $('.profile-box__avatar-overlay').magnificPopup({type: 'image'});
                 } else {
                     Snackbar.show({
                         text: response.hasOwnProperty('messages') ? response.messages[0] : 'مشکلی پیش آمد. مجددا امتحان کنید',
@@ -771,6 +740,7 @@ $(document).ready(function () {
                         pos: 'top-right',
                         duration: 3000
                     });
+                    $('.profile-menu__item-advisortimes').parent('li').toggleClass('d-none');
                 }
             }, error: function (error) {
                 console.log("error : " + error);

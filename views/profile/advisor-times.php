@@ -26,7 +26,7 @@ if ($artist_id > 0) {
                 <div class="col-md-10">
                     <div class="sign__group">
                         <input type="text" name="advisor_date" autocomplete="off"
-                               placeholder="تاریخ مشاوره" class="input-large">
+                               placeholder="تاریخ مشاوره" class="input-large" required>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -34,7 +34,7 @@ if ($artist_id > 0) {
                 </div>
             </div>
             <div id="advisorDateTimesAccordion" class="accordion-icons mt-4">
-                <?php if (isset($times['data']) && count($times['data'])) : ?>
+                <?php if (isset($times['data'])) : ?>
                     <?php
                     $len = count($times['data']);
                     for ($index = 0; $index <= $len; $index++) :
@@ -48,14 +48,13 @@ if ($artist_id > 0) {
                         } else {
                             $current_hours = array();
                         }
-                        if (count($current_hours)) :?>
+                        if (count($current_hours) || !$time) :?>
                             <div class="card <?php echo !isset($time) ? 'd-none' : '' ?>"
                                  data-date="<?php echo isset($time) ? $time['shamsi_date_2'] : '0000-00-00' ?>">
-                                <div class="card-header" id="heading<?php echo $index; ?>">
+                                <div class="card-header">
                                     <section class="p-0 m-0">
                                         <div role="menu" class="collapsed" data-toggle="collapse" aria-expanded="false"
-                                             data-target="#advisorDateTimesAccordionNumber<?php echo $index; ?>"
-                                             aria-controls="advisorDateTimesAccordionNumber<?php echo $index; ?>">
+                                             data-target="#advisorDateTimesAccordionNumber<?php echo $index; ?>">
                                             <div class="accordion-icon">
                                                 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="m9 24h-8a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2z"/>
@@ -65,7 +64,7 @@ if ($artist_id > 0) {
                                                     <path d="m12 6a1 1 0 0 0 -1 1v5a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414l-2.707-2.707v-4.586a1 1 0 0 0 -1-1z"/>
                                                 </svg>
                                             </div>
-                                            <span class="faNum"><?php echo isset($time) ? $time['shamsi_date_1'] : '' ?></span>
+                                            <span class="faNum card-date"><?php echo isset($time) ? $time['shamsi_date_2'] : '' ?></span>
                                             <div class="icons">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                      viewBox="0 0 24 24" fill="none" stroke-linejoin="round"
@@ -73,14 +72,13 @@ if ($artist_id > 0) {
                                                     <polyline points="6 9 12 15 18 9"></polyline>
                                                 </svg>
                                             </div>
-                                            <a href="javascript:void(0);" class="remove__items-all">
-                                                حذف
-                                            </a>
                                         </div>
+                                        <a href="javascript:void(0);" class="remove__items-all">
+                                            حذف
+                                        </a>
                                     </section>
                                 </div>
                                 <div id="advisorDateTimesAccordionNumber<?php echo $index; ?>" class="collapse"
-                                     aria-labelledby="heading<?php echo $index; ?>"
                                      data-parent="#advisorDateTimesAccordion">
                                     <div class="card-body">
                                         <div class="row">

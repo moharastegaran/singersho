@@ -511,7 +511,7 @@ $(document).ready(function () {
         });
     }
 
-    function blockUI(element=null) {
+    function blockUI(element = null) {
         const options = {
             message: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader spin"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>',
             timeout: 1000,
@@ -597,6 +597,36 @@ $(document).ready(function () {
         $('#deleteModal-container').fadeIn();
     });
 
+    $('.cart__form-discount').on('submit',function (e){
+        e.preventDefault();
+        const input = $(this).find(':input[name="discount_code"]');
+        if (input.val()!==''){
+            $.ajax({
+                method : 'GET',
+                url : 'ajax/discount.php',
+                data : {code : input.val()},
+                success : function (response){
+                    response = JSON.parse(response);
+                    if (!response.error){
+                        input.val(null);
+                        input.blur();
+                        $('.cart__total').find('span').remove();
+                        $('.cart__total').append($('<span class="discounted"></span>').text(formatPrice((response.amountOfPayment+response.amountOfDiscount)+'')+' تومان'));
+                        $('.cart__total').append($('<span></span>').text(formatPrice(response.amountOfPayment+'')+' تومان'))
+                    }
+                    Snackbar.show({
+                        text: response.hasOwnProperty('messages') ? response.messages[0] : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'کد تخفیف اعمال شد'),
+                        showAction: false,
+                        pos: 'top-right ' + (response.error ? ' danger' : ''),
+                        duration: 5000
+                    });
+                }, error : function (error){
+                    console.log("err : "+error);
+                }
+            });
+        }
+    });
+
     $('#deleteModal-container').on('click', 'a.cancel', function () {
         $('tr.has-focus').removeClass('has-focus');
         $('#deleteModal-container').fadeOut();
@@ -616,14 +646,16 @@ $(document).ready(function () {
                 response = JSON.parse(response);
 
                 if (!response.error) {
-                    $('tr.has-focus').fadeOut("slow", () => {
+                    const $tr_focus = $('tr.has-focus');
+                    $tr_focus.fadeOut("slow", () => {
                         setTimeout(() => {
-                            $(this).remove();
+                            $tr_focus.remove();
+                            console.log("$('.cart__table tbody').find('tr').length = " + $('.cart__table tbody').find('tr').length);
+                            if ($('.cart__table tbody').find('tr').length < 1) {
+                                $(location).attr('href', $(location).attr('href'));
+                            }
                         }, 100);
                     });
-                    if ($('.cart__table').find('tr').length < 1) {
-                        $(location).attr('href',$(location).attr('href'));
-                    }
                 } else {
                     $('tr.has-focus').removeClass('has-focus');
                 }
@@ -660,7 +692,7 @@ $(document).ready(function () {
                     });
                     if (!response.error) {
                         $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
-                       _this.toggleClass('product__deletefrom-basket product__addto-basket');
+                        _this.toggleClass('product__deletefrom-basket product__addto-basket');
                         // $('.product .product__addto-basket').addClass('product__deletefrom-basket');
                     }
                 }, error: function (error) {
@@ -704,7 +736,7 @@ $(document).ready(function () {
     /*   Artist Cart    */
     /********************/
 
-    $('.modal__close').on('click',function (){
+    $('.modal__close').on('click', function () {
         $.magnificPopup.close();
     });
 
@@ -725,7 +757,7 @@ $(document).ready(function () {
         const isSelected = _this.parent('li').hasClass('selected');
         $.ajax({
             method: 'POST',
-            url: 'ajax/cart/'+(isSelected ? 'delete' : 'add')+'.php',
+            url: 'ajax/cart/' + (isSelected ? 'delete' : 'add') + '.php',
             data: {
                 type: 'advisor',
                 itemId: _this.data('id')
@@ -748,87 +780,57 @@ $(document).ready(function () {
         });
     });
 
-    // $('.advisor__day-next, .advisor__day-prev').on('click',function (e){
-    //     e.preventDefault();
-    //     let itemIndex = $(this).data('id');
-    //     const artistId = $('.artist__single').data('id');
-    //     const modal = $('#modal-topup');
-    //     console.log(artistId+"..."+itemIndex)
-    //     blockUI(modal.find('.advisor__times-list'));
-    //     $.ajax({
-    //         method : 'GET',
-    //         url : 'ajax/artists/advisor/get.php',
-    //         data : {itemId : artistId, itemIndex : itemIndex},
-    //         success : function (response){
-    //             if (typeof response === 'object') {
-    //                 console.log("is obj");
-    //             }else{
-    //                 console.log("is not obj");
-    //                 modal.find('.advisor__times-list').remove();
-    //                 modal.find('.advisor__days-selectrow').after(response);
-    //             }
-    //             console.log('res: '+response);
-    //         }, error : function (error){
-    //             console.log('error : '+error);
-    //         }
-    //     })
-    // });
-
-    $('select[name="advisor__days-select"]').on('change',function (e){
+    $('select[name="advisor__days-select"]').on('change', function (e) {
         e.preventDefault();
         const itemDate = $(this).val();
         const artistId = $('.artist__single').data('id');
         const modal = $('#modal-topup');
-        console.log(artistId+"..."+itemDate)
         blockUI(modal.find('.advisor__times-list'));
         $.ajax({
-            method : 'GET',
-            url : 'ajax/artists/advisor/get.php',
-            data : {itemId : artistId, itemDate : itemDate},
-            success : function (response){
+            method: 'GET',
+            url: 'ajax/artists/advisor/get.php',
+            data: {itemId: artistId, itemDate: itemDate},
+            success: function (response) {
                 if (typeof response === 'object') {
-                    console.log("is obj");
-                }else{
-                    console.log("is not obj");
+                } else {
                     modal.find('.advisor__times-list').remove();
                     modal.find('select[name="advisor__days-select"]').after(response);
                 }
-                console.log('res: '+response);
-            }, error : function (error){
-                console.log('error : '+error);
+            }, error: function (error) {
+                console.log('error : ' + error);
             }
         })
     });
 
-    // $('.artist__single').on('click', 'button.select__title', function () {
-    //     const id = $(this).data('id');
-    //     if (id != null) {
-    //         $.ajax({
-    //             method: 'POST',
-    //             url: 'ajax/cart/add.php',
-    //             data: {
-    //                 type: 'teammate',
-    //                 itemId: id
-    //             }, success: function (response) {
-    //                 // console.log("res : "+response);
-    //                 response = JSON.parse(response);
-    //                 Snackbar.show({
-    //                     text: response.hasOwnProperty('messages') ? response['messages'][0] : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول به سبد خرید شما افزوده شد'),
-    //                     showAction: false,
-    //                     pos: 'top-right ' + (response.error ? ' danger' : ''),
-    //                     duration: 3000
-    //                 });
-    //                 // if (!response.error) {
-    //                 //     $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
-    //                 //     $('.product .product__addto-basket').toggleClass('product__deletefrom-basket product__addto-basket');
-    //                 //     // $('.product .product__addto-basket').addClass('product__deletefrom-basket');
-    //                 // }
-    //             }, error: function (error) {
-    //                 console.log("error : " + error);
-    //             }
-    //         });
-    //     }
-    // });
+    $('.artist__single').on('click', 'a.select__title', function () {
+        const id = $(this).data('id');
+        if (id != null) {
+            $.ajax({
+                method: 'POST',
+                url: 'ajax/cart/add.php',
+                data: {
+                    type: 'teammate',
+                    itemId: id
+                }, success: function (response) {
+                    console.log("res : " + response);
+                    response = JSON.parse(response);
+                    Snackbar.show({
+                        text: response.hasOwnProperty('messages') ? response['messages'][0] : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول به سبد خرید شما افزوده شد'),
+                        showAction: false,
+                        pos: 'top-right ' + (response.error ? ' danger' : ''),
+                        duration: 3000
+                    });
+                    // if (!response.error) {
+                    //     $('.package__single .package__in-cart,.package__single .btn__buy-package').toggleClass('d-none');
+                    //     $('.product .product__addto-basket').toggleClass('product__deletefrom-basket product__addto-basket');
+                    //     // $('.product .product__addto-basket').addClass('product__deletefrom-basket');
+                    // }
+                }, error: function (error) {
+                    console.log("error : " + error);
+                }
+            });
+        }
+    });
 
     $('.artist__single button.select__advisor').on('click', function () {
 

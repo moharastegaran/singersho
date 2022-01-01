@@ -17,10 +17,12 @@ if ($user['data']['is_artist'] && !isset($_SESSION['artist_id']))
                     <div class="profile-box__section">
                         <div class="profile-box__header">
                             <?php if ($user['data']['is_artist']): ?>
+                                <?php $avatar = $user['data']['other_info']['artist']['avatar']; ?>
+                                <!--                                     href="--><?php //echo $user['data']['other_info']['artist']['avatar'] ?><!--"-->
                                 <div class="profile-box__avatar"
-                                     href="<?php echo $user['data']['other_info']['artist']['avatar'] ?>"
-                                     style="background-image: url(<?php echo !empty($user['data']['other_info']['artist']['avatar']) ? $user['data']['other_info']['artist']['avatar'] : 'https://www.digikala.com/static/files/fd4840b2.svg' ?>)">
-                                    <div class="profile-box__avatar-overlay">
+                                     style="background-image: url(<?php echo isset($avatar) ? $avatar : 'https://www.digikala.com/static/files/fd4840b2.svg' ?>)">
+                                    <div class="profile-box__avatar-overlay <?php echo !isset($avatar) ? 'd-none' : ''; ?>"
+                                         href="<?php echo isset($avatar) ? $avatar : 'javascript:void(0);'; ?>">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                             <path d="M23.707,22.293l-5.969-5.969a10.016,10.016,0,1,0-1.414,1.414l5.969,5.969a1,1,0,0,0,1.414-1.414ZM10,18a8,8,0,1,1,8-8A8.009,8.009,0,0,1,10,18Z"/>
                                             <path d="M13,9H11V7A1,1,0,0,0,9,7V9H7a1,1,0,0,0,0,2H9v2a1,1,0,0,0,2,0V11h2a1,1,0,0,0,0-2Z"/>
@@ -65,14 +67,12 @@ if ($user['data']['is_artist'] && !isset($_SESSION['artist_id']))
                                     ویرایش اطلاعات
                                 </a>
                             </li>
-                            <?php if ($user['data']['other_info']['artist']['is_advisor'] == 1) : ?>
-                                <li>
-                                    <a href="javascript:void(0)" data-target="#advisor-times"
-                                       class="profile-menu__item profile-menu__item-advisortimes <?php echo $hash === 'advisor-times' ? 'active' : '' ?> ">
-                                        زمان‌های مشاوره
-                                    </a>
-                                </li>
-                            <?php endif; ?>
+                            <li class="<?php echo $user['data']['other_info']['artist']['is_advisor'] == 1 ? '' : 'd-none'; ?>">
+                                <a href="javascript:void(0)" data-target="#advisor-times"
+                                   class="profile-menu__item profile-menu__item-advisortimes <?php echo $hash === 'advisor-times' ? 'active' : '' ?> ">
+                                    زمان‌های مشاوره
+                                </a>
+                            </li>
                             <li>
                                 <a href="javascript:void(0)" data-target="#add-studio"
                                    class="profile-menu__item profile-menu__item-addstudio <?php echo $hash === 'add-studio' ? 'active' : '' ?>">افزودن

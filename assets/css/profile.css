@@ -50,6 +50,7 @@
     transform: translate(-50%,-50%);
     fill: var(--light);
     cursor: pointer;
+    z-index: 2;
 }
 
 .profile-box__avatar .profile-edit__avatar{
@@ -57,6 +58,7 @@
     left: 0;
     bottom: 0;
     transform: translate(-60%,60%);
+    z-index: 3;
 }
 .profile-box__avatar .profile-edit__avatar [type="file"]{
     position: absolute;
@@ -65,7 +67,7 @@
     bottom: 0;
     top: 0;
     opacity: 0;
-    z-index: 2;
+    z-index: 4;
     cursor: pointer;
 }
 .profile-box__avatar .profile-edit__avatar svg{
@@ -415,12 +417,14 @@ form.is-edit select[name='name']{
 input[name='delivery_time']::-webkit-outer-spin-button,
 input[name='delivery_time']::-webkit-inner-spin-button,
 input[name$='price']::-webkit-outer-spin-button,
-input[name$='price']::-webkit-inner-spin-button {
+input[name$='price']::-webkit-inner-spin-button ,
+input[name='code']::-webkit-outer-spin-button,
+input[name='code']::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-input[name='delivery_time'],input[name$='price']{
+input[name='delivery_time'],input[name$='price'],input[name='code']{
     -moz-appearance: textfield;
 }
 
@@ -978,7 +982,7 @@ input[type=checkbox], input[type=radio] {
     top: 50%;
     transform: translateY(-50%);
     padding: 4px; }
-.card-header section > div a.remove__items-all {
+.card-header section > a.remove__items-all {
     position: absolute;
     left: 8px;
     top: 50%;

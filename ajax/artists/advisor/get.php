@@ -14,7 +14,7 @@ if (isset($_GET['itemId'])) {
 
     $artistId = $_GET['itemId'];
     $itemIndex = isset($_GET['itemDate']) ? $_GET['itemDate'] : 0;
-    $get_times = callAPI('GET', RAW_API . 'reservation/advisor', ['rpp' => 1000, 'id' => 2]);
+    $get_times = callAPI('GET', RAW_API . 'reservation/advisor', ['rpp' => 1000, 'id' => $artistId]);
     $get_times = json_decode($get_times, true);
     if (!$get_times['error']) {
         $times = $get_times['dates']['data'];

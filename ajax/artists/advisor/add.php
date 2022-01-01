@@ -2,7 +2,7 @@
 
 require_once '../../../config/config.php';
 
-if (isset($_POST['date']) && isset($_SESSION['artist_id'])){
+if (isset($_POST['date']) && isset($_POST['time'])) {
 
 //    $current_dates = array();
 //    if (!isset($_POST['time'])){
@@ -25,7 +25,12 @@ if (isset($_POST['date']) && isset($_SESSION['artist_id'])){
 //    }
 
     $date = $_POST['date'];
-    $times = !empty($_POST['time']) ? $_POST['time'] : 1;
-    $add_datetime = callAPI('PUT',RAW_API.'reservation/advisor?date='.$date."&time=".$times,false,true);
+    $times = $_POST['time'];
+    $add_datetime = callAPI('PUT', RAW_API . 'reservation/advisor?date=' . $date . "&time=" . $times, false, true);
     echo $add_datetime;
+}else{
+    echo json_encode([
+        'error' => true,
+        'messages' => ['ورودی اشتباه است']
+    ]);
 }

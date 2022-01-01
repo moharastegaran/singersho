@@ -36,29 +36,29 @@ $cart_details = array(); ?>
 
                                 <tbody>
                                 <?php for ($i = 0; $i < count($cart_details['details']); $i++) :
-                                    $type = $cart_details['details'][$i]['type']; ?>
-                                    <tr data-id="<?php echo $cart_details['details'][$i]['id']; ?>"
-                                        data-type="<?php echo $type; ?>">
+                                    $cart_detail = $cart_details['details'][$i]; ?>
+                                    <tr data-id="<?php echo $cart_detail['id']; ?>"
+                                        data-type="<?php echo $cart_detail['type']; ?>">
                                         <td>
                                             <div class="cart__img">
-                                                <img src="<?php echo $cart_details['details'][$i]['image']; ?>"
-                                                     alt="<?php echo $cart_details['details'][$i]['full_name']; ?>">
+                                                <img src="<?php echo $cart_detail['image']; ?>"
+                                                     alt="<?php echo $cart_detail['full_name']; ?>">
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="<?php echo ($type === 'advisor' || $type === 'teammate') ? 'artist' : $type; ?>.php?id=<?php echo $cart_details['details'][$i]['type_id']; ?>">
-                                                <?php echo $cart_details['details'][$i]['full_name']; ?>
+                                            <a href="<?php echo (in_array($cart_detail['type'],['advisor','teammate']) ? 'artist' : $cart_detail['type']); ?>.php?id=<?php echo $cart_detail['type_id']; ?>">
+                                                <?php echo $cart_detail['full_name']; ?>
                                             </a>
                                         </td>
                                         <td>
                                             <span class="cart__price">
-                                                        <?php echo format_price($cart_details['details'][$i]['price']) . ' تومان' ?>
+                                                        <?php echo format_price($cart_detail['price']) . ' تومان' ?>
                                             </span>
                                         </td>
                                         <td>
                                             <span class="cart__details">
-                                                <?php $cart_desc = $cart_details['details'][$i]['details']; ?>
-                                                <?php switch ($type) :
+                                                <?php $cart_desc = $cart_detail['details']; ?>
+                                                <?php switch ($cart_detail['type']) :
                                                     case 'advisor'  : ?>
                                                         ساعت و زمان مشاوره
                                                         <?php echo $cart_desc['shamsi_date_1'] ?>
@@ -91,12 +91,11 @@ $cart_details = array(); ?>
                         <span><?php echo format_price($cart_details['final_cost']) . ' تومان' ?></span>
                     </div>
 
-                    <!-- promo -->
+
                     <form class="cart__form-discount sign__group sign__group-inline" method="get">
-                        <input type="text" class="sign__input" placeholder="کد تخفیف">
-                        <button type="button" class="sign__btn btn-purple">اعمال</button>
+                        <input type="text" name="discount_code" class="sign__input" placeholder="کد تخفیف" autocomplete="off" required>
+                        <button type="submit" class="sign__btn">اعمال</button>
                     </form>
-                    <!-- end promo -->
 
 
                 </div>
@@ -131,7 +130,9 @@ $cart_details = array(); ?>
                             </p>
                         </div>
                         <div class="sign__group">
-                            <button type="button" class="sign__btn">تکمیل</button>
+                            <button type="button" class="sign__btn">
+                                تکمیل و پرداخت
+                            </button>
                         </div>
                     </form>
                 </div>

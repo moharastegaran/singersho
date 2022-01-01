@@ -4581,18 +4581,19 @@ textarea.contact-form-input {
     justify-content: flex-start;
     align-items: flex-start;
 }
-.cart__total {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
 .cart__total span {
     font-size: 28px;
     color: #fff;
     line-height: 100%;
     font-family: faNum;
     font-weight: 500;
+}
+.cart__total span.discounted{
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--red-danger);
+    text-decoration: line-through;
+    opacity: .5;
 }
 .cart__form-discount{
     width: 250px;

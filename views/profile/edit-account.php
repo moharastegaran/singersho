@@ -1,11 +1,24 @@
-<?php global $user; ?>
-<div id="confirmationCodeModal" class="modal">
-    <div class="form-group">
-        <label class="sign__label">کد یکبار مصرف</label>
-        <input type="number" name="code" style="direction: ltr" autocomplete="off" placeholder="* * * * * *">
+<?php
+global $user;
+$artist = $user['data']['other_info']['artist'];
+?>
+<div id="confirmationCodeModal" class="mfp-hide magnific-modal">
+    <button class="modal__close" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"></path>
+        </svg>
+    </button>
+    <h4 class="modal__title">کد تایید</h4>
+    <div class="sign__group">
+        <!--        <label class="sign__label">کد تایید</label>-->
+        <input type="number" name="code" style="direction: ltr;letter-spacing: 10px" class="input-large text-center"
+               autocomplete="off" placeholder="* * * * * *">
     </div>
-    <div class="form-group text-left">
+    <div class="sign__group text-left">
         <button type="button" class="btn-purple btn__confirm-code">تایید کد</button>
+    </div>
+    <div class="help-block mt-3" style="opacity: .7">
+        کد یکبار مصرف ارسال شده برای تلفن همراه خود را وارد کرده و دکمه تایید را بزنید.
     </div>
 </div>
 <div class="row">
@@ -64,7 +77,7 @@
                                 <div class="n-chk is-advisor-description text-light">
                                     <label class="new-checkbox checkbox-outline-green">
                                         <input type="checkbox" class="new-control-input" name="is_advisor"
-                                               <?php echo $user['data']['other_info']['artist']['is_advisor'] == '1' ? 'checked' : ''; ?>>
+                                            <?php echo $artist['is_advisor'] == '1' ? 'checked' : ''; ?>>
                                         <span class="new-control-indicator"></span>فعال کردن مشاوره
                                     </label>
                                 </div>
@@ -74,18 +87,19 @@
                                     <label class="sign__label" for="artistAdvisePrice">هزینه مشاوره</label>
                                     <input id="artistAdvisePrice" type="number" name="advise_price" class="sign__input"
                                            autocomplete="off"
-                                           data-current="<?php echo $user['data']['other_info']['artist']['advise_price']; ?>"
-                                           value="<?php echo $user['data']['other_info']['artist']['advise_price']; ?>"
+                                           data-current="<?php echo $artist['advise_price']; ?>"
+                                           value="<?php echo $artist['advise_price']; ?>"
                                            placeholder="هزینه ساعتی به تومان">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12" id="artistDeliveryTime">
                                 <div class="sign__group">
                                     <label class="sign__label" for="artistDeliveryTime">مدت زمان تحویل</label>
-                                    <input id="artistDeliveryTime" type="number" name="delivery_time" class="sign__input"
+                                    <input id="artistDeliveryTime" type="number" name="delivery_time"
+                                           class="sign__input"
                                            autocomplete="off"
-                                           data-current="<?php echo $user['data']['other_info']['artist']['delivery_time']; ?>"
-                                           value="<?php echo $user['data']['other_info']['artist']['delivery_time']; ?>"
+                                           data-current="<?php echo $artist['delivery_time']; ?>"
+                                           value="<?php echo $artist['delivery_time']; ?>"
                                            placeholder="مثال: 6 روز">
                                 </div>
                             </div>
@@ -93,14 +107,14 @@
                                 <div class="sign__group">
                                     <label class="sign__label">تجربیات</label>
                                     <textarea name="experience" class="sign__input" autocomplete="off" rows="4"
-                                           data-current="<?php echo $user['data']['other_info']['artist']['experience']; ?>"><?php echo $user['data']['other_info']['artist']['experience']; ?></textarea>
+                                              data-current="<?php echo $artist['experience']; ?>"><?php echo $artist['experience']; ?></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-12">
                                 <div class="sign__group">
                                     <label class="sign__label">توضیحات سفارشات</label>
                                     <textarea name="order_description" class="sign__input" autocomplete="off" rows="4"
-                                              data-current="<?php echo $user['data']['other_info']['artist']['order_description']; ?>"><?php echo $user['data']['other_info']['artist']['order_description']; ?></textarea>
+                                              data-current="<?php echo $artist['order_description']; ?>"><?php echo $artist['order_description']; ?></textarea>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -159,10 +173,12 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label class="sign__label" for="currentMobile">تلفن همراه</label>
-                            <input id="currentMobile" type="text" name="mobile" style="direction: ltr" autocomplete="off" placeholder="09*********">
+                            <input id="currentMobile" type="text" name="mobile" style="direction: ltr"
+                                   autocomplete="off" placeholder="09*********">
                         </div>
                         <div class="form-group text-left">
-                            <button type="button" class="btn-purple btn__change-mobile">ارسال کد</button>
+                            <a type="button" href="#confirmationCodeModal" class="btn-purple btn__change-mobile">ارسال
+                                کد</a>
                         </div>
                     </div>
                 </form>
