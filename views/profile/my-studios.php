@@ -135,6 +135,15 @@ if (!($has_error = $get_cities['error']))
                                                  style="margin-top: 15px; margin-bottom: 10px; background-size: cover"></div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="sign__group d-flex">
+                                            <label class="col-lg-2 col-md-3 col-12 sign__label light" for="name">زمان های مشاوره</label>
+                                            <div class="col-lg-10 col-md-9 col-12">
+                                                <input type="text" id="name" name="name" autocomplete="off"
+                                                       class="sign__input" required>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-12 d-flex justify-content-between flex-wrap align-items-center">
                                         <button class="btn-purple-outline cancel">لغو</button>
                                         <button class="btn-purple update">به‌روزرسانی</button>
@@ -203,16 +212,16 @@ if (!($has_error = $get_cities['error']))
                                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                             </svg>
                                         </a>
-<!--                                        <a href="javascript:void(0)" class="edit">-->
-<!--                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"-->
-<!--                                                 viewBox="0 0 24 24"-->
-<!--                                                 fill="none" stroke="currentColor" stroke-width="2"-->
-<!--                                                 stroke-linecap="round"-->
-<!--                                                 stroke-linejoin="round" class="text-secondary">-->
-<!--                                                <circle cx="12" cy="12" r="10"></circle>-->
-<!--                                                <polyline points="12 6 12 12 16 14"></polyline>-->
-<!--                                            </svg>-->
-<!--                                        </a>-->
+                                        <a href="javascript:void(0)" class="edit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24"
+                                                 fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round"
+                                                 stroke-linejoin="round" class="text-secondary">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <polyline points="12 6 12 12 16 14"></polyline>
+                                            </svg>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endfor; ?>

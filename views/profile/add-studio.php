@@ -86,48 +86,6 @@ if (!($has_error = $get_cities['error']))
                         </div>
                     </div>
 
-<!--                    <div class="row ml-0 mr-0">-->
-<!--                        <h6 class="col-md-12">زمان های قابل رزرو استدیو</h6>-->
-<!--                        <div class="d-flex flex-row flex-nowrap justify-content-start align-items-center px-3">-->
-<!--                            <input type="text" name="allowed_date" placeholder="انتخاب تاریخ" autocomplete="off" class="ml-2">-->
-<!--                            <select name="allowed_hour" class="ml-2">-->
-<!--                                <option>-انتخاب کنید-</option>-->
-<!--                                --><?php //for($i=0;$i<count($allowed_hours);$i++) : ?>
-<!--                                    <option value="--><?php //echo $allowed_hours[$i]['id']; ?><!--">-->
-<!--                                        --><?php //echo $allowed_hours[$i]['started_at'].' - '.$allowed_hours[$i]['ended_at'] ; ?>
-<!--                                    </option>-->
-<!--                                --><?php //endfor; ?>
-<!--                            </select>-->
-<!--                            <button type="button" class="btn-green-outline btn-add btn-add__allowed-hour" style="width: 42px"></button>-->
-<!--                        </div>-->
-<!--                        <table class="allowed_hours_list table mr-3 ml-3"></table>-->
-<!--                    </div>-->
-
-
-                    <!--                    <table class="table table-bordered" style="table-layout: fixed">-->
-                    <!--                        <thead>-->
-                    <!--                        <tr>-->
-                    <!--                            <th style="width: 90px">-->
-                    <!--                                <button onclick="addRow(event)" class="btn btn-sm btn-outline-success">-->
-                    <!--                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">-->
-                    <!--                                        <line x1="12" y1="5" x2="12" y2="19"></line>-->
-                    <!--                                        <line x1="5" y1="12" x2="19" y2="12"></line>-->
-                    <!--                                    </svg>-->
-                    <!--                                </button>-->
-                    <!--                            </th>-->
-                    <!--                            <th style="width: 250px">نوع تمرین</th>-->
-                    <!--                            <th style="width: 250px">ترتیب</th>-->
-                    <!--                            <th style="width: 120px">ست</th>-->
-                    <!--                            <th style="width: 175px">تکرار</th>-->
-                    <!--                            <th style="width: 200px">ریتم</th>-->
-                    <!--                            <th style="width: 200px">استراحت<span style="font-size: 10px">(ثانیه)</span></th>-->
-                    <!--                            <th style="width: 300px">توضیحات</th>-->
-                    <!--                        </tr>-->
-                    <!--                        </thead>-->
-                    <!--                        <tbody>-->
-                    <!--                        </tbody>-->
-                    <!--                    </table>-->
-
                     <div class="col-12 text-left">
                         <button type="submit" class="btn-green-outline btn-add px-4 py-2"> افزودن استدیو </button>
                     </div>

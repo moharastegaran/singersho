@@ -99,14 +99,15 @@
 <script src="assets/js/snackbar.min.js"></script>
 <script src="assets/js/magnific-popup.min.js"></script>
 
+<script src="assets/js/select2.min.js"></script>
+<script src="assets/js/select2-custom.min.js"></script>
+
 <?php if (strpos($page_name, 'profile') === false) : ?>
 
     <script src="assets/js/crange-slider.js"></script>
     <script src="assets/js/owl.carousel.min.js"></script>
     <!--<script src="assets/js/jquery.nice-select.min.js"></script>-->
     <script src="assets/js/perfect-scrollbar.min.js"></script>
-    <script src="assets/js/select2.min.js"></script>
-    <script src="assets/js/select2-custom.min.js"></script>
     <script src="assets/js/main.js"></script>
 
 <?php else : ?>
@@ -116,6 +117,7 @@
     <script src="assets/js/custom-bs-maxlength.js"></script>
     <script src="assets/js/persian-datepicker.min.js"></script>
     <script src="assets/js/profile.js"></script>
+
 
 <?php endif; ?>
 </body>

@@ -29,37 +29,47 @@ $cart_details = array(); ?>
                                     <th>محصول</th>
                                     <th>عنوان</th>
                                     <th>قیمت</th>
+                                    <th style="width: 25%">جزئیات</th>
                                     <th></th>
                                 </tr>
                                 </thead>
 
                                 <tbody>
-                                <?php for ($i = 0; $i < count($cart_details['details']); $i++) : ?>
+                                <?php for ($i = 0; $i < count($cart_details['details']); $i++) :
+                                    $type = $cart_details['details'][$i]['type']; ?>
                                     <tr data-id="<?php echo $cart_details['details'][$i]['id']; ?>"
-                                        data-type="<?php echo $cart_details['details'][$i]['type']; ?>">
-                                        <?php switch ($cart_details['details'][$i]['type']) :
-                                            case 'package' :
-                                            case 'advisor' : ?>
-                                                <td>
-                                                    <div class="cart__img">
-                                                        <img src="<?php echo $cart_details['details'][$i]['image']; ?>"
-                                                             alt="<?php echo $cart_details['details'][$i]['full_name']; ?>">
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <?php if ($cart_details['details'][$i]['type'] === 'package') : ?>
-                                                    <a href="package.php?id=<?php echo $cart_details['details'][$i]['id']; ?>">
-                                                        <?php endif ?>
-                                                        <?php echo $cart_details['details'][$i]['full_name']; ?>
-                                                        <?php if ($cart_details['details'][$i]['type'] === 'package') : ?>
-                                                    </a>
-                                                <?php endif; ?>
-                                                </td>
-                                                <td><span class="cart__price">
+                                        data-type="<?php echo $type; ?>">
+                                        <td>
+                                            <div class="cart__img">
+                                                <img src="<?php echo $cart_details['details'][$i]['image']; ?>"
+                                                     alt="<?php echo $cart_details['details'][$i]['full_name']; ?>">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="<?php echo ($type === 'advisor' || $type === 'teammate') ? 'artist' : $type; ?>.php?id=<?php echo $cart_details['details'][$i]['type_id']; ?>">
+                                                <?php echo $cart_details['details'][$i]['full_name']; ?>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span class="cart__price">
                                                         <?php echo format_price($cart_details['details'][$i]['price']) . ' تومان' ?>
-                                                    </span></td>
-                                                <?php break; ?>
-                                            <?php endswitch; ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="cart__details">
+                                                <?php $cart_desc = $cart_details['details'][$i]['details']; ?>
+                                                <?php switch ($type) :
+                                                    case 'advisor'  : ?>
+                                                        ساعت و زمان مشاوره
+                                                        <?php echo $cart_desc['shamsi_date_1'] ?>
+                                                        ساعت
+                                                        <?php echo $cart_desc['time']['started_at'] ?>
+                                                        تا
+                                                        <?php echo $cart_desc['time']['ended_at'] ?>
+                                                        <?php break; ?>
+                                                    <?php endswitch; ?>
+                                            </span>
+                                        </td>
                                         <td>
                                             <button class="cart__delete" type="button">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

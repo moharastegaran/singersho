@@ -1,9 +1,14 @@
-// let is_artist = false, user_first_name, user_last_name, user_email, user_melli_code, artist_advise_price;
-// let __url__ = "";
-// let prev = null;
-
 $(document).ready(function () {
 
+    $('#advisorDateTimesAccordion .collapse').on('shown.bs.collapse', function () {
+        $(this).parent().find(".icons").html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg>');
+    }).on('hidden.bs.collapse', function () {
+        $(this).parent().find(".icons").html('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    }).on('hide.bs.collapse', function () {
+        const $element = $('#advisorDateTimesAccordion .collapse.show').closest('.card');
+        const deletableTimes = $element.find('.advisor__time-badge.selected.deleted a');
+        handleAdvisorTime($element.data('date'),deletableTimes,true);
+    });
 
     let userExperienceThumbnail, userProfileAvatar, studioImages;
     if ($('.custom-file-container').data('upload-id') === 'userExperienceThumbnail')
@@ -31,10 +36,18 @@ $(document).ready(function () {
         formatDate: "YYYY-0M-0D",
         cellWidth: 25,
         cellHeight: 20,
+        // startDate: "1400-10-10",
+        // endDate: null,
         calendarPosition: {
             x: 20,
             y: 0,
         }
+    });
+    $('select[name="advisor_times"]').select2({
+        width: "100%",
+        dir: "rtl",
+        tags: true,
+        minimumResultsForSearch: -1
     });
 
     $('#userAddTitleForm').on('show.bs.collapse', function () {
@@ -159,8 +172,6 @@ $(document).ready(function () {
         e.preventDefault();
         const $this = $(this);
         $this.closest('.title-list-item').addClass('has-focus');
-
-        $('#deleteModal-container').fadeIn();
     });
 
     $('#userAddExperienceForm').on('submit', function (e) {
@@ -310,6 +321,126 @@ $(document).ready(function () {
         $(this).siblings('li').addClass('d-none');
     });
 
+    $('#advisorDateTimesAccordion .btn__select-all').on('click', function (e) {
+        e.preventDefault();
+        const badges = $(this).closest('.card-body').find('.advisor__time-badge');
+        badges.addClass('selected');
+    });
+
+    $('.profile-advisor__times').on('click', '.advisor__time-badge', function (e) {
+        e.preventDefault();
+        $(this).toggleClass('added deleted');
+    });
+
+    $('.profile-advisor__times .btn__add-datetime').on('click', function (e) {
+        e.preventDefault();
+        const parent = $('#advisorDateTimesAccordion');
+        const date = $('[name="advisor_date"]').val();
+        const cards = parent.find('.card');
+        let isOk = true;
+        for (let i = 0; i < cards.length; i++) {
+            if (cards.eq(i).data('date')===date){
+                isOk=false;
+                break;
+            }
+        }
+        // console.log(...cardsDates);
+        // console.log(date);
+        if (!isOk) {
+            Snackbar.show({
+                text: 'تاریخ قبلا اضافه شده است',
+                showAction: false,
+                pos: 'top-right danger',
+                duration: 3000
+            });
+        } else {
+            const accordion = $('#advisorDateTimesAccordion');
+            const content = $('#advisorDateTimesAccordion .card.d-none').html();
+            accordion.prepend('<div class="card">' + content + '</div>');
+        }
+        // $.ajax({
+        //     method: 'POST',
+        //     url: 'ajax/artists/advisor/add.php',
+        //     data: {date: date},
+        //     success: function (response) {
+        //         console.log("res : " + response);
+        //         response = JSON.parse(response);
+        //         if (response.error){
+        //             Snackbar.show({
+        //                 text: response.hasOwnProperty('messages') ? response.messages[0] : 'مشکلی پیش آمد. مجددا امتحان کنید',
+        //                 showAction: false,
+        //                 pos: 'top-right danger',
+        //                 duration: 3000
+        //             });
+        //             }else{
+        //                 const accordion = $('#advisorDateTimesAccordion');
+        //                 // const randNumber = Math.random()*1000;
+        //                 // let content = accordion.find('.card').last().html();
+        //                 const content = $('#advisorDateTimesAccordion .card.d-none').html();
+        //                 // content = content.toString().replace(idAttr,'advisorDateTimesAccordionNumber'+randNumber);
+        //                 accordion.prepend('<div class="card">'+content+'</div>');
+        //         }
+        //     }, error: function (error) {
+        //         console.log("err : " + error);
+        //     }
+        // })
+    });
+
+    $('.profile-advisor__times').on('click', '.btn__save-all', function (e) {
+        e.preventDefault();
+        const parent = $(this).closest('.card');
+        const times = parent.find('.advisor__time-badge.added:not(.selected) a');
+        handleAdvisorTime(parent.data('date'),times);
+    });
+
+    $('.profile-advisor__times').on('click', '.remove__items-all', function (e) {
+        e.preventDefault();
+        $('#advisorDateTimesAccordion').collapse('hide');
+        const parent = $(this).closest('.card');
+        const times = parent.find('.advisor__time-badge.selected a');
+        handleAdvisorTime(parent.data('date'),times,true);
+        parent.fadeOut("slow",function (){
+           setTimeout(function (){parent.remove()},100);
+        });
+    })
+
+    function handleAdvisorTime(date,listItems,is_delete=false){
+        if (listItems.length>0){
+            let timesStr = "";
+            for (let i = 0; i < listItems.length; i++) {
+                timesStr += listItems.eq(i).data('id');
+                if (i < listItems.length - 1)
+                    timesStr += '_';
+            }
+            $.ajax({
+                method: 'POST',
+                url: 'ajax/artists/advisor/'+(is_delete?'delete':'add')+'.php',
+                data: {date: date, time: timesStr},
+                success: function (response) {
+                    console.log("res : " + response);
+                    response = JSON.parse(response);
+                    if (!response.error) {
+                    //     Snackbar.show({
+                    //         text: response.hasOwnProperty('messages') ? response.messages[0] : 'مشکلی پیش آمد. مجددا امتحان کنید',
+                    //         showAction: false,
+                    //         pos: 'top-right danger',
+                    //         duration: 3000
+                    //     });
+                    // }else{
+                        if (!is_delete){
+                            $('#advisorDateTimesAccordion').find('.collapse.show').collapse('hide');
+                        }
+                    }
+                }, error: function (error) {
+                    console.log("err : " + error);
+                }
+            })
+        }else if (!is_delete){
+            $('#advisorDateTimesAccordion').find('.collapse.show').collapse('hide');
+        }
+    }
+
+
     $('#formAddStudio').on('submit', function (e) {
         console.log("here");
         e.preventDefault();
@@ -410,7 +541,7 @@ $(document).ready(function () {
 
 
     $('.profile-box__avatar').magnificPopup({
-        type : 'image',
+        type: 'image',
         fixedContentPos: true,
         fixedBgPos: true,
         overflowY: 'auto',
@@ -421,7 +552,7 @@ $(document).ready(function () {
         mainClass: 'mfp-fade'
     });
     $('.btn__change-mobile').magnificPopup({
-        type : 'inline',
+        type: 'inline',
         fixedContentPos: true,
         fixedBgPos: true,
         overflowY: 'auto',
@@ -591,25 +722,25 @@ $(document).ready(function () {
 
     $("input[name='first_name'],input[name='last_name'],input[name='email'],input[name='melli_code'],input[name='advise_price'],textarea[name='experience'],textarea[name='order_description']")
         .on("blur", function () {
-            if ($(this).val()!==$(this).data('current'))
+            if ($(this).val() !== $(this).data('current'))
                 updateUserData($(this));
         });
 
-    $('input[name="avatar"]').on('change',function (){
+    $('input[name="avatar"]').on('change', function () {
         let formData = new FormData();
-        formData.append('avatar',$(this)[0].files[0]);
+        formData.append('avatar', $(this)[0].files[0]);
         $.ajax({
-            method : 'POST',
-            url : 'ajax/user_account.php',
+            method: 'POST',
+            url: 'ajax/user_account.php',
             data: formData,
             cache: false,
             processData: false,
             contentType: false,
-            success : function (response){
+            success: function (response) {
                 response = JSON.parse(response);
-                if (!response.error){
-                    $(this).closest('.profile-box__avatar').css({backgroundImage:'url('+response.avatar+')'})
-                }else{
+                if (!response.error) {
+                    $(this).closest('.profile-box__avatar').css({backgroundImage: 'url(' + response.avatar + ')'})
+                } else {
                     Snackbar.show({
                         text: response.hasOwnProperty('messages') ? response.messages[0] : 'مشکلی پیش آمد. مجددا امتحان کنید',
                         showAction: false,
@@ -617,23 +748,23 @@ $(document).ready(function () {
                         duration: 3000
                     });
                 }
-            },error : function (error){
-                console.log("err : "+error);
+            }, error: function (error) {
+                console.log("err : " + error);
             }
         });
     });
 
-    $(':checkbox[name="is_advisor"]').on('change',function (e){
+    $(':checkbox[name="is_advisor"]').on('change', function (e) {
         e.preventDefault();
         $.ajax({
-            method : 'POST',
-            url : 'ajax/user_account.php',
-            data : {
-                name : 'accept_advisor'
+            method: 'POST',
+            url: 'ajax/user_account.php',
+            data: {
+                name: 'accept_advisor'
             },
-            success : function (response){
+            success: function (response) {
                 response = JSON.parse(response);
-                if (!response.error){
+                if (!response.error) {
                     Snackbar.show({
                         text: response.being_advisor ? 'قابلیت مشاوره برای شما فعال شد. لطفا هزینه مشاوره را نیز وارد کنید' : 'قابلیت مشاوره غیر فعال شد',
                         showAction: false,
@@ -641,8 +772,8 @@ $(document).ready(function () {
                         duration: 3000
                     });
                 }
-            },error : function (error){
-                console.log("error : "+error);
+            }, error: function (error) {
+                console.log("error : " + error);
             }
         })
     })
@@ -667,7 +798,7 @@ $(document).ready(function () {
                         errmsg += response.messages[i] + '<br>';
                     }
                     form.before("<span class='input-error'>" + errmsg + "</span>")
-                }else{
+                } else {
                     form.find('input').val(null);
                     Snackbar.show({
                         text: response.messages[0],
@@ -693,18 +824,18 @@ $(document).ready(function () {
                     console.log("res : " + response);
                     response = JSON.parse(response);
                     if (input !== null) {
-                        if (input.attr('name')==='first_name' || input.attr('name')==='last_name'){
-                            $('.profile-box__username').text($('[name="first_name"]').val()+' '+$('[name="last_name"]').val());
+                        if (input.attr('name') === 'first_name' || input.attr('name') === 'last_name') {
+                            $('.profile-box__username').text($('[name="first_name"]').val() + ' ' + $('[name="last_name"]').val());
                         }
                         input.siblings(".input-error").remove();
                         if (response.error) {
                             input.after("<span class='input-error'>" + response.messages[0] + "</span>")
-                        }else{
-                            input.data('current',input.val());
+                        } else {
+                            input.data('current', input.val());
                             input.after('<svg xmlns="http://www.w3.org/2000/svg" class="validated" viewBox="0 0 24 24">\n' +
                                 '                                <path d="M22.319,4.431,8.5,18.249a1,1,0,0,1-1.417,0L1.739,12.9a1,1,0,0,0-1.417,0h0a1,1,0,0,0,0,1.417l5.346,5.345a3.008,3.008,0,0,0,4.25,0L23.736,5.847a1,1,0,0,0,0-1.416h0A1,1,0,0,0,22.319,4.431Z"/>\n' +
                                 '                            </svg>');
-                            input.next('.validated').fadeIn("slow",function (){
+                            input.next('.validated').fadeIn("slow", function () {
                                 input.next('.validated').fadeOut(5000);
                             });
                         }

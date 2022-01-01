@@ -6,6 +6,8 @@ $get_user = callAPI('GET', RAW_API . 'me', false, true);
 $user = json_decode($get_user, true);
 $username = $user['data']['user']['first_name'] . ' ' . $user['data']['user']['last_name'];
 $usermobile = $user['data']['user']['mobile'];
+if ($user['data']['is_artist'] && !isset($_SESSION['artist_id']))
+    $_SESSION['artist_id'] = $user['data']['other_info']['artist']['id']
 ?>
 
     <div class="container-fluid">
@@ -34,7 +36,16 @@ $usermobile = $user['data']['user']['mobile'];
                                 </div>
                             <?php endif; ?>
                             <div class="profile-box__header-content">
-                                <div class="profile-box__username"><?php echo $username; ?></div>
+                                <div class="profile-box__username">
+                                    <?php if ($user['data']['other_info']['artist']['is_advisor'] == 1): ?>
+                                    <a href="artist.php?id=<?php echo $user['data']['other_info']['artist']['id'] ?>"
+                                       target="_blank">
+                                        <?php endif; ?>
+                                        <?php echo $username; ?>
+                                        <?php if ($user['data']['other_info']['artist']['is_advisor'] == 1): ?>
+                                    </a>
+                                <?php endif; ?>
+                                </div>
                                 <div class="profile-box__phone"><?php echo $usermobile; ?></div>
                             </div>
                         </div>
@@ -54,6 +65,14 @@ $usermobile = $user['data']['user']['mobile'];
                                     ویرایش اطلاعات
                                 </a>
                             </li>
+                            <?php if ($user['data']['other_info']['artist']['is_advisor'] == 1) : ?>
+                                <li>
+                                    <a href="javascript:void(0)" data-target="#advisor-times"
+                                       class="profile-menu__item profile-menu__item-advisortimes <?php echo $hash === 'advisor-times' ? 'active' : '' ?> ">
+                                        زمان‌های مشاوره
+                                    </a>
+                                </li>
+                            <?php endif; ?>
                             <li>
                                 <a href="javascript:void(0)" data-target="#add-studio"
                                    class="profile-menu__item profile-menu__item-addstudio <?php echo $hash === 'add-studio' ? 'active' : '' ?>">افزودن

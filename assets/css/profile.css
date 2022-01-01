@@ -88,7 +88,7 @@
     margin-right: 16px;
 }
 
-.profile-box__username {
+.profile-box__username ,.profile-box__username a{
     font-size: 1.143rem;
     line-height: 1.375;
     vertical-align: center;
@@ -169,6 +169,10 @@
 
 .profile-menu__item.profile-menu__item-editinfo:before {
     background-image: url(../img/icons/edit.svg);
+}
+
+.profile-menu__item.profile-menu__item-advisortimes:before {
+    background-image: url(../img/icons/clock.svg);
 }
 
 .profile-menu__item.profile-menu__item-myorders:before {
@@ -448,6 +452,12 @@ textarea {
     margin-bottom: .5rem;
 }
 
+.sign__group input.input-large,.sign__group textarea.input-large,.sign__group select.input-large{
+    min-height: 48px;
+    max-height: 52px;
+   font-size: 17px;
+}
+
 .sign__group .validated{
     position: absolute;
     left: 0;
@@ -508,6 +518,12 @@ label.sign__label.light{
     transition: .25s;
     cursor: pointer;
     background-color: transparent;
+}
+
+.btn-large{
+    font-size: 1rem;
+    line-height: 1.7;
+    padding: .5rem;
 }
 
 .btn-green-outline {
@@ -927,4 +943,103 @@ input[type=checkbox], input[type=radio] {
     cursor: pointer;
     top: 50%;
     transform: translateY(-50%);
+}
+
+/*****************/
+/* UI Accordions */
+/*****************/
+.card {
+    border: 1px solid #34343422;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    background: #272727; }
+
+.card-header {
+    background-color: var(--dark-2);
+    border-radius: 4px;
+    padding: 0;
+    position: relative;
+    border-bottom: none; }
+.card-header section > div {
+    padding: 13px 19px;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    letter-spacing: 1px; }
+.card-header section > div.collapsed {
+    color: #888ea8; }
+.card-header section > div:not(.collapsed) {
+    color: #25d5e4;
+    border-bottom: 1px solid #34343422;
+    font-weight: 600; }
+.card-header section > div .icons {
+    position: absolute;
+    left: 48px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px; }
+.card-header section > div a.remove__items-all {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px;
+    text-decoration: none;
+    color : var(--red-danger);
+    font-family: iranyekanLight;
+    font-size: 13px;
+    font-weight: 200;
+    cursor: pointer;
+}
+.card-header section > div .icons svg {
+    width: 18px;
+}
+
+.card .card-body p {
+    color: #888ea8;
+    letter-spacing: 1px;
+    font-size: 13px; }
+.card .card-body p:not(:last-child) {
+    margin-bottom: 10px; }
+
+.card .card-body ul {
+    margin-bottom: 0; }
+.card .card-body ul li {
+    font-size: 12px;
+    letter-spacing: 1px; }
+.card .card-body ul li:not(:last-child) {
+    margin-bottom: 5px; }
+.card .card-body ul li a {
+    color: #888ea8;
+    font-size: 13px;
+    font-weight: 600; }
+.card .card-body ul li a:hover {
+    color: #1b55e2; }
+.accordion-icons .accordion-icon {
+    display: inline-block;
+    margin-left: 10px; }
+.accordion-icons .accordion-icon svg {
+    color: #888ea8;
+    margin-left: 6px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    fill: rgba(0, 23, 55, 0.08); }
+
+.accordion-icons div:not(.collapsed) .accordion-icon svg {
+    color: #222227;
+    fill: var(--light-yellow);
+    opacity: .5;
+}
+#advisorDateTimesAccordion .select2-selection__choice {
+    font-family: faNum;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+#advisorDateTimesAccordion .select2-selection,
+#advisorDateTimesAccordion .select2-search.select2-search--inline input{
+    background-color: var(--dark-2) !important;
+}
+.select2-results__option{
+    font-family: faNum;
 }

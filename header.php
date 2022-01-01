@@ -5,6 +5,8 @@ $page_name = substr($current_url, strrpos($current_url, '/') + 1);
 $cart_counter = 0;
 if (isset($_SESSION['access_token'])) {
     $cart = callAPI('GET', RAW_API . 'cart', false, true);
+//    echo $cart;
+//    die()
     $cart = json_decode($cart, true);
     if (!$cart['error'] && count($cart['cart']['details'])) {
         $_SESSION['cart'] = json_encode([
@@ -37,13 +39,13 @@ if (isset($_SESSION['access_token'])) {
     <link rel="stylesheet" type="text/css" href="assets/css/font-awesome/all.min.css">
     <link rel="stylesheet" href="assets/css/snackbar.min.css">
     <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/select2.min.css">
 
     <?php if (strpos($page_name, 'profile') === false) : ?>
         <link rel="stylesheet" type="text/css" href="assets/css/owl.carousel.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/owl.theme.default.min.css">
 
         <link rel="stylesheet" type="text/css" href="assets/css/perfect-scrollbar.css">
-        <link rel="stylesheet" href="assets/css/select2.min.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
 
