@@ -39,107 +39,98 @@ if (isset($_GET['id'])) {
             </ul>
         </nav>
         <div class="row">
-            <div class="col-lg-3 col-md-3 px-md-2">
-                <div class="artist__image-container">
-                    <img src="<?php echo $artist['artist']['avatar'] ?: 'assets/img/artist-avatar-placeholder.png' ?>">
-                </div>
-                <div class="artist__profile-info">
-                    <h1 class="fullname">
-                        <?php echo $artist['artist']['first_name'] . ' ' . $artist['artist']['last_name']; ?>
-                    </h1>
-                    <ul class="artist__info-list">
-                        <li class="artist__info-list-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M22.319,4.431,8.5,18.249a1,1,0,0,1-1.417,0L1.739,12.9a1,1,0,0,0-1.417,0h0a1,1,0,0,0,0,1.417l5.346,5.345a3.008,3.008,0,0,0,4.25,0L23.736,5.847a1,1,0,0,0,0-1.416h0A1,1,0,0,0,22.319,4.431Z"/>
-                            </svg>
-                            <span>مشاوره می‌دهد</span>
-                            <p class="is_advisor main__table-text--<?php echo $artist['artist']['is_advisor'] == 1 ? 'approval' : 'failed' ?>">
-                                <?php echo $artist['artist']['is_advisor'] == 1 ? 'بله' : 'خیر'; ?>
-                            </p>
-                        </li>
-                        <li class="artist__info-list-item">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M20.457,4.555,12.486.126a1,1,0,0,0-.972,0L3.543,4.555A3,3,0,0,0,2,7.177V19a5.006,5.006,0,0,0,5,5H17a5.006,5.006,0,0,0,5-5V7.177A3,3,0,0,0,20.457,4.555ZM20,19a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V7.177A1,1,0,0,1,4.515,6.3L12,2.144,19.486,6.3A1,1,0,0,1,20,7.177Z"/>
-                                <circle cx="12" cy="7" r="1.5"/>
-                            </svg>
-                            <span>هزینه مشاوره</span>
-                            <p class="advise_price" data-price="<?php echo $artist['artist']['advise_price']; ?>">
-                                <?php echo 'ساعتی ' . format_price($artist['artist']['advise_price']) . ' تومان' ?>
-                            </p>
-                            <?php if ($artist['artist']['is_advisor'] == 1): ?>
-                                <?php if (isset($times) && count($times)) : ?>
-                                    <a href="#modal-topup" class="select__advisor"
-                                       data-id="<?php echo $artist['artist']['id']; ?>">درخواست مشاوره</a>
-                                <?php endif; ?>
+            <div class="col-lg-3 col-md-3 px-md-2" style="overflow: visible !important;">
+                <div class="artist__side-panel fixed-element" style="position: static; top: 0">
+                    <div class="artist__image-container">
+                        <img src="<?php echo $artist['artist']['avatar'] ?: 'assets/img/artist-avatar-placeholder.png' ?>">
+                    </div>
+                    <div class="artist__profile-info">
+                        <h1 class="fullname">
+                            <?php echo $artist['artist']['first_name'] . ' ' . $artist['artist']['last_name']; ?>
+                        </h1>
+                        <ul class="artist__info-list">
+                            <li class="artist__info-list-item">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M22.319,4.431,8.5,18.249a1,1,0,0,1-1.417,0L1.739,12.9a1,1,0,0,0-1.417,0h0a1,1,0,0,0,0,1.417l5.346,5.345a3.008,3.008,0,0,0,4.25,0L23.736,5.847a1,1,0,0,0,0-1.416h0A1,1,0,0,0,22.319,4.431Z"/>
+                                </svg>
+                                <span>مشاوره می‌دهد</span>
+                                <?php $artist_is_advisor = $artist['artist']['is_advisor'] == 1 && $artist['artist']['advise_price'] > 0; ?>
+                                <p class="is_advisor main__table-text--<?php echo $artist_is_advisor ? 'approval' : 'failed' ?>">
+                                    <?php echo $artist_is_advisor ? 'بله' : 'خیر'; ?>
+                                </p>
+                            </li>
+                            <?php if ($artist_is_advisor): ?>
+                                <li class="artist__info-list-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M20.457,4.555,12.486.126a1,1,0,0,0-.972,0L3.543,4.555A3,3,0,0,0,2,7.177V19a5.006,5.006,0,0,0,5,5H17a5.006,5.006,0,0,0,5-5V7.177A3,3,0,0,0,20.457,4.555ZM20,19a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V7.177A1,1,0,0,1,4.515,6.3L12,2.144,19.486,6.3A1,1,0,0,1,20,7.177Z"/>
+                                        <circle cx="12" cy="7" r="1.5"/>
+                                    </svg>
+                                    <span>هزینه مشاوره</span>
+                                    <p class="advise_price"
+                                       data-price="<?php echo $artist['artist']['advise_price']; ?>">
+                                        <?php echo 'ساعتی ' . format_price($artist['artist']['advise_price']) . ' تومان' ?>
+                                    </p>
+
+                                    <?php if (isset($times) && count($times)) : ?>
+                                        <a href="#modal-topup" class="select__advisor"
+                                           data-id="<?php echo $artist['artist']['id']; ?>">درخواست مشاوره</a>
+                                    <?php endif; ?>
+                                </li>
                             <?php endif; ?>
-<!--                            --><?php //if (count($cart_advisors)) : ?>
-<!--                                <ul class="listicon">-->
-<!--                                    --><?php //for ($k = 0; $k < count($cart_advisors); $k++) : ?>
-<!--                                        <li class="listicon-item" data-id="--><?php //echo $cart_advisors[$k]['id']; ?><!--">-->
-<!--                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
-<!--                                                <path d="m23.707 16.325a1 1 0 0 0 -1.414 0l-5.627 5.628-2.688-2.653a1 1 0 0 0 -1.435 1.4l2.744 2.7a1.876 1.876 0 0 0 1.345.6h.033a1.873 1.873 0 0 0 1.335-.553l5.707-5.708a1 1 0 0 0 0-1.414z"/>-->
-<!--                                                <path d="m11.09 21.959a10 10 0 1 1 10.91-9.959c0 .307-.015.611-.041.911a1 1 0 0 0 .907 1.089.989.989 0 0 0 1.085-.907c.032-.363.049-.726.049-1.093a12 12 0 1 0 -13.09 11.951h.091a1 1 0 0 0 .089-2z"/>-->
-<!--                                                <path d="m11 7v4.586l-2.707 2.707a1 1 0 1 0 1.414 1.414l3-3a1 1 0 0 0 .293-.707v-5a1 1 0 0 0 -2 0z"/>-->
-<!--                                            </svg>-->
-<!--                                            --><?php //echo $cart_advisors[$k]['']; ?>
-<!--                                        </li>-->
-<!--                                    --><?php //endfor; ?>
-<!--                                </ul>-->
-<!--                            --><?php //endif; ?>
-                        </li>
-                        <li class="artist__info-list-item">
-                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="m14.6 21.3c-.3.226-.619.464-.89.7h2.29a1 1 0 0 1 0 2h-4a1 1 0 0 1 -1-1c0-1.5 1.275-2.456 2.4-3.3.75-.562 1.6-1.2 1.6-1.7a1 1 0 0 0 -2 0 1 1 0 0 1 -2 0 3 3 0 0 1 6 0c0 1.5-1.275 2.456-2.4 3.3zm8.4-6.3a1 1 0 0 0 -1 1v3h-1a1 1 0 0 1 -1-1v-2a1 1 0 0 0 -2 0v2a3 3 0 0 0 3 3h1v2a1 1 0 0 0 2 0v-7a1 1 0 0 0 -1-1zm-10-3v-5a1 1 0 0 0 -2 0v4h-3a1 1 0 0 0 0 2h4a1 1 0 0 0 1-1zm10-10a1 1 0 0 0 -1 1v2.374a12 12 0 1 0 -14.364 17.808 1.015 1.015 0 0 0 .364.068 1 1 0 0 0 .364-1.932 10 10 0 1 1 12.272-14.318h-2.636a1 1 0 0 0 0 2h3a3 3 0 0 0 3-3v-3a1 1 0 0 0 -1-1z"/>
-                            </svg>
-                            <span>مدت تحویل</span>
-                            <p class="delivery_time"
-                               data-delivery-time="<?php echo $artist['artist']['delivery_time']; ?>">
-                                <?php echo format_price($artist['artist']['delivery_time']) . ' روز' ?>
-                            </p>
-                        </li>
-                    </ul>
-                    <div style="padding-left: 40px;padding-right: 40px">
-                        <!--                        --><?php //if (count($artist['titles'])) : ?>
-                        <!--                            <div class="css-select w-100">-->
-                        <!--                                <input type="hidden" name="artist_title_id" value="" data-css-select="hidden"/>-->
-                        <!--                                <input type="text" class="css-select__selected" value="انتخاب مهارت" readonly-->
-                        <!--                                       data-css-select="selected"/>-->
-                        <!--                                <div class="css-select__dropdown">-->
-                        <!--                                    --><?php //for ($i = 0; $i < count($artist['titles']); $i++) : ?>
-                        <!--                                        <button type="button" class="css-select__option"-->
-                        <!--                                                data-css-select="-->
-                        <?php //echo $artist['titles'][$i]['id']; ?><!--">-->
-                        <!--                                            --><?php //echo $artist['titles'][$i]['name']; ?>
-                        <!--                                        </button>-->
-                        <!--                                    --><?php //endfor; ?>
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        --><?php //endif; ?>
-                        <!--                        --><?php //if ($artist['artist']['is_advisor'] == 1) : ?>
-                        <!--                            <div class="col-12 text-right my-2">-->
-                        <!--                                <div class="n-chk">-->
-                        <!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
-                        <!--                                        <input type="radio" class="new-control-input" name="artist_type" value="teammate"-->
-                        <!--                                               checked="">-->
-                        <!--                                        <span class="new-control-indicator"></span> مهارت-->
-                        <!--                                    </label>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="n-chk">-->
-                        <!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
-                        <!--                                        <input type="radio" class="new-control-input" name="artist_type" value="advisor">-->
-                        <!--                                        <span class="new-control-indicator"></span> مشاوره-->
-                        <!--                                    </label>-->
-                        <!--                                </div>-->
-                        <!--                                <div class="n-chk">-->
-                        <!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
-                        <!--                                        <input type="radio" class="new-control-input" name="artist_type"-->
-                        <!--                                               value="advisor_teammate">-->
-                        <!--                                        <span class="new-control-indicator"></span> هر دو-->
-                        <!--                                    </label>-->
-                        <!--                                </div>-->
-                        <!--                            </div>-->
-                        <!--                        --><?php //endif; ?>
-                        <!--                        <a href="javascript:void(0)" class="btn__buy-artist w-100">انتخاب هنرمند</a>-->
+                            <li class="artist__info-list-item">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="m14.6 21.3c-.3.226-.619.464-.89.7h2.29a1 1 0 0 1 0 2h-4a1 1 0 0 1 -1-1c0-1.5 1.275-2.456 2.4-3.3.75-.562 1.6-1.2 1.6-1.7a1 1 0 0 0 -2 0 1 1 0 0 1 -2 0 3 3 0 0 1 6 0c0 1.5-1.275 2.456-2.4 3.3zm8.4-6.3a1 1 0 0 0 -1 1v3h-1a1 1 0 0 1 -1-1v-2a1 1 0 0 0 -2 0v2a3 3 0 0 0 3 3h1v2a1 1 0 0 0 2 0v-7a1 1 0 0 0 -1-1zm-10-3v-5a1 1 0 0 0 -2 0v4h-3a1 1 0 0 0 0 2h4a1 1 0 0 0 1-1zm10-10a1 1 0 0 0 -1 1v2.374a12 12 0 1 0 -14.364 17.808 1.015 1.015 0 0 0 .364.068 1 1 0 0 0 .364-1.932 10 10 0 1 1 12.272-14.318h-2.636a1 1 0 0 0 0 2h3a3 3 0 0 0 3-3v-3a1 1 0 0 0 -1-1z"/>
+                                </svg>
+                                <span>مدت تحویل</span>
+                                <p class="delivery_time"
+                                   data-delivery-time="<?php echo $artist['artist']['delivery_time']; ?>">
+                                    <?php echo format_price($artist['artist']['delivery_time']) . ' روز' ?>
+                                </p>
+                            </li>
+                        </ul>
+                        <div style="padding-left: 40px;padding-right: 40px">
+                            <!--                        --><?php //if (count($artist['titles'])) : ?>
+                            <!--                            <div class="css-select w-100">-->
+                            <!--                                <input type="hidden" name="artist_title_id" value="" data-css-select="hidden"/>-->
+                            <!--                                <input type="text" class="css-select__selected" value="انتخاب مهارت" readonly-->
+                            <!--                                       data-css-select="selected"/>-->
+                            <!--                                <div class="css-select__dropdown">-->
+                            <!--                                    --><?php //for ($i = 0; $i < count($artist['titles']); $i++) : ?>
+                            <!--                                        <button type="button" class="css-select__option"-->
+                            <!--                                                data-css-select="-->
+                            <?php //echo $artist['titles'][$i]['id']; ?><!--">-->
+                            <!--                                            --><?php //echo $artist['titles'][$i]['name']; ?>
+                            <!--                                        </button>-->
+                            <!--                                    --><?php //endfor; ?>
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <!--                        --><?php //endif; ?>
+                            <!--                        --><?php //if ($artist['artist']['is_advisor'] == 1) : ?>
+                            <!--                            <div class="col-12 text-right my-2">-->
+                            <!--                                <div class="n-chk">-->
+                            <!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
+                            <!--                                        <input type="radio" class="new-control-input" name="artist_type" value="teammate"-->
+                            <!--                                               checked="">-->
+                            <!--                                        <span class="new-control-indicator"></span> مهارت-->
+                            <!--                                    </label>-->
+                            <!--                                </div>-->
+                            <!--                                <div class="n-chk">-->
+                            <!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
+                            <!--                                        <input type="radio" class="new-control-input" name="artist_type" value="advisor">-->
+                            <!--                                        <span class="new-control-indicator"></span> مشاوره-->
+                            <!--                                    </label>-->
+                            <!--                                </div>-->
+                            <!--                                <div class="n-chk">-->
+                            <!--                                    <label class="new-checkbox new-checkbox-rounded checkbox-outline-green">-->
+                            <!--                                        <input type="radio" class="new-control-input" name="artist_type"-->
+                            <!--                                               value="advisor_teammate">-->
+                            <!--                                        <span class="new-control-indicator"></span> هر دو-->
+                            <!--                                    </label>-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
+                            <!--                        --><?php //endif; ?>
+                            <!--                        <a href="javascript:void(0)" class="btn__buy-artist w-100">انتخاب هنرمند</a>-->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,12 +152,12 @@ if (isset($_GET['id'])) {
                             </span>
                                 <?php if ($_titles[$i]['pivot']['accept_order'] == 1) : ?>
                                     <a class="select__title" data-id="<?php echo $_titles[$i]['pivot']['id']; ?>">
-                                        افزودن
+                                        انتخاب
                                         (<?php echo '<span class="faNum">' . format_price($_titles[$i]['pivot']['order_price']) . ' تومان</span>' ?>
                                         )
                                     </a>
                                 <?php else : ?>
-                                    <a class="noselect__title">انتخاب غیر فعال</a>
+                                    <a class="noselect__title">غیر قابل انتخاب</a>
                                 <?php endif; ?>
                                 <!--                                    <div>-->
                                 <!--                                        <strong class="accepts_order ml-2">سفارش می‌پذیرد</strong>-->
@@ -249,7 +240,7 @@ if (isset($_GET['id'])) {
 
 
 <?php
-$cart_advisors = array_column($cart_advisors,'id');
+$cart_advisors = array_column($cart_advisors, 'id');
 if (count($times)) : ?>
     <div id="modal-topup" class="mfp-hide magnific-modal">
         <button class="modal__close" type="button">

@@ -21,40 +21,6 @@ $(document).ready(function () {
         }
     });
 
-    // $('.main__select2[name="cities"]').on('change', function () {
-    // const ps = new PerfectScrollbar('.select2-results__options', {
-    //     wheelSpeed: .5,
-    //     swipeEasing: !0,
-    //     minScrollbarLength: 40,
-    //     maxScrollbarLength: 300,
-    //     suppressScrollX: true
-    // });
-    // })
-    $('[name="sss"]').select2({
-        width: "100%",
-        dir: "rtl",
-        tags: false,
-        minimumResultsForSearch: -1
-    });
-
-    $('a[href="#mm-menu"]').on('click', function (e) {
-        e.preventDefault();
-        // $('html').addClass('mm-opening');
-        $('#mm-menu').addClass('mm-opened');
-        $('#mm-0').addClass('is-opening');
-        $('#mm-blocker').addClass('dblock is-opening');
-    });
-
-    $('#mm-blocker').on('click', function (e) {
-        e.preventDefault();
-        // $('html').removeClass('mm-opening');
-        $('#mm-menu').removeClass('mm-opened is-opening');
-        $('#mm-0').removeClass('is-opening');
-        setTimeout(function () {
-            $('#mm-blocker').removeClass('dblock is-opening')
-        }, 400);
-    })
-
     $(window).on('scroll load', function () {
         if ($(window).scrollTop() > 50) {
             $('header').addClass('sticky');
@@ -172,19 +138,7 @@ $(document).ready(function () {
         nav: false,
         margin: 10
     });
-    // $('.owl-carousel.studio__suggestions-carousel').owlCarousel({
-    //     mouseDrag: true,
-    //     touchDrag: true,
-    //     items: 3,
-    //     dots: false,
-    //     nav: false,
-    //     margin: 10,
-    //     responsive: {
-    //         0: {items: 1},
-    //         567: {items: 2},
-    //         992: {items: 3}
-    //     }
-    // });
+
     $('.main__nav--prev').on('click', function () {
         const carousel = $(this).siblings('.owl-carousel');
         carousel.trigger('prev.owl.carousel');

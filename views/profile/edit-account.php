@@ -1,5 +1,6 @@
 <?php
 global $user;
+global $is_user_artist;
 $artist = $user['data']['other_info']['artist'];
 ?>
 <div id="confirmationCodeModal" class="mfp-hide magnific-modal">
@@ -32,7 +33,7 @@ $artist = $user['data']['other_info']['artist'];
                 <div class="row">
 
                     <div class="row col-12 mb-4 mx-auto px-0">
-                        <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-3">
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
                             <div class="sign__group">
                                 <label class="sign__label" for="userFirstName">نام</label>
                                 <input id="userFirstName" type="text" autocomplete="off" name="first_name"
@@ -42,7 +43,7 @@ $artist = $user['data']['other_info']['artist'];
                             </div>
                         </div>
 
-                        <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-3">
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
                             <div class="sign__group">
                                 <label class="sign__label" for="userLastName">نام خانوادگی</label>
                                 <input id="userLastName" type="text" autocomplete="off" name="last_name"
@@ -52,7 +53,7 @@ $artist = $user['data']['other_info']['artist'];
                             </div>
                         </div>
 
-                        <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-3">
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
                             <div class="sign__group">
                                 <label class="sign__label" for="userEmailAddress">ایمیل</label>
                                 <input id="userEmailAddress" type="email" autocomplete="off" name="email"
@@ -62,7 +63,7 @@ $artist = $user['data']['other_info']['artist'];
                             </div>
                         </div>
 
-                        <div class="col-12 col-md-6 col-lg-12 col-xl-6 mb-3">
+                        <div class="col-12 col-md-6 col-lg-6 col-xl-6 mb-3">
                             <div class="sign__group">
                                 <label class="sign__label" for="userMelliCode">کد ملی</label>
                                 <input id="userMelliCode" type="text" name="melli_code" class="sign__input"
@@ -72,7 +73,7 @@ $artist = $user['data']['other_info']['artist'];
                         </div>
 
                         <!--                        visible only if user is artist -->
-                        <?php if ($user['data']['is_artist']): ?>
+                        <?php if (isset($artist)): ?>
                             <div class="col-12 is-artist-pending mt-3 mb-1">
                                 <div class="n-chk is-advisor-description text-light">
                                     <label class="new-checkbox checkbox-outline-green">
@@ -162,6 +163,80 @@ $artist = $user['data']['other_info']['artist'];
             <!--                                            </div>-->
             <!--                                        </div>-->
         </div>
+
+        <?php if (! $is_user_artist) : ?>
+            <div class="dashbox">
+                <div class="dashbox__title">
+                    <h3>رمز ورود</h3>
+                </div>
+                <div class="dashbox__list-wrap">
+                    <form class="row">
+                        <div class="col-lg-4 mb-3">
+                            <div class="form-group">
+                                <label class="sign__label" for="currentPassword">گذرواژه فعلی</label>
+                                <input id="currentPassword" type="password" name="old_password">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-3">
+                            <div class="form-group">
+                                <label class="sign__label" for="newPassword">گذرواژه جدید</label>
+                                <input id="newPassword" type="password" name="password">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-3">
+                            <div class="form-group">
+                                <label class="sign__label" for="newPasswordConfirmation">تکرار گذرواژه جدید</label>
+                                <input id="newPasswordConfirmation" type="password" name="password_confirmation">
+                            </div>
+                        </div>
+                        <div class="col-12 mb-1 text-left">
+                            <div class="form-group">
+                                <button type="submit" class="btn-purple btn__change-password">تغییر گذرواژه</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--                                        <div class="row is-artist-container my-3">-->
+                <!--                                            <div class="col-8 is-artist-description text-light">-->
+                <!--                                                در صورتی که علاقه مند به دریافت پروژه هستید. گزینه مقابل را فعال کنید و-->
+                <!--                                                رزومه-->
+                <!--                                                خود را کامل کنید.-->
+                <!--                                            </div>-->
+                <!--                                            <div class="col-4 text-center">-->
+                <!--                                                <label class="switch s-icons s-outline s-outline-success mr-2">-->
+                <!--                                                    &lt;!&ndash; set to checked if user is artist &ndash;&gt;-->
+                <!--                                                    <input type="checkbox" name="is_artist">-->
+                <!--                                                    <span class="slider"></span>-->
+                <!--                                                </label>-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+                <!--                                        &lt;!&ndash; visible only if user is artist &ndash;&gt;-->
+                <!--                                        <div class="row d-none is-artist-pending my-3">-->
+                <!--                                            &lt;!&ndash;<div class="row">&ndash;&gt;-->
+                <!--                                            <div class="col-8 is-advisor-description text-light">-->
+                <!--                                                در صورت که مشاوره کاری به دیگران انجام میدهید گزینه مقابل را فعال کنید و-->
+                <!--                                                هزینه مشاوره ساعتی را به تومان وارد کنید-->
+                <!--                                            </div>-->
+                <!--                                            <div class="col-4 text-center">-->
+                <!--                                                <label class="switch s-icons s-outline s-outline-primary mr-2"-->
+                <!--                                                       data-toggle="collapse" data-target="#AdvisorPriceContainer">-->
+                <!--                                                    &lt;!&ndash; set to checked if user is artist &ndash;&gt;-->
+                <!--                                                    <input type="checkbox" name="is_advisor">-->
+                <!--                                                    <span class="slider"></span>-->
+                <!--                                                </label>-->
+                <!--                                            </div>-->
+                <!--                                            &lt;!&ndash;</div>&ndash;&gt;-->
+                <!--                                            <div class="col-12 collapse" id="AdvisorPriceContainer">-->
+                <!--                                                <div class="sign__group mt-3">-->
+                <!--                                                    <label class="sign__label" for="artistAdvisePrice">هزینه مشاوره</label>-->
+                <!--                                                    <input id="artistAdvisePrice" type="text" name="advise_price"-->
+                <!--                                                           class="sign__input" autocomplete="off"-->
+                <!--                                                           placeholder="هزینه ساعتی به تومان">-->
+                <!--                                                </div>-->
+                <!--                                            </div>-->
+                <!--                                        </div>-->
+            </div>
+        <?php endif; ?>
     </div>
     <div class="col-lg-4">
         <div class="dashbox">
@@ -184,9 +259,10 @@ $artist = $user['data']['other_info']['artist'];
                 </form>
             </div>
         </div>
+        <?php if ( $is_user_artist) : ?>
         <div class="dashbox">
             <div class="dashbox__title">
-                <h3>کذرواژه</h3>
+                <h3>رمز ورود</h3>
             </div>
             <div class="dashbox__list-wrap">
                 <form class="row">
@@ -210,7 +286,7 @@ $artist = $user['data']['other_info']['artist'];
                     </div>
                     <div class="col-12 mb-1 text-left">
                         <div class="form-group">
-                            <button type="submit" class="btn-purple btn__change-password">ثبت تغییرات</button>
+                            <button type="submit" class="btn-purple btn__change-password">تغییر گذرواژه</button>
                         </div>
                     </div>
                 </form>
@@ -255,5 +331,6 @@ $artist = $user['data']['other_info']['artist'];
             <!--                                            </div>-->
             <!--                                        </div>-->
         </div>
+        <?php endif; ?>
     </div>
 </div>

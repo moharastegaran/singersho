@@ -154,6 +154,10 @@
     font-weight: 700;
 }
 
+.profile-menu__item.item-special{
+    color: var(--grape-purple);
+}
+
 .profile-menu__item:before {
     content: '';
     margin-left: 16px;
@@ -167,6 +171,10 @@
 
 .profile-menu__item.profile-menu__item-myinfo:before {
     background-image: url(../img/icons/user.svg);
+}
+
+.profile-menu__item.profile-menu__item-beartist:before {
+    background-image: url(../img/icons/microphone.svg);
 }
 
 .profile-menu__item.profile-menu__item-editinfo:before {

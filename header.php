@@ -47,8 +47,6 @@ if (isset($_SESSION['access_token'])) {
 
         <link rel="stylesheet" type="text/css" href="assets/css/perfect-scrollbar.css">
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-        <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-
 
     <?php else : ?>
         <link rel="stylesheet" href="assets/css/persian-datepicker.css">
@@ -56,6 +54,9 @@ if (isset($_SESSION['access_token'])) {
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link rel="stylesheet" type="text/css" href="assets/css/profile.css">
     <?php endif; ?>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+
 </head>
 <body>
 
@@ -72,20 +73,6 @@ if (isset($_SESSION['access_token'])) {
 
 <nav id="mm-menu">
     <ul class="list-group-flush">
-        <?php if (!isset($_SESSION['access_token'])) : ?>
-            <li class="list-group-item">
-                <a href="profile.php" data-ripple="">
-                    <!--                <img src="assets/img/icons/home.svg">-->
-                    پروفایل
-                </a>
-            </li>
-            <li class="list-group-item">
-                <a href="logout.php" data-ripple="">
-                    <!--                <img src="assets/img/icons/home.svg">-->
-                    خروج
-                </a>
-            </li>
-        <?php endif; ?>
         <li class="list-group-item">
             <a href="index.php" data-ripple="">
                 <!--                <img src="assets/img/icons/home.svg">-->
@@ -128,6 +115,20 @@ if (isset($_SESSION['access_token'])) {
                 استدیوها
             </a>
         </li>
+        <?php if (isset($_SESSION['access_token'])) : ?>
+            <li class="list-group-item">
+                <a href="profile.php" class="text-muted" data-ripple="">
+                    <!--                <img src="assets/img/icons/home.svg">-->
+                    پروفایل
+                </a>
+            </li>
+            <li class="list-group-item item-logout">
+                <a href="logout.php" data-ripple="">
+                    <!--                <img src="assets/img/icons/home.svg">-->
+                    خروج
+                </a>
+            </li>
+        <?php endif; ?>
     </ul>
 </nav>
 
@@ -162,7 +163,7 @@ if (isset($_SESSION['access_token'])) {
                     <?php else : ?>
                         <li class="dropdown-item"><a href="profile.php"><img src="assets/img/icons/sign-in-alt.svg">
                                 پروفایل</a></li>
-                        <li class="dropdown-item"><a href="logout.php"><img src="assets/img/icons/logout.svg"> خروج</a>
+                        <li class="dropdown-item item-logout"><a href="logout.php"><img src="assets/img/icons/logout-danger.svg"> خروج</a>
                         </li>
                     <?php endif; ?>
                 </ul>

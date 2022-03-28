@@ -94,6 +94,10 @@ section h2 {
 
 /* checkbox */
 
+.item-logout, .item-logout a{
+    color: var(--red-danger) !important;
+}
+
 
 
 input, textarea, select {
@@ -4640,6 +4644,7 @@ textarea.contact-form-input {
     color: #bbb;
 }
 
+
 /*****************/
 /*  Modal Topup  */
 /*****************/
@@ -4674,18 +4679,23 @@ textarea.contact-form-input {
     margin-top: .75rem;
 }
 #modal-topup .advisor__time-badge, #advisorDateTimesAccordion .advisor__time-badge{
-    background-color: var(--dark-green);
+    border: 1px solid var(--muted);
+    color: var(--muted);
+    background-color: transparent;
     border-radius: 5px;
     margin: .2rem .3rem;
     padding: .5rem;
     text-align: center;
     transition: .25s;
+    opacity: .4;
 }
 #modal-topup .advisor__time-badge:hover,#advisorDateTimesAccordion .advisor__time-badge:hover{
+    opacity: 1;
     background-color: var(--light-green);
 }
 #modal-topup .advisor__time-badge.selected,#advisorDateTimesAccordion .advisor__time-badge.added{
-    background-color: var(--red);
+    opacity: 1;
+    background-color: var(--dark-green);
 }
 #modal-topup .advisor__time-badge.selected:hover,#advisorDateTimesAccordion .advisor__time-badge.added:hover{
     background-color: var(--red-danger);

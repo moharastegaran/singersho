@@ -102,6 +102,8 @@
 <script src="assets/js/select2.min.js"></script>
 <script src="assets/js/select2-custom.min.js"></script>
 
+<script src="assets/js/global.js"></script>
+
 <?php if (strpos($page_name, 'profile') === false) : ?>
 
     <script src="assets/js/crange-slider.js"></script>
@@ -120,5 +122,26 @@
 
 
 <?php endif; ?>
+<script>
+    $(document).ready(function (){
+        $('a[href="#mm-menu"]').on('click', function (e) {
+            e.preventDefault();
+            // $('html').addClass('mm-opening');
+            $('#mm-menu').addClass('mm-opened');
+            $('#mm-0').addClass('is-opening');
+            $('#mm-blocker').addClass('dblock is-opening');
+        });
+
+        $('#mm-blocker').on('click', function (e) {
+            e.preventDefault();
+            // $('html').removeClass('mm-opening');
+            $('#mm-menu').removeClass('mm-opened is-opening');
+            $('#mm-0').removeClass('is-opening');
+            setTimeout(function () {
+                $('#mm-blocker').removeClass('dblock is-opening')
+            }, 400);
+        })
+    })
+</script>
 </body>
 </html>

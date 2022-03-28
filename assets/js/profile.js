@@ -426,7 +426,6 @@ $(document).ready(function () {
 
 
     $('#formAddStudio').on('submit', function (e) {
-        console.log("here");
         e.preventDefault();
         const form = $(this);
         let formData = new FormData();
@@ -446,18 +445,27 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (response) {
-                console.log("response : " + response);
+                console.log(response.messages);
                 response = JSON.parse(response);
                 if (response.error) {
                     let message = "";
+                    const errList = document.createElement("ul");
+                    errList.className = "error-list";
                     for (let i = 0; i < response.messages.length; i++) {
-                        message += response.messages[i];
-                        if (i !== response.messages.length - 1)
-                            message += "<br>";
+                        const errItem = document.createElement("li");
+                        errItem.innerText = response.messages[i];
+                        errItem.style.fontSize  = "13px";
+                        errItem.style.color = "#e2a03f";
+                        errItem.style.padding = "3px 5px";
+                        errItem.style.fontFamily = "iranyekanLight";
+                        errList.appendChild(errItem);
+                        // message += response.messages[i];
+                        // if (i !== response.messages.length - 1)
+                        //     message += "<br>";
                     }
-                    form.siblings('.alert').remove();
-                    form.before('<div class="alert alert-outline-danger"></div>');
-                    form.prev('.alert').html(message);
+                    form.siblings('.error-list').remove();
+                    form.before(errList);
+                    // form.prev('.alert').html(message);
                 } else {
                     $(location).attr('href', response.redirect);
                 }

@@ -1,4 +1,11 @@
 <?php
+
+if (isset($is_user_artist) && !$is_user_artist) : ?>
+    <script> const pathSplit = window.location.pathname.split("/");
+        window.location.href = pathSplit[pathSplit.length-1]; </script>
+<?php endif; ?>
+<?php
+
 $artist_portfolio = $user['data']['other_info']['portfolio'];
 
 $get_titles = callAPI('GET', RAW_API . 'titles', false);
