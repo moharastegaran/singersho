@@ -412,7 +412,8 @@ $(document).ready(function () {
     $('.responsive-filterbar-toggle a').on('click', function () {
         $('.filters__total-container').addClass('is-open', function () {
             setTimeout(function () {
-                $('.filters__total-wrap').addClass('open')
+                $('.filters__total-wrap').addClass('open');
+                $('html').addClass('overflow-hidden');
             }, 500);
         });
     });
@@ -428,6 +429,7 @@ $(document).ready(function () {
 
     $('body').on('click', '.filters__total-container .filters__hide-btn, .filters__total-back', function () {
         $('.filters__total-wrap').removeClass('open', function () {
+            $('html').removeClass('overflow-hidden');
             setTimeout(function () {
                 $('.filters__total-container').removeClass('is-open')
             }, 500);
@@ -839,7 +841,6 @@ $(document).ready(function () {
 
     /*********************/
     /* Audio File Upload */
-
     /*********************/
 
     function handleFiles(event) {

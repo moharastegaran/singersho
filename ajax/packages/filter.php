@@ -9,7 +9,7 @@ $packages = json_decode($get_packages, true);
 $data = $packages['packages']['data'];
 $links = $packages['packages']['links'];
 for ($i = 0; $i < count($data); $i++) : ?>
-    <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="col-lg-3 col-md-4 col-sm-6 px-xl-3 px-2">
         <?php $package = $data[$i]; ?>
         <?php include '../../views/cards/package.php' ?>
     </div>

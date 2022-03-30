@@ -870,17 +870,19 @@ html.mm-opening {
     position: relative;
     transition: .2s;
 }
+#mm-menu ul li:hover, #mm-menu ul li.active {
+    border-color: var(--dark-1);
+}
+#mm-menu ul li:hover a{
+    color: var(--dark-green);
+}
 
-#mm-menu ul li:hover {
-    /*position: absolute;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*right: 0;*/
-    /*bottom: 0;*/
-    /*transform: scale(0);*/
-    /*transform-origin: 50% 50%;*/
-    /*transition: .2s;*/
-    background-color: #555;
+#mm-menu ul li.active{
+    background-color: var(--dark-1);
+}
+#mm-menu ul li.active a{
+    color : var(--dark-green);
+    text-shadow:  0 0 18px;
 }
 
 #mm-menu ul li:hover:after {
@@ -898,8 +900,8 @@ html.mm-opening {
 }
 
 #mm-menu.mm-opened {
-    /*display: block;*/
     transform: translateX(0);
+    overflow-y: auto;
 }
 
 #mm-0.is-opening, #mm-blocker.is-opening {
@@ -995,6 +997,10 @@ header .dropdown--menu .dropped li:not(:last-child) {
     border-bottom: 1px solid #cccccc88;
 }
 
+header .dropdown-menu li:active{
+    background-color: #f8f9fa;
+}
+
 header .dropdown--menu .dropped li a {
     width: 100%;
     /*padding: .25em 18px;*/
@@ -1079,6 +1085,8 @@ header .dropdown--menu:focus .bar-3::after, header .dropdown--menu:focus .bar-3:
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
 }
+
+
 
 
 header .btn__cart{
@@ -2493,7 +2501,7 @@ input[type='radio']:checked ~ label {
     transition: all 100ms ease 0s;
     box-sizing: border-box;
     padding: 8px;
-    /*background: rgb(255, 255, 255);*/
+    background: var(--dark-1);
     border: 1px solid rgba(56, 57, 57, 0.55);
     color: rgb(102, 102, 102);
     outline: 0px !important;
@@ -3448,11 +3456,19 @@ textarea.contact-form-input {
     position: relative;
     transition: all 100ms ease 0s;
     box-sizing: border-box;
-    padding: 8px;
+    padding: 2px;
     border: 1px solid rgba(56, 57, 57, 0.55);
     outline: 0px !important;
     font-size: 14px;
     width: 100%;
+}
+
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid rgba(56, 57, 57, 0.55);
+}
+.select2-container--default {
+    border-radius: 4px;
+    box-shadow: none !important;
 }
 
 .select2-selection__choice {

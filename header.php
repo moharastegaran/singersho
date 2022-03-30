@@ -73,50 +73,50 @@ if (isset($_SESSION['access_token'])) {
 
 <nav id="mm-menu">
     <ul class="list-group-flush">
-        <li class="list-group-item">
+        <li class="list-group-item <?php echo (strpos($current_url, 'index.php') !== false) ? 'active' : ''?>">
             <a href="index.php" data-ripple="">
                 <!--                <img src="assets/img/icons/home.svg">-->
                 صفحه اصلی
             </a>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item <?php echo (strpos($current_url, 'singing_test.php') !== false) ? 'active' : ''?>">
             <a href="singing_test.php" data-ripple="">
                 <!--                <img src="assets/img/icons/computer.svg">-->
                 تست خوانندگی
             </a>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item <?php echo (strpos($current_url, 'about.php') !== false) ? 'active' : ''?>">
             <a href="about.php" data-ripple="">
                 <!--                <img src="assets/img/icons/info.svg">-->
                 درباره ما
             </a>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item <?php echo (strpos($current_url, 'contact.php') !== false) ? 'active' : ''?>">
             <a href="contact.php" data-ripple="">
                 <!--                <img src="assets/img/icons/phone-call.svg">-->
                 تماس باما
             </a>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item <?php echo (strpos($current_url, 'store.php') !== false) ? 'active' : ''?>">
             <a href="store.php" data-ripple="">
                 <!--                <img src="assets/img/icons/phone-call.svg">-->
                 فروشگاه
             </a>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item <?php echo (strpos($current_url, 'artists.php') !== false) ? 'active' : ''?>">
             <a href="artists.php" data-ripple="">
                 <!--                <img src="assets/img/icons/phone-call.svg">-->
                 هنرمندان
             </a>
         </li>
-        <li class="list-group-item">
+        <li class="list-group-item <?php echo (strpos($current_url, 'studios.php') !== false) ? 'active' : ''?>">
             <a href="studios.php" data-ripple="">
                 <!--                <img src="assets/img/icons/phone-call.svg">-->
                 استدیوها
             </a>
         </li>
         <?php if (isset($_SESSION['access_token'])) : ?>
-            <li class="list-group-item">
+            <li class="list-group-item <?php echo (strpos($current_url, 'profile.php') !== false) ? 'active' : ''?>">
                 <a href="profile.php" class="text-muted" data-ripple="">
                     <!--                <img src="assets/img/icons/home.svg">-->
                     پروفایل

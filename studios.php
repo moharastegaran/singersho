@@ -164,7 +164,7 @@ $cities = $cities['cities']['data'];
                     </div>
                     <div class="row">
                         <?php for ($i = 0; $i < count($data); $i++) : ?>
-                            <div class="col-lg-4 col-md-4 col-sm-6 px-xl-1">
+                            <div class="col-lg-4 col-md-4 col-sm-6 px-xl-1 px-0">
                                 <?php $studio = $data[$i]; ?>
                                 <?php include 'views/cards/studio.php' ?>
                             </div>

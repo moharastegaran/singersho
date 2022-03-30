@@ -210,7 +210,7 @@ $price_max = $packages['p_max'];
                             }
                         }
                         for ($i = 0; $i < count($data); $i++) : ?>
-                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 px-xl-3 px-2">
                                 <?php $package = $data[$i]; ?>
                                 <?php $package['in_cart'] = in_array($package['id'], $packageIds) ?>
                                 <?php include 'views/cards/package.php' ?>

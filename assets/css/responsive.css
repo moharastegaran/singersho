@@ -216,8 +216,17 @@
         font-size: 1.55rem;
     }
 
+    .feature-box{
+        padding: 18px;
+    }
+
+    .feature-box h3{
+        font-size: 1.6rem;
+    }
+
     .feature-box .feature-content {
-        line-height: 27px;
+        line-height: 24px;
+        font-size: 16px;
     }
 
     .main__nav--next {
@@ -237,8 +246,8 @@
     }
 
     header {
-        padding-left: 4rem;
-        padding-right: 4rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
         padding-top: 1.75rem;
     }
 }
@@ -458,10 +467,10 @@
 }
 
 @media (max-width: 400px) {
-    /*header {*/
-    /*    padding-left: .1rem;*/
-    /*    padding-right: .1rem;*/
-    /*}*/
+
+    #deleteModal{
+        min-width: 250px;
+    }
 
     .filters__total-container {
         padding-left: 0;

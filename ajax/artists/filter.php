@@ -9,7 +9,7 @@ $artists = json_decode($get_artists, true);
 $data = $artists['artists']['data'];
 $links = $artists['artists']['links'];
 for ($i = 0; $i < count($data); $i++) : ?>
-    <div class="col-lg-3 col-md-4 col-sm-6 px-0">
+    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 px-0">
         <?php $artist = $data[$i]; ?>
         <?php include '../../views/cards/artist.php' ?>
     </div>

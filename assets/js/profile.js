@@ -108,14 +108,14 @@ $(document).ready(function () {
                     response = JSON.parse(response);
                     if (response.accept_order == 1) {
                         $item.find('.order_price').addClass('accepts');
-                        $item.find('.order_price').text(formatPrice(response.order_price));
+                        $item.find('.order_price').text(formatPrice(response.order_price ?? ''));
                     } else {
                         $item.removeClass('accepts');
                         $item.find('.order_price').removeClass('accepts');
-                        $item.find('.order_price').text(null);
+                        $item.find('.order_price').text('');
                     }
                     $item.find('.order_price').data('price', response.order_price);
-                    $item.find('.description').text(response.description);
+                    $item.find('.description').text(response.description ?? '');
                     list.find('.alert-danger').remove();
                     form.collapse('hide');
                 },
@@ -172,6 +172,7 @@ $(document).ready(function () {
         e.preventDefault();
         const $this = $(this);
         $this.closest('.title-list-item').addClass('has-focus');
+        $("#deleteModal-container").fadeIn();
     });
 
     $('#userAddExperienceForm').on('submit', function (e) {

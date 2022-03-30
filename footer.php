@@ -130,6 +130,7 @@
             $('#mm-menu').addClass('mm-opened');
             $('#mm-0').addClass('is-opening');
             $('#mm-blocker').addClass('dblock is-opening');
+            $('html').addClass('overflow-hidden');
         });
 
         $('#mm-blocker').on('click', function (e) {
@@ -137,10 +138,11 @@
             // $('html').removeClass('mm-opening');
             $('#mm-menu').removeClass('mm-opened is-opening');
             $('#mm-0').removeClass('is-opening');
+            $('html').removeClass('overflow-hidden');
             setTimeout(function () {
                 $('#mm-blocker').removeClass('dblock is-opening')
             }, 400);
-        })
+        });
     })
 </script>
 </body>

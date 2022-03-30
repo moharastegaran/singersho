@@ -202,15 +202,4 @@ function resetSlider(){
     $(slider.data('value-0')).text(formatPrice(mmin+""));
     $(slider.data('value-1')).text(formatPrice(mmax+""));
 }
-
-function formatPrice(price){
-    let _num = "";
-    let reminder = price.length % 3;
-    _num = price.substr(0, reminder);
-    for (let i = reminder; i < price.length; i += 3) {
-        _num = _num + (i === reminder && reminder === 0 ? "" : ",") + price.substr(i, 3);
-    }
-    return _num;
-}
-
 // Resources
