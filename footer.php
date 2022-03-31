@@ -2,7 +2,7 @@
 
 <footer class="<?php if (strpos($current_url, 'index.php') !== false) { ?> line-background <?php } ?>">
     <div class="d-flex flex-row flex-wrap align-items-start justify-content-around">
-        <div class="col-md-4 col-sm-6 text-right">
+        <div class="col-md-4 mb-md-0 mb-4 text-right">
             <a href="index.php" class="logo"><img src="assets/img/logo.png" height="35"></a>
             <p class="text">
                 لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و
@@ -59,12 +59,12 @@
         </div>
     </div>
     <div class="copyright">
-        <div class="col-md-4 col-sm-6 text-sm-right text-center">
+        <div class="col-md-6 col-sm-8 text-sm-right text-center">
             <p class="text">
                 تمامی حقوق این سایت متعلق به شرکت سازوصدا می باشد.
             </p>
         </div>
-        <div class="col-md-4 col-sm-6 text-sm-left text-center">
+        <div class="col-md-6 col-sm-4 text-sm-left text-center">
             <ul>
                 <li><a href="#">شرایط و ضوابط</a></li>
                 <li><a href="about.php">درباره ما</a></li>

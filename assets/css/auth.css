@@ -373,13 +373,17 @@ ul {
     border-right: 2px solid rgba(241, 241, 241, 0.15);
 }
 @media only screen and (max-width: 991px) {
+    .fxt-header .fxt-logo{
+        max-width: 30vw !important;
+        margin-right: 0 !important;
+    }
     .fxt-template-layout24 .fxt-content {
         padding-right: 0;
         margin-right: 0;
         margin-top: 40px;
         border-right: 0;
         padding-bottom: 0;
-        border-top: 2px solid rgba(241, 241, 241, 0.15);
+        /*border-top: 2px solid rgba(241, 241, 241, 0.15);*/
     }
 }
 .fxt-template-layout24 .fxt-content h2 {
@@ -389,6 +393,15 @@ ul {
 @media only screen and (max-width: 991px) {
     .fxt-template-layout24 .fxt-content h2 {
         text-align: center;
+    }
+}
+@media only screen and (max-width: 576px){
+    .fxt-header .fxt-logo {
+        max-width: 50vw !important;
+        margin-right: 0 !important;
+    }
+    .fxt-template-layout24 .fxt-content {
+        margin-top: 10px;
     }
 }
 .fxt-template-layout24 .fxt-header {

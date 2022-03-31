@@ -10,7 +10,9 @@ if (isset($_GET['id'])) {
         die("artist not found");
     }
 
-    if ($artist['artist']['is_advisor'] == 1) {
+    $artist_is_advisor = $artist['artist']['is_advisor'] == 1 && $artist['artist']['advise_price'] > 0;
+
+    if ($artist_is_advisor) {
         $get_times = callAPI('GET', RAW_API . 'reservation/advisor', ['rpp' => 1000, 'id' => $artist['artist']['id']]);
         $get_times = json_decode($get_times, true);
         if (!$get_times['error']) {
@@ -54,7 +56,6 @@ if (isset($_GET['id'])) {
                                     <path d="M22.319,4.431,8.5,18.249a1,1,0,0,1-1.417,0L1.739,12.9a1,1,0,0,0-1.417,0h0a1,1,0,0,0,0,1.417l5.346,5.345a3.008,3.008,0,0,0,4.25,0L23.736,5.847a1,1,0,0,0,0-1.416h0A1,1,0,0,0,22.319,4.431Z"/>
                                 </svg>
                                 <span>مشاوره می‌دهد</span>
-                                <?php $artist_is_advisor = $artist['artist']['is_advisor'] == 1 && $artist['artist']['advise_price'] > 0; ?>
                                 <p class="is_advisor main__table-text--<?php echo $artist_is_advisor ? 'approval' : 'failed' ?>">
                                     <?php echo $artist_is_advisor ? 'بله' : 'خیر'; ?>
                                 </p>
@@ -74,6 +75,8 @@ if (isset($_GET['id'])) {
                                     <?php if (isset($times) && count($times)) : ?>
                                         <a href="#modal-topup" class="select__advisor"
                                            data-id="<?php echo $artist['artist']['id']; ?>">درخواست مشاوره</a>
+                                    <?php else :  ?>
+                                        <span class="text-warning" style="opacity: .5">ساعات رزرو تکمیل شده اند.</span>
                                     <?php endif; ?>
                                 </li>
                             <?php endif; ?>
@@ -134,14 +137,21 @@ if (isset($_GET['id'])) {
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-md-9 px-md-5">
-                <div class="thead"><h2 class="thead-main">توضیحات</h2></div>
-                <p class="experience"><?php echo $artist['artist']['experience']; ?></p>
-                <p class="order_description"><?php echo $artist['artist']['order_description']; ?></p>
+            <div class="col-lg-9 col-md-9 px-md-5 mt-md-0 mt-5">
+                <div class="artist__bio mb-5">
+                    <div class="thead"><h2 class="thead-main">توضیحات</h2></div>
+<!--                    --><?php //var_dump($artist['artist']['experience']===null);die(); ?>
+                    <?php if ($artist['artist']['experience'] !== null || $artist['artist']['order_description'] !== null) : ?>
+                        <p class="experience"><?php echo $artist['artist']['experience']; ?></p>
+                        <p class="order_description"><?php echo $artist['artist']['order_description']; ?></p>
+                    <?php else : ?>
+                        <p class="experience">اطلاعاتی برای نمایش ثبت نشده است.</p>
+                    <?php endif; ?>
+                </div>
 
-                <?php if (count($artist['titles'])) : ?>
-                    <div class="artist__titles mt-4 mb-4">
-                        <div class="thead"><h2 class="thead-main">مهارت‌ها</h2></div>
+                <div class="artist__titles my-5">
+                    <div class="thead"><h2 class="thead-main">مهارت‌ها</h2></div>
+                    <?php if (count($artist['titles'])) : ?>
                         <?php $_titles = $artist['titles']; ?>
                         <?php for ($i = 0; $i < count($_titles); $i++) : ?>
                             <li class="artist__title-item">
@@ -169,12 +179,14 @@ if (isset($_GET['id'])) {
                                 <!--                                    </div>-->
                             </li>
                         <?php endfor; ?>
-                    </div>
-                <?php endif; ?>
+                    <?php else : ?>
+                        <p class="experience"> مهارتی برای نمایش وجود ندارد.</p>
+                    <?php endif; ?>
+                </div>
 
-                <?php if (count($artist['portfolio'])) : ?>
-                    <div class="artist__portfolios mt-4 mb-3">
-                        <div class="thead"><h2 class="thead-main">نمونه‌کارها</h2></div>
+                <div class="artist__portfolios my-5">
+                    <div class="thead"><h2 class="thead-main">نمونه‌کارها</h2></div>
+                    <?php if (count($artist['portfolio'])) : ?>
                         <div class="row">
                             <?php $_portfolio = $artist['portfolio']; ?>
                             <?php for ($i = 0; $i < count($_portfolio); $i++) : ?>
@@ -213,11 +225,13 @@ if (isset($_GET['id'])) {
                                 </div>
                             <?php endfor; ?>
                         </div>
-                    </div>
-                <?php endif; ?>
+                    <?php else : ?>
+                        <p class="experience"> نمونه کاری برای نمایش وجود ندارد.</p>
+                    <?php endif; ?>
+                </div>
 
                 <?php if (count($artist['packages'])) : ?>
-                    <div class="artist__packages mt-4 mb-3">
+                    <div class="artist__packages mt-sm-4 mb-sm-3 my-5">
                         <div class="thead"><h2 class="thead-main">پکیج‌ها</h2></div>
                         <div class="row">
                             <?php $_packages = $artist['packages']; ?>
@@ -241,7 +255,7 @@ if (isset($_GET['id'])) {
 
 <?php
 $cart_advisors = array_column($cart_advisors, 'id');
-if (count($times)) : ?>
+if (isset($times) && count($times)) : ?>
     <div id="modal-topup" class="mfp-hide magnific-modal">
         <button class="modal__close" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

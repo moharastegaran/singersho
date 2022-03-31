@@ -47,6 +47,10 @@ button:focus{
     outline: none;
 }
 
+.zindex-0{
+    z-index: 0 !important;
+}
+
 /*******************/
 /*      Ripple     */
 /*******************/
@@ -1239,7 +1243,6 @@ header.sticky, header.confirm-sticky {
 
 header.confirm-sticky {
     position: relative;
-    /*margin-bottom: 3rem;*/
 }
 
 header.sticky .navbar-brand img, header.confirm-sticky .navbar-brand img {

@@ -385,6 +385,9 @@ $(document).ready(function () {
     });
 
     $('.responsive-filterbar-toggle a').on('click', function () {
+        $("header").addClass("zindex-0");
+        console.log($('header').height());
+        $(".filters__total-container").css({'top' : ($(window).scrollTop()-$('header').height())+"px"})
         $('.filters__total-container').addClass('is-open', function () {
             setTimeout(function () {
                 $('.filters__total-wrap').addClass('open');
@@ -406,6 +409,7 @@ $(document).ready(function () {
         $('.filters__total-wrap').removeClass('open', function () {
             $('html').removeClass('overflow-hidden');
             setTimeout(function () {
+                $("header").removeClass("zindex-0")
                 $('.filters__total-container').removeClass('is-open')
             }, 500);
         });

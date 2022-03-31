@@ -144,7 +144,7 @@ if (isset($_SESSION['access_token'])) {
     </ul>
 </nav>
 
-<header class="<?php if (strpos($current_url, 'index.php') !== false) { ?> fixed-top <?php } else { ?> confirm-sticky <?php } ?>">
+<header class="<?php echo (strpos($current_url, 'index.php') !== false) ? 'fixed-top' : 'confirm-sticky' ?>">
     <div class="responsive-header">
         <a href="#mm-menu" data-ripple="">منو</a>
         <a href="index.php" title="">
