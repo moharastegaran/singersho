@@ -35,7 +35,7 @@ include 'header.php';
                     </li>
                 </ul>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 mt-md-1 mt-5">
                 <div class="about-img">
                     <img src="assets/img/header-bg.png">
                 </div>

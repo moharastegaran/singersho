@@ -14,7 +14,7 @@
 
     .section-packages .btn__goto-shop, .section-studios .btn__goto-studios, .main-heading-top .btn-singing-test {
         font-size: 25px;
-        padding: .42rem 4rem;
+        padding: .55rem 4rem;
     }
 
     .section-studios .btn__goto-studios {
@@ -99,6 +99,15 @@
     }
 }
 
+@media(max-width: 991px){
+
+    .page-title{
+        margin-top: 1.5rem;
+    }
+    #list___main-header{
+        margin-bottom: .75rem;
+    }
+}
 
 @media (max-width: 978px) {
 
@@ -336,7 +345,7 @@
         left: -12px;
     }
 
-    .section-packages .text__about-packages, .section-packages .btn__goto-shop {
+    .section-packages .text__about-packages, .section-packages .btn__goto-shop, .section-studios .btn__goto-studios {
         margin-top: 25px;
         margin-left: 15px;
         margin-right: 15px;

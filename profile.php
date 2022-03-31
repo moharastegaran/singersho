@@ -59,41 +59,41 @@ if ($is_user_artist && !isset($_SESSION['artist_id']))
                         <ul class="profile-menu">
                             <?php if ($is_user_artist) : ?>
                                 <li>
-                                    <a href="javascript:void(0)" data-target="#main"
+                                    <a href="javascript:void(0)" data-target="#main" data-ripple=""
                                        class="profile-menu__item profile-menu__item-myinfo <?php echo $hash === 'main' ? 'active' : '' ?>">
                                         پروفایل من
                                     </a>
                                 </li>
                             <?php endif; ?>
                             <li>
-                                <a href="javascript:void(0)" data-target="#edit-account"
+                                <a href="javascript:void(0)" data-target="#edit-account" data-ripple=""
                                    class="profile-menu__item profile-menu__item-editinfo <?php echo $hash === 'edit-account' ? 'active' : '' ?> ">
                                     ویرایش اطلاعات
                                 </a>
                             </li>
                             <li class="<?php echo $user['data']['other_info']['artist']['is_advisor'] == 1 ? '' : 'd-none'; ?>">
-                                <a href="javascript:void(0)" data-target="#advisor-times"
+                                <a href="javascript:void(0)" data-target="#advisor-times" data-ripple=""
                                    class="profile-menu__item profile-menu__item-advisortimes <?php echo $hash === 'advisor-times' ? 'active' : '' ?> ">
                                     زمان‌های مشاوره
                                 </a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" data-target="#add-studio"
+                                <a href="javascript:void(0)" data-target="#add-studio" data-ripple=""
                                    class="profile-menu__item profile-menu__item-addstudio <?php echo $hash === 'add-studio' ? 'active' : '' ?>">افزودن
                                     استدیو</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)" data-target="#my-studios"
+                                <a href="javascript:void(0)" data-target="#my-studios" data-ripple=""
                                    class="profile-menu__item profile-menu__item-mystudios <?php echo $hash === 'my-studios' ? 'active' : '' ?>">
                                     استدیوهای من
                                 </a>
                             </li>
-                            <li><a href="#" class="profile-menu__item profile-menu__item-myorders">سفارش‌های من</a></li>
-                            <li><a href="logout.php" class="profile-menu__item profile-menu__item-logout">خروج</a></li>
+                            <li><a href="#" class="profile-menu__item profile-menu__item-myorders" data-ripple="">سفارش‌های من</a></li>
+                            <li><a href="logout.php" class="profile-menu__item profile-menu__item-logout" data-ripple="">خروج</a></li>
                             <?php if (!$is_user_artist) : ?>
                                 <ul class="profile-menu" style="margin-top: 10px;padding-top: 10px;border-top:1px solid #333333bb">
                                     <li>
-                                        <a href="javascript:void(0)" data-target="#register-artist"
+                                        <a href="javascript:void(0)" data-target="#register-artist" data-ripple=""
                                            class="profile-menu__item profile-menu__item-beartist item-special <?php echo $hash === 'main' ? 'active' : '' ?>">
                                             هنرمند شوید
                                         </a>

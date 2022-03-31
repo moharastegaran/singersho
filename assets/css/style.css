@@ -43,18 +43,44 @@ a, button {
     font-family: 'iranyekanMedium';
 }
 
-[data-ripple] span, [data-ripple] span {
-    position: absolute;
-    border-radius: 50%;
-    background-color: rgba(102, 99, 99, 0.3);
-
-    width: 100px;
-    height: 100px;
-    margin-top: -50px;
-    margin-left: -50px;
-    animation: ripple 1s;
-    opacity: 0;
+button:focus{
+    outline: none;
 }
+
+/*******************/
+/*      Ripple     */
+/*******************/
+[data-ripple]{
+    position: relative;
+    overflow: hidden;
+}
+.ripple {
+    background-color: #444;
+    border-radius: 50%;
+    pointer-events: none;
+    position: absolute;
+    transform: scale(0);
+}
+.ripple-start {
+    transform: scale(0.2);
+}
+.ripple-active {
+    transform: scale(2);
+    transition: transform 700ms, opacity 700ms;
+    opacity: 0.2;
+}
+/*[data-ripple] span, [data-ripple] span {*/
+/*    position: absolute;*/
+/*    border-radius: 50%;*/
+/*    background-color: rgba(102, 99, 99, 0.3);*/
+
+/*    width: 100px;*/
+/*    height: 100px;*/
+/*    margin-top: -50px;*/
+/*    margin-left: -50px;*/
+/*    animation: ripple 1s;*/
+/*    opacity: 0;*/
+/*}*/
 
 a, a:hover {
     text-decoration: none;
@@ -727,7 +753,7 @@ input[type=checkbox], input[type=radio] {
 
 /* Grow Rotate */
 .hvr-grow-rotate {
-    display: inline-block;
+    /*display: inline-block;*/
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
     transform: perspective(1px) translateZ(0);
@@ -843,32 +869,36 @@ html.mm-opening {
     left: auto;
     width: 80%;
     min-width: 140px;
-    /*max-width: 440px;*/
     z-index: 1032;
-    /*display: none;*/
     position: fixed;
     transform: translateX(100%);
     transition: .4s;
     background: var(--dark-2);
-    /*border-color: var(--dark-2);*/
     color: var(--light);
     right: 0;
     top: 0;
     bottom: 0;
-    padding: 0;
+    padding: 20px;
     margin: 0;
     box-sizing: border-box;
+    display: none;
 }
 
-#mm-menu ul li img {
-    max-width: 35px;
-    margin-left: 10px;
-    transition: .2s;
+#mm-menu .mm-logo{
+    max-width: 150px;
+    text-align: right;
+    margin: 0 1.25rem 1.25rem 1.25rem;
+}
+
+#mm-menu ul{
+    border-top: 1px solid #6c757d33;
+    padding-top: .5rem;
 }
 
 #mm-menu ul li {
-    position: relative;
     transition: .2s;
+    padding: 0;
+    border: none;
 }
 #mm-menu ul li:hover, #mm-menu ul li.active {
     border-color: var(--dark-1);
@@ -889,14 +919,24 @@ html.mm-opening {
     transform: scale(1);
 }
 
-#mm-menu ul li:hover img {
-    margin-left: 14px;
+#mm-menu ul li a {
+    display: block;
+    font-family: iranyekanLight;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 1rem 1.25rem;
 }
 
-#mm-menu ul li a {
-    font-size: 14px;
-    font-family: iranyekan;
-    font-weight: 400;
+#mm-menu ul li a svg{
+    width: 17px;
+    height: 17px;
+    fill: var(--grape-purple);
+    margin-left: .75rem;
+    transition: .2s;
+}
+
+#mm-menu ul li:hover a svg {
+    margin-left: 1rem;
 }
 
 #mm-menu.mm-opened {
@@ -1001,6 +1041,10 @@ header .dropdown-menu li:active{
     background-color: #f8f9fa;
 }
 
+header .dropdown--menu li.active{
+    background-color: rgba(180, 248, 195, 0.56);
+}
+
 header .dropdown--menu .dropped li a {
     width: 100%;
     /*padding: .25em 18px;*/
@@ -1009,6 +1053,11 @@ header .dropdown--menu .dropped li a {
     text-align: right;
     color: #767676;
     font-size: 14px;
+}
+
+header .dropdown--menu li.active a{
+    color: var(--dark-green);
+    text-shadow: 0 0 10px;
 }
 
 header .dropdown--menu .dropped li a img {
@@ -3074,7 +3123,6 @@ input[type='radio']:checked ~ label {
     left: 0;
     right: 0;
     height: 230px;
-    background-size: cover;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     box-shadow: 0 0 2px #222227;
@@ -3083,14 +3131,17 @@ input[type='radio']:checked ~ label {
 
 .page-title.page-artists:before {
     background: url(../img/artists-slide.jpg) no-repeat center center;
+    background-size: cover;
 }
 
 .page-title.page-studios:before {
-    background: url(../img/studios-slide.jpg) no-repeat left top;
+    background: url(../img/studios-slide.jpg) no-repeat center center;
+    background-size: cover;
 }
 
 .page-title.page-packages:before {
-    background: url(../img/packages-slide.jpg) no-repeat center;
+    background: url(../img/packages-slide.jpg) no-repeat center center;
+    background-size: cover;
 }
 
 .page-title:after {

@@ -6,7 +6,7 @@ include 'header.php';
 <div class="container-fluid mx-auto">
     <div class="container mb-lg-5 pb-lg-4">
         <div class="row align-items-center my-5">
-            <div class="col-md-6">
+            <div class="col-md-6 mb-md-1 mb-5">
                 <div class="about-img">
                     <img src="assets/img/mikrofon-makro.jpg">
                 </div>

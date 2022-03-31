@@ -17,7 +17,7 @@ $price_max = $packages['p_max'];
         <div class="row px-0 mx-auto">
             <div class="col-xl-3 col-lg-4 filters__total-container">
                 <div class="filters__total-wrap">
-                    <button class="filters__hide-btn"><i class="fas fa-times ml-3"></i>خروج</button>
+                    <button class="filters__hide-btn" data-ripple=""><i class="fas fa-times ml-3"></i>خروج</button>
                     <div class="search-sidebar">
                         <button class="btn--orange btn--full filter__reset">لغو فیلترها</button>
 
@@ -87,7 +87,7 @@ $price_max = $packages['p_max'];
                                                            placeholder="جست و جو کنید" required>
                                                     <div class="form-group--addon">
                                                         <span class="form-group--seperator"></span>
-                                                        <div aria-hidden="true" class="form-group--icobtn">
+                                                        <div aria-hidden="true" class="form-group--icobtn" data-ripple="">
                                                             <button type="submit">
                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                      viewBox="0 0 24 24">

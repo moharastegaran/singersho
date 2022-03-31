@@ -14,7 +14,7 @@ $packages = $response['packages']['data'];
         <img src="assets/img/header-bg.png">
         <div class="position-relative text-center" style="z-index: 3">
             <h1 class="scale-up-center">یک کلیک تا خوانندگی</h1>
-            <a href="singing_test.php" class="btn-singing-test hvr-grow-rotate slide-top" data-ripple="">خواننده شو</a>
+            <a href="singing_test.php" class="btn-singing-test slide-top d-inline-block" data-ripple="">خواننده شو</a>
         </div>
     </section>
 
@@ -35,7 +35,7 @@ $packages = $response['packages']['data'];
                 <img src="assets/img/arrow-right.png">
             </a>
         </div>
-        <a href="artists.php" class="artists__link-to-all hvr-icon-pulse">
+        <a href="artists.php" class="artists__link-to-all hvr-icon-pulse d-inline-block" data-ripple="">
             مشاهده همه
             <i class="fas fa-chevron-left hvr-icon"></i>
         </a>
@@ -60,7 +60,7 @@ $packages = $response['packages']['data'];
                     آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه
                     ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
                 </p>
-                <a href="store.php" class="btn__goto-shop hvr-grow-rotate" data-ripple="">فروشگاه</a>
+                <a href="store.php" class="btn__goto-shop hvr-grow-rotate d-inline-block" data-ripple="">فروشگاه</a>
             </div>
         </div>
 
@@ -107,7 +107,7 @@ $packages = $response['packages']['data'];
                 آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه
                 ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
             </p>
-            <a href="studios.php" class="btn__goto-studios hvr-grow-rotate" data-ripple="">استدیوها</a>
+            <a href="studios.php" class="btn__goto-studios hvr-grow-rotate d-inline-block" data-ripple="">استدیوها</a>
         </div>
         <div class="col-lg-6 col-md-10 col-sm-10 col-11 mx-auto">
             <img src="assets/img/abut-singersho.png" class="img__about-studios">

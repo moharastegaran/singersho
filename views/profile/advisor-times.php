@@ -73,7 +73,7 @@ if ($artist_id > 0) {
                                                 </svg>
                                             </div>
                                         </div>
-                                        <a href="javascript:void(0);" class="remove__items-all">
+                                        <a href="javascript:void(0);" class="remove__items-all" data-ripple="">
                                             حذف
                                         </a>
                                     </section>

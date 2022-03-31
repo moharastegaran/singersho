@@ -1,50 +1,39 @@
-// const stickyElem = document.getElementsByClassName("fixed-element")[0];
-
-$(window).scroll(function (){
-    // const topp = $(this).scrollTop();
-    // const stickyElem = $(".fixed-content").eq(0);
-    // console.log(stickyElem.length)
-    // console.log(`top : ${topp}`);
-    // console.log(`stickyElem.offset().top : ${stickyElem.offsetTop}`)
-    // if(topp > 100) {
-    //     stickyElem.css({
-    //         "position" : "fixed",
-    //         "top" : "0px"
-    //     })
-//         stickyElem.style.position = "fixed";
-//         stickyElem.style.top = "0px";
-//     } else {
-//         stickyElem.style.position = "relative";
-//         stickyElem.style.top = "initial";
-//         stickyElem.css({
-//             "position" : "relative",
-//             "top" : "initial"
-//         })
-//     }
-});
-
-/* Gets the amount of height
-of the element from the
-viewport and adds the
-pageYOffset to get the height
-relative to the page */
-// window.onscroll = function() {
-//     const currStickyPos = document.documentElement.scrollTop;
-//
-//     console.log(`currStickyPos : ${currStickyPos}`);
-//
-//     /* Check if the current Y offset
-//     is greater than the position of
-//     the element */
-//     if(window.scrollY > currStickyPos) {
-//         stickyElem.style.position = "fixed";
-//         stickyElem.style.top = "0px";
-//     } else {
-//         stickyElem.style.position = "relative";
-//         stickyElem.style.top = "initial";
-//     }
-// }
-
+console.log("document.querySelectorAll('[data-ripple]')) : "+ document.querySelectorAll('[data-ripple]').length)
+const rippleItems = Array.from(document.querySelectorAll('[data-ripple]'));
+rippleItems.forEach((item) => {
+    let timerId;
+    item.addEventListener('mousedown', (e) => {
+        clearTimeout(timerId);
+        const ripple = document.createElement("DIV");
+        ripple.classList.add("ripple");
+        e.target.appendChild(ripple);
+        const size = item.offsetWidth;
+        const pos = item.getBoundingClientRect();
+        const x = e.pageX - pos.left - size;
+        const y = e.pageY - pos.top - size;
+        console.log(`top: ${y}px; left: ${x}px; width: ${size*2}px; height: ${size*2}px`)
+        ripple.style.top = `${y}px`;
+        ripple.style.left = `${x}px`;
+        ripple.style.width = `${size*2}px`;
+        ripple.style.height = `${size*2}px`;
+        ripple.classList.remove('ripple-active');
+        ripple.classList.remove('ripple-start');
+        setTimeout(() => {
+            ripple.classList.add('ripple-start')
+            setTimeout(() => {
+                ripple.classList.add('ripple-active');
+            });
+        });
+    })
+    item.addEventListener('mouseup', (e) => {
+        const ripple = e.target.querySelector('.ripple')
+        clearTimeout(timerId);
+        timerId = setTimeout(() => {
+            ripple.classList.remove('ripple-active');
+            ripple.classList.remove('ripple-start');
+        }, 500);
+    })
+})
 
 function formatPrice(price) {
     let _num = "";
@@ -55,3 +44,18 @@ function formatPrice(price) {
     }
     return _num;
 }
+
+$(window).on('resize', function () {
+    if ($(window).width() >= 978) {
+        $('.filters__total-back').removeClass('show');
+        $('.filters__total-container').removeClass('is-open');
+    }
+    if ($(window).width() > 768 && $('#mm-menu').hasClass('mm-opened')){
+        $('#mm-menu').removeClass('mm-opened is-opening');
+        $('#mm-0').removeClass('is-opening');
+        $('html').removeClass('overflow-hidden');
+        setTimeout(function () {
+            $('#mm-blocker').removeClass('dblock is-opening')
+        }, 400);
+    }
+});

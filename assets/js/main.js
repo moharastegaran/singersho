@@ -35,13 +35,6 @@ $(document).ready(function () {
         }
     });
 
-    $(window).on('resize', function () {
-        if ($(window).width() >= 978) {
-            $('.filters__total-back').removeClass('show');
-            $('.filters__total-container').removeClass('is-open');
-        }
-    });
-
     $(window).on('load', function () {
         let value;
         if (value = getUrlParams('search')) {
@@ -97,24 +90,6 @@ $(document).ready(function () {
             emptyBlock.addClass('d-block');
             emptyBlock.removeClass('d-none');
         }
-    });
-
-
-    $('[data-ripple]').on('click', function (e) {
-
-        let ripple = $('<span></span>');
-        ripple.addClass("ripple");
-        $(this).append(ripple);
-
-        let x = e.clientX - e.target.offsetLeft;
-        let y = e.clientY - e.target.offsetTop;
-        ripple.css({
-            left: `${x}px`,
-            top: `${y}px`
-        });
-        setTimeout(() => {
-            ripple.remove();
-        }, 500);
     });
 
     const owl = $('.owl-carousel.artists__carousel').owlCarousel({

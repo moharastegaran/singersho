@@ -123,14 +123,17 @@
 
 <?php endif; ?>
 <script>
-    $(document).ready(function (){
+    $(document).ready(function () {
         $('a[href="#mm-menu"]').on('click', function (e) {
             e.preventDefault();
             // $('html').addClass('mm-opening');
-            $('#mm-menu').addClass('mm-opened');
-            $('#mm-0').addClass('is-opening');
-            $('#mm-blocker').addClass('dblock is-opening');
-            $('html').addClass('overflow-hidden');
+            $('#mm-menu').css({'display': 'block'});
+            setTimeout(function () {
+                $('#mm-menu').addClass('mm-opened');
+                $('#mm-0').addClass('is-opening');
+                $('#mm-blocker').addClass('dblock is-opening');
+                $('html').addClass('overflow-hidden');
+            }, 100);
         });
 
         $('#mm-blocker').on('click', function (e) {
