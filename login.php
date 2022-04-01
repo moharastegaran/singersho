@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+
+if ( isset($_SESSION['access_token']) ) :  ?>
+    <script> window.location.href = 'profile.php'; </script>
+<?php endif;
+
+
 $is_register = isset($_GET['action']) && $_GET['action'] === 'register';
 $is_forgot = isset($_GET['action']) && $_GET['action'] === 'forgot';
 
@@ -46,9 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
 <section class="fxt-template-layout24">
-    <!-- Video Area Start Here -->
 
-    <!-- Video Area Start Here -->
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-lg-3">
@@ -170,7 +175,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script src="assets/js/jquery-3.6.0.min.js"></script>
 <script src="assets/js/popper.min.js"></script>
-<!--<script src="assets/js/imagesloaded.pkgd.min.js"></script>-->
 <script src="assets/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {

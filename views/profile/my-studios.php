@@ -66,6 +66,10 @@ if (!($has_error = $get_cities['error']))
                         </tr>
                         </thead>
                         <tbody>
+
+                        <!----------------------->
+                        <!--  inline edit row  -->
+                        <!----------------------->
                         <tr class="inline-edit-row d-none">
                             <td colspan="7">
                                 <div class="row py-3">
@@ -135,15 +139,6 @@ if (!($has_error = $get_cities['error']))
                                                  style="margin-top: 15px; margin-bottom: 10px; background-size: cover"></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
-                                        <div class="sign__group d-flex">
-                                            <label class="col-lg-2 col-md-3 col-12 sign__label light" for="name">زمان های مشاوره</label>
-                                            <div class="col-lg-10 col-md-9 col-12">
-                                                <input type="text" id="name" name="name" autocomplete="off"
-                                                       class="sign__input" required>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-12 d-flex justify-content-between flex-wrap align-items-center">
                                         <button class="btn-purple-outline cancel">لغو</button>
                                         <button class="btn-purple update">به‌روزرسانی</button>
@@ -151,10 +146,18 @@ if (!($has_error = $get_cities['error']))
                                 </div>
                             </td>
                         </tr>
+
                         <?php if (!$has_error && count($studios)) : ?>
                             <?php for ($i = 0; $i < count($studios); $i++) : ?>
-                                <?php $studio = $studios[$i]; ?>
-                                <tr data-id="<?php echo $studio['id']; ?>">
+                                <?php
+                                $studio = $studios[$i];
+                                $pictures_path = "";
+                                $delim = '$%%$';
+                                for ($i=0;$i<count($studio['pictures']);$i++){
+                                    $pictures_path .= $studio['pictures'][$i]['path'] . $delim;
+                                }
+                                ?>
+                                <tr data-id="<?php echo $studio['id']; ?>" data-pictures="<?php echo $pictures_path?>">
                                     <td>
                                         <div class="main__table-text main__table-text--number">
                                             <a href="javascript:void(0)"><?php echo $studio['id']; ?></a>
@@ -212,14 +215,21 @@ if (!($has_error = $get_cities['error']))
                                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                             </svg>
                                         </a>
+<!--                                        <a href="javascript:void(0)" class="edit">-->
+<!--                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"-->
+<!--                                                 viewBox="0 0 24 24"-->
+<!--                                                 fill="none" stroke="currentColor" stroke-width="2"-->
+<!--                                                 stroke-linecap="round"-->
+<!--                                                 stroke-linejoin="round" class="text-secondary">-->
+<!--                                                <circle cx="12" cy="12" r="10"></circle>-->
+<!--                                                <polyline points="12 6 12 12 16 14"></polyline>-->
+<!--                                            </svg>-->
+<!--                                        </a>-->
                                         <a href="javascript:void(0)" class="edit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                 viewBox="0 0 24 24"
-                                                 fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round"
-                                                 stroke-linejoin="round" class="text-secondary">
-                                                <circle cx="12" cy="12" r="10"></circle>
-                                                <polyline points="12 6 12 12 16 14"></polyline>
+                                            <svg width="24" height="24" viewBox="0 0 32 32"
+                                                 xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#a0a0a0"
+                                                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                                <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
                                             </svg>
                                         </a>
                                     </td>

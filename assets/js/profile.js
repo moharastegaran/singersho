@@ -489,6 +489,12 @@ $(document).ready(function () {
         const $this = $(this);
         $('.studios_table tr.has-focus').removeClass('has-focus');
         const $row = $this.closest('tr').addClass('has-focus');
+        let $row_pictures = $row.data('pictures');
+        if ($row_pictures!==undefined && $row_pictures.length>0){
+            $row_pictures = $row_pictures.split("$%%$");
+            $row_pictures.pop();
+            studioImages.addImagesFromPath($row_pictures);
+        }
         const $edit_row = $('tr.inline-edit-row');
         $edit_row.removeClass('d-none');
         $edit_row.find('[name="name"]').val($row.find('.name').text());
@@ -509,6 +515,7 @@ $(document).ready(function () {
         e.preventDefault();
         let formData = new FormData();
         const $edit_row = $(this).closest('tr.inline-edit-row');
+        console.log(`$edit_row.find("input[type='file']")[0].files : ${$edit_row.find("input[type='file']")[0].files.length}`)
         $.each($edit_row.find("input[type='file']")[0].files, function (i, file) {
             formData.append('images[]', file);
         });
@@ -516,7 +523,10 @@ $(document).ready(function () {
         formData.append('name', $edit_row.find('[name="name"]').val());
         formData.append('price', $edit_row.find('[name="price"]').val());
         formData.append('address', $edit_row.find('[name="address"]').val());
-        formData.append('city_id', $edit_row.find('[name="city_id"]').val());
+        formData.append('city', $edit_row.find('[name="city_id"]').val());
+
+        console.log({...formData})
+
         $.ajax({
             method: 'POST',
             url: 'ajax/studios/edit.php',
@@ -525,7 +535,28 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (response) {
-                console.log("res : " + response);
+                response = JSON.parse(response);
+                if (response.error) {
+
+                }else{
+                    $edit_row.addClass("d-none");
+                    const activeRow = $(".studios_table").find("tr.has-focus");
+                    // $edit_row.find('[name="name"]').val($row.find('.name').text());
+                    // $edit_row.find('[name="price"]').val($row.find('.price').data('price'));
+                    // $edit_row.find('[name="city_id"]').val($row.find('.city').data('id'));
+                    // $edit_row.find('[name="city_name"]').val($row.find('.city').text());
+                    // $edit_row.find('[name="address"]').val($row.find('.address').text());
+                    activeRow.find('.name').text($edit_row.find('[name="name"]').val());
+                    activeRow.find('.price').text($edit_row.find('[name="price"]').val());
+                    activeRow.find('.price').data('price', $edit_row.find('[name="price"]').val());
+                    activeRow.find('.city').data('id',$edit_row.find('[name="city_id"]').val());
+                    activeRow.find('.city').text($edit_row.find('[name="city_name"]').val());
+                    activeRow.find('.address').text($edit_row.find('[name="address"]').val());
+
+                    $edit_row.find('input, textarea').val(null);
+                }
+                console.log("res : " + response.error);
+                // if (response.)
             }, error: function (error) {
                 console.log("error : " + error);
             }

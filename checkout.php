@@ -41,7 +41,7 @@ $cart_details = array(); ?>
                                         data-type="<?php echo $cart_detail['type']; ?>">
                                         <td>
                                             <div class="cart__img">
-                                                <img src="<?php echo $cart_detail['image']; ?>"
+                                                <img src="<?php echo $cart_detail['image']!==null ? $cart_detail['image'] : 'assets/img/placeholder2.jpg'; ?>"
                                                      alt="<?php echo $cart_detail['full_name']; ?>">
                                             </div>
                                         </td>
@@ -60,12 +60,18 @@ $cart_details = array(); ?>
                                                 <?php $cart_desc = $cart_detail['details']; ?>
                                                 <?php switch ($cart_detail['type']) :
                                                     case 'advisor'  : ?>
-                                                        ساعت و زمان مشاوره
-                                                        <?php echo $cart_desc['shamsi_date_1'] ?>
+                                                        مشاوره روز
+                                                        <em><?php echo $cart_desc['shamsi_date_1'] ?></em>
                                                         ساعت
-                                                        <?php echo $cart_desc['time']['started_at'] ?>
+                                                        <em><?php echo $cart_desc['time']['started_at'] ?></em>
                                                         تا
-                                                        <?php echo $cart_desc['time']['ended_at'] ?>
+                                                        <em><?php echo $cart_desc['time']['ended_at'] ?></em>
+                                                        <?php break; ?>
+                                                    <?php case 'teammate' : ?>
+                                                        انتخاب مهارت
+                                                    <?php break; ?>
+                                                    <?php case 'package' : ?>
+                                                        خرید پکیج
                                                         <?php break; ?>
                                                     <?php endswitch; ?>
                                             </span>

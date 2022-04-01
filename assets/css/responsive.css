@@ -436,7 +436,8 @@
         max-width: 300px;
     }
 
-    footer ul {
+    footer .copyright ul {
+        text-align: center;
         margin-left: auto;
         margin-right: auto;
     }

@@ -28,11 +28,11 @@ $(document).ready(function () {
             $('header').removeClass('sticky');
         }
 
-        if ($(window).scrollTop() > 100) {
-            $('.aux-goto-top-btn').addClass('visible');
-        } else {
-            $('.aux-goto-top-btn').removeClass('visible');
-        }
+        // if ($(window).scrollTop() > 100) {
+        //     $('.aux-goto-top-btn').addClass('visible');
+        // } else {
+        //     $('.aux-goto-top-btn').removeClass('visible');
+        // }
     });
 
     $(window).on('load', function () {
@@ -126,11 +126,11 @@ $(document).ready(function () {
         watchArrows()
     });
 
-    $('.aux-goto-top-btn').on('click', function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 600, $.bez([0.215, 0.610, 0.355, 1.000]));
-    })
+    // $('.aux-goto-top-btn').on('click', function () {
+    //     $('body,html').animate({
+    //         scrollTop: 0
+    //     }, 600, $.bez([0.215, 0.610, 0.355, 1.000]));
+    // })
 
 
     watchArrows();
@@ -286,7 +286,7 @@ $(document).ready(function () {
     /* Cities Range Filter */
     $('.main__select2[name=\'cities\']').on('change', function () {
         let cities = $(this).val(), _cities = "";
-        if (cities.length > 0) {
+        if (cities!==null && cities.length > 0) {
             for (let i = 0; i < cities.length; i++) {
                 _cities += cities[i];
                 if (i !== cities.length - 1)
@@ -301,6 +301,7 @@ $(document).ready(function () {
     });
 
     $('body').on('click', '.select2-selection__choice__remove', function () {
+        console.log("i ref");
         const val = $(this).parent('li').data('select2-id');
         console.log("id : " + val);
         const select2 = $('.main__select2[name="cities"]');
@@ -419,7 +420,6 @@ $(document).ready(function () {
         blockUI();
         const parent = $('#lists__main-list');
         console.log("s" + _params);
-        console.log("url == " + 'ajax/' + api_url + 's/filter.php');
         $.ajax({
             method: 'GET',
             url: 'ajax/' + api_url + 's/filter.php',
@@ -427,7 +427,6 @@ $(document).ready(function () {
                 params: _params
             },
             success: function (response) {
-                console.log("res ::: " + response);
                 parent.children('.row').html(response);
                 const count = parent.find('.' + api_url).length;
                 const emptyBlock = parent.find('#main-list-empty');

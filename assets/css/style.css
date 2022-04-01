@@ -459,84 +459,80 @@ input[type=checkbox], input[type=radio] {
     font-family: faNum;
 }
 
-.aux-goto-top-btn {
-    position: fixed;
-    left: 120px;
-    bottom: 52px;
-    transition: .5s all;
-    z-index: 140;
-    display: block;
-    transform: translateY(100px);
+/**********************/
+/*     GO TO TOP      */
+/**********************/
+@-webkit-keyframes border-transform{
+    0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+    14% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; }
+    28% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; }
+    42% { border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%; }
+    56% { border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%; }
+    70% { border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%; }
+    84% { border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%; }
+}
+@keyframes border-transform{
+    0%,100% { border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%; }
+    14% { border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%; }
+    28% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; }
+    42% { border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%; }
+    56% { border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%; }
+    70% { border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%; }
+    84% { border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%; }
 }
 
-.aux-goto-top-btn.visible {
-    /*display: block;*/
+.progress-wrap {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    height: 46px;
+    width: 46px;
+    cursor: pointer;
+    display: block;
+    border-radius: 50px;
+    box-shadow: inset  0 0 0 2px rgba(255,255,255,0.2);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
+    background-color: var(--dark-1);
+}
+.progress-wrap.active-progress {
+    opacity: 1;
+    visibility: visible;
     transform: translateY(0);
 }
-
-.aux-goto-top-btn .aux-arrow-nav {
-    position: relative;
-    cursor: pointer;
-    transform: translateZ(0);
-    width: 45px;
-    height: 45px;
-    background-color: #fff;
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px #3d3d3d inset;
-    overflow: hidden;
-}
-
-.aux-arrow-nav:hover .aux-overlay {
-    transform: translate(-50%, -50%) scale(1, 1);
-}
-
-.aux-arrow-nav .aux-overlay {
-    width: 105%;
-    position: absolute;
-    top: 50%;
+.progress-wrap .to-top-icon{
+    width: 22px;
+    height: 22px;
+    fill: #fff;
+    position:absolute;
     left: 50%;
-    transition-duration: .45s;
-    transform: translate(-50%, -50%) scale(0, 0);
-    transition: all .5s cubic-bezier(.77, 0, .175, 1);
-}
-
-.aux-arrow-nav .aux-overlay:after {
-    position: relative;
-    content: '';
-    border-radius: 50%;
-    display: block;
-    padding-top: 100%;
-    background-color: #3d3d3d;
-}
-
-.aux-arrow-nav:hover .aux-svg-arrow:not(.aux-hover-arrow) {
-    transform: translate(-50%, -350%);
-}
-
-/*.aux-arrow-nav:hover .aux-svg-arrow {*/
-/*    opacity: 0;*/
-/*}*/
-.aux-arrow-nav .aux-svg-arrow {
-    position: absolute;
     top: 50%;
-    left: 50%;
     transform: translate(-50%, -50%);
-    transition: all .5s cubic-bezier(.77, 0, .175, 1);
-    background-position: -80px -433px;
-    width: 10px;
-    height: 12px;
-    background-image: url(../img/symbols.svg);
-    background-repeat: no-repeat;
-    display: block;
+    transition: .5s;
+}
+.progress-wrap .to-top-icon:hover{
+    fill: var(--dark-green);
+}
+.progress-wrap .progress-circle:hover::after {
+    opacity: 0;
 }
 
-.aux-arrow-nav:hover .aux-hover-arrow {
-    transform: translate(-50%, -50%) !important;
+.progress-wrap .progress-circle:hover::before {
     opacity: 1;
 }
-
-.aux-svg-arrow.aux-white {
-    background-position: -258px -433px;
+.progress-wrap .progress-circle path {
+    fill: none;
+}
+.progress-wrap svg.progress-circle path {
+    stroke: var(--dark-green);
+    stroke-width: 4;
+    box-sizing:border-box;
+    -webkit-transition: all 200ms linear;
+    transition: all 200ms linear;
 }
 
 /*******************/
@@ -2090,10 +2086,6 @@ footer table td:not(:first-child) {
 /*    transition: .25s all;*/
 /*}*/
 
-footer ul li a:hover {
-    color: var(--dark-green)
-}
-
 footer .copyright {
     width: 100%;
     display: flex;
@@ -2105,6 +2097,19 @@ footer .copyright {
     margin-top: 20px;
     padding-top: 6px;
     padding-bottom: 6px;
+}
+
+footer .copyright ul {
+    text-align: left;
+    margin-right: auto;
+}
+
+footer .copyright ul li a{
+    transition: .2s;
+}
+
+footer .copyright ul li a:hover , footer .copyright ul li.active a{
+    color: var(--dark-green);
 }
 
 footer .text {
