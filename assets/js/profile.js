@@ -506,6 +506,7 @@ $(document).ready(function () {
 
     $('.inline-edit-row').on('click', '.cancel', function (e) {
         e.preventDefault();
+        $(".studios_table").find("tr.has-focus").removeClass("has-focus");
         const $edit_row = $(this).closest('tr.inline-edit-row');
         $edit_row.addClass('d-none');
         $edit_row.find('input,textarea').val(null);
@@ -536,16 +537,19 @@ $(document).ready(function () {
             processData: false,
             success: function (response) {
                 response = JSON.parse(response);
-                if (response.error) {
 
+                $edit_row.find('.input-error').remove();
+
+                if (response.error) {
+                    const { messages } = response;
+                    console.log(messages);
+                    for(const key in messages){
+                        $edit_row.find(`[name="${key}"]`).after(`<span class="input-error">${messages[key][0]}</span>`);
+                    }
                 }else{
+                    $(".studios_table").find("tr.has-focus").removeClass("has-focus");
                     $edit_row.addClass("d-none");
                     const activeRow = $(".studios_table").find("tr.has-focus");
-                    // $edit_row.find('[name="name"]').val($row.find('.name').text());
-                    // $edit_row.find('[name="price"]').val($row.find('.price').data('price'));
-                    // $edit_row.find('[name="city_id"]').val($row.find('.city').data('id'));
-                    // $edit_row.find('[name="city_name"]').val($row.find('.city').text());
-                    // $edit_row.find('[name="address"]').val($row.find('.address').text());
                     activeRow.find('.name').text($edit_row.find('[name="name"]').val());
                     activeRow.find('.price').text($edit_row.find('[name="price"]').val());
                     activeRow.find('.price').data('price', $edit_row.find('[name="price"]').val());
