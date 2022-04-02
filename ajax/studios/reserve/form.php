@@ -4,7 +4,7 @@ require_once '../../../config/config.php';
 
 if (isset($_POST['studio_id'])) {
     if ( $_POST['studio_id']>0 ) {
-        $get_times = callAPI('GET', RAW_API . 'reservation/advisor', ['rpp' => 2000, 'id' => $_POST['studio_id']]);
+        $get_times = callAPI('GET', RAW_API . 'reservation/studio', ['rpp' => 2000, 'id' => $_POST['studio_id']]);
         $get_times = json_decode($get_times, true);
 
         $times = array();

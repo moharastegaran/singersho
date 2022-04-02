@@ -332,6 +332,10 @@ $(document).ready(function () {
         e.preventDefault();
         $(this).toggleClass('added deleted');
     });
+    $('.studios_table').on('click', '.reserve__time-badge', function (e) {
+        e.preventDefault();
+        $(this).toggleClass('added deleted');
+    });
 
     $('.profile-advisor__times .btn__add-datetime').on('click', function (e) {
         e.preventDefault();
@@ -395,7 +399,6 @@ $(document).ready(function () {
                     url : 'ajax/studios/reserve/form.php',
                     data : { studio_id : 0},
                     success : function (response){
-                        console.log(response);
                         $('[name="studio_reserve_date"]').val(null);
                         const accordion = $('#studioReserveDateTimesAccordion');
                         const cardContent = response;
@@ -415,8 +418,21 @@ $(document).ready(function () {
     $('.profile-advisor__times').on('click', '.btn__save-all', function (e) {
         e.preventDefault();
         const parent = $(this).closest('.card');
-        const times = parent.find('.advisor__time-badge.added:not(.selected) a');
-        handleAdvisorTime(parent.data('date'), times);
+        const reserveDate = parent.data('date');
+        const timesAdded = parent.find('.advisor__time-badge.added:not(.selected) a');
+        const timesDeleted = parent.find('.advisor__time-badge.selected.deleted a');
+        if (timesAdded.length > 0 ) handleAdvisorTime(reserveDate, timesAdded);
+        if (timesDeleted.length > 0 ) handleAdvisorTime(reserveDate, timesDeleted, true);
+    });
+    $('.studios_table').on('click', '.btn__save-all', function (e) {
+        e.preventDefault();
+        const parent = $(this).closest('.card');
+        const reserveDate = parent.data('date');
+        const timesAdded = parent.find('.reserve__time-badge.added:not(.selected) a');
+        const timesDeleted = parent.find('.reserve__time-badge.selected.deleted a');
+        const activeRowId = $('.studios_table').find('tr.has-focus').data('id');
+        if (timesAdded.length > 0 ) handleReserveStudioTime(reserveDate, timesAdded, activeRowId);
+        if (timesDeleted.length > 0 ) handleReserveStudioTime(reserveDate, timesDeleted, activeRowId, true);
     });
 
     $('.profile-advisor__times').on('click', '.remove__items-all', function (e) {
@@ -431,6 +447,21 @@ $(document).ready(function () {
             }, 100);
         });
     })
+    $('.studios_table').on('click', '.remove__items-all', function (e) {
+        e.preventDefault();
+        $('#studioReserveDateTimesAccordion').collapse('hide');
+        const parent = $(this).closest('.card');
+        const times = parent.find('.reserve__time-badge.selected a');
+        console.log(`selected times len : ${times}`);
+        const activeRowId = $('.studios_table').find('tr.has-focus').data('id');
+        console.log(` activeRowId : ${activeRowId}`);
+        handleReserveStudioTime(parent.data('date'), times, activeRowId , true);
+        parent.fadeOut("slow", function () {
+            setTimeout(function () {
+                parent.remove()
+            }, 100);
+        });
+    });
 
     function handleAdvisorTime(date, listItems, is_delete = false) {
         if (listItems.length > 0) {
@@ -465,6 +496,44 @@ $(document).ready(function () {
             })
         } else if (!is_delete) {
             $('#advisorDateTimesAccordion').find('.collapse.show').collapse('hide');
+        }
+    }
+
+    function handleReserveStudioTime(date, listItems, studioId, is_delete = false) {
+        console.log(` is delete ? ${is_delete}`);
+        if (listItems.length > 0) {
+            let timesStr = "";
+            for (let i = 0; i < listItems.length; i++) {
+                timesStr += listItems.eq(i).data('id');
+                if (i < listItems.length - 1)
+                    timesStr += '_';
+            }
+            console.log(`time string : ${timesStr}`);
+            $.ajax({
+                method: 'POST',
+                url: 'ajax/studios/reserve/' + (is_delete ? 'delete' : 'add') + '.php',
+                data: {date: date, time: timesStr, studioId : studioId},
+                success: function (response) {
+                    console.log("res : " + response);
+                    response = JSON.parse(response);
+                    if (!response.error) {
+                        if (!is_delete) {
+                            $('#studioReserveDateTimesAccordion').find('.collapse.show').collapse('hide');
+                        }
+                    } else {
+                        Snackbar.show({
+                            text: response.hasOwnProperty('messages') ? response.messages[0] : 'مشکلی پیش آمد. مجددا امتحان کنید',
+                            showAction: false,
+                            pos: 'top-right danger',
+                            duration: 3000
+                        });
+                    }
+                }, error: function (error) {
+                    console.log("err : " + error);
+                }
+            })
+        } else if (!is_delete) {
+            $('#studioReserveDateTimesAccordion').find('.collapse.show').collapse('hide');
         }
     }
 
@@ -561,7 +630,6 @@ $(document).ready(function () {
             url : 'ajax/studios/reserve/form.php',
             data : {studio_id : $row.data('id')},
             success : function (response){
-                console.log(response)
                 $('tr.inline-timing-row').removeClass('d-none');
                 $("#studioReserveDateTimesAccordion").empty();
                 $("#studioReserveDateTimesAccordion").append(response);
