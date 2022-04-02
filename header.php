@@ -5,10 +5,9 @@ $page_name = substr($current_url, strrpos($current_url, '/') + 1);
 $cart_counter = 0;
 if (isset($_SESSION['access_token'])) {
     $cart = callAPI('GET', RAW_API . 'cart', false, true);
-//    echo $cart;
-//    die()
     $cart = json_decode($cart, true);
-    if (!$cart['error'] && count($cart['cart']['details'])) {
+    echo $cart;
+    if ($cart!==null && !$cart['error'] && count($cart['cart']['details'])) {
         $_SESSION['cart'] = json_encode([
             'final_cost' => $cart['cart']['final_cost'],
             'details' => $cart['cart']['details'],
@@ -16,7 +15,7 @@ if (isset($_SESSION['access_token'])) {
         $cart_counter = count($cart['cart']['details']);
     } else {
         unset($_SESSION['cart']);
-        if (count($cart['messages'])) {
+        if (isset($cart['messages']) && count($cart['messages'])) {
             die($cart['messages'][0]);
         }
     }
@@ -208,9 +207,11 @@ if (isset($_SESSION['access_token'])) {
                         <circle cx="7" cy="22" r="2"/>
                         <circle cx="17" cy="22" r="2"/>
                     </svg>
-<!--                    --><?php //if (isset($cart_counter) && $cart_counter > 0) : ?>
-<!--                        <span class="cart__counter">--><?php //echo $cart_counter; ?><!--</span>-->
-<!--                    --><?php //endif; ?>
+                    <?php
+                    echo $cart_counter;
+                    if (isset($cart_counter) && $cart_counter > 0) : ?>
+                        <span class="cart__counter"><?php echo $cart_counter; ?></span>
+                    <?php endif; ?>
                 </a>
             </li>
         </ul>

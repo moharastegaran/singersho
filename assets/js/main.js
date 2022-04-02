@@ -617,6 +617,7 @@ $(document).ready(function () {
                     type: 'package',
                     itemId: id
                 }, success: function (response) {
+                    console.log(response)
                     response = JSON.parse(response);
                     Snackbar.show({
                         text: response.hasOwnProperty('messages') ? (typeof response['messages'] === 'string' ? response['messages'] : response['messages'][0]) : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول به سبد خرید شما افزوده شد'),

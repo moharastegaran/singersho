@@ -368,6 +368,49 @@ $(document).ready(function () {
             }
         }
     });
+  $('.studios_table .btn__add-datetime').on('click', function (e) {
+        e.preventDefault();
+        const parent = $('#studioReserveDateTimesAccordion');
+        const date = $('[name="studio_reserve_date"]').val();
+        if (date!==''){
+            console.log("date : " + date);
+            const cards = parent.find('.card');
+            let isOk = true;
+            for (let i = 0; i < cards.length; i++) {
+                if (cards.eq(i).data('date') === date) {
+                    isOk = false;
+                    break;
+                }
+            }
+            if (!isOk) {
+                Snackbar.show({
+                    text: 'تاریخ قبلا اضافه شده است',
+                    showAction: false,
+                    pos: 'top-right danger',
+                    duration: 3000
+                });
+            } else {
+                $.ajax({
+                    method : 'POST',
+                    url : 'ajax/studios/reserve/form.php',
+                    data : { studio_id : 0},
+                    success : function (response){
+                        console.log(response);
+                        $('[name="studio_reserve_date"]').val(null);
+                        const accordion = $('#studioReserveDateTimesAccordion');
+                        const cardContent = response;
+                        const rand = Math.ceil(Math.random() * 1000);
+                        accordion.prepend(cardContent);
+                        const newCard = accordion.find('.card').first();
+                        newCard.find('.card-date').text(date);
+                        newCard.attr('data-date',date);
+                        newCard.find('.collapse').attr('id', 'studioReserveDateTimesAccordionNumber' + rand);
+                        newCard.find('[role="menu"]').attr('data-target', '#studioReserveDateTimesAccordionNumber' + rand);
+                    }
+                })
+            }
+        }
+    });
 
     $('.profile-advisor__times').on('click', '.btn__save-all', function (e) {
         e.preventDefault();
@@ -487,14 +530,15 @@ $(document).ready(function () {
     $('.studios_table').on('click', 'a.edit', function (e) {
         e.preventDefault();
         const $this = $(this);
+        $('tr.inline-timing-row').addClass('d-none');
         $('.studios_table tr.has-focus').removeClass('has-focus');
         const $row = $this.closest('tr').addClass('has-focus');
-        let $row_pictures = $row.data('pictures');
-        if ($row_pictures!==undefined && $row_pictures.length>0){
-            $row_pictures = $row_pictures.split("$%%$");
-            $row_pictures.pop();
-            studioImages.addImagesFromPath($row_pictures);
-        }
+        // let $row_pictures = $row.data('pictures');
+        // if ($row_pictures!==undefined && $row_pictures.length>0){
+        //     $row_pictures = $row_pictures.split("$%%$");
+        //     $row_pictures.pop();
+        //     studioImages.addImagesFromPath($row_pictures);
+        // }
         const $edit_row = $('tr.inline-edit-row');
         $edit_row.removeClass('d-none');
         $edit_row.find('[name="name"]').val($row.find('.name').text());
@@ -504,29 +548,65 @@ $(document).ready(function () {
         $edit_row.find('[name="address"]').val($row.find('.address').text());
     });
 
+    $('.studios_table').on('click', 'a.timing', function (e) {
+        e.preventDefault();
+        const $this = $(this);
+        $('.studios_table tr.has-focus').removeClass('has-focus');
+        $('tr.inline-edit-row').addClass('d-none');
+        const $row = $this.closest('tr');
+        $row.addClass('has-focus');
+        console.log(`$row.data('id') : ${$row.data('id')}`)
+        $.ajax({
+            method : 'POST',
+            url : 'ajax/studios/reserve/form.php',
+            data : {studio_id : $row.data('id')},
+            success : function (response){
+                console.log(response)
+                $('tr.inline-timing-row').removeClass('d-none');
+                $("#studioReserveDateTimesAccordion").empty();
+                $("#studioReserveDateTimesAccordion").append(response);
+            }, error : function (error){
+                console.log(error)
+            }
+        })
+
+
+        const $timing_row = $('tr.inline-timing-row');
+        $timing_row.removeClass('d-none');
+    });
+
     $('.inline-edit-row').on('click', '.cancel', function (e) {
         e.preventDefault();
         $(".studios_table").find("tr.has-focus").removeClass("has-focus");
+
         const $edit_row = $(this).closest('tr.inline-edit-row');
         $edit_row.addClass('d-none');
         $edit_row.find('input,textarea').val(null);
     });
 
+    $('.inline-timing-row').on('click', '.cancel', function (e) {
+        e.preventDefault();
+        $(".studios_table").find("tr.has-focus").removeClass("has-focus");
+
+        const $timing_row = $(this).closest('tr.inline-timing-row');
+        $timing_row.addClass('d-none');
+        $timing_row.find('input').val(null);
+    });
+
+
     $('.inline-edit-row').on('click', '.update', function (e) {
         e.preventDefault();
         let formData = new FormData();
         const $edit_row = $(this).closest('tr.inline-edit-row');
-        console.log(`$edit_row.find("input[type='file']")[0].files : ${$edit_row.find("input[type='file']")[0].files.length}`)
-        $.each($edit_row.find("input[type='file']")[0].files, function (i, file) {
-            formData.append('images[]', file);
-        });
+        // console.log(`$edit_row.find("input[type='file']")[0].files : ${$edit_row.find("input[type='file']")[0].files.length}`)
+        // $.each($edit_row.find("input[type='file']")[0].files, function (i, file) {
+        //     formData.append('images[]', file);
+        // });
         formData.append('studio_id', $('tr.has-focus').data('id'));
         formData.append('name', $edit_row.find('[name="name"]').val());
         formData.append('price', $edit_row.find('[name="price"]').val());
         formData.append('address', $edit_row.find('[name="address"]').val());
         formData.append('city', $edit_row.find('[name="city_id"]').val());
-
-        console.log({...formData})
 
         $.ajax({
             method: 'POST',
@@ -536,6 +616,7 @@ $(document).ready(function () {
             cache: false,
             processData: false,
             success: function (response) {
+                console.log(response);
                 response = JSON.parse(response);
 
                 $edit_row.find('.input-error').remove();
@@ -547,10 +628,11 @@ $(document).ready(function () {
                         $edit_row.find(`[name="${key}"]`).after(`<span class="input-error">${messages[key][0]}</span>`);
                     }
                 }else{
-                    $(".studios_table").find("tr.has-focus").removeClass("has-focus");
                     $edit_row.addClass("d-none");
                     const activeRow = $(".studios_table").find("tr.has-focus");
+                    activeRow.removeClass("has-focus");
                     activeRow.find('.name').text($edit_row.find('[name="name"]').val());
+                    console.log($edit_row.find('[name="price"]').val());
                     activeRow.find('.price').text($edit_row.find('[name="price"]').val());
                     activeRow.find('.price').data('price', $edit_row.find('[name="price"]').val());
                     activeRow.find('.city').data('id',$edit_row.find('[name="city_id"]').val());

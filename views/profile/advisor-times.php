@@ -85,7 +85,7 @@ if ($artist_id > 0) {
                                             <div class="col-md-12">
                                                 <ul class="advisor__times-list mb-4">
                                                     <?php for ($i = 0; $i < count($allowed_hours); $i++): ?>
-                                                        <div class="col-md-2 col-sm-4 col-12">
+                                                        <div class="col-md-2 col-sm-4 col-12 px-md-1">
                                                             <li class="advisor__time-badge <?php echo in_array($allowed_hours[$i]['id'], $current_hours) ? 'selected added' : 'deleted'; ?>">
                                                                 <a href="javascript:void(0)"
                                                                    data-id="<?php echo $allowed_hours[$i]['id']; ?>">

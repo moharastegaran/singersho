@@ -404,6 +404,18 @@
     transition: .25s;
 }
 
+.table-control a.delete svg{
+    stroke: var(--red-danger);
+}
+
+.table-control a.edit svg{
+    stroke: var(--light-yellow);
+}
+
+.table-control a.timing svg{
+    stroke : var(--muted)
+}
+
 .table-control a:hover svg{
     transform: translateY(-2px);
 }

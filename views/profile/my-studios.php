@@ -7,11 +7,20 @@ $studios = json_decode($get_studios, true);
 $has_error = $studios['error'];
 $studios = $studios['studios'];
 
+//for ($i = 0; $i < count($studios); $i++) {
+//    $studio_reserved_times = callAPI('GET', RAW_API . 'reservation/advisor', ['rpp' => 2000, 'id' => $studios[$i]['id']]);
+//    $studio_reserved_times = json_decode($studio_reserved_times, true);
+//    if (!$studio_reserved_times['error'])
+//        $studios[$i]['reserve-dates'] = $studio_reserved_times['dates'];
+//}
+
+
 $get_cities = callAPI('GET', RAW_API . 'cities', ['rpp' => 2000]);
 $get_cities = json_decode($get_cities, true);
 $cities = array();
 if (!($has_error = $get_cities['error']))
     $cities = $get_cities['cities']['data'];
+
 ?>
 
 
@@ -70,13 +79,41 @@ if (!($has_error = $get_cities['error']))
                         <!----------------------->
                         <!--  inline edit row  -->
                         <!----------------------->
+                        <tr class="inline-timing-row d-none">
+                            <td colspan="7">
+                                <div class="row py-3">
+                                    <div class="col-lg-6 d-flex align-items-center">
+                                        <div class="col-md-10 pr-0">
+                                            <div class="sign__group">
+                                                <input type="text" name="studio_reserve_date" autocomplete="off"
+                                                       placeholder="تاریخ رزرو" class="input-large" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button class="btn-green-outline btn-add btn-large btn__add-datetime">افزودن
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div id="studioReserveDateTimesAccordion" class="accordion-icons col-12 mt-3 mb-3">
+                                    </div>
+
+                                    <div class="col-12 d-flex justify-content-between flex-wrap align-items-center">
+                                        <button class="btn-purple-outline cancel">بستن</button>
+                                        <button class="btn-purple update">به‌روزرسانی</button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
                         <tr class="inline-edit-row d-none">
                             <td colspan="7">
                                 <div class="row py-3">
                                     <h6 class="col-12 mb-4">ویرایش سریع</h6>
                                     <div class="col-md-6">
                                         <div class="sign__group d-flex">
-                                            <label class="col-lg-2 col-md-3 col-12 sign__label light" for="name">نام</label>
+                                            <label class="col-lg-2 col-md-3 col-12 sign__label light"
+                                                   for="name">نام</label>
                                             <div class="col-lg-10 col-md-9 col-12">
                                                 <input type="text" id="name" name="name" autocomplete="off"
                                                        class="sign__input" required>
@@ -111,36 +148,38 @@ if (!($has_error = $get_cities['error']))
                                                        name="price" class="sign__input" required>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="sign__group d-flex">
                                             <label class="col-lg-2 col-md-3 col-12 sign__label light">آدرس</label>
                                             <div class="col-lg-10 col-md-9 col-12">
-                                                <textarea rows="4" name="address" class="sign__input"></textarea>
+                                                <textarea rows="5" name="address" class="sign__input"></textarea>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="custom-file-container" data-upload-id="studioImagesFileContainer">
-                                            <label class="sign__label light">
-                                                آپلود عکس(ها)
-                                                <a href="javascript:void(0)" class="custom-file-container__image-clear"
-                                                   title="حذف همه">x</a>
-                                            </label>
-                                            <label class="custom-file-container__custom-file">
-                                                <input type="file" name="images[]" accept="image/*"
-                                                       class="custom-file-container__custom-file__custom-file-input"
-                                                       multiple="">
-                                                <input type="hidden" name="MAX_FILE_SIZE" value="10485760">
-                                                <span class="custom-file-container__custom-file__custom-file-control"></span>
-                                                <!--                                            <span class="custom-file-container__custom-file__custom-file-control">انتخاب کنید...-->
-                                                <!--                                            <span class="custom-file-container__custom-file__custom-file-control__button"> جست‌وجو </span>-->
-                                                <!--                                            </span>-->
-                                            </label>
-                                            <div class="custom-file-container__image-preview"
-                                                 style="margin-top: 15px; margin-bottom: 10px; background-size: cover"></div>
-                                        </div>
-                                    </div>
+                                    <!--                                    <div class="col-md-6">-->
+                                    <!--                                        <div class="custom-file-container" data-upload-id="studioImagesFileContainer">-->
+                                    <!--                                            <label class="sign__label light">-->
+                                    <!--                                                آپلود عکس(ها)-->
+                                    <!--                                                <a href="javascript:void(0)" class="custom-file-container__image-clear"-->
+                                    <!--                                                   title="حذف همه">x</a>-->
+                                    <!--                                            </label>-->
+                                    <!--                                            <label class="custom-file-container__custom-file">-->
+                                    <!--                                                <input type="file" name="images[]" accept="image/*"-->
+                                    <!--                                                       class="custom-file-container__custom-file__custom-file-input"-->
+                                    <!--                                                       multiple="">-->
+                                    <!--                                                <input type="hidden" name="MAX_FILE_SIZE" value="10485760">-->
+                                    <!--                                                <span class="custom-file-container__custom-file__custom-file-control"></span>-->
+                                    <!--                                                <span class="custom-file-container__custom-file__custom-file-control">انتخاب کنید...-->
+                                    <!--                                                <span class="custom-file-container__custom-file__custom-file-control__button"> جست‌وجو </span>-->
+                                    <!--                                                </span>-->
+                                    <!--                                            </label>-->
+                                    <!--                                            <div class="custom-file-container__image-preview"-->
+                                    <!--                                                 style="margin-top: 15px; margin-bottom: 10px; background-size: cover"></div>-->
+                                    <!--                                        </div>-->
+                                    <!--                                    </div>-->
                                     <div class="col-12 d-flex justify-content-between flex-wrap align-items-center">
-                                        <button class="btn-purple-outline cancel">لغو</button>
+                                        <button class="btn-purple-outline cancel">بستن</button>
                                         <button class="btn-purple update">به‌روزرسانی</button>
                                     </div>
                                 </div>
@@ -153,11 +192,11 @@ if (!($has_error = $get_cities['error']))
                                 $studio = $studios[$i];
                                 $pictures_path = "";
                                 $delim = '$%%$';
-                                for ($i=0;$i<count($studio['pictures']);$i++){
+                                for ($i = 0; $i < count($studio['pictures']); $i++) {
                                     $pictures_path .= $studio['pictures'][$i]['path'] . $delim;
                                 }
                                 ?>
-                                <tr data-id="<?php echo $studio['id']; ?>" data-pictures="<?php echo $pictures_path?>">
+                                <tr data-id="<?php echo $studio['id']; ?>" data-pictures="<?php echo $pictures_path ?>">
                                     <td>
                                         <div class="main__table-text main__table-text--number">
                                             <a href="javascript:void(0)"><?php echo $studio['id']; ?></a>
@@ -175,7 +214,7 @@ if (!($has_error = $get_cities['error']))
                                     </td>
                                     <td>
                                         <div class="main__table-text city"
-                                        data-id="<?php echo $studio['geographical_information']['city_id']; ?>"><?php echo $studio['geographical_information']['city']; ?></div>
+                                             data-id="<?php echo $studio['geographical_information']['city_id']; ?>"><?php echo $studio['geographical_information']['city']; ?></div>
                                     </td>
                                     <td>
                                         <div class="main__table-text main__table-text--price price"
@@ -207,31 +246,30 @@ if (!($has_error = $get_cities['error']))
                                         </div>
                                     </td>
                                     <td class="table-control">
+                                        <a href="javascript:void(0)" class="timing">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24"
+                                                 fill="none" stroke="#ff0" stroke-width="2"
+                                                 stroke-linecap="round"
+                                                 stroke-linejoin="round" class="text-secondary">
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <polyline points="12 6 12 12 16 14"></polyline>
+                                            </svg>
+                                        </a>
                                         <a href="javascript:void(0)" class="edit">
                                             <svg width="24" height="24" viewBox="0 0 32 32"
                                                  xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#a0a0a0"
                                                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                                                <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z" />
+                                                <path d="M30 7 L25 2 5 22 3 29 10 27 Z M21 6 L26 11 Z M5 22 L10 27 Z"/>
                                             </svg>
                                         </a>
                                         <a href="javascript:void(0)" class="delete">
                                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                 stroke-linecap="round" stroke-linejoin="round" width="23"
-                                                 class="text-danger">
+                                                 stroke-linecap="round" stroke-linejoin="round" width="23">
                                                 <polyline points="3 6 5 6 21 6"></polyline>
                                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                             </svg>
                                         </a>
-<!--                                        <a href="javascript:void(0)" class="edit">-->
-<!--                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"-->
-<!--                                                 viewBox="0 0 24 24"-->
-<!--                                                 fill="none" stroke="currentColor" stroke-width="2"-->
-<!--                                                 stroke-linecap="round"-->
-<!--                                                 stroke-linejoin="round" class="text-secondary">-->
-<!--                                                <circle cx="12" cy="12" r="10"></circle>-->
-<!--                                                <polyline points="12 6 12 12 16 14"></polyline>-->
-<!--                                            </svg>-->
-<!--                                        </a>-->
                                     </td>
                                 </tr>
                             <?php endfor; ?>

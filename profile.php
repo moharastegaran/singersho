@@ -88,7 +88,7 @@ if ($is_user_artist && !isset($_SESSION['artist_id']))
                                     استدیوهای من
                                 </a>
                             </li>
-                            <li><a href="#" class="profile-menu__item profile-menu__item-myorders" data-ripple="">سفارش‌های من</a></li>
+<!--                            <li><a href="#" class="profile-menu__item profile-menu__item-myorders" data-ripple="">سفارش‌های من</a></li>-->
                             <li><a href="logout.php" class="profile-menu__item profile-menu__item-logout" data-ripple="">خروج</a></li>
                             <?php if (!$is_user_artist) : ?>
                                 <ul class="profile-menu" style="margin-top: 10px;padding-top: 10px;border-top:1px solid #333333bb">
