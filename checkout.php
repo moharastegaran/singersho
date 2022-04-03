@@ -69,8 +69,10 @@ $cart_details = array(); ?>
                                             <span class="cart__details">
                                                 <?php $cart_desc = $cart_detail['details']; ?>
                                                 <?php switch ($cart_detail['type']) :
+                                                    case 'studio' :
                                                     case 'advisor'  : ?>
-                                                        مشاوره روز
+                                                        <?php echo $cart_detail['type']==='advisor' ? 'مشاوره' : 'رزرو استدیو'?>
+                                                         روز
                                                         <em><?php echo $cart_desc['shamsi_date_1'] ?></em>
                                                         ساعت
                                                         <em><?php echo $cart_desc['time']['started_at'] ?></em>

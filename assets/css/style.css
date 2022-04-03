@@ -4748,7 +4748,7 @@ textarea.contact-form-input {
 #modal-topup .advisor__day-next i:hover{
     transform: translateX(-2px);
 }
-#modal-topup .advisor__times-list,
+#modal-topup .advisor__times-list, #modal-topup .reserve__times-list,
 #advisorDateTimesAccordion .advisor__times-list,
 #studioReserveDateTimesAccordion .reserve__times-list {
     padding: 0;
@@ -4756,7 +4756,7 @@ textarea.contact-form-input {
     flex-wrap: wrap;
     margin-top: .75rem;
 }
-#modal-topup .advisor__time-badge,
+#modal-topup .advisor__time-badge, #modal-topup .reserve__time-badge,
 #advisorDateTimesAccordion .advisor__time-badge,
 #studioReserveDateTimesAccordion .reserve__time-badge{
     border: 1px solid var(--muted);
@@ -4769,24 +4769,24 @@ textarea.contact-form-input {
     transition: .25s;
     opacity: .4;
 }
-#modal-topup .advisor__time-badge:hover,
+#modal-topup .advisor__time-badge:hover, #modal-topup .reserve__time-badge:hover,
 #advisorDateTimesAccordion .advisor__time-badge:hover,
 #studioReserveDateTimesAccordion .reserve__time-badge:hover{
     opacity: 1;
     background-color: var(--light-green);
 }
-#modal-topup .advisor__time-badge.selected,
+#modal-topup .advisor__time-badge.selected, #modal-topup .reserve__time-badge.selected,
 #advisorDateTimesAccordion .advisor__time-badge.added,
 #studioReserveDateTimesAccordion .reserve__time-badge.added{
     opacity: 1;
     background-color: var(--dark-green);
 }
-#modal-topup .advisor__time-badge.selected:hover,
+#modal-topup .advisor__time-badge.selected:hover, #modal-topup .reserve__time-badge.selected:hover,
 #advisorDateTimesAccordion .advisor__time-badge.added:hover,
 #studioReserveDateTimesAccordion .reserve__time-badge.added:hover{
     background-color: var(--red-danger);
 }
-#modal-topup .advisor__time-badge a,
+#modal-topup .advisor__time-badge a, #modal-topup .reserve__time-badge a,
 #advisorDateTimesAccordion .advisor__time-badge a,
 #studioReserveDateTimesAccordion .reserve__time-badge a{
     font-size: 14px;
@@ -4800,7 +4800,7 @@ textarea.contact-form-input {
     font-size: 15px;
     font-weight:500;
 }
-#modal-topup .advisor__help-block{
+#modal-topup .advisor__help-block, #modal-topup .reserve__help-block{
     font-size: 13px;
     color: var(--light);
     opacity: .4;

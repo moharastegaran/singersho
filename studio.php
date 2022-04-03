@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
     <!--    <svg xmlns="http://www.w3.org/2000/svg" class="shape-bottom" viewBox="0 0 1440 320"><path d="M0,128L60,122.7C120,117,240,107,360,85.3C480,64,600,32,720,58.7C840,85,960,171,1080,192C1200,213,1320,171,1380,149.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>-->
 
 
-    <div class="container mx-auto studio__single">
+    <div class="container mx-auto studio__single" data-id="<?php echo $studio['id']; ?>">
         <nav aria-label="breadcrumbs">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php" title="خانه">خانه</a></li>
@@ -166,8 +166,8 @@ if (isset($studio_times) && count($studio_times)) : ?>
             </li>
         </ul>
 
-        <div class="sign__group advisor__dates-select mb-0">
-            <select name="advisor__days-select">
+        <div class="sign__group reserve__dates-select mb-0">
+            <select name="reserve__days-select">
                 <?php for ($i = 0; $i < count($studio_times); $i++) { ?>
                     <option value="<?php echo $studio_times[$i]['shamsi_date_2']; ?>">
                         <?php echo $studio_times[$i]['shamsi_date_1']; ?>
@@ -180,10 +180,10 @@ if (isset($studio_times) && count($studio_times)) : ?>
         $current_time = $studio_times[0];
         if (count($current_time['details'])) {
             $current_time_details = $current_time['details'];
-            echo "<ul class='advisor__times-list mb-4'>";
+            echo "<ul class='reserve__times-list mb-4'>";
             for ($j = 0; $j < count($current_time_details); $j++) : ?>
                 <?php if (!$current_time_details[$j]['is_reserve']) : ?>
-                    <li class="advisor__time-badge <?php echo in_array($current_time_details[$j]['id'], $cart_studio_reserve) ? ' selected' : ''; ?>">
+                    <li class="reserve__time-badge <?php echo in_array($current_time_details[$j]['id'], $cart_studio_reserve) ? ' selected' : ''; ?>">
                         <a href="javascript:void(0)" data-id="<?php echo $current_time_details[$j]['id']; ?>">
                             <?php echo $current_time_details[$j]['allowed_hour']['started_at'] . ' تا ' . $current_time_details[$j]['allowed_hour']['ended_at']; ?>
                         </a>
@@ -192,7 +192,7 @@ if (isset($studio_times) && count($studio_times)) : ?>
             <?php endfor;
             echo "</ul>";
         } ?>
-        <p class="advisor__help-block">
+        <p class="reserve__help-block">
             کافیست بر روی ساعت مورد نظر کلیک کنید
         </p>
     </div>

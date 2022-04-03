@@ -700,56 +700,21 @@ $(document).ready(function () {
         mainClass: 'mfp-fade'
     });
 
-    $(document).on('click', '.advisor__time-badge a', function (e) {
+    $(document).on('click', '.advisor__time-badge a, .reserve__time-badge a', function (e) {
         e.preventDefault()
         const _this = $(this);
-        const isSelected = _this.parent('li').hasClass('selected');
-        $.ajax({
-            method: 'POST',
-            url: 'ajax/cart/' + (isSelected ? 'delete' : 'add') + '.php',
-            data: {
-                type: 'advisor',
-                itemId: _this.data('id')
-            }, success: function (response) {
-                console.log("res : " + response);
-                response = JSON.parse(response);
-                Snackbar.show({
-                    text: response.hasOwnProperty('messages') ? (typeof response['messages'] === 'string' ? response['messages'] : response['messages'][0]) : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول از سبد خرید شما حذف شد'),
-                    showAction: false,
-                    pos: 'top-right ' + (response.error ? ' danger' : ''),
-                    duration: 3000
-                });
-                if (!response.error) {
-                    updateCartCounter(!isSelected);
-                    $.magnificPopup.close();
-                    _this.parent('li').toggleClass('selected');
-                }
-            }, error: function (error) {
-                console.log("error : " + error);
-            }
-        });
+        const isRemoval = _this.parent('li').hasClass('selected');
+        const isAdvisor = _this.parent('li').hasClass('advisor__time-badge');
+        console.log(`isRemoval ${isRemoval}, isAdvisor ${isAdvisor}`);
+        handleOnDayHourChanged(_this, isRemoval, isAdvisor);
     });
 
-    $('select[name="advisor__days-select"]').on('change', function (e) {
+    $('select[name="advisor__days-select"], select[name="reserve__days-select"]').on('change', function (e) {
         e.preventDefault();
         const itemDate = $(this).val();
-        const artistId = $('.artist__single').data('id');
-        const modal = $('#modal-topup');
-        blockUI(modal.find('.advisor__times-list'));
-        $.ajax({
-            method: 'GET',
-            url: 'ajax/artists/advisor/get.php',
-            data: {itemId: artistId, itemDate: itemDate},
-            success: function (response) {
-                if (typeof response === 'object') {
-                } else {
-                    modal.find('.advisor__times-list').remove();
-                    modal.find('select[name="advisor__days-select"]').after(response);
-                }
-            }, error: function (error) {
-                console.log('error : ' + error);
-            }
-        })
+        const isAdvisor = $(this).attr('name') === 'advisor__days-select';
+        console.log(`itemDate ${itemDate}, isAdvisor ${isAdvisor}`);
+        handleOnDaySelectChange(itemDate, isAdvisor);
     });
 
     $('.artist__single').on('click', 'a.select__title', function () {
@@ -846,6 +811,53 @@ $(document).ready(function () {
             }
         }
         console.log(` cartCounter :  ${cartCounter.length}`);
+    }
+
+    function handleOnDaySelectChange(date, is_advisor){
+        const typeId = $(`.${is_advisor ? 'artist' : 'studio'}__single`).data('id');
+        const modal = $('#modal-topup');
+        blockUI(modal.find(`.${is_advisor ? 'advisor' : 'reserve'}__times-list`));
+        $.ajax({
+            method: 'GET',
+            url: `ajax/${is_advisor ? 'artists/advisor' : 'studios/reserve'}/get.php`,
+            data: {itemId: typeId, itemDate: date},
+            success: function (response) {
+                if (typeof response === 'object') {
+                } else {
+                    modal.find(`.${is_advisor ? 'advisor' : 'reserve'}__times-list`).remove();
+                    modal.find(`select[name="${is_advisor ? 'advisor' : 'reserve'}__days-select"]`).after(response);
+                }
+            }, error: function (error) {
+                console.log('error : ' + error);
+            }
+        })
+    }
+
+    function handleOnDayHourChanged(itemDOM, isRemoval, isAdvisor){
+        $.ajax({
+            method: 'POST',
+            url: 'ajax/cart/' + (isRemoval ? 'delete' : 'add') + '.php',
+            data: {
+                type: (isAdvisor ? 'advisor' : 'studio'),
+                itemId: itemDOM.data('id'),
+            }, success: function (response) {
+                console.log(response);
+                response = JSON.parse(response);
+                Snackbar.show({
+                    text: response.hasOwnProperty('messages') ? (typeof response['messages'] === 'string' ? response['messages'] : response['messages'][0]) : (response.error ? 'مشکلی پیش آمد. مجددا امتحان کنید' : 'محصول از سبد خرید شما حذف شد'),
+                    showAction: false,
+                    pos: 'top-right ' + (response.error ? ' danger' : ''),
+                    duration: 3000
+                });
+                if (!response.error) {
+                    updateCartCounter(!isRemoval);
+                    $.magnificPopup.close();
+                    itemDOM.parent('li').toggleClass('selected');
+                }
+            }, error: function (error) {
+                console.log("error : " + error);
+            }
+        });
     }
 
     /*********************/
