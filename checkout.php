@@ -1,6 +1,16 @@
 <?php
 include 'header.php';
 
+$user_personal = callAPI('GET', RAW_API . 'me', false, true);
+$user_personal = json_decode($user_personal, true);
+$checkout_user_data = array();
+if (!$user_personal['error']) {
+    $user_personal = $user_personal['data']['user'];
+    $checkout_user_data['name'] = $user_personal['first_name'] . ' ' . $user_personal['last_name'];
+    $checkout_user_data['email'] = $user_personal['email'];
+    $checkout_user_data['mobile'] = $user_personal['mobile'];
+}
+
 $cart_details = array(); ?>
 
     <div class="container mx-auto cart__single">
@@ -41,12 +51,12 @@ $cart_details = array(); ?>
                                         data-type="<?php echo $cart_detail['type']; ?>">
                                         <td>
                                             <div class="cart__img">
-                                                <img src="<?php echo $cart_detail['image']!==null ? $cart_detail['image'] : 'assets/img/placeholder2.jpg'; ?>"
+                                                <img src="<?php echo $cart_detail['image'] !== null ? $cart_detail['image'] : 'assets/img/placeholder2.jpg'; ?>"
                                                      alt="<?php echo $cart_detail['full_name']; ?>">
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="<?php echo (in_array($cart_detail['type'],['advisor','teammate']) ? 'artist' : $cart_detail['type']); ?>.php?id=<?php echo $cart_detail['type_id']; ?>">
+                                            <a href="<?php echo(in_array($cart_detail['type'], ['advisor', 'teammate']) ? 'artist' : $cart_detail['type']); ?>.php?id=<?php echo $cart_detail['type_id']; ?>">
                                                 <?php echo $cart_detail['full_name']; ?>
                                             </a>
                                         </td>
@@ -69,7 +79,7 @@ $cart_details = array(); ?>
                                                         <?php break; ?>
                                                     <?php case 'teammate' : ?>
                                                         انتخاب مهارت
-                                                    <?php break; ?>
+                                                        <?php break; ?>
                                                     <?php case 'package' : ?>
                                                         خرید پکیج
                                                         <?php break; ?>
@@ -99,7 +109,8 @@ $cart_details = array(); ?>
 
 
                     <form class="cart__form-discount sign__group sign__group-inline" method="get">
-                        <input type="text" name="discount_code" class="sign__input" placeholder="کد تخفیف" autocomplete="off" required>
+                        <input type="text" name="discount_code" class="sign__input" placeholder="کد تخفیف"
+                               autocomplete="off" required>
                         <button type="submit" class="sign__btn">اعمال</button>
                     </form>
 
@@ -118,16 +129,18 @@ $cart_details = array(); ?>
                 <div class="cart__table-wrap">
                     <form action="#" class="sign__form--cart">
                         <div class="sign__group">
-                            <input type="text" name="name" placeholder="نام و نام خانوادگی" autocomplete="off">
+                            <input type="text" name="name" placeholder="نام و نام خانوادگی" autocomplete="off"
+                                   value="<?php echo isset($checkout_user_data['name']) ? $checkout_user_data['name'] : '' ?>">
                         </div>
 
                         <div class="sign__group">
-                            <input type="text" name="email" placeholder="ایمیل" autocomplete="off">
+                            <input type="text" name="email" placeholder="ایمیل" autocomplete="off"
+                                   value="<?php echo isset($checkout_user_data['email']) ? $checkout_user_data['email'] : '' ?>">
                         </div>
 
                         <div class="sign__group">
-                            <input dir="ltr" type="text" name="phone" placeholder="09*********"
-                                   style="letter-spacing: 1px">
+                            <input dir="ltr" type="text" name="mobile" placeholder="09*********" style="letter-spacing: 1px"
+                                   value="<?php echo isset($checkout_user_data['mobile']) ? $checkout_user_data['mobile'] : ''?>">
                         </div>
                         <div class="sign__group">
                             <p class="sign__text sign__text--small">

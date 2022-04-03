@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
     $artist_is_advisor = $artist['artist']['is_advisor'] == 1 && $artist['artist']['advise_price'] > 0;
 
     if ($artist_is_advisor) {
-        $get_times = callAPI('GET', RAW_API . 'reservation/advisor', ['rpp' => 1000, 'id' => $artist['artist']['id']]);
+        $get_times = callAPI('GET', RAW_API . 'reservation/advisor', ['rpp' => 100000, 'id' => $artist['artist']['id']]);
         $get_times = json_decode($get_times, true);
         if (!$get_times['error']) {
             $times = $get_times['dates']['data'];
@@ -283,11 +283,7 @@ if (isset($times) && count($times)) : ?>
                         class="faNum mx-1"><?php echo format_price($artist['artist']['advise_price']); ?></strong>تومان
             </li>
         </ul>
-        <!--        <div class="advisor__days-selectrow row justify-content-between align-items-center px-4 mt-4">-->
-        <!--            <a href="javascript:void(0)" class="advisor__day-prev disabled" data-id="0">-->
-        <!--                <i class="fas fa-chevron-right ml-1"></i>-->
-        <!--                قبلی-->
-        <!--            </a>-->
+
         <div class="sign__group advisor__dates-select mb-0">
             <select name="advisor__days-select">
                 <?php for ($i = 0; $i < count($times); $i++) { ?>
@@ -297,13 +293,6 @@ if (isset($times) && count($times)) : ?>
                 <?php } ?>
             </select>
         </div>
-        <!--            <a href="javascript:void(0)" class="advisor__day-next -->
-        <?php //echo count($times) === 1 ? 'disabled' : ''; ?><!--"-->
-        <!--               data-id="2">-->
-        <!--                بعدی-->
-        <!--                <i class="fas fa-chevron-left mr-1"></i>-->
-        <!--            </a>-->
-        <!--        </div>-->
 
         <?php
         $current_time = $times[0];
@@ -321,14 +310,6 @@ if (isset($times) && count($times)) : ?>
             <?php endfor;
             echo "</ul>";
         } ?>
-        <!--                <ul class="advisor__times-list">-->
-        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">10:30 تا 11</a></li>-->
-        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">11 تا 11:30</a></li>-->
-        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">11:30 تا 12</a></li>-->
-        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">12:30 تا 13</a></li>-->
-        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">13:30 تا 14</a></li>-->
-        <!--                    <li class="advisor__time-badge"><a href="javascript:void(0)">14:30 تا 15</a></li>-->
-        <!--                </ul>-->
         <p class="advisor__help-block">
             کافیست بر روی ساعت مورد نظر کلیک کنید
         </p>

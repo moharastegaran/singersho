@@ -689,7 +689,7 @@ $(document).ready(function () {
         $.magnificPopup.close();
     });
 
-    $('a.select__advisor').magnificPopup({
+    $('a.select__advisor, a.btn__reserve-studio').magnificPopup({
         type: 'inline',
         fixedContentPos: true,
         fixedBgPos: true,
@@ -777,10 +777,6 @@ $(document).ready(function () {
                 }
             });
         }
-    });
-
-    $('.artist__single button.select__advisor').on('click', function () {
-
     });
 
     /*********************/

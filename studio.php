@@ -23,6 +23,23 @@ if (isset($_GET['id'])) {
         if ($suggestions[$j]['id'] === $studio['id'])
             unset($suggestions[$j]);
     }
+    $suggestions = array_values($suggestions);
+
+    /* get studio times */
+    $studio_times = array();
+    $get_times = callAPI('GET', RAW_API . 'reservation/studio', ['rpp' => 100000, 'id' => $studio['id']]);
+    $get_times = json_decode($get_times, true);
+    if (!$get_times['error']) {
+        $studio_times = $get_times['dates']['data'];
+    }
+
+    $cart_studio_reserve = array();
+    if (isset($_SESSION['cart'])) {
+        $cart_details = json_decode($_SESSION['cart'], true)['details'];
+        $cart_studio_reserve = array_values(array_filter($cart_details, function ($item) {
+            return $item['type'] === 'studio';
+        }));
+    }
 }
 
 ?>
@@ -66,32 +83,35 @@ if (isset($_GET['id'])) {
                             <img src="assets/img/arrow-right.png">
                         </a>
                     <?php else: ?>
-                        <img src="assets/img/studio-placeholder.png" class="img-fluid mx-auto" style="max-height: 400px">
+                        <img src="assets/img/studio-placeholder.png" class="img-fluid mx-auto"
+                             style="max-height: 400px">
                     <?php endif; ?>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 side-content">
-                <h1><?php echo $studio['name']; ?></h1>
-                <span class="address"><?php echo $studio['address']; ?></span>
-                <div class="item_price">
+            <div class="col-lg-4 col-md-4 mt-md-0 mt-4">
+                <div class="side-content">
+                    <h1><?php echo $studio['name']; ?></h1>
+                    <span class="address"><?php echo $studio['address']; ?></span>
+                    <div class="item_price">
                     <span class="price"
                           data-price="<?php echo $studio['price']; ?>"><?php echo format_price($studio['price']); ?></span>
-                </div>
-                <div class="item_description">
-                    <p class="description">
-                        <?php echo $studio['description'] ?: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.'; ?>
-                    </p>
-                </div>
-                <div class="w-100">
-                    <li class="city__tag">
-                        <a href="studios.php?cityIds=<?php echo $studio['geographical_information']['city_id']; ?>">
-                            <?php echo $studio['geographical_information']['city']; ?>
-                        </a>
-                    </li>
-                </div>
-                <div class="col-12 mt-4 text-center">
-                    <a href="javascript:void(0)" class="btn__reserve-studio hvr-grow-rotate" data-ripple="">رزرو
-                        استدیو</a>
+                    </div>
+                    <div class="item_description">
+                        <p class="description">
+                            <?php echo $studio['description'] ?: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.'; ?>
+                        </p>
+                    </div>
+                    <div class="w-100">
+                        <li class="city__tag">
+                            <a href="studios.php?cityIds=<?php echo $studio['geographical_information']['city_id']; ?>">
+                                <?php echo $studio['geographical_information']['city']; ?>
+                            </a>
+                        </li>
+                    </div>
+                    <div class="col-12 mt-4 text-center">
+                        <a href="#modal-topup" class="btn__reserve-studio hvr-grow-rotate d-block mx-md-3 mx-1"
+                           data-ripple="">رزرو استدیو</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,8 +124,8 @@ if (isset($_GET['id'])) {
                 <div class="w-100 row">
                     <?php for ($i = 0; $i < count($suggestions); $i++): ?>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-12">
-                            <?php $studio = $suggestions[$i]; ?>
-                            <?php include 'views/cards/studio.php' ?>
+                            <?php $studio = $suggestions[$i];
+                            include 'views/cards/studio.php' ?>
                         </div>
                     <?php endfor; ?>
                 </div>
@@ -115,4 +135,67 @@ if (isset($_GET['id'])) {
 
 
 <?php
+
+$cart_studio_reserve = array_column($cart_studio_reserve, 'id');
+if (isset($studio_times) && count($studio_times)) : ?>
+    <div id="modal-topup" class="mfp-hide magnific-modal">
+        <button class="modal__close" type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M13.41,12l4.3-4.29a1,1,0,1,0-1.42-1.42L12,10.59,7.71,6.29A1,1,0,0,0,6.29,7.71L10.59,12l-4.3,4.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l4.29,4.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"></path>
+            </svg>
+        </button>
+        <h4 class="modal__title">تعیین زمان رزرو</h4>
+
+        <ul class="listicon mb-4 mt-4">
+            <li class="listicon-item item-large">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2"
+                     stroke-linecap="round"
+                     stroke-linejoin="round" class="feather feather-user">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <?php echo $get_studio['studio']['name']; ?>
+            </li>
+            <li class="listicon-item item-large">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20.457,4.555,12.486.126a1,1,0,0,0-.972,0L3.543,4.555A3,3,0,0,0,2,7.177V19a5.006,5.006,0,0,0,5,5H17a5.006,5.006,0,0,0,5-5V7.177A3,3,0,0,0,20.457,4.555ZM20,19a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V7.177A1,1,0,0,1,4.515,6.3L12,2.144,19.486,6.3A1,1,0,0,1,20,7.177Z"/>
+                    <circle cx="12" cy="7" r="1.5"/>
+                </svg>
+                ساعتی <strong
+                        class="faNum mx-1"><?php echo format_price($get_studio['studio']['price']); ?></strong>تومان
+            </li>
+        </ul>
+
+        <div class="sign__group advisor__dates-select mb-0">
+            <select name="advisor__days-select">
+                <?php for ($i = 0; $i < count($studio_times); $i++) { ?>
+                    <option value="<?php echo $studio_times[$i]['shamsi_date_2']; ?>">
+                        <?php echo $studio_times[$i]['shamsi_date_1']; ?>
+                    </option>
+                <?php } ?>
+            </select>
+        </div>
+
+        <?php
+        $current_time = $studio_times[0];
+        if (count($current_time['details'])) {
+            $current_time_details = $current_time['details'];
+            echo "<ul class='advisor__times-list mb-4'>";
+            for ($j = 0; $j < count($current_time_details); $j++) : ?>
+                <?php if (!$current_time_details[$j]['is_reserve']) : ?>
+                    <li class="advisor__time-badge <?php echo in_array($current_time_details[$j]['id'], $cart_studio_reserve) ? ' selected' : ''; ?>">
+                        <a href="javascript:void(0)" data-id="<?php echo $current_time_details[$j]['id']; ?>">
+                            <?php echo $current_time_details[$j]['allowed_hour']['started_at'] . ' تا ' . $current_time_details[$j]['allowed_hour']['ended_at']; ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            <?php endfor;
+            echo "</ul>";
+        } ?>
+        <p class="advisor__help-block">
+            کافیست بر روی ساعت مورد نظر کلیک کنید
+        </p>
+    </div>
+<?php endif;
+
 include 'footer.php';
