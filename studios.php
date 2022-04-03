@@ -21,88 +21,92 @@ $cities = $cities['cities']['data'];
         <div class="row">
             <div class="filters__total-back"></div>
             <div class="col-xl-3 col-lg-4 filters__total-container">
-                <button class="filters__hide-btn" data-ripple=""><i class="fas fa-times ml-3"></i>خروج</button>
-                <div class="search-sidebar">
-                    <button class="btn--orange btn--full filter__reset">لغو فیلترها</button>
+                <div class="filters__total-wrap">
+                    <button class="filters__hide-btn" data-ripple=""><i class="fas fa-times ml-3"></i>خروج</button>
+                    <div class="search-sidebar">
+                        <button class="btn--orange btn--full filter__reset">لغو فیلترها</button>
 
-                    <div class="filter">
-                        <div class="filter__wrap">
-                            <ul>
-                                <li class="filter__single filter__single-cb">
-                                    <div class="filter__title">
-                                        <img src="assets/img/filter.png" class="img-fluid">
-                                        <span>شهر</span>
-                                    </div>
-                                    <div class="filter__single-wrap filter__single-cities">
-                                        <select class="main__select2" name="cities" multiple>
-                                            <?php for ($i = 0; $i < count($cities); $i++) : ?>
-                                                <option value="<?php echo $cities[$i]['id']; ?>">
-                                                    <?php echo $cities[$i]['name']; ?>
-                                                </option>
-                                            <?php endfor; ?>
-                                        </select>
-                                    </div>
-                                </li>
+                        <div class="filter">
+                            <div class="filter__wrap">
+                                <ul>
+                                    <li class="filter__single filter__single-cb">
+                                        <div class="filter__title">
+                                            <img src="assets/img/filter.png" class="img-fluid">
+                                            <span>شهر</span>
+                                        </div>
+                                        <div class="filter__single-wrap filter__single-cities">
+                                            <select class="main__select2" name="cities" multiple>
+                                                <?php for ($i = 0; $i < count($cities); $i++) : ?>
+                                                    <option value="<?php echo $cities[$i]['id']; ?>">
+                                                        <?php echo $cities[$i]['name']; ?>
+                                                    </option>
+                                                <?php endfor; ?>
+                                            </select>
+                                        </div>
+                                    </li>
 
-                                <li class="filter__single">
-                                    <div class="filter__title">
-                                        <img src="assets/img/filter.png" class="img-fluid">
-                                        <span>نام استدیو</span>
-                                    </div>
-                                    <div class="filter__single-wrap">
-                                        <div id="filter__name-wrap">
-                                            <form id="filter__name-form" method="get" action="">
-                                                <input type="text" name="search" autocomplete="off"
-                                                       placeholder="جست و جو کنید" required>
-                                                <div class="form-group--addon">
-                                                    <span class="form-group--seperator"></span>
-                                                    <div aria-hidden="true" class="form-group--icobtn" data-ripple="">
-                                                        <button type="submit">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                                                <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"></path>
-                                                            </svg>
-                                                        </button>
+                                    <li class="filter__single">
+                                        <div class="filter__title">
+                                            <img src="assets/img/filter.png" class="img-fluid">
+                                            <span>نام استدیو</span>
+                                        </div>
+                                        <div class="filter__single-wrap">
+                                            <div id="filter__name-wrap">
+                                                <form id="filter__name-form" method="get" action="">
+                                                    <input type="text" name="search" autocomplete="off"
+                                                           placeholder="جست و جو کنید" required>
+                                                    <div class="form-group--addon">
+                                                        <span class="form-group--seperator"></span>
+                                                        <div aria-hidden="true" class="form-group--icobtn"
+                                                             data-ripple="">
+                                                            <button type="submit">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     viewBox="0 0 24 24">
+                                                                    <path d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z"></path>
+                                                                </svg>
+                                                            </button>
+                                                        </div>
+                                                        <span class="filter__list-itemdel"></span>
                                                     </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="filter__single filter__single-range">
+                                        <div class="filter__title">
+                                            <img src="assets/img/filter.png" class="img-fluid">
+                                            <span>هزینه اجاره</span>
+                                        </div>
+                                        <div class="filter__single-wrap filter__single-formrange">
+                                            <form method="get">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <input type="number" name="price_min" placeholder="از ..."
+                                                               min="<?php echo $price_min; ?>"
+                                                               max="<?php echo $price_max; ?>">
+                                                        <div class="help-block">
+                                                            <?php echo format_price($price_min); ?>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <input type="number" name="price_max" placeholder="تا ..."
+                                                               min="<?php echo $price_min; ?>"
+                                                               max="<?php echo $price_max; ?>">
+                                                        <div class="help-block">
+                                                            <?php echo format_price($price_max); ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="filter__slider-range--addon">
+                                                    <button type="submit" class="btn-custom-dark">اعمال</button>
                                                     <span class="filter__list-itemdel"></span>
                                                 </div>
                                             </form>
                                         </div>
-                                    </div>
-                                </li>
-
-                                <li class="filter__single filter__single-range">
-                                    <div class="filter__title">
-                                        <img src="assets/img/filter.png" class="img-fluid">
-                                        <span>هزینه اجاره</span>
-                                    </div>
-                                    <div class="filter__single-wrap filter__single-formrange">
-                                        <form method="get">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <input type="number" name="price_min" placeholder="از ..."
-                                                           min="<?php echo $price_min; ?>"
-                                                           max="<?php echo $price_max; ?>">
-                                                    <div class="help-block">
-                                                        <?php echo format_price($price_min); ?>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <input type="number" name="price_max" placeholder="تا ..."
-                                                           min="<?php echo $price_min; ?>"
-                                                           max="<?php echo $price_max; ?>">
-                                                    <div class="help-block">
-                                                        <?php echo format_price($price_max); ?>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="filter__slider-range--addon">
-                                                <button type="submit" class="btn-custom-dark">اعمال</button>
-                                                <span class="filter__list-itemdel"></span>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

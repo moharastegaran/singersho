@@ -1148,16 +1148,17 @@ header .btn__cart{
 }
 
 header .btn__cart .cart__counter{
-    background-color: var(--light-yellow);
-    color: var(--dark-2);
+    text-align: center;
+    background-color: #2d2d2d;
+    color: var(--light-green);
     border-radius: 50%;
     padding : .1rem;
-    width: 12px;
-    height: 12px;
+    width: 18px;
+    height: 18px;
     font-family : faNum;
 
     font-size: 12px;
-    line-height: 12px;
+    line-height: 15px;
     font-weight: 700;
     position: absolute;
     left: 0;
