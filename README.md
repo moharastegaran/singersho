@@ -21,4 +21,4 @@ Open a browser and navigate to the directory where you have cloned current repos
 
 ### Related Links
 * More details and screenshots available [here](https://mohammadrezarastegaran.ir/portfolio/singersho)
-* Design files available at [Figma](https://www.figma.com/community/file/1142433461331782941) | Dribbble(https://dribbble.com/shots/19179086-Singersho-UI)
+* Design files available at [Figma](https://www.figma.com/community/file/1142433461331782941) | [Dribbble](https://dribbble.com/shots/19179086-Singersho-UI)
